@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CELL_ID" id="gTV-IL-0wX" customClass="CHLPaperCollectionCell">
+            <rect key="frame" x="0.0" y="0.0" width="314" height="528"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="314" height="528"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ORf-tr-Wgk">
+                        <rect key="frame" x="0.0" y="20" width="314" height="508"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Fsa-AS-1Uf">
+                                <rect key="frame" x="0.0" y="0.0" width="314" height="314"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="Fsa-AS-1Uf" secondAttribute="height" multiplier="1:1" id="Dae-RG-STJ"/>
+                                </constraints>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.29999999999999999" preferredMaxLayoutWidth="305" translatesAutoresizingMaskIntoConstraints="NO" id="be5-ex-uIB">
+                                <rect key="frame" x="8" y="322" width="298" height="22"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="298" id="qjb-kT-yjW"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="18"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tch-3p-BDx">
+                                <rect key="frame" x="141" y="439" width="33" height="38"/>
+                                <state key="normal" backgroundImage="reaction_chill">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="chillButtonTapped:" destination="gTV-IL-0wX" eventType="touchUpInside" id="asY-bQ-mRF"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dbo-mE-B82">
+                                <rect key="frame" x="214" y="441" width="33" height="33"/>
+                                <state key="normal" backgroundImage="reaction_rocket">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="rocketButtonTapped:" destination="gTV-IL-0wX" eventType="touchUpInside" id="SYD-x7-m2T"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GXo-9b-45q">
+                                <rect key="frame" x="219" y="375" width="22" height="33"/>
+                                <state key="normal" backgroundImage="reaction_soda">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="sodaButtonTapped:" destination="gTV-IL-0wX" eventType="touchUpInside" id="YSM-Eg-beI"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Aph-OQ-g9j">
+                                <rect key="frame" x="63" y="442" width="33" height="33"/>
+                                <state key="normal" backgroundImage="reaction_blank">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="blankButtonTapped:" destination="gTV-IL-0wX" eventType="touchUpInside" id="ZyF-tA-D1q"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YXX-5R-XlD">
+                                <rect key="frame" x="63" y="375" width="33" height="33"/>
+                                <state key="normal" backgroundImage="reaction_clock">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="clockButtonTapped:" destination="gTV-IL-0wX" eventType="touchUpInside" id="W2M-FU-Ozd"/>
+                                </connections>
+                            </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RZz-gq-rP8" userLabel="Bottom alignment view">
+                                <rect key="frame" x="0.0" y="477" width="314" height="31"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Em4-7L-jsx" userLabel="Top alignment view">
+                                <rect key="frame" x="0.0" y="344" width="314" height="31"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="I6s-Bx-bNb" userLabel="Middle verticle alignment view">
+                                <rect key="frame" x="0.0" y="408" width="314" height="31"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wk6-Yu-88D">
+                                <rect key="frame" x="143" y="375" width="29" height="33"/>
+                                <state key="normal" backgroundImage="reaction_drink">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="drinkButtonTapped:" destination="gTV-IL-0wX" eventType="touchUpInside" id="20Q-Ce-iPc"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="RZz-gq-rP8" firstAttribute="top" secondItem="tch-3p-BDx" secondAttribute="bottom" id="0Q4-ca-wsC"/>
+                            <constraint firstItem="wk6-Yu-88D" firstAttribute="leading" secondItem="YXX-5R-XlD" secondAttribute="trailing" constant="47" id="2mz-tc-LQh"/>
+                            <constraint firstItem="I6s-Bx-bNb" firstAttribute="width" secondItem="ORf-tr-Wgk" secondAttribute="width" id="3RI-la-OIe"/>
+                            <constraint firstAttribute="centerX" secondItem="RZz-gq-rP8" secondAttribute="centerX" id="6j5-qt-1UY"/>
+                            <constraint firstItem="Fsa-AS-1Uf" firstAttribute="top" secondItem="ORf-tr-Wgk" secondAttribute="top" id="AsJ-au-NZw"/>
+                            <constraint firstItem="be5-ex-uIB" firstAttribute="top" secondItem="Fsa-AS-1Uf" secondAttribute="bottom" constant="8" id="DTP-lZ-4oQ"/>
+                            <constraint firstItem="GXo-9b-45q" firstAttribute="leading" secondItem="wk6-Yu-88D" secondAttribute="trailing" constant="47" id="DnP-F9-Ksw"/>
+                            <constraint firstAttribute="centerX" secondItem="tch-3p-BDx" secondAttribute="centerX" id="EkX-r8-9PT"/>
+                            <constraint firstAttribute="width" secondItem="Em4-7L-jsx" secondAttribute="width" id="H31-Lf-izI"/>
+                            <constraint firstItem="Aph-OQ-g9j" firstAttribute="centerY" secondItem="tch-3p-BDx" secondAttribute="centerY" id="HXe-SY-MPS"/>
+                            <constraint firstItem="tch-3p-BDx" firstAttribute="top" secondItem="I6s-Bx-bNb" secondAttribute="bottom" id="P7o-ib-wIt"/>
+                            <constraint firstItem="RZz-gq-rP8" firstAttribute="width" secondItem="ORf-tr-Wgk" secondAttribute="width" id="Qbg-GN-QZF"/>
+                            <constraint firstItem="GXo-9b-45q" firstAttribute="centerY" secondItem="wk6-Yu-88D" secondAttribute="centerY" id="VSx-9n-TIm"/>
+                            <constraint firstAttribute="centerX" secondItem="I6s-Bx-bNb" secondAttribute="centerX" id="YSZ-3E-R7m"/>
+                            <constraint firstItem="Aph-OQ-g9j" firstAttribute="centerX" secondItem="YXX-5R-XlD" secondAttribute="centerX" id="YdB-Ps-C2i"/>
+                            <constraint firstItem="Fsa-AS-1Uf" firstAttribute="leading" secondItem="ORf-tr-Wgk" secondAttribute="leading" id="b57-pH-0La"/>
+                            <constraint firstAttribute="centerX" secondItem="Em4-7L-jsx" secondAttribute="centerX" id="brK-LI-UqI"/>
+                            <constraint firstItem="Em4-7L-jsx" firstAttribute="top" secondItem="be5-ex-uIB" secondAttribute="bottom" id="c1a-XV-GwY"/>
+                            <constraint firstItem="I6s-Bx-bNb" firstAttribute="top" secondItem="wk6-Yu-88D" secondAttribute="bottom" id="f4X-GF-ss3"/>
+                            <constraint firstItem="RZz-gq-rP8" firstAttribute="height" secondItem="Em4-7L-jsx" secondAttribute="height" id="fIB-zj-HO3"/>
+                            <constraint firstItem="tch-3p-BDx" firstAttribute="centerY" secondItem="dbo-mE-B82" secondAttribute="centerY" id="gJa-xf-rZc"/>
+                            <constraint firstItem="wk6-Yu-88D" firstAttribute="top" secondItem="Em4-7L-jsx" secondAttribute="bottom" id="ggD-BN-mcV"/>
+                            <constraint firstAttribute="bottom" secondItem="RZz-gq-rP8" secondAttribute="bottom" id="hCy-NS-zoh"/>
+                            <constraint firstAttribute="centerX" secondItem="be5-ex-uIB" secondAttribute="centerX" id="hUE-Dg-mqn"/>
+                            <constraint firstAttribute="centerX" secondItem="wk6-Yu-88D" secondAttribute="centerX" id="jYM-LR-vFa"/>
+                            <constraint firstAttribute="trailing" secondItem="Fsa-AS-1Uf" secondAttribute="trailing" id="kb6-sd-y5W"/>
+                            <constraint firstItem="wk6-Yu-88D" firstAttribute="centerY" secondItem="YXX-5R-XlD" secondAttribute="centerY" id="lAj-DZ-x5U"/>
+                            <constraint firstItem="I6s-Bx-bNb" firstAttribute="height" secondItem="Em4-7L-jsx" secondAttribute="height" id="oDb-Tz-JVh"/>
+                            <constraint firstItem="GXo-9b-45q" firstAttribute="centerX" secondItem="dbo-mE-B82" secondAttribute="centerX" id="y0l-mV-AYb"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            </view>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="ORf-tr-Wgk" secondAttribute="bottom" id="B0H-ZT-H7X"/>
+                <constraint firstItem="ORf-tr-Wgk" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="KA9-Zl-0nB"/>
+                <constraint firstItem="ORf-tr-Wgk" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="20" id="OL4-DC-eqH"/>
+                <constraint firstAttribute="trailing" secondItem="ORf-tr-Wgk" secondAttribute="trailing" id="jEK-9m-sDH"/>
+            </constraints>
+            <size key="customSize" width="314" height="528"/>
+            <connections>
+                <outlet property="cellLabel" destination="be5-ex-uIB" id="Q2v-7C-5G1"/>
+                <outlet property="placeholderContentView" destination="Fsa-AS-1Uf" id="Apc-Ym-nQf"/>
+            </connections>
+            <point key="canvasLocation" x="300" y="364"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="reaction_blank" width="33" height="33"/>
+        <image name="reaction_chill" width="33" height="38"/>
+        <image name="reaction_clock" width="33" height="33"/>
+        <image name="reaction_drink" width="29" height="33"/>
+        <image name="reaction_rocket" width="33" height="33"/>
+        <image name="reaction_soda" width="22" height="33"/>
+    </resources>
+</document>
