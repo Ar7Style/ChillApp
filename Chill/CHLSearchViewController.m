@@ -269,7 +269,7 @@ NSMutableData *mutData;
         NSDictionary *data = @{
                                @"alert": message,
                                @"sound": @"default",
-                               @"badge" : @"Increment",
+                               @"badge" : @1,
                                @"type": @"NewUser"
                                };
         PFPush *push = [[PFPush alloc] init];

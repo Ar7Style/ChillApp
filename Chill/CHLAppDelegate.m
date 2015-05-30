@@ -45,13 +45,13 @@ static NSString *const CHLIsOpenedBeforeKey = @"CHLIsOpenedBeforeKey";
         
         [application registerForRemoteNotifications];
     }
-    else
-    {
-        [[UIApplication sharedApplication] registerForRemoteNotificationTypes:(UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeSound|UIRemoteNotificationTypeBadge)];
-//        // iOS < 8 Notifications
-//        [application registerForRemoteNotificationTypes:
-//         (UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeSound)];
-    }
+//    else
+//    {
+//        [[UIApplication sharedApplication] registerForRemoteNotificationTypes:(UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeSound|UIRemoteNotificationTypeBadge)];
+////        // iOS < 8 Notifications
+////        [application registerForRemoteNotificationTypes:
+////         (UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeSound)];
+//    }
     
     [self.window setBackgroundColor:[UIColor whiteColor]];
     UIPageControl *pageControl = [UIPageControl appearance];

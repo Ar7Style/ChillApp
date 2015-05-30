@@ -11,9 +11,12 @@
 #import "JSONLoader.h"
 #import "MessagesJSON.h"
 #import <CoreLocation/CoreLocation.h>
+#import "Reachability.h"
 
 @interface MessInterfaceController()<CLLocationManagerDelegate>{
     int friendid;
+    Reachability *internetReachableFoo;
+
 }
 
 @end
@@ -24,7 +27,10 @@ NSMutableData *mutData;
     NSArray *_locations;
     CLLocationManager *locationManager;
 }
-
+- (BOOL)connected
+{
+    return [[Reachability reachabilityForInternetConnection] currentReachabilityStatus] != NotReachable;
+}
 - (void)awakeWithContext:(id)context {
     [super awakeWithContext:context];
     friendid = [context intValue];
@@ -90,13 +96,15 @@ NSMutableData *mutData;
 }
 - (void) loadJSON {
     
-    
+    if([self connected]){
+
     NSUserDefaults *userCache = [[NSUserDefaults standardUserDefaults] initWithSuiteName:@"group.co.getchill.chill"];
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
         
             _locations = [[[JSONLoader alloc] init] locationsFromJSONFile:[[NSURL alloc] initWithString:[NSString stringWithFormat:@"http://api.iamchill.co/v1/messages/index/id_user/%@/id_contact/%i", [userCache valueForKey:@"id_user"], friendid]] typeJSON:@"Messages"];
             [self configureTableWithData];
     });
+    }
 }
 - (void)willActivate {
     locationManager = [[CLLocationManager alloc] init];
@@ -139,7 +147,8 @@ NSMutableData *mutData;
 - (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation
 {
     CLLocation *currentLocation = newLocation;
-    
+    if([self connected]){
+
     NSMutableURLRequest *request =
     [[NSMutableURLRequest alloc] initWithURL:
      [NSURL URLWithString:@"http://api.iamchill.co/v1/messages/index/"]];
@@ -157,6 +166,7 @@ NSMutableData *mutData;
     if (connection) {
         mutData = [NSMutableData data];
     }
+    }
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection
@@ -167,7 +177,6 @@ NSMutableData *mutData;
    didSendBodyData:(NSInteger)bytesWritten
  totalBytesWritten:(NSInteger)totalBytesWritten
 totalBytesExpectedToWrite:(NSInteger)totalBytesExpectedToWrite {
-    float currentProgress = (float)totalBytesWritten / totalBytesExpectedToWrite;
    
 }
 

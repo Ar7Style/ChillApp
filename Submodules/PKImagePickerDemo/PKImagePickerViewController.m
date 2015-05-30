@@ -307,7 +307,7 @@ NSMutableData *mutData;
                                                    @"alert": message,
                                                    @"type": @"Photo",
                                                    @"sound": @"default",
-                                                   @"badge" : @"Increment",
+                                                   @"badge" : @1,
                                                    @"fromUserId": [userCache valueForKey:@"id_user"]
                                                    };
 

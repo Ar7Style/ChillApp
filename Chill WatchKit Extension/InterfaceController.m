@@ -10,13 +10,21 @@
 #import "CHLTableWatch.h"
 #import "JSONLoader.h"
 #import "FriendsJSON.h"
-@interface InterfaceController()
+#import "Reachability.h"
+@interface InterfaceController() {
+    Reachability *internetReachableFoo;
+
+}
 
 @end
 
 
 @implementation InterfaceController {
     NSArray *_locations;
+}
+- (BOOL)connected
+{
+    return [[Reachability reachabilityForInternetConnection] currentReachabilityStatus] != NotReachable;
 }
 - (void)table:(WKInterfaceTable *)table didSelectRowAtIndex:(NSInteger)rowIndex{
     NSLog(@"tap");
@@ -25,7 +33,7 @@
     [self pushControllerWithName:@"mess" context:location.id_contact];
 }
 - (void) loadJSON {
-    
+    if([self connected]){
     NSUserDefaults *userCache = [[NSUserDefaults standardUserDefaults] initWithSuiteName:@"group.co.getchill.chill"];
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
         NSLog(@"http://api.iamchill.co/v1/contacts/index/id_user/%@", [userCache valueForKey:@"id_user"]);
@@ -36,6 +44,14 @@
             [self configureTableWithData];
         }
     });
+    }
+    else {
+        [self.table setNumberOfRows:1 withRowType:@"cell"];
+        CHLTableWatch* theRow = [self.table rowControllerAtIndex:0];
+
+        [theRow.lblTitle setText:@"Connection refuesed"];
+
+    }
 }
 - (void)configureTableWithData {
     

@@ -29,7 +29,10 @@
 		026421981A59DE0400992AB3 /* Chill_logo1@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 026421971A59DE0400992AB3 /* Chill_logo1@2x.jpg */; };
 		0264219C1A59FB7700992AB3 /* logo_chill_5@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0264219B1A59FB7700992AB3 /* logo_chill_5@2x.png */; };
 		026421A01A59FDBF00992AB3 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0264219F1A59FDBF00992AB3 /* LaunchScreen.xib */; };
-		027984F71A49FFB300617A24 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 027984F21A49FFB200617A24 /* Parse.framework */; };
+		0272A1B71B17C23200E04D83 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0272A1B61B17C23200E04D83 /* Parse.framework */; };
+		0272A1B81B17C23200E04D83 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0272A1B61B17C23200E04D83 /* Parse.framework */; };
+		0272A1BA1B17C2D300E04D83 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0272A1B91B17C2D300E04D83 /* Bolts.framework */; };
+		0272A1BB1B17C2D300E04D83 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0272A1B91B17C2D300E04D83 /* Bolts.framework */; };
 		027984FE1A4A00CF00617A24 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 027984FD1A4A00CF00617A24 /* Accounts.framework */; };
 		027985001A4A00D600617A24 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 027984FF1A4A00D600617A24 /* Social.framework */; };
 		027985021A4A00E800617A24 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 027985011A4A00E800617A24 /* CoreFoundation.framework */; };
@@ -39,7 +42,6 @@
 		027A95C61A5B7DFC004E0914 /* Line@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 027A95C31A5B7DFC004E0914 /* Line@2x.png */; };
 		027A95C71A5B7DFC004E0914 /* Oval 43@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 027A95C41A5B7DFC004E0914 /* Oval 43@2x.png */; };
 		027A95C81A5B7DFC004E0914 /* Oval 44@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 027A95C51A5B7DFC004E0914 /* Oval 44@2x.png */; };
-		027A95CA1A5C5120004E0914 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 027A95C91A5C5120004E0914 /* Bolts.framework */; };
 		027A95D01A5CB7EC004E0914 /* icon_st@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 027A95CF1A5CB7EC004E0914 /* icon_st@2x.png */; };
 		028A85731AFAA8F60034069E /* Chill WatchKit App.app in Resources */ = {isa = PBXBuildFile; fileRef = 028A85721AFAA8F60034069E /* Chill WatchKit App.app */; };
 		028A85801AFAA8F60034069E /* Chill WatchKit Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 028A85671AFAA8F60034069E /* Chill WatchKit Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -66,7 +68,6 @@
 		028A85C01AFAA9930034069E /* CHLTableWatch.m in Sources */ = {isa = PBXBuildFile; fileRef = 028A85B11AFAA9930034069E /* CHLTableWatch.m */; };
 		028A85C11AFAA9930034069E /* CHLTableMessWK.m in Sources */ = {isa = PBXBuildFile; fileRef = 028A85B31AFAA9930034069E /* CHLTableMessWK.m */; };
 		028A85C21AFAA9930034069E /* NotificationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 028A85B51AFAA9930034069E /* NotificationController.m */; };
-		028A85C31AFAA9930034069E /* GlanceController.m in Sources */ = {isa = PBXBuildFile; fileRef = 028A85B71AFAA9930034069E /* GlanceController.m */; };
 		028A85C51AFAA9930034069E /* ShareIconsInterfaceController.m in Sources */ = {isa = PBXBuildFile; fileRef = 028A85BB1AFAA9930034069E /* ShareIconsInterfaceController.m */; };
 		028A85C61AFAA9930034069E /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 028A85BC1AFAA9930034069E /* Images.xcassets */; };
 		028A85C71AFAA9F40034069E /* FriendsJSON.h in Sources */ = {isa = PBXBuildFile; fileRef = 020B35641A1E402C00DC2F23 /* FriendsJSON.h */; };
@@ -79,7 +80,6 @@
 		028A85CE1AFAA9F40034069E /* JSONLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 020B35671A1E402C00DC2F23 /* JSONLoader.m */; };
 		028A85D01AFAAA230034069E /* picios_right.png in Resources */ = {isa = PBXBuildFile; fileRef = 028A85CF1AFAAA230034069E /* picios_right.png */; };
 		028A85D21AFAAA3E0034069E /* locationios_right.png in Resources */ = {isa = PBXBuildFile; fileRef = 028A85D11AFAAA3E0034069E /* locationios_right.png */; };
-		028A85D31AFAAF1B0034069E /* Parse.framework in Sources */ = {isa = PBXBuildFile; fileRef = 027984F21A49FFB200617A24 /* Parse.framework */; };
 		028A85D81AFAB4060034069E /* Rectangle_13__drink24_4@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 028A85D71AFAB4060034069E /* Rectangle_13__drink24_4@2x.png */; };
 		028A85D91AFAB4060034069E /* Rectangle_13__drink24_4@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 028A85D71AFAB4060034069E /* Rectangle_13__drink24_4@2x.png */; };
 		028A85DB1AFAB4240034069E /* Rectangle_18__soda7_5@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 028A85DA1AFAB4240034069E /* Rectangle_18__soda7_5@2x.png */; };
@@ -185,6 +185,18 @@
 		ADE222C41A94ECEB007777A4 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = ADE222C31A94ECEB007777A4 /* libsqlite3.dylib */; };
 		ADE222C71A94FE4F007777A4 /* libGoogleAnalyticsServices.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ADE222C51A94FE4F007777A4 /* libGoogleAnalyticsServices.a */; };
 		ADE222C81A94FE4F007777A4 /* libAdIdAccess.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ADE222C61A94FE4F007777A4 /* libAdIdAccess.a */; };
+		D0EC27E21B17284E00F857FD /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E685AB5D191FA0A40088D0E5 /* AudioToolbox.framework */; };
+		D0EC27E41B17285500F857FD /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0EC27E31B17285400F857FD /* CFNetwork.framework */; };
+		D0EC27E51B17285C00F857FD /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E6C7C1D2191A1B220071D83F /* CoreGraphics.framework */; };
+		D0EC27E61B17286700F857FD /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E6A67AF5198EEB1A0067E34E /* CoreLocation.framework */; };
+		D0EC27E81B17287300F857FD /* libz.1.1.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D0EC27E71B17287300F857FD /* libz.1.1.3.dylib */; };
+		D0EC27E91B17287C00F857FD /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E6C7C221191A8CA50071D83F /* MobileCoreServices.framework */; };
+		D0EC27EA1B17288400F857FD /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E685AB5B191FA09F0088D0E5 /* QuartzCore.framework */; };
+		D0EC27EB1B17288C00F857FD /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E6C7C21F191A8C8C0071D83F /* Security.framework */; };
+		D0EC27EC1B17289500F857FD /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E6C7C21D191A8C830071D83F /* SystemConfiguration.framework */; };
+		D0EC27ED1B1728B000F857FD /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = ADE222C31A94ECEB007777A4 /* libsqlite3.dylib */; };
+		D0EC27EE1B1731D900F857FD /* Reachability.h in Sources */ = {isa = PBXBuildFile; fileRef = 020B356C1A1E402C00DC2F23 /* Reachability.h */; };
+		D0EC27EF1B1731D900F857FD /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 020B356D1A1E402C00DC2F23 /* Reachability.m */; };
 		E60427AA196F191C000F8F02 /* CHLAddressBookViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E60427A9196F191C000F8F02 /* CHLAddressBookViewController.m */; };
 		E604427419C5D40200D9ECB9 /* GoogleMaps.bundle in Resources */ = {isa = PBXBuildFile; fileRef = E604427319C5D40200D9ECB9 /* GoogleMaps.bundle */; };
 		E63A0F1E19A1193500C0522A /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E63A0F1D19A1193500C0522A /* AddressBook.framework */; };
@@ -289,7 +301,8 @@
 		026421971A59DE0400992AB3 /* Chill_logo1@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Chill_logo1@2x.jpg"; sourceTree = "<group>"; };
 		0264219B1A59FB7700992AB3 /* logo_chill_5@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "logo_chill_5@2x.png"; sourceTree = "<group>"; };
 		0264219F1A59FDBF00992AB3 /* LaunchScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LaunchScreen.xib; sourceTree = "<group>"; };
-		027984F21A49FFB200617A24 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
+		0272A1B61B17C23200E04D83 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
+		0272A1B91B17C2D300E04D83 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
 		027984FD1A4A00CF00617A24 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
 		027984FF1A4A00D600617A24 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		027985011A4A00E800617A24 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
@@ -299,7 +312,6 @@
 		027A95C31A5B7DFC004E0914 /* Line@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Line@2x.png"; sourceTree = "<group>"; };
 		027A95C41A5B7DFC004E0914 /* Oval 43@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Oval 43@2x.png"; sourceTree = "<group>"; };
 		027A95C51A5B7DFC004E0914 /* Oval 44@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Oval 44@2x.png"; sourceTree = "<group>"; };
-		027A95C91A5C5120004E0914 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
 		027A95CF1A5CB7EC004E0914 /* icon_st@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_st@2x.png"; sourceTree = "<group>"; };
 		028A85671AFAA8F60034069E /* Chill WatchKit Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Chill WatchKit Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		028A856A1AFAA8F60034069E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -334,8 +346,6 @@
 		028A85B31AFAA9930034069E /* CHLTableMessWK.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHLTableMessWK.m; sourceTree = "<group>"; };
 		028A85B41AFAA9930034069E /* NotificationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotificationController.h; sourceTree = "<group>"; };
 		028A85B51AFAA9930034069E /* NotificationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotificationController.m; sourceTree = "<group>"; };
-		028A85B61AFAA9930034069E /* GlanceController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GlanceController.h; sourceTree = "<group>"; };
-		028A85B71AFAA9930034069E /* GlanceController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GlanceController.m; sourceTree = "<group>"; };
 		028A85BA1AFAA9930034069E /* ShareIconsInterfaceController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareIconsInterfaceController.h; sourceTree = "<group>"; };
 		028A85BB1AFAA9930034069E /* ShareIconsInterfaceController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareIconsInterfaceController.m; sourceTree = "<group>"; };
 		028A85BC1AFAA9930034069E /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
@@ -430,6 +440,8 @@
 		ADE222D01A94FE5A007777A4 /* GAIEcommerceFields.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAIEcommerceFields.h; sourceTree = "<group>"; };
 		ADE222D11A94FE5A007777A4 /* GAIDictionaryBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAIDictionaryBuilder.h; sourceTree = "<group>"; };
 		ADE222D21A94FE5A007777A4 /* GAI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAI.h; sourceTree = "<group>"; };
+		D0EC27E31B17285400F857FD /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		D0EC27E71B17287300F857FD /* libz.1.1.3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.1.3.dylib; path = usr/lib/libz.1.1.3.dylib; sourceTree = SDKROOT; };
 		E60427A8196F191C000F8F02 /* CHLAddressBookViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHLAddressBookViewController.h; sourceTree = "<group>"; };
 		E60427A9196F191C000F8F02 /* CHLAddressBookViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHLAddressBookViewController.m; sourceTree = "<group>"; };
 		E604427319C5D40200D9ECB9 /* GoogleMaps.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = GoogleMaps.bundle; path = GoogleMaps.framework/Versions/A/Resources/GoogleMaps.bundle; sourceTree = "<group>"; };
@@ -484,6 +496,18 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D0EC27ED1B1728B000F857FD /* libsqlite3.dylib in Frameworks */,
+				D0EC27EC1B17289500F857FD /* SystemConfiguration.framework in Frameworks */,
+				D0EC27EB1B17288C00F857FD /* Security.framework in Frameworks */,
+				0272A1BB1B17C2D300E04D83 /* Bolts.framework in Frameworks */,
+				D0EC27EA1B17288400F857FD /* QuartzCore.framework in Frameworks */,
+				D0EC27E91B17287C00F857FD /* MobileCoreServices.framework in Frameworks */,
+				D0EC27E81B17287300F857FD /* libz.1.1.3.dylib in Frameworks */,
+				D0EC27E61B17286700F857FD /* CoreLocation.framework in Frameworks */,
+				D0EC27E51B17285C00F857FD /* CoreGraphics.framework in Frameworks */,
+				D0EC27E41B17285500F857FD /* CFNetwork.framework in Frameworks */,
+				D0EC27E21B17284E00F857FD /* AudioToolbox.framework in Frameworks */,
+				0272A1B81B17C23200E04D83 /* Parse.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -497,16 +521,16 @@
 				027985021A4A00E800617A24 /* CoreFoundation.framework in Frameworks */,
 				027985001A4A00D600617A24 /* Social.framework in Frameworks */,
 				027984FE1A4A00CF00617A24 /* Accounts.framework in Frameworks */,
+				0272A1B71B17C23200E04D83 /* Parse.framework in Frameworks */,
 				E6A67AFC198EEB310067E34E /* ImageIO.framework in Frameworks */,
 				E63A0F2919A1327800C0522A /* MessageUI.framework in Frameworks */,
 				E63A0F1E19A1193500C0522A /* AddressBook.framework in Frameworks */,
-				027A95CA1A5C5120004E0914 /* Bolts.framework in Frameworks */,
 				E6A67B02198EEB490067E34E /* libz.dylib in Frameworks */,
-				027984F71A49FFB300617A24 /* Parse.framework in Frameworks */,
 				E6A67AFE198EEB380067E34E /* libc++.dylib in Frameworks */,
 				0256F4981A3E31A2001D9A23 /* GoogleMaps.framework in Frameworks */,
 				E6A67AFA198EEB2A0067E34E /* GLKit.framework in Frameworks */,
 				E6A67AF8198EEB220067E34E /* CoreText.framework in Frameworks */,
+				0272A1BA1B17C2D300E04D83 /* Bolts.framework in Frameworks */,
 				E6A67AF6198EEB1A0067E34E /* CoreLocation.framework in Frameworks */,
 				E6A67AF4198EEB0B0067E34E /* AVFoundation.framework in Frameworks */,
 				E6CF48E6193B7CA000CD48B6 /* AssetsLibrary.framework in Frameworks */,
@@ -578,8 +602,6 @@
 				028A85B31AFAA9930034069E /* CHLTableMessWK.m */,
 				028A85B41AFAA9930034069E /* NotificationController.h */,
 				028A85B51AFAA9930034069E /* NotificationController.m */,
-				028A85B61AFAA9930034069E /* GlanceController.h */,
-				028A85B71AFAA9930034069E /* GlanceController.m */,
 				028A85BA1AFAA9930034069E /* ShareIconsInterfaceController.h */,
 				028A85BB1AFAA9930034069E /* ShareIconsInterfaceController.m */,
 				028A85BC1AFAA9930034069E /* Images.xcassets */,
@@ -780,6 +802,8 @@
 		E6C7C1C4191A1B220071D83F = {
 			isa = PBXGroup;
 			children = (
+				0272A1B91B17C2D300E04D83 /* Bolts.framework */,
+				0272A1B61B17C23200E04D83 /* Parse.framework */,
 				E6C7C1D6191A1B230071D83F /* Chill */,
 				028A85681AFAA8F60034069E /* Chill WatchKit Extension */,
 				028A85761AFAA8F60034069E /* Chill WatchKit App */,
@@ -801,17 +825,17 @@
 		E6C7C1CF191A1B220071D83F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D0EC27E71B17287300F857FD /* libz.1.1.3.dylib */,
+				D0EC27E31B17285400F857FD /* CFNetwork.framework */,
 				ADE222C31A94ECEB007777A4 /* libsqlite3.dylib */,
 				ADD038581A93CABE00D3A0D9 /* Google Analytics */,
 				ADD038611A93CC1A00D3A0D9 /* AdSupport.framework */,
 				0254909E1A61C51400D9222B /* GameKit.framework */,
 				0254909C1A61C4FB00D9222B /* StoreKit.framework */,
-				027A95C91A5C5120004E0914 /* Bolts.framework */,
 				027985051A4A015D00617A24 /* libsqlite3.0.dylib */,
 				E6A67B01198EEB490067E34E /* libz.dylib */,
 				E6A67AFD198EEB380067E34E /* libc++.dylib */,
 				E604427319C5D40200D9ECB9 /* GoogleMaps.bundle */,
-				027984F21A49FFB200617A24 /* Parse.framework */,
 				027985011A4A00E800617A24 /* CoreFoundation.framework */,
 				027984FF1A4A00D600617A24 /* Social.framework */,
 				027984FD1A4A00CF00617A24 /* Accounts.framework */,
@@ -1243,7 +1267,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				028A85D31AFAAF1B0034069E /* Parse.framework in Sources */,
+				D0EC27EE1B1731D900F857FD /* Reachability.h in Sources */,
+				D0EC27EF1B1731D900F857FD /* Reachability.m in Sources */,
 				028A85C71AFAA9F40034069E /* FriendsJSON.h in Sources */,
 				028A85C81AFAA9F40034069E /* FriendsJSON.m in Sources */,
 				028A85C91AFAA9F40034069E /* MessagesJSON.h in Sources */,
@@ -1252,7 +1277,6 @@
 				028A85CC1AFAA9F40034069E /* SearchJSON.m in Sources */,
 				028A85CD1AFAA9F40034069E /* JSONLoader.h in Sources */,
 				028A85CE1AFAA9F40034069E /* JSONLoader.m in Sources */,
-				028A85C31AFAA9930034069E /* GlanceController.m in Sources */,
 				028A85C01AFAA9930034069E /* CHLTableWatch.m in Sources */,
 				028A85C11AFAA9930034069E /* CHLTableMessWK.m in Sources */,
 				028A85C21AFAA9930034069E /* NotificationController.m in Sources */,
@@ -1340,6 +1364,13 @@
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Chill",
+					WatchKit,
+					Extension,
+					"$(PROJECT_DIR)",
+				);
 				GCC_NO_COMMON_BLOCKS = YES;
 				INFOPLIST_FILE = "Chill WatchKit Extension/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.3;

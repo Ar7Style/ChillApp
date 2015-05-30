@@ -83,7 +83,7 @@
                            @"alert": message,
                            @"type": @"Location",
                            @"sound": @"default",
-                           @"badge" : @"Increment",
+                           @"badge" : @1,
                            @"fromUserId": [userCache valueForKey:@"id_user"]
                            };
     PFPush *push = [[PFPush alloc] init];
