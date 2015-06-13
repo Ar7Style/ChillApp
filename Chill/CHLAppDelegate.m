@@ -18,6 +18,9 @@
 #import "GAIFields.h"
 #import "GAIDictionaryBuilder.h"
 #import "GAITracker.h"
+#import <Fabric/Fabric.h>
+#import <TwitterKit/TwitterKit.h>
+
 static NSString *const CHLIsOpenedBeforeKey = @"CHLIsOpenedBeforeKey";
 
 @interface CHLAppDelegate ()
@@ -70,6 +73,8 @@ static NSString *const CHLIsOpenedBeforeKey = @"CHLIsOpenedBeforeKey";
                                                          diskCapacity:100 * 1024 * 1024
                                                              diskPath:@"NSURLCache"];
     [NSURLCache setSharedURLCache:URLCache];
+    
+    [Fabric with:@[TwitterKit]];
     
     // Google Analytics
     [GAI sharedInstance].trackUncaughtExceptions = YES;
