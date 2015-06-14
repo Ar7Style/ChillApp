@@ -21,6 +21,9 @@
 #import <Fabric/Fabric.h>
 #import <TwitterKit/TwitterKit.h>
 
+#import <Crashlytics/Crashlytics.h>
+
+
 static NSString *const CHLIsOpenedBeforeKey = @"CHLIsOpenedBeforeKey";
 
 @interface CHLAppDelegate ()
@@ -74,7 +77,10 @@ static NSString *const CHLIsOpenedBeforeKey = @"CHLIsOpenedBeforeKey";
                                                              diskPath:@"NSURLCache"];
     [NSURLCache setSharedURLCache:URLCache];
     
-    [Fabric with:@[TwitterKit]];
+    ///Fabric crachlytics
+    [Fabric with:@[TwitterKit, CrashlyticsKit]];
+
+    // [Fabric with:@[TwitterKit]];
     
     // Google Analytics
     [GAI sharedInstance].trackUncaughtExceptions = YES;
@@ -82,6 +88,8 @@ static NSString *const CHLIsOpenedBeforeKey = @"CHLIsOpenedBeforeKey";
     [[[GAI sharedInstance] logger] setLogLevel:kGAILogLevelVerbose];
     [[GAI sharedInstance] trackerWithTrackingId:@"UA-59826573-1"];
     
+    
+
     return YES;
 }
 

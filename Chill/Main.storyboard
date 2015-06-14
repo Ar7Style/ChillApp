@@ -1018,10 +1018,10 @@ communication experience</string>
             </objects>
             <point key="canvasLocation" x="-1118" y="1325"/>
         </scene>
-        <!--View Controller-->
+        <!--Additional Share View Controller-->
         <scene sceneID="JAH-cP-FRY">
             <objects>
-                <viewController id="JP3-rM-pBa" sceneMemberID="viewController">
+                <viewController id="JP3-rM-pBa" customClass="CHLAdditionalShareViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ww5-hu-eBy"/>
                         <viewControllerLayoutGuide type="bottom" id="tlz-Dk-zkA"/>
@@ -1257,7 +1257,11 @@ communication experience</string>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="oyr-Ey-vaJ">
-                        <barButtonItem key="leftBarButtonItem" title="Back" id="Wfr-Jq-YEU"/>
+                        <barButtonItem key="leftBarButtonItem" title="Back" id="Wfr-Jq-YEU">
+                            <connections>
+                                <action selector="backButtonPressed:" destination="JP3-rM-pBa" id="2QV-xC-775"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="320" height="568"/>
@@ -1593,8 +1597,8 @@ communication experience</string>
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="jnP-xo-jaE"/>
-        <segue reference="Wrj-F4-wYT"/>
         <segue reference="qRD-Z3-ksL"/>
+        <segue reference="Wrj-F4-wYT"/>
+        <segue reference="jnP-xo-jaE"/>
     </inferredMetricsTieBreakers>
 </document>

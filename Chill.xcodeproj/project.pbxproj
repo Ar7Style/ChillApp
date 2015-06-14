@@ -196,7 +196,6 @@
 		068445461B2CBB3C006D3826 /* reaction_gym_forCell.png in Resources */ = {isa = PBXBuildFile; fileRef = 0684452F1B2CBB3C006D3826 /* reaction_gym_forCell.png */; };
 		068445471B2CBB3C006D3826 /* reaction_gym_forCell.png in Resources */ = {isa = PBXBuildFile; fileRef = 0684452F1B2CBB3C006D3826 /* reaction_gym_forCell.png */; };
 		068445481B2CBB3C006D3826 /* reaction_gym_forCell.png in Resources */ = {isa = PBXBuildFile; fileRef = 0684452F1B2CBB3C006D3826 /* reaction_gym_forCell.png */; };
-		068445491B2CBB3C006D3826 /* reaction_book.png in Resources */ = {isa = PBXBuildFile; fileRef = 068445311B2CBB3C006D3826 /* reaction_book.png */; };
 		0684454A1B2CBB3C006D3826 /* reaction_book.png in Resources */ = {isa = PBXBuildFile; fileRef = 068445311B2CBB3C006D3826 /* reaction_book.png */; };
 		0684454B1B2CBB3C006D3826 /* reaction_book.png in Resources */ = {isa = PBXBuildFile; fileRef = 068445311B2CBB3C006D3826 /* reaction_book.png */; };
 		0684454C1B2CBB3C006D3826 /* reaction_flag.png in Resources */ = {isa = PBXBuildFile; fileRef = 068445321B2CBB3C006D3826 /* reaction_flag.png */; };
@@ -219,6 +218,13 @@
 		06A5BF3F1AAE0AFC00D34CFF /* CHLConnectionRefusedController.m in Sources */ = {isa = PBXBuildFile; fileRef = 06A5BF3E1AAE0AFC00D34CFF /* CHLConnectionRefusedController.m */; };
 		06A5BF411AAE179000D34CFF /* No_internet.png in Resources */ = {isa = PBXBuildFile; fileRef = 06A5BF401AAE179000D34CFF /* No_internet.png */; };
 		06B195EB1B00D8EC00641219 /* ODRefreshControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 06B195EA1B00D8EC00641219 /* ODRefreshControl.m */; };
+		06B430961B2D842E003AD787 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 06B430951B2D842E003AD787 /* Crashlytics.framework */; };
+		06B430971B2D842E003AD787 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 06B430951B2D842E003AD787 /* Crashlytics.framework */; };
+		06B430991B2D8678003AD787 /* TwitterKitResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 06B430981B2D8678003AD787 /* TwitterKitResources.bundle */; };
+		06B4309A1B2D8678003AD787 /* TwitterKitResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 06B430981B2D8678003AD787 /* TwitterKitResources.bundle */; };
+		06B4309B1B2D8678003AD787 /* TwitterKitResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 06B430981B2D8678003AD787 /* TwitterKitResources.bundle */; };
+		06B4309E1B2D87CA003AD787 /* CHLAdditionalShareViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 06B4309D1B2D87CA003AD787 /* CHLAdditionalShareViewController.m */; };
+		06B4309F1B2D87CA003AD787 /* CHLAdditionalShareViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 06B4309D1B2D87CA003AD787 /* CHLAdditionalShareViewController.m */; };
 		06DA1B1E1AC4B1B9005472E4 /* reaction_blank_forCell.png in Resources */ = {isa = PBXBuildFile; fileRef = 06DA1B181AC4B1B9005472E4 /* reaction_blank_forCell.png */; };
 		06DA1B1F1AC4B1B9005472E4 /* reaction_chill_forCell.png in Resources */ = {isa = PBXBuildFile; fileRef = 06DA1B191AC4B1B9005472E4 /* reaction_chill_forCell.png */; };
 		06DA1B201AC4B1B9005472E4 /* reaction_clock_forCell.png in Resources */ = {isa = PBXBuildFile; fileRef = 06DA1B1A1AC4B1B9005472E4 /* reaction_clock_forCell.png */; };
@@ -236,7 +242,6 @@
 		AD8417841A91203D0078F57A /* CHLTutorialPageContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD8417831A91203D0078F57A /* CHLTutorialPageContentViewController.m */; };
 		ADA6A6291B2C5E03006FD0E2 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ADA6A6251B2C5E03006FD0E2 /* Fabric.framework */; };
 		ADA6A62A1B2C5E03006FD0E2 /* TwitterKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ADA6A6261B2C5E03006FD0E2 /* TwitterKit.framework */; };
-		ADA6A62B1B2C5E03006FD0E2 /* TwitterKitResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = ADA6A6271B2C5E03006FD0E2 /* TwitterKitResources.bundle */; };
 		ADA6A62C1B2C5E03006FD0E2 /* TwitterCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ADA6A6281B2C5E03006FD0E2 /* TwitterCore.framework */; };
 		ADAE943A1AA27D7100DBF97E /* location@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ADAE94391AA27D7100DBF97E /* location@2x.png */; };
 		ADAE943D1AA280D200DBF97E /* LLACircularProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = ADAE943C1AA280D200DBF97E /* LLACircularProgressView.m */; };
@@ -483,6 +488,10 @@
 		06A5BF401AAE179000D34CFF /* No_internet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = No_internet.png; sourceTree = "<group>"; };
 		06B195E91B00D8EC00641219 /* ODRefreshControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ODRefreshControl.h; sourceTree = "<group>"; };
 		06B195EA1B00D8EC00641219 /* ODRefreshControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ODRefreshControl.m; sourceTree = "<group>"; };
+		06B430951B2D842E003AD787 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
+		06B430981B2D8678003AD787 /* TwitterKitResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = TwitterKitResources.bundle; path = TwitterKit.framework/Versions/A/Resources/TwitterKitResources.bundle; sourceTree = "<group>"; };
+		06B4309C1B2D87CA003AD787 /* CHLAdditionalShareViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHLAdditionalShareViewController.h; sourceTree = "<group>"; };
+		06B4309D1B2D87CA003AD787 /* CHLAdditionalShareViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHLAdditionalShareViewController.m; sourceTree = "<group>"; };
 		06BBD48E1AB88DB5003E2B1D /* TurnLeft.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = TurnLeft.caf; sourceTree = "<group>"; };
 		06DA1B181AC4B1B9005472E4 /* reaction_blank_forCell.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = reaction_blank_forCell.png; sourceTree = "<group>"; };
 		06DA1B191AC4B1B9005472E4 /* reaction_chill_forCell.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = reaction_chill_forCell.png; sourceTree = "<group>"; };
@@ -580,6 +589,7 @@
 			files = (
 				D0EC27ED1B1728B000F857FD /* libsqlite3.dylib in Frameworks */,
 				D0EC27EC1B17289500F857FD /* SystemConfiguration.framework in Frameworks */,
+				06B430971B2D842E003AD787 /* Crashlytics.framework in Frameworks */,
 				D0EC27EB1B17288C00F857FD /* Security.framework in Frameworks */,
 				0272A1BB1B17C2D300E04D83 /* Bolts.framework in Frameworks */,
 				D0EC27EA1B17288400F857FD /* QuartzCore.framework in Frameworks */,
@@ -607,6 +617,7 @@
 				E6A67AFC198EEB310067E34E /* ImageIO.framework in Frameworks */,
 				E63A0F2919A1327800C0522A /* MessageUI.framework in Frameworks */,
 				E63A0F1E19A1193500C0522A /* AddressBook.framework in Frameworks */,
+				06B430961B2D842E003AD787 /* Crashlytics.framework in Frameworks */,
 				E6A67B02198EEB490067E34E /* libz.dylib in Frameworks */,
 				E6A67AFE198EEB380067E34E /* libc++.dylib in Frameworks */,
 				0256F4981A3E31A2001D9A23 /* GoogleMaps.framework in Frameworks */,
@@ -863,6 +874,8 @@
 			children = (
 				E6CF48B2193B78DC00CD48B6 /* CHLShareViewController.h */,
 				E6CF48B3193B78DC00CD48B6 /* CHLShareViewController.m */,
+				06B4309C1B2D87CA003AD787 /* CHLAdditionalShareViewController.h */,
+				06B4309D1B2D87CA003AD787 /* CHLAdditionalShareViewController.m */,
 			);
 			name = Sharing;
 			sourceTree = "<group>";
@@ -928,6 +941,8 @@
 		E6C7C1C4191A1B220071D83F = {
 			isa = PBXGroup;
 			children = (
+				06B430981B2D8678003AD787 /* TwitterKitResources.bundle */,
+				06B430951B2D842E003AD787 /* Crashlytics.framework */,
 				0272A1B91B17C2D300E04D83 /* Bolts.framework */,
 				0272A1B61B17C23200E04D83 /* Parse.framework */,
 				E6C7C1D6191A1B230071D83F /* Chill */,
@@ -1256,6 +1271,7 @@
 				028A85731AFAA8F60034069E /* Chill WatchKit App.app in Resources */,
 				06499F1B1B03DC3A0005E422 /* 172.png in Resources */,
 				028A85DB1AFAB4240034069E /* Rectangle_18__soda7_5@2x.png in Resources */,
+				06B4309A1B2D8678003AD787 /* TwitterKitResources.bundle in Resources */,
 				06499F251B03DC600005E422 /* 48.png in Resources */,
 				06499F191B03DC330005E422 /* 196.png in Resources */,
 				068445561B2CBB3C006D3826 /* reaction_waves.png in Resources */,
@@ -1302,6 +1318,7 @@
 				068445221B2CBB2A006D3826 /* trophy45 3.png in Resources */,
 				028A85A81AFAA96C0034069E /* Interface.storyboard in Resources */,
 				028A85A21AFAA96C0034069E /* beerwatch@2x.png in Resources */,
+				06B4309B1B2D8678003AD787 /* TwitterKitResources.bundle in Resources */,
 				067054151B04EEC300BBA3AA /* icon29@2x.png in Resources */,
 				028A85A31AFAA96C0034069E /* clockwatch@2x.png in Resources */,
 				068445391B2CBB3C006D3826 /* reaction_book_forCell.png in Resources */,
@@ -1420,7 +1437,6 @@
 				0264219C1A59FB7700992AB3 /* logo_chill_5@2x.png in Resources */,
 				06DA1B201AC4B1B9005472E4 /* reaction_clock_forCell.png in Resources */,
 				067054231B05095900BBA3AA /* 27@3x.png in Resources */,
-				068445491B2CBB3C006D3826 /* reaction_book.png in Resources */,
 				021098F41A7E83FF00701878 /* Chill_logo_green@2x.png in Resources */,
 				06EAB9591AA7AE6300149DF2 /* Chill_logo_hand.png in Resources */,
 				068445551B2CBB3C006D3826 /* reaction_waves.png in Resources */,
@@ -1444,6 +1460,7 @@
 				ADAE943A1AA27D7100DBF97E /* location@2x.png in Resources */,
 				068C0B021AA36ED6005A0577 /* Portrait 1.png in Resources */,
 				027A95C21A5B7B36004E0914 /* arrow@2x.png in Resources */,
+				06B430991B2D8678003AD787 /* TwitterKitResources.bundle in Resources */,
 				028A85D21AFAAA3E0034069E /* locationios_right.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1461,7 +1478,7 @@
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
+			shellPath = "./Fabric.framework/run e15056299faec60c480f578d813fff81f2c7c140 709755db2a034dea17e4842594dff418563e4105c0d90e4786dd82acae7a8f94";
 			shellScript = "./Fabric.framework/run 9f25425e762bb25e6e1c881b31691d3a16d28f5e 4fcff3334183ff6e8c762b6c1449d197d6b3bd7774ef7bdaf08715962066a0c9";
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -1476,6 +1493,7 @@
 				028A85C71AFAA9F40034069E /* FriendsJSON.h in Sources */,
 				028A85C81AFAA9F40034069E /* FriendsJSON.m in Sources */,
 				028A85C91AFAA9F40034069E /* MessagesJSON.h in Sources */,
+				06B4309F1B2D87CA003AD787 /* CHLAdditionalShareViewController.m in Sources */,
 				028A85CA1AFAA9F40034069E /* MessagesJSON.m in Sources */,
 				028A85CB1AFAA9F40034069E /* SearchJSON.h in Sources */,
 				028A85CC1AFAA9F40034069E /* SearchJSON.m in Sources */,
@@ -1512,6 +1530,7 @@
 				ADAE943D1AA280D200DBF97E /* LLACircularProgressView.m in Sources */,
 				E60427AA196F191C000F8F02 /* CHLAddressBookViewController.m in Sources */,
 				020B35761A1E402C00DC2F23 /* MBProgressHUD.m in Sources */,
+				06B4309E1B2D87CA003AD787 /* CHLAdditionalShareViewController.m in Sources */,
 				021F00CC1A3CD7D7000A83D2 /* CHLSearchViewController.m in Sources */,
 				020B35741A1E402C00DC2F23 /* JSONLoader.m in Sources */,
 				020B35791A1E402C00DC2F23 /* UIScrollView+SVInfiniteScrolling.m in Sources */,
