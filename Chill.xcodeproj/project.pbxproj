@@ -234,6 +234,10 @@
 		AD6D3C841A88A7FA00B5BE18 /* Chill_logo_grey.png in Resources */ = {isa = PBXBuildFile; fileRef = AD6D3C831A88A7FA00B5BE18 /* Chill_logo_grey.png */; };
 		AD8417801A911D820078F57A /* CHLTutorialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD84177F1A911D820078F57A /* CHLTutorialViewController.m */; };
 		AD8417841A91203D0078F57A /* CHLTutorialPageContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD8417831A91203D0078F57A /* CHLTutorialPageContentViewController.m */; };
+		ADA6A6291B2C5E03006FD0E2 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ADA6A6251B2C5E03006FD0E2 /* Fabric.framework */; };
+		ADA6A62A1B2C5E03006FD0E2 /* TwitterKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ADA6A6261B2C5E03006FD0E2 /* TwitterKit.framework */; };
+		ADA6A62B1B2C5E03006FD0E2 /* TwitterKitResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = ADA6A6271B2C5E03006FD0E2 /* TwitterKitResources.bundle */; };
+		ADA6A62C1B2C5E03006FD0E2 /* TwitterCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ADA6A6281B2C5E03006FD0E2 /* TwitterCore.framework */; };
 		ADAE943A1AA27D7100DBF97E /* location@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ADAE94391AA27D7100DBF97E /* location@2x.png */; };
 		ADAE943D1AA280D200DBF97E /* LLACircularProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = ADAE943C1AA280D200DBF97E /* LLACircularProgressView.m */; };
 		ADD038621A93CC1A00D3A0D9 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ADD038611A93CC1A00D3A0D9 /* AdSupport.framework */; };
@@ -497,6 +501,10 @@
 		AD84177F1A911D820078F57A /* CHLTutorialViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHLTutorialViewController.m; sourceTree = "<group>"; };
 		AD8417821A91203D0078F57A /* CHLTutorialPageContentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHLTutorialPageContentViewController.h; sourceTree = "<group>"; };
 		AD8417831A91203D0078F57A /* CHLTutorialPageContentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHLTutorialPageContentViewController.m; sourceTree = "<group>"; };
+		ADA6A6251B2C5E03006FD0E2 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
+		ADA6A6261B2C5E03006FD0E2 /* TwitterKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TwitterKit.framework; sourceTree = "<group>"; };
+		ADA6A6271B2C5E03006FD0E2 /* TwitterKitResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = TwitterKitResources.bundle; path = TwitterKit.framework/Versions/A/Resources/TwitterKitResources.bundle; sourceTree = "<group>"; };
+		ADA6A6281B2C5E03006FD0E2 /* TwitterCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TwitterCore.framework; sourceTree = "<group>"; };
 		ADAE94391AA27D7100DBF97E /* location@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "location@2x.png"; sourceTree = "<group>"; };
 		ADAE943B1AA280D200DBF97E /* LLACircularProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLACircularProgressView.h; sourceTree = "<group>"; };
 		ADAE943C1AA280D200DBF97E /* LLACircularProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLACircularProgressView.m; sourceTree = "<group>"; };
@@ -602,6 +610,7 @@
 				E6A67B02198EEB490067E34E /* libz.dylib in Frameworks */,
 				E6A67AFE198EEB380067E34E /* libc++.dylib in Frameworks */,
 				0256F4981A3E31A2001D9A23 /* GoogleMaps.framework in Frameworks */,
+				ADA6A62A1B2C5E03006FD0E2 /* TwitterKit.framework in Frameworks */,
 				E6A67AFA198EEB2A0067E34E /* GLKit.framework in Frameworks */,
 				E6A67AF8198EEB220067E34E /* CoreText.framework in Frameworks */,
 				0272A1BA1B17C2D300E04D83 /* Bolts.framework in Frameworks */,
@@ -618,9 +627,11 @@
 				E6C7C21E191A8C830071D83F /* SystemConfiguration.framework in Frameworks */,
 				0254909F1A61C51400D9222B /* GameKit.framework in Frameworks */,
 				E6C7C21C191A8C790071D83F /* CoreData.framework in Frameworks */,
+				ADA6A62C1B2C5E03006FD0E2 /* TwitterCore.framework in Frameworks */,
 				E6C7C1D3191A1B220071D83F /* CoreGraphics.framework in Frameworks */,
 				E6C7C1D5191A1B220071D83F /* UIKit.framework in Frameworks */,
 				E6C7C1D1191A1B220071D83F /* Foundation.framework in Frameworks */,
+				ADA6A6291B2C5E03006FD0E2 /* Fabric.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -940,6 +951,10 @@
 		E6C7C1CF191A1B220071D83F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				ADA6A6251B2C5E03006FD0E2 /* Fabric.framework */,
+				ADA6A6261B2C5E03006FD0E2 /* TwitterKit.framework */,
+				ADA6A6271B2C5E03006FD0E2 /* TwitterKitResources.bundle */,
+				ADA6A6281B2C5E03006FD0E2 /* TwitterCore.framework */,
 				D0EC27E71B17287300F857FD /* libz.1.1.3.dylib */,
 				D0EC27E31B17285400F857FD /* CFNetwork.framework */,
 				ADE222C31A94ECEB007777A4 /* libsqlite3.dylib */,
@@ -1155,6 +1170,7 @@
 				E6C7C1CA191A1B220071D83F /* Frameworks */,
 				E6C7C1CB191A1B220071D83F /* Resources */,
 				021111DD1A434D7F001690DA /* Embed App Extensions */,
+				ADA6A6241B2C5DBF006FD0E2 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -1433,6 +1449,22 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		ADA6A6241B2C5DBF006FD0E2 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "./Fabric.framework/run 9f25425e762bb25e6e1c881b31691d3a16d28f5e 4fcff3334183ff6e8c762b6c1449d197d6b3bd7774ef7bdaf08715962066a0c9";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		028A85631AFAA8F60034069E /* Sources */ = {

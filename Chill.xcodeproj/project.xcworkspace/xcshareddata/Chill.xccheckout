@@ -10,235 +10,31 @@
 	<string>Chill</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>0D71AD2815BE70F2B5BE4D52778896E1F6DC8F96</key>
-		<string>https://github.com/wiruzx/Foursquare-API-v2.git</string>
-		<key>2FD0F96481B39E576130E173BF6923CF52C91FF7</key>
-		<string>https://github.com/specta/specta.git</string>
-		<key>3D6DF0BFF577FD528A08D68972BBD2C03EA8501C</key>
-		<string>https://github.com/Abizern/NPReachability.git</string>
-		<key>3F9A727FD9689F0BE123288B6E82F17606DA2210</key>
-		<string>https://github.com/cruffenach/CRToast.git</string>
-		<key>3FEE047A1CDE437F8783E4A3DD97BEBCB9A606C0</key>
-		<string>https://github.com/Ar7Style/Chill.git</string>
-		<key>47A63E07BF2C4AE0426F985EBA351C687092A209</key>
-		<string>https://github.com/blakewatters/TransitionKit.git</string>
-		<key>51B210D0D41486D3ADD6940D57E4480BBD4DE4C5</key>
-		<string>https://github.com/ReactiveCocoa/ReactiveCocoa.git</string>
-		<key>5A8C4DEC9516A46B7FF93479BC05F10E69AFFCA9</key>
-		<string>https://github.com/wiruzx/PKImagePickerDemo.git</string>
-		<key>6891C5739D4C16F29BEBF446A91EF56126FFF204</key>
-		<string>https://bitbucket.org/chill-app/chill-ios.git</string>
-		<key>6FC4832245A6A8E50F2A782F20A8B58A46BD1FEB</key>
-		<string>https://github.com/Masonry/Masonry.git</string>
-		<key>78A25C8D0342D38CE9A264460334D39454468DB8</key>
-		<string>https://github.com/alikaragoz/MCSwipeTableViewCell.git</string>
-		<key>822670D72DA6CB3E094E900F0D31C5A6027736AD</key>
-		<string>https://github.com/blakewatters/ISO8601DateFormatterValueTransformer.git</string>
-		<key>8884BD3B878631A1500EC9895E6A3CF4CB0AB3DB</key>
-		<string>https://github.com/specta/expecta.git</string>
-		<key>958932E9D08E4465709D54DB1E7CECF23B0F442E</key>
-		<string>https://github.com/magicalpanda/MagicalRecord.git</string>
-		<key>B4A2CA0E82E9AE44702AB02729DCFB235C2643C9</key>
-		<string>https://github.com/RestKit/RKValueTransformers.git</string>
-		<key>D78740BB5B159EA13C82AB5AF1D92A0F3C627237</key>
-		<string>https://github.com/RestKit/RestKit.git</string>
-		<key>DD20A1A48C66B5213E0FEBB87A95EF51D6C6F3E8</key>
-		<string>https://github.com/AFNetworking/AFNetworking.git</string>
-		<key>E084C86B03F81D63323C9E7510697EA528A758C7</key>
-		<string>https://github.com/jspahrsummers/xcconfigs.git</string>
+		<key>5FA1959F9D22C8A55998E517F1D3E1A41D57C3D7</key>
+		<string>https://github.com/Ar7Style/ChillApp.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>Chill.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>0D71AD2815BE70F2B5BE4D52778896E1F6DC8F96</key>
-		<string>../../../chill-ios/Submodules/FoursquareAPI</string>
-		<key>2FD0F96481B39E576130E173BF6923CF52C91FF7</key>
-		<string>../../../chill-ios/Submodules/ReactiveCocoa/external/specta</string>
-		<key>3D6DF0BFF577FD528A08D68972BBD2C03EA8501C</key>
-		<string>../../../chill-ios/Submodules/NPReachability</string>
-		<key>3F9A727FD9689F0BE123288B6E82F17606DA2210</key>
-		<string>../../../temp/Submodules/CRToast</string>
-		<key>3FEE047A1CDE437F8783E4A3DD97BEBCB9A606C0</key>
+		<key>5FA1959F9D22C8A55998E517F1D3E1A41D57C3D7</key>
 		<string>../..</string>
-		<key>47A63E07BF2C4AE0426F985EBA351C687092A209</key>
-		<string>../../../chill-ios/Submodules/ReskKit/Vendor/TransitionKit</string>
-		<key>51B210D0D41486D3ADD6940D57E4480BBD4DE4C5</key>
-		<string>../../../temp/Submodules/ReactiveCocoa</string>
-		<key>5A8C4DEC9516A46B7FF93479BC05F10E69AFFCA9</key>
-		<string>../../../temp/Submodules/PKImagePickerDemo</string>
-		<key>6891C5739D4C16F29BEBF446A91EF56126FFF204</key>
-		<string>../../../temp</string>
-		<key>6FC4832245A6A8E50F2A782F20A8B58A46BD1FEB</key>
-		<string>../../../chill-ios/Submodules/Masonry</string>
-		<key>78A25C8D0342D38CE9A264460334D39454468DB8</key>
-		<string>../../../chill-ios/Submodules/MCSwipeTableViewCell</string>
-		<key>822670D72DA6CB3E094E900F0D31C5A6027736AD</key>
-		<string>../../../chill-ios/Submodules/ReskKit/Vendor/ISO8601DateFormatterValueTransformer</string>
-		<key>8884BD3B878631A1500EC9895E6A3CF4CB0AB3DB</key>
-		<string>../../../temp/Submodules/ReactiveCocoa/external/expecta</string>
-		<key>958932E9D08E4465709D54DB1E7CECF23B0F442E</key>
-		<string>../../../chill-ios/Submodules/MagicalRecord</string>
-		<key>B4A2CA0E82E9AE44702AB02729DCFB235C2643C9</key>
-		<string>../../../chill-ios/Submodules/ReskKit/Vendor/RKValueTransformers</string>
-		<key>D78740BB5B159EA13C82AB5AF1D92A0F3C627237</key>
-		<string>../../../temp/Submodules/ReskKit</string>
-		<key>DD20A1A48C66B5213E0FEBB87A95EF51D6C6F3E8</key>
-		<string>../../../chill-ios/Submodules/ReskKit/Vendor/AFNetworking</string>
-		<key>E084C86B03F81D63323C9E7510697EA528A758C7</key>
-		<string>../../../chill-ios/Submodules/ReactiveCocoa/external/xcconfigs</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
-	<string>https://github.com/Ar7Style/Chill.git</string>
+	<string>https://github.com/Ar7Style/ChillApp.git</string>
 	<key>IDESourceControlProjectVersion</key>
 	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>3FEE047A1CDE437F8783E4A3DD97BEBCB9A606C0</string>
+	<string>5FA1959F9D22C8A55998E517F1D3E1A41D57C3D7</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>DD20A1A48C66B5213E0FEBB87A95EF51D6C6F3E8</string>
+			<string>5FA1959F9D22C8A55998E517F1D3E1A41D57C3D7</string>
 			<key>IDESourceControlWCCName</key>
-			<string>AFNetworking</string>
-		</dict>
-		<dict>
-			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
-			<string>public.vcs.git</string>
-			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>3FEE047A1CDE437F8783E4A3DD97BEBCB9A606C0</string>
-			<key>IDESourceControlWCCName</key>
-			<string>Chill</string>
-		</dict>
-		<dict>
-			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
-			<string>public.vcs.git</string>
-			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>3F9A727FD9689F0BE123288B6E82F17606DA2210</string>
-			<key>IDESourceControlWCCName</key>
-			<string>CRToast</string>
-		</dict>
-		<dict>
-			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
-			<string>public.vcs.git</string>
-			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>8884BD3B878631A1500EC9895E6A3CF4CB0AB3DB</string>
-			<key>IDESourceControlWCCName</key>
-			<string>expecta</string>
-		</dict>
-		<dict>
-			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
-			<string>public.vcs.git</string>
-			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>0D71AD2815BE70F2B5BE4D52778896E1F6DC8F96</string>
-			<key>IDESourceControlWCCName</key>
-			<string>FoursquareAPI</string>
-		</dict>
-		<dict>
-			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
-			<string>public.vcs.git</string>
-			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>822670D72DA6CB3E094E900F0D31C5A6027736AD</string>
-			<key>IDESourceControlWCCName</key>
-			<string>ISO8601DateFormatterValueTransformer</string>
-		</dict>
-		<dict>
-			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
-			<string>public.vcs.git</string>
-			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>958932E9D08E4465709D54DB1E7CECF23B0F442E</string>
-			<key>IDESourceControlWCCName</key>
-			<string>MagicalRecord</string>
-		</dict>
-		<dict>
-			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
-			<string>public.vcs.git</string>
-			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>6FC4832245A6A8E50F2A782F20A8B58A46BD1FEB</string>
-			<key>IDESourceControlWCCName</key>
-			<string>Masonry</string>
-		</dict>
-		<dict>
-			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
-			<string>public.vcs.git</string>
-			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>78A25C8D0342D38CE9A264460334D39454468DB8</string>
-			<key>IDESourceControlWCCName</key>
-			<string>MCSwipeTableViewCell</string>
-		</dict>
-		<dict>
-			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
-			<string>public.vcs.git</string>
-			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>3D6DF0BFF577FD528A08D68972BBD2C03EA8501C</string>
-			<key>IDESourceControlWCCName</key>
-			<string>NPReachability</string>
-		</dict>
-		<dict>
-			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
-			<string>public.vcs.git</string>
-			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>5A8C4DEC9516A46B7FF93479BC05F10E69AFFCA9</string>
-			<key>IDESourceControlWCCName</key>
-			<string>PKImagePickerDemo</string>
-		</dict>
-		<dict>
-			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
-			<string>public.vcs.git</string>
-			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>51B210D0D41486D3ADD6940D57E4480BBD4DE4C5</string>
-			<key>IDESourceControlWCCName</key>
-			<string>ReactiveCocoa</string>
-		</dict>
-		<dict>
-			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
-			<string>public.vcs.git</string>
-			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>D78740BB5B159EA13C82AB5AF1D92A0F3C627237</string>
-			<key>IDESourceControlWCCName</key>
-			<string>ReskKit</string>
-		</dict>
-		<dict>
-			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
-			<string>public.vcs.git</string>
-			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>B4A2CA0E82E9AE44702AB02729DCFB235C2643C9</string>
-			<key>IDESourceControlWCCName</key>
-			<string>RKValueTransformers</string>
-		</dict>
-		<dict>
-			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
-			<string>public.vcs.git</string>
-			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>2FD0F96481B39E576130E173BF6923CF52C91FF7</string>
-			<key>IDESourceControlWCCName</key>
-			<string>specta</string>
-		</dict>
-		<dict>
-			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
-			<string>public.vcs.git</string>
-			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>6891C5739D4C16F29BEBF446A91EF56126FFF204</string>
-			<key>IDESourceControlWCCName</key>
-			<string>temp</string>
-		</dict>
-		<dict>
-			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
-			<string>public.vcs.git</string>
-			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>47A63E07BF2C4AE0426F985EBA351C687092A209</string>
-			<key>IDESourceControlWCCName</key>
-			<string>TransitionKit</string>
-		</dict>
-		<dict>
-			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
-			<string>public.vcs.git</string>
-			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>E084C86B03F81D63323C9E7510697EA528A758C7</string>
-			<key>IDESourceControlWCCName</key>
-			<string>xcconfigs</string>
+			<string>ChillApp</string>
 		</dict>
 	</array>
 </dict>
