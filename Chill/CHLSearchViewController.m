@@ -17,6 +17,12 @@
 #import "GAIFields.h"
 #import "GAIDictionaryBuilder.h"
 #import "GAITracker.h"
+
+
+#define NUMBER_OF_STATIC_CELLS 3
+#define NORMAL_HEIGHT 81
+#define STATIC_CELL_HEIGHT 40
+
 @interface CHLSearchViewController () <MBProgressHUDDelegate>
 {
     NSInteger friendUserId;
@@ -162,11 +168,29 @@ NSMutableData *mutData;
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return _locations.count;
+    return _locations.count; //+ NUMBER_OF_STATIC_CELLS;
 }
+
+//- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+//    if (indexPath.row < NUMBER_OF_STATIC_CELLS) {
+//        return STATIC_CELL_HEIGHT;
+//    }
+//    return NORMAL_HEIGHT;
+//}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
+//    if (indexPath.row < NUMBER_OF_STATIC_CELLS) {
+//          NSString *cellIdentifier = @"staticCell";
+//        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+//        cell.textLabel.text = @"Invite from Twitter";
+//        cell.textLabel.textColor = [UIColor colorWithRed:161 green:161 blue:161 alpha:1];
+//        
+    
+    //}
+  //  else {
+   // UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
     SearchJSON *location = [_locations objectAtIndex:indexPath.row];
 
     if (cell == nil)
@@ -180,7 +204,8 @@ NSMutableData *mutData;
     {
         nameLabel.text = location.name;
     }
-    else nameLabel.text = location.login;
+        else nameLabel.text = location.login;
+    //}
 
 
     

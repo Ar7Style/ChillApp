@@ -8,8 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CHLAddressBookViewController : UITableViewController
+@interface CHLAddressBookViewController : UITableViewController <UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate>
 
 -(NSComparisonResult)localizedCaseInsensitiveCompare;
+
+@property (strong, nonatomic) IBOutlet UITableView *contactsTableView;
+
+@property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
+
+@property BOOL isFiltered;
 
 @end

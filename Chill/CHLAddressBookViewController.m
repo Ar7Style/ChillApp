@@ -29,6 +29,12 @@
 @end
 
 @implementation CHLAddressBookUserInfo
+
+NSMutableArray *globalMutableUsers;// = [NSMutableArray array];
+NSArray* searchResults;
+BOOL withSearchText;
+
+
 - (id)initWithName:(NSString *)name lastName:(NSString *)lastName phoneNumber:(NSString *)phoneNumber avatar:(UIImage *)avatar {
     if (self = [super init]) {
         _name = name;
@@ -69,13 +75,7 @@
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
 }
 
-NSInteger alphabeticSort(id string1, id string2, void *reverse)
-{
-    if (*(BOOL *)reverse == YES) {
-        return [string2 localizedCaseInsensitiveCompare:string1];
-    }
-    return [string1 localizedCaseInsensitiveCompare:string2];
-}
+
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
@@ -94,7 +94,6 @@ NSInteger alphabeticSort(id string1, id string2, void *reverse)
             
             CFArrayRef allPeople = ABAddressBookCopyArrayOfAllPeople( addressBook );
             CFIndex nPeople = ABAddressBookGetPersonCount( addressBook );
-            
             NSMutableArray *mutableUsers = [NSMutableArray array];
             for (int i = 0; i < nPeople; i++)
             {
@@ -114,15 +113,7 @@ NSInteger alphabeticSort(id string1, id string2, void *reverse)
                 [mutableUsers addObject:userInfo];
                 
             }
-//            BOOL reverseSort = NO;
-//            NSData *sortedArrayHint = [mutableUsers sortedArrayHint];
-
-          //  NSArray *arrayOfContacts = [mutableUsers copy];
-
-            //[arrayOfContacts sortedArrayUsingFunction:alphabeticSort context:&reverseSort];
-           // [mutableUsers sortUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
-        
-            
+            [globalMutableUsers setArray:mutableUsers];
             NSSortDescriptor *sort = [NSSortDescriptor sortDescriptorWithKey:@"lastName" ascending:YES];
             [mutableUsers sortUsingDescriptors:[NSArray arrayWithObject:sort]];
             
@@ -143,10 +134,15 @@ NSInteger alphabeticSort(id string1, id string2, void *reverse)
     //[[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
 }
 
+
+
 #pragma mark - Table view data source
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+    if (tableView == self.searchDisplayController.searchResultsTableView) {
+        return [searchResults count];
+    }
     return self.users.count;
 }
 
@@ -170,9 +166,15 @@ NSInteger alphabeticSort(id string1, id string2, void *reverse)
     
     cell.lastChilTitleLabel.text = user.phoneNumber;
     
-//    UIView *swipeView = [[UIView alloc] initWithFrame:cell.bounds];
-//    swipeView.backgroundColor = [UIColor chillMintColor];
-//
+    UIView *swipeView = [[UIView alloc] initWithFrame:cell.bounds];
+    swipeView.backgroundColor = [UIColor chillMintColor];
+    
+    if (withSearchText) {
+        cell.textLabel.text = [globalMutableUsers objectAtIndex:indexPath.row];
+    } else {
+        cell.textLabel.text = [searchResults objectAtIndex:indexPath.row];
+    }
+
 //    @weakify(self)
 //    [cell setSwipeGestureWithView:swipeView
 //                            color:swipeView.backgroundColor
@@ -189,6 +191,35 @@ NSInteger alphabeticSort(id string1, id string2, void *reverse)
     return cell;
 }
 
+
+
+-(BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar
+{
+    [self.searchBar setShowsCancelButton:YES animated:YES];
+    return YES;
+}
+
+-(void)searchBarCancelButtonClicked:(UISearchBar *)searchBar
+{
+    [self.searchBar setShowsCancelButton:NO animated:YES];
+    [self.view endEditing:YES]; // escondemos os teclado
+}
+
+-(void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
+{
+    [self filterContentWithText:searchBar.text];
+}
+
+-(void)filterContentWithText:(NSString*)searchText
+{
+    withSearchText = (searchText && searchText.length > 0);
+    
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"self beginswith[c] %@", searchText];
+    searchResults = [globalMutableUsers filteredArrayUsingPredicate:predicate];
+    
+    [self.tableView reloadData];
+}
+
 #pragma mark - Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -198,7 +229,7 @@ NSInteger alphabeticSort(id string1, id string2, void *reverse)
         MFMessageComposeViewController *messageViewController = [[MFMessageComposeViewController alloc] init];
         messageViewController.recipients = @[userInfo.phoneNumber];
         messageViewController.messageComposeDelegate = self;
-        messageViewController.body = @"✌️ 😉 😆 👇\n Get a beta invite here\n http://iamchill.co";
+        messageViewController.body = @"✌️ 😉 😆 👇\n Get an invite to Chill - the first communication app that makes sense for wearables!\n http://iamchill.co";
         [self presentViewController:messageViewController animated:YES completion:nil];
     } else {
         UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Error!"
@@ -227,6 +258,9 @@ NSInteger alphabeticSort(id string1, id string2, void *reverse)
 - (void)messageComposeViewController:(MFMessageComposeViewController *)controller didFinishWithResult:(MessageComposeResult)result {
     [controller dismissViewControllerAnimated:YES completion:nil];
 }
+
+#pragma mark - UISearchBarDelegates Methods 
+
 
 #pragma mark - Segue
 

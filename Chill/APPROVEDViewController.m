@@ -33,7 +33,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     _promoButton.enabled = NO;
-    _contentView.image = [UIImage imageNamed:@"Waitlist"];
+    _contentView.image = [UIImage imageNamed:@"ocheredgrisha"];
     _contentView.contentMode = UIViewContentModeScaleAspectFit;
     // Do any additional setup after loading the view.
 }
