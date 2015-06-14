@@ -25,11 +25,14 @@
 }
 
 - (IBAction)backButtonPressed:(id)sender {
-    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+//    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+//    
+//    UIViewController *CHLFriendsListViewController = (UIViewController *)[storyboard  instantiateViewControllerWithIdentifier:@"CHLFriendsListViewController"];
+//    
+//    [self.navigationController pushViewController:CHLFriendsListViewController animated:YES];
     
-    UIViewController *CHLFriendsListViewController = (UIViewController *)[storyboard  instantiateViewControllerWithIdentifier:@"CHLFriendsListViewController"];
-    
-    [self.navigationController pushViewController:CHLFriendsListViewController animated:YES];
+    [self dismissViewControllerAnimated:YES completion:nil];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 /*
