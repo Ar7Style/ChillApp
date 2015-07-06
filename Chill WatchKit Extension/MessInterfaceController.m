@@ -47,6 +47,9 @@ NSMutableData *mutData;
         //MyDataObject* dataObj = [dataObjects objectAtIndex:i];
         //theRow.title = @"hhhh";
         NSLog(@"img %@", location.content);
+        
+        //говнокод
+        
         if ([location.type isEqualToString:@"icon"]){
         if ([location.content isEqualToString:@"logo"]){
             [theRow.image3 setImageNamed:@"Rectangle_16__Chill_logo_green_3@2x"];
@@ -71,6 +74,36 @@ NSMutableData *mutData;
             [theRow.image3 setImageNamed:@"Rectangle_21__blank17_4@2x"];
             
         }
+            
+            
+        //additional icons
+            
+        else if ([location.content isEqualToString:@"trophy"]){
+            [theRow.image3 setImageNamed: @"received_watch_trophy@2x.png"];
+            
+        }
+        else if ([location.content isEqualToString:@"gym"]){
+            [theRow.image3 setImageNamed:@"received_watch_gym@2x"];
+            
+        }
+        else if ([location.content isEqualToString:@"flag"]){
+            [theRow.image3 setImageNamed:@"received_watch_flag@2x"];
+            
+        }
+        else if ([location.content isEqualToString:@"telephone"]){
+            [theRow.image3 setImageNamed:@"received_watch_telephone@2x"];
+            
+        }
+        else if ([location.content isEqualToString:@"book"]){
+            [theRow.image3 setImageNamed:@"received_watch_book@2x"];
+            
+        }
+        else if ([location.content isEqualToString:@"waves"]){
+            [theRow.image3 setImageNamed:@"received_watch_waves@2x"];
+            
+        }
+            
+            
         }
         else if ([location.type isEqualToString:@"location"]){
             NSString *aString = location.content;

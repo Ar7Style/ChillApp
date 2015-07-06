@@ -7,6 +7,7 @@
 //
 
 #import "CHLShareViewController.h"
+#import "CHLAdditionalShareViewController.h"
 #import <Parse/Parse.h>
 #import "UIColor+ChillColors.h"
 #import "PKImagePickerViewController.h"
@@ -46,7 +47,6 @@ NSMutableData *mutData;
     self.title = _nameUser;
     
     [super viewDidLoad];
-
     
 }
 
@@ -205,8 +205,9 @@ NSMutableData *mutData;
                            @"fromUserId": [userCache valueForKey:@"id_user"]
                            };
     PFPush *push = [[PFPush alloc] init];
-
+     NSLog(@"3 IT HAPPENES MUFUCK");
     [push setChannel:[NSString stringWithFormat:@"us%li",(long)_userIdTo]];
+    NSLog(@"4 %ld", (long)_userIdTo);
     [push setData:data];
     [push sendPushInBackground];
 }
@@ -265,6 +266,14 @@ NSMutableData *mutData;
     self.sendedContentType = @"🚀";
 }
 
+- (IBAction)trophyButtonPressed:(id)sender {
+    [self.presentingViewController dismissViewControllerAnimated:NO completion:nil];
+    //[self dismissViewControllerAnimated:YES completion:nil];
+    [self shareIconOfType:@"trophy"];
+    self.sendedContentType = @"🏆";
+}
+
+
 - (void)connection:(NSURLConnection *)connection
    didSendBodyData:(NSInteger)bytesWritten
  totalBytesWritten:(NSInteger)totalBytesWritten
@@ -298,7 +307,17 @@ totalBytesExpectedToWrite:(NSInteger)totalBytesExpectedToWrite {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
+
 #pragma mark - Action sheet delegate
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([[segue identifier] isEqualToString:@"additionalShare"])
+    {
+        CHLAdditionalShareViewController *svc = [segue destinationViewController];
+        svc.userIdTo = _userIdTo;
+    }
+}
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
     [self dismissViewControllerAnimated:YES completion:nil];

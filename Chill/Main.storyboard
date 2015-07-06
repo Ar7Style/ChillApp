@@ -341,14 +341,6 @@ communication experience</string>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                        <searchBar key="tableHeaderView" contentMode="redraw" text="" id="d8N-Tn-f0w">
-                            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                            <textInputTraits key="textInputTraits"/>
-                            <connections>
-                                <outlet property="delegate" destination="MTj-8n-zMY" id="wKn-cp-M0L"/>
-                            </connections>
-                        </searchBar>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" rowHeight="81" id="lT8-2W-16q" customClass="CHLFriendCell">
                                 <rect key="frame" x="0.0" y="86" width="320" height="81"/>
@@ -468,7 +460,6 @@ communication experience</string>
                     </navigationItem>
                     <connections>
                         <outlet property="contactsTableView" destination="ncM-Bm-P9C" id="7i1-co-qCR"/>
-                        <outlet property="searchBar" destination="d8N-Tn-f0w" id="u1B-aO-c4H"/>
                         <outlet property="searchDisplayController" destination="nfo-mA-MNy" id="UVc-P5-f28"/>
                     </connections>
                 </tableViewController>
@@ -1007,7 +998,7 @@ communication experience</string>
                     <navigationItem key="navigationItem" id="tGi-KZ-QKl">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="02K-9A-dPD">
                             <connections>
-                                <segue destination="JP3-rM-pBa" kind="push" id="tpW-1p-dJe"/>
+                                <segue destination="JP3-rM-pBa" kind="push" identifier="additionalShare" id="tpW-1p-dJe"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -1039,22 +1030,13 @@ communication experience</string>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XGd-5x-lzR">
                                                 <rect key="frame" x="51" y="118" width="218" height="60"/>
                                                 <subviews>
-                                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6mi-6s-hew">
-                                                        <rect key="frame" x="8" y="8" width="38" height="44"/>
-                                                        <state key="normal" image="reaction_clock">
-                                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                        </state>
-                                                        <connections>
-                                                            <action selector="clockButtonTapped:" destination="HRO-xJ-dbg" eventType="touchUpInside" id="10F-yM-eTU"/>
-                                                        </connections>
-                                                    </button>
                                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jjb-kP-2QB">
                                                         <rect key="frame" x="167" y="10" width="43" height="42"/>
                                                         <state key="normal" image="reaction_soda">
                                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                         </state>
                                                         <connections>
-                                                            <action selector="sodaButtonTapped:" destination="HRO-xJ-dbg" eventType="touchUpInside" id="sfu-Vk-mAB"/>
+                                                            <action selector="sodaButtonTapped:" destination="JP3-rM-pBa" eventType="touchUpInside" id="MjX-3e-Vjx"/>
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vk2-RJ-zyv">
@@ -1063,7 +1045,16 @@ communication experience</string>
                                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                         </state>
                                                         <connections>
-                                                            <action selector="drinkButtonTapped:" destination="HRO-xJ-dbg" eventType="touchUpInside" id="Vdj-2R-qwD"/>
+                                                            <action selector="drinkButtonTapped:" destination="JP3-rM-pBa" eventType="touchUpInside" id="gGy-lx-nVT"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Ee-lt-eMo">
+                                                        <rect key="frame" x="8" y="8" width="38" height="44"/>
+                                                        <state key="normal" image="reaction_clock">
+                                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                        </state>
+                                                        <connections>
+                                                            <action selector="clockButtonTapped:" destination="JP3-rM-pBa" eventType="touchUpInside" id="Eve-yM-FHQ"/>
                                                         </connections>
                                                     </button>
                                                 </subviews>
@@ -1082,7 +1073,7 @@ communication experience</string>
                                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                         </state>
                                                         <connections>
-                                                            <action selector="blankButtonTapped:" destination="HRO-xJ-dbg" eventType="touchUpInside" id="tIl-t7-vvK"/>
+                                                            <action selector="blankButtonTapped:" destination="JP3-rM-pBa" eventType="touchUpInside" id="PP7-fk-CCg"/>
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3hI-B4-Bgk">
@@ -1091,7 +1082,7 @@ communication experience</string>
                                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                         </state>
                                                         <connections>
-                                                            <action selector="chillButtonTapped:" destination="HRO-xJ-dbg" eventType="touchUpInside" id="Oo1-It-2MN"/>
+                                                            <action selector="chillButtonTapped:" destination="JP3-rM-pBa" eventType="touchUpInside" id="xjh-ig-wb0"/>
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A9I-Z0-5ki">
@@ -1100,7 +1091,7 @@ communication experience</string>
                                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                         </state>
                                                         <connections>
-                                                            <action selector="rocketButtonTapped:" destination="HRO-xJ-dbg" eventType="touchUpInside" id="TYk-Vo-Tcv"/>
+                                                            <action selector="rocketButtonTapped:" destination="JP3-rM-pBa" eventType="touchUpInside" id="buL-VT-B0Q"/>
                                                         </connections>
                                                     </button>
                                                 </subviews>
@@ -1119,7 +1110,7 @@ communication experience</string>
                                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                         </state>
                                                         <connections>
-                                                            <action selector="blankButtonTapped:" destination="HRO-xJ-dbg" eventType="touchUpInside" id="Qbh-Rc-JbA"/>
+                                                            <action selector="trophyButtonPressed:" destination="JP3-rM-pBa" eventType="touchUpInside" id="sYo-le-8Ih"/>
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CqE-wC-TnK">
@@ -1128,7 +1119,8 @@ communication experience</string>
                                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                         </state>
                                                         <connections>
-                                                            <action selector="chillButtonTapped:" destination="HRO-xJ-dbg" eventType="touchUpInside" id="Yyp-gZ-e3J"/>
+                                                            <action selector="gymButtonPressed:" destination="JP3-rM-pBa" eventType="touchUpInside" id="pDq-KN-xw1"/>
+                                                            <action selector="gymButtonTapped:" destination="JP3-rM-pBa" eventType="touchUpInside" id="QJd-h0-35Z"/>
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bJB-zi-NZM">
@@ -1137,7 +1129,7 @@ communication experience</string>
                                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                         </state>
                                                         <connections>
-                                                            <action selector="rocketButtonTapped:" destination="HRO-xJ-dbg" eventType="touchUpInside" id="03A-aR-tUw"/>
+                                                            <action selector="flagButtonTapped:" destination="JP3-rM-pBa" eventType="touchUpInside" id="hLD-Og-UrC"/>
                                                         </connections>
                                                     </button>
                                                 </subviews>
@@ -1156,7 +1148,7 @@ communication experience</string>
                                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                         </state>
                                                         <connections>
-                                                            <action selector="blankButtonTapped:" destination="HRO-xJ-dbg" eventType="touchUpInside" id="4S9-RV-I2b"/>
+                                                            <action selector="telephoneButtonTapped:" destination="JP3-rM-pBa" eventType="touchUpInside" id="C1s-HW-gS8"/>
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vl4-7P-8e6">
@@ -1165,7 +1157,7 @@ communication experience</string>
                                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                         </state>
                                                         <connections>
-                                                            <action selector="chillButtonTapped:" destination="HRO-xJ-dbg" eventType="touchUpInside" id="AxY-dV-zjf"/>
+                                                            <action selector="bookButtonTapped:" destination="JP3-rM-pBa" eventType="touchUpInside" id="2EQ-bh-sTp"/>
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JhK-gK-u5X">
@@ -1174,7 +1166,7 @@ communication experience</string>
                                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                         </state>
                                                         <connections>
-                                                            <action selector="rocketButtonTapped:" destination="HRO-xJ-dbg" eventType="touchUpInside" id="EmR-rB-khB"/>
+                                                            <action selector="wavesButtonTapped:" destination="JP3-rM-pBa" eventType="touchUpInside" id="qyK-aU-D39"/>
                                                         </connections>
                                                     </button>
                                                 </subviews>

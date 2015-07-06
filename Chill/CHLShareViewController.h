@@ -15,6 +15,8 @@
 @protocol CHLShareViewControllerDelegate <NSObject>
 
 - (void)shareViewController:(CHLShareViewController *)shareViewController didSelectImage:(UIImage *)image;
+- (void)shareIconOfType:(NSString *)iconType;
+- (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error;
 
 @end
 

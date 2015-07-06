@@ -352,12 +352,20 @@
             }
             else if ([location.type isEqualToString:@"icon"]) {
                 if(![location.content isEqualToString:@""]){
-                    NSDictionary *receivedIconsDictionary = @{@"clock":@"received_clock",
-                                                              @"beer":@"received_drink",
-                                                              @"coffee":@"received_soda",
-                                                              @"stamp":@"received_blank",
-                                                              @"logo":@"received_logo",
-                                                              @"rocket":@"received_rocket"};
+                    NSDictionary *receivedIconsDictionary = @{@"clock":    @"received_clock",
+                                                              @"beer":     @"received_drink",
+                                                              @"coffee":   @"received_soda",
+                                                              @"stamp":    @"received_blank",
+                                                              @"logo":     @"received_logo",
+                                                              @"rocket":   @"received_rocket",
+                                                              
+                                                              @"trophy":    @"received_trophy",
+                                                              @"gym":       @"received_gym",
+                                                              @"flag":      @"received_flag",
+                                                              @"telephone": @"received_telephone",
+                                                              @"book":      @"received_book",
+                                                              @"waves":     @"received_waves"};
+                    
                     UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.width)];
                     imageView.backgroundColor = [UIColor whiteColor];
                     [cell.placeholderContentView addSubview:imageView];
