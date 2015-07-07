@@ -286,8 +286,8 @@ NSMutableData *mutData;
         if (![location.email isEqualToString:@"chillteam@iamchill.co"]){
             cell.shieldik.hidden = NO;
             cell.shieldik2.hidden=NO;
-            if (![location.read isKindOfClass:[NSNull class]]){
-                if ([location.read isEqualToString:@"0"] && !cell.type.subviews.firstObject){
+            if (![location.read isKindOfClass:[NSNull class]]) {
+                if ([location.read isEqualToString:@"0"] && !cell.type.subviews.firstObject) {
                     if ([location.type isEqualToString:@"location"]){
                         UIImage *image = [UIImage imageNamed: @"location.png"];
                         [cell.type setImage:image];
@@ -300,6 +300,8 @@ NSMutableData *mutData;
                         UIImage *image = [UIImage imageNamed: @"pic.png"];
                         [cell.type setImage:image];
                      }
+                    
+                    // еще немного говнокода
                     
                     else if ([location.type isEqualToString:@"icon"]) //some hardcode
                    {
@@ -320,6 +322,26 @@ NSMutableData *mutData;
                        
                        if ([location.content isEqualToString:@"rocket"])
                            [cell.type setImage:[UIImage imageNamed: @"reaction_rocket_forCell.png"]];
+                       
+                       
+                       //additional icons
+                       if ([location.content isEqualToString:@"trophy"])
+                           [cell.type setImage:[UIImage imageNamed: @"reaction_trophy_forCell.png"]];
+                       
+                       if ([location.content isEqualToString:@"flag"])
+                           [cell.type setImage:[UIImage imageNamed: @"reaction_flag_forCell.png"]];
+                       
+                       if ([location.content isEqualToString:@"telephone"])
+                           [cell.type setImage:[UIImage imageNamed: @"reaction_telephone_forCell.png"]];
+                       
+                       if ([location.content isEqualToString:@"book"])
+                           [cell.type setImage:[UIImage imageNamed: @"reaction_book_forCell.png"]];
+                       
+                       if ([location.content isEqualToString:@"gym"])
+                           [cell.type setImage:[UIImage imageNamed: @"reaction_gym_forCell.png"]];
+                       
+                       if ([location.content isEqualToString:@"waves"])
+                           [cell.type setImage:[UIImage imageNamed: @"reaction_waves_forCell.png"]];
                     }
             }
         

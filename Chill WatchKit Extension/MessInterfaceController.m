@@ -79,27 +79,27 @@ NSMutableData *mutData;
         //additional icons
             
         else if ([location.content isEqualToString:@"trophy"]){
-            [theRow.image3 setImageNamed: @"received_watch_trophy@2x.png"];
+            [theRow.image3 setImageNamed: @"Rectangle_received_trophy@2x.png"];
             
         }
         else if ([location.content isEqualToString:@"gym"]){
-            [theRow.image3 setImageNamed:@"received_watch_gym@2x"];
+            [theRow.image3 setImageNamed:@"Rectangle_received_gym@2x"];
             
         }
         else if ([location.content isEqualToString:@"flag"]){
-            [theRow.image3 setImageNamed:@"received_watch_flag@2x"];
+            [theRow.image3 setImageNamed:@"Rectangle_received_flag@2x"];
             
         }
         else if ([location.content isEqualToString:@"telephone"]){
-            [theRow.image3 setImageNamed:@"received_watch_telephone@2x"];
+            [theRow.image3 setImageNamed:@"Rectangle_received_telephone@2x"];
             
         }
         else if ([location.content isEqualToString:@"book"]){
-            [theRow.image3 setImageNamed:@"received_watch_book@2x"];
+            [theRow.image3 setImageNamed:@"Rectangle_received_book@2x"];
             
         }
         else if ([location.content isEqualToString:@"waves"]){
-            [theRow.image3 setImageNamed:@"received_watch_waves@2x"];
+            [theRow.image3 setImageNamed:@"Rectangle_received_waves@2x"];
             
         }
             
