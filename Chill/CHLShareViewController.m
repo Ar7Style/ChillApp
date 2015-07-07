@@ -309,10 +309,10 @@ totalBytesExpectedToWrite:(NSInteger)totalBytesExpectedToWrite {
 {
     if ([[segue identifier] isEqualToString:@"additionalShare"])
     {
-        CHLAdditionalShareViewController *svc = [segue destinationViewController];
-        svc.userIdTo = _userIdTo;
-        svc.progressView = [[LLACircularProgressView alloc] initProgressViewWithDummyProgress:0.0 cellStatusView:self.cellStatusView];
-        
+        CHLAdditionalShareViewController *asvc = [segue destinationViewController];
+        asvc.userIdTo = _userIdTo;
+        asvc.progressView = [[LLACircularProgressView alloc] initProgressViewWithDummyProgress:0.0 cellStatusView:self.cellStatusView];
+        asvc.currentProgressView = [self.progressViewsDictionary objectForKey:[NSNumber numberWithInteger:self.userIdTo]];
     }
 }
 

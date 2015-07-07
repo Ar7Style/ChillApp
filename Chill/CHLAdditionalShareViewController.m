@@ -169,8 +169,9 @@ NSMutableData *mutData;
  totalBytesWritten:(NSInteger)totalBytesWritten
 totalBytesExpectedToWrite:(NSInteger)totalBytesExpectedToWrite {
     float currentProgress = (float)totalBytesWritten / totalBytesExpectedToWrite;
-    LLACircularProgressView *currentProgressView = [self.progressViewsDictionary objectForKey:[NSNumber numberWithInteger:self.userIdTo]];
-    [currentProgressView setProgress:(currentProgress > currentProgressView.progress ? currentProgress : currentProgressView.progress) animated:YES];
+   // LLACircularProgressView *currentProgressView = [self.progressViewsDictionary objectForKey:[NSNumber numberWithInteger:self.userIdTo]];
+    [_currentProgressView setProgress:(currentProgress > _currentProgressView.progress ? currentProgress : _currentProgressView.progress) animated:YES];
+    NSLog(@"6 CONNECTION HAPPENS");
 }
 
 -(void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
