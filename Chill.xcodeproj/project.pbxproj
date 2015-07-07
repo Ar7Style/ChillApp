@@ -612,6 +612,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E63A0F2919A1327800C0522A /* MessageUI.framework in Frameworks */,
 				ADE222C41A94ECEB007777A4 /* libsqlite3.dylib in Frameworks */,
 				ADD038621A93CC1A00D3A0D9 /* AdSupport.framework in Frameworks */,
 				027985061A4A015E00617A24 /* libsqlite3.0.dylib in Frameworks */,
@@ -620,7 +621,6 @@
 				027984FE1A4A00CF00617A24 /* Accounts.framework in Frameworks */,
 				0272A1B71B17C23200E04D83 /* Parse.framework in Frameworks */,
 				E6A67AFC198EEB310067E34E /* ImageIO.framework in Frameworks */,
-				E63A0F2919A1327800C0522A /* MessageUI.framework in Frameworks */,
 				E63A0F1E19A1193500C0522A /* AddressBook.framework in Frameworks */,
 				06B430961B2D842E003AD787 /* Crashlytics.framework in Frameworks */,
 				E6A67B02198EEB490067E34E /* libz.dylib in Frameworks */,
@@ -1629,6 +1629,7 @@
 					WatchKit,
 					Extension,
 					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/TwitterKit.framework/Versions/A/Resources/TwitterKitResources.bundle",
 				);
 				GCC_NO_COMMON_BLOCKS = YES;
 				INFOPLIST_FILE = "Chill WatchKit Extension/Info.plist";
@@ -1705,6 +1706,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/TwitterKit.framework/Versions/A/Resources/TwitterKitResources.bundle",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Chill/Chill-Prefix.pch";

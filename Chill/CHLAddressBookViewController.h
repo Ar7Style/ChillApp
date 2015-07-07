@@ -3,7 +3,7 @@
 //  Chill
 //
 //  Created by Виктор Шаманов on 7/10/14.
-//  Copyright (c) 2014 Victor Shamanov. All rights reserved.
+//  Copyright (c) 2014 Chill. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>

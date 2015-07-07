@@ -3,7 +3,7 @@
 //  Chillwydi93@icloud.com
 //
 //  Created by Тареев Григорий & Виктор Шаманов on 5/7/14.
-//  Copyright (c) 2014 Victor Shamanov. All rights reserved.
+//  Copyright (c) 2014 Chill. All rights reserved.
 //
 
 #import "CHLFriendsListViewController.h"
@@ -70,8 +70,6 @@ NSMutableData *mutData;
 //    ODRefreshControl *refreshControl = [[ODRefreshControl alloc] initInScrollView:self.tableView];
 //    [refreshControl addTarget:self action:@selector(dropViewDidBeginRefreshing:) forControlEvents:UIControlEventValueChanged];
 
-
-    
     
     UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
     [refreshControl setBackgroundColor:[UIColor groupTableViewBackgroundColor]];

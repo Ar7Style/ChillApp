@@ -3,7 +3,7 @@
 //  Chill
 //
 //  Created by Tareyev Gregory on 09.03.15.
-//  Copyright (c) 2015 Victor Shamanov. All rights reserved.
+//  Copyright (c) 2015 Chill. All rights reserved.
 //
 
 #import "CHLConnectionRefusedController.h"

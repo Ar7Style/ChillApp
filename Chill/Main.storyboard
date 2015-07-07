@@ -1192,6 +1192,9 @@ communication experience</string>
                                                         </fragment>
                                                     </attributedString>
                                                 </state>
+                                                <connections>
+                                                    <action selector="showEmail:" destination="JP3-rM-pBa" eventType="touchUpInside" id="2xo-9x-bEg"/>
+                                                </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rbO-tS-cg3">
                                                 <rect key="frame" x="28" y="8" width="264" height="86"/>

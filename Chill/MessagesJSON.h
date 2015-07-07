@@ -3,7 +3,7 @@
 //  Chill
 //
 //  Created by Михаил Луцкий on 30.12.14.
-//  Copyright (c) 2014 Victor Shamanov. All rights reserved.
+//  Copyright (c) 2014 Chill. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>

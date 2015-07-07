@@ -3,7 +3,7 @@
 //  Chill
 //
 //  Created by Tareyev Gregory on 05.07.15.
-//  Copyright (c) 2015 Victor Shamanov. All rights reserved.
+//  Copyright (c) 2015 Chill. All rights reserved.
 //
 
 #import "CHLAdditionalShareViewController.h"
@@ -21,6 +21,10 @@
 #import "GAITracker.h"
 #import "LLACircularProgressView.h"
 #import "CHLPaperCollectionCell.h"
+#import "LLACircularProgressView.h"
+
+
+
 
 @interface CHLAdditionalShareViewController ()<UIActionSheetDelegate, MBProgressHUDDelegate> {
     MBProgressHUD *HUD;
@@ -28,7 +32,7 @@
 }
 
 @property(nonatomic, strong) NSString *sendedContentType;
-
+//@property (readwrite) LLACircularProgressView* progressView;
 
 @end
 
@@ -84,11 +88,11 @@ NSMutableData *mutData;
         mutData = [NSMutableData data];
     }
     
-    LLACircularProgressView *progressView = [[LLACircularProgressView alloc] initProgressViewWithDummyProgress:0.0 cellStatusView:self.cellStatusView];
-    [self.progressViewsDictionary setObject:progressView forKey:[NSNumber numberWithInteger:self.userIdTo]];
+    //LLACircularProgressView *progressView = [[LLACircularProgressView alloc] initProgressViewWithDummyProgress:0.0 cellStatusView:self.cellStatusView];
+    [self.progressViewsDictionary setObject:_progressView forKey:[NSNumber numberWithInteger:self.userIdTo]];
     
     [(UINavigationController *)self.parentViewController popToRootViewControllerAnimated:YES];
-    NSLog(@"1 IT HAPPENES MUFUCK");
+    NSLog(@"1 IT HAPPENES MUFUCK %ld", (long)self.userIdTo);
     id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
     [tracker set:kGAIScreenName value:@"Share screen"];
     [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"UX"
@@ -160,10 +164,76 @@ NSMutableData *mutData;
     [self.navigationController popViewControllerAnimated:YES];
 }
 
+- (void)connection:(NSURLConnection *)connection
+   didSendBodyData:(NSInteger)bytesWritten
+ totalBytesWritten:(NSInteger)totalBytesWritten
+totalBytesExpectedToWrite:(NSInteger)totalBytesExpectedToWrite {
+    float currentProgress = (float)totalBytesWritten / totalBytesExpectedToWrite;
+    LLACircularProgressView *currentProgressView = [self.progressViewsDictionary objectForKey:[NSNumber numberWithInteger:self.userIdTo]];
+    [currentProgressView setProgress:(currentProgress > currentProgressView.progress ? currentProgress : currentProgressView.progress) animated:YES];
+}
+
+-(void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
+{
+}
+
+- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
+{
+    [mutData setLength:0];
+    
+}
+
+-(void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
+{
+    [mutData appendData:data];
+}
+
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
 
+- (IBAction)showEmail:(id)sender {
+    // Email Subject
+    NSString *emailTitle = @"One more thing in Chill";
+    // Email Content
+    NSString *messageBody = @"";
+    // To address
+    NSArray *toRecipents = [NSArray arrayWithObject:@"tareyev.grigoriy@gmail.com"];
+    
+    MFMailComposeViewController *mc = [[MFMailComposeViewController alloc] init];
+    mc.mailComposeDelegate = self;
+    [mc setSubject:emailTitle];
+    [mc setMessageBody:messageBody isHTML:NO];
+    [mc setToRecipients:toRecipents];
+    
+    // Present mail view controller on screen
+    [self presentViewController:mc animated:YES completion:NULL];
+}
+
+- (void) mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error
+{
+    switch (result)
+    {
+        case MFMailComposeResultCancelled:
+            NSLog(@"Mail cancelled");
+            break;
+        case MFMailComposeResultSaved:
+            NSLog(@"Mail saved");
+            break;
+        case MFMailComposeResultSent:
+            NSLog(@"Mail sent");
+            break;
+        case MFMailComposeResultFailed:
+            NSLog(@"Mail sent failure: %@", [error localizedDescription]);
+            break;
+        default:
+            break;
+    }
+    
+    // Close the Mail Interface
+    [self dismissViewControllerAnimated:YES completion:NULL];
+}
 @end

@@ -3,7 +3,7 @@
 //  Chill WatchKit Extension
 //
 //  Created by Михаил Луцкий on 04.03.15.
-//  Copyright (c) 2015 Victor Shamanov. All rights reserved.
+//  Copyright (c) 2015 Chill. All rights reserved.
 //
 
 #import "NotificationController.h"

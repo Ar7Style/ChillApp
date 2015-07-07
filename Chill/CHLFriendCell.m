@@ -3,7 +3,7 @@
 //  Chill
 //
 //  Created by Виктор Шаманов on 6/22/14.
-//  Copyright (c) 2014 Victor Shamanov. All rights reserved.
+//  Copyright (c) 2014 Chill. All rights reserved.
 //
 
 #import "CHLFriendCell.h"
