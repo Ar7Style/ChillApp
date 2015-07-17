@@ -112,7 +112,6 @@ NSMutableData *mutData;
 
 - (void) conRefused {
     
-    
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     
     UIViewController *CHLConnectionRefusedViewController = (UIViewController *)[storyboard  instantiateViewControllerWithIdentifier:@"CHLConnectionRefusedViewController"];
