@@ -338,8 +338,8 @@ NSMutableData *mutData;
                           }];
         }
         else{
-            //cell.shieldik.hidden = YES;
-            //cell.shieldik2.hidden = YES;
+            cell.shieldik.hidden = YES;
+            cell.shieldik2.hidden = YES;
         }
 /*
         NSURL *avatarURL = [NSURL URLWithString:user.thumbImageURL];
@@ -349,6 +349,7 @@ NSMutableData *mutData;
         cell.avatarImageView.layer.cornerRadius = 18.0;
         cell.avatarImageView.layer.masksToBounds = YES;
         */
+    
     
 
         return cell;

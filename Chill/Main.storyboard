@@ -678,6 +678,7 @@ communication experience</string>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
+                                    <outlet property="secondLineOnCell" destination="SK1-Fu-9Zh" id="SGn-rp-vEb"/>
                                     <outlet property="senderLabel" destination="yjR-74-qrk" id="OVv-zF-ibZ"/>
                                     <outlet property="shieldik" destination="SK1-Fu-9Zh" id="Wlz-8k-h77"/>
                                     <outlet property="shieldik2" destination="0eJ-UF-H6b" id="yDa-gf-71I"/>

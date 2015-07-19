@@ -16,5 +16,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *type;
 @property (weak, nonatomic) IBOutlet UIView *shieldik;
 @property (weak, nonatomic) IBOutlet UIView *shieldik2;
+@property (weak, nonatomic) IBOutlet UIView *firstLineOnCell;
+@property (weak, nonatomic) IBOutlet UIView *secondLineOnCell;
 
 @end
