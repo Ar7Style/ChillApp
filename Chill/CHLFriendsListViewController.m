@@ -26,7 +26,6 @@
 #import "GAIDictionaryBuilder.h"
 #import "GAITracker.h"
 #import "LLACircularProgressView.h"
-#import "ODRefreshControl.h"
 
 
 #define UIColorFromRGBA(rgbValue,a) [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:a]
@@ -90,26 +89,6 @@ NSMutableData *mutData;
 }
 
 
-//for ODRefreshController
-//- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-//{
-//    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
-//        return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
-//    } else {
-//        return YES;
-//    }
-//}
-//
-//- (void)dropViewDidBeginRefreshing:(ODRefreshControl *)refreshControl
-//{
-//    double delayInSeconds = 2.0;
-//    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
-//    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-//        [refreshControl endRefreshing];
-//    });
-//}
-
-
 - (void) conRefused {
     
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
@@ -125,9 +104,6 @@ NSMutableData *mutData;
     }
 
 
-    
-//    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Connection refused" message:@"Check your Internet connection" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
-//    [alert show];
 }
 
 /*
@@ -195,7 +171,7 @@ NSMutableData *mutData;
         @try {
             NSUserDefaults *userCache = [[NSUserDefaults standardUserDefaults] initWithSuiteName:@"group.co.getchill.chill"];
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
-                NSLog(@"http://178.62.151.46/v1/contacts/index/id_user/%@", [userCache valueForKey:@"id_user"]);
+                NSLog(@"http://api.iamchill.co/v1/contacts/index/id_user/%@", [userCache valueForKey:@"id_user"]);
                 NSArray *preLoad =[[[JSONLoader alloc] init] locationsFromJSONFile:[[NSURL alloc] initWithString:[NSString stringWithFormat:@"http://api.iamchill.co/v1/contacts/index/id_user/%@", [userCache valueForKey:@"id_user"]]] typeJSON:@"Friends"];
              
                 
@@ -406,7 +382,7 @@ NSMutableData *mutData;
         
 //        NSError *error = nil;
 
-        [request setURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://178.62.151.46/v1/contacts/delete/"]]];
+        [request setURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://api.iamchill.co/v1/contacts/delete/"]]];
         [request setValue:[[NSUserDefaults standardUserDefaults] valueForKey:@"token"] forHTTPHeaderField:@"X-API-TOKEN"];
         
         //NSString *postString = [NSString stringWithFormat:@"id_user/%@", [userCache valueForKey:@"id_user"]];
@@ -596,36 +572,36 @@ NSMutableData *mutData;
 
 
 
- - (IBAction)logout:(id)sender {
-     UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Exit from Chill"
-                                                                    message:@"Are You sure?"
-                                                             preferredStyle:UIAlertControllerStyleAlert];
-     
-     UIAlertAction* declineAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel
-                                                           handler:^(UIAlertAction * action) {}];
-     
-     UIAlertAction* logoutAction = [UIAlertAction actionWithTitle:@"Yes" style:UIAlertActionStyleDefault
-                                                               handler:^(UIAlertAction * action) {
-                                                                   [self userChoosesLogout];
-                                                               }];
-     
-     [alert addAction:declineAction];
-     [alert addAction:logoutAction];
-     [self presentViewController:alert animated:YES completion:nil];
-}
-
-- (void)userChoosesLogout {
-    NSUserDefaults *userCache = [[NSUserDefaults standardUserDefaults] initWithSuiteName:@"group.co.getchill.chill"];
-    _locations = nil;
-    [self.tableView reloadData];
-    [userCache setBool:false forKey:@"isAuth"];
-    [userCache setBool:false forKey:@"isApproved"];
-    [userCache synchronize];
-    PFInstallation *currentInstallation = [PFInstallation currentInstallation];
-    [currentInstallation removeObject:[NSString stringWithFormat:@"us%@",[userCache valueForKey:@"id_user"]] forKey:@"channels"];
-    [currentInstallation saveInBackground];
-    AUTHViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"Chill.AuthViewController"];
-    [self presentViewController:vc animated:NO completion:nil];
-}
+// - (IBAction)logout:(id)sender {
+//     UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Exit from Chill"
+//                                                                    message:@"Are You sure?"
+//                                                             preferredStyle:UIAlertControllerStyleAlert];
+//     
+//     UIAlertAction* declineAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel
+//                                                           handler:^(UIAlertAction * action) {}];
+//     
+//     UIAlertAction* logoutAction = [UIAlertAction actionWithTitle:@"Yes" style:UIAlertActionStyleDefault
+//                                                               handler:^(UIAlertAction * action) {
+//                                                                   [self userChoosesLogout];
+//                                                               }];
+//     
+//     [alert addAction:declineAction];
+//     [alert addAction:logoutAction];
+//     [self presentViewController:alert animated:YES completion:nil];
+//}
+//
+//- (void)userChoosesLogout {
+//    NSUserDefaults *userCache = [[NSUserDefaults standardUserDefaults] initWithSuiteName:@"group.co.getchill.chill"];
+//    _locations = nil;
+//    [self.tableView reloadData];
+//    [userCache setBool:false forKey:@"isAuth"];
+//    [userCache setBool:false forKey:@"isApproved"];
+//    [userCache synchronize];
+//    PFInstallation *currentInstallation = [PFInstallation currentInstallation];
+//    [currentInstallation removeObject:[NSString stringWithFormat:@"us%@",[userCache valueForKey:@"id_user"]] forKey:@"channels"];
+//    [currentInstallation saveInBackground];
+//    AUTHViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"Chill.AuthViewController"];
+//    [self presentViewController:vc animated:NO completion:nil];
+//}
 
 @end

@@ -156,7 +156,7 @@
 }
 - (NSURL *)urlOfStaticMapFromLatitude:(CGFloat)latitude1 longitude:(CGFloat)longitude1 {
     
-    NSString *urlString = [NSString stringWithFormat:@"http://maps.googleapis.com/maps/api/staticmap?center=%f,%f&zoom=16&size=%0.fx%0.f&scale=2&sensor=true&markers=icon:http://i11.pixs.ru/storage/2/9/4/location2x_8770259_18071294.png|%f,%f", latitude1, longitude1,self.view.frame.size.width,self.view.frame.size.width, latitude1, longitude1]; 
+    NSString *urlString = [NSString stringWithFormat:@"http://maps.googleapis.com/maps/api/staticmap?center=%f,%f&zoom=16&size=%0.fx%0.f&scale=2&sensor=true&markers=icon:http://i11.pixs.ru/storage/2/9/4/location2x_8770259_18071294.png|%f,%f", latitude1, longitude1,self.view.frame.size.width,self.view.frame.size.width, latitude1, longitude1];
     return [NSURL URLWithString:[urlString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
 }
 
