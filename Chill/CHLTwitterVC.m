@@ -13,6 +13,7 @@
 @interface CHLTwitterVC ()
 
 @property(nonatomic, strong) TWTRSession *twitterSession;
+@property(nonatomic, strong) TWTRLogInButton *logInButton;
 @property(nonatomic, strong) NSMutableArray *toInviteIDs;
 @property(nonatomic, strong) NSMutableArray *toInviteNicknames;
 @property(nonatomic, strong) NSMutableArray *toInviteDisplayNames;
@@ -28,11 +29,11 @@
     self.toInviteDisplayNames = [[NSMutableArray alloc] init];
     if ([[Twitter sharedInstance] session] == nil) {
         __block CHLTwitterVC *weakSelf = self;
-        TWTRLogInButton* logInButton = [TWTRLogInButton buttonWithLogInCompletion:^(TWTRSession* session, NSError* error) {
+        self.logInButton = [TWTRLogInButton buttonWithLogInCompletion:^(TWTRSession* session, NSError* error) {
             if (session) {
+                weakSelf.twitterSession = [[Twitter sharedInstance] session];
                 [weakSelf sendTwitterIDToBackend];
                 [weakSelf startSearchingTwitterFriends];
-                [logInButton removeFromSuperview];
             } else {
                 UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Sorry"
                                                                                message:@"Can't log in Twitter"
@@ -44,8 +45,8 @@
                 [weakSelf presentViewController:alert animated:YES completion:nil];
             }
         }];
-        logInButton.center = self.view.center;
-        [self.view addSubview:logInButton];
+        self.logInButton.center = self.view.center;
+        [self.view addSubview:self.logInButton];
     }
     else {
         self.twitterSession = [[Twitter sharedInstance] session];
@@ -55,6 +56,8 @@
 
 
 - (void)startSearchingTwitterFriends {
+    [self.logInButton removeFromSuperview];
+    self.logInButton = nil;
     NSString *friendsEndpoint = @"https://api.twitter.com/1.1/friends/list.json";
     NSDictionary *params = @{@"user_id" : self.twitterSession.userID, @"count" : @"200"};
     NSError *clientError;
