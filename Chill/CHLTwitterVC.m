@@ -112,4 +112,20 @@
     return cell;
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [tableView deselectRowAtIndexPath:indexPath animated:true];
+    TWTRComposer *composer = [[TWTRComposer alloc] init];
+    
+    NSString *tweetText = [NSString stringWithFormat:@"Hey @%@, check out Chill, the only wearable messenger that finally makes sense: iamchill.co", self.toInviteNicknames[indexPath.row]];
+    [composer setText:tweetText];
+    [composer showFromViewController:self completion:^(TWTRComposerResult result) {
+        if (result == TWTRComposerResultCancelled) {
+            NSLog(@"Tweet composition cancelled");
+        }
+        else {
+            NSLog(@"Sending Tweet!");
+        }
+    }];
+}
+
 @end

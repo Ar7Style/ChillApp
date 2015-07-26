@@ -1314,6 +1314,8 @@
 				028A85731AFAA8F60034069E /* Chill WatchKit App.app in Resources */,
 				06499F1B1B03DC3A0005E422 /* 172.png in Resources */,
 				028A85DB1AFAB4240034069E /* Rectangle_18__soda7_5@2x.png in Resources */,
+				06B4309A1B2D8678003AD787 /* TwitterKitResources.bundle in Resources */,
+				061B5D561B57DD9200A3B9FB /* update_for_new_icons.png in Resources */,
 				06499F251B03DC600005E422 /* 48.png in Resources */,
 				06499F191B03DC330005E422 /* 196.png in Resources */,
 				0686BC991B4C02BF00515EA0 /* Rectangle_received_gym@2x.png in Resources */,

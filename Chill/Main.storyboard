@@ -1245,7 +1245,7 @@ communication experience</string>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eqZ-7d-C5O">
-                                <rect key="frame" x="16" y="177" width="96" height="21"/>
+                                <rect key="frame" x="16" y="177" width="69" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -1290,7 +1290,7 @@ communication experience</string>
                                 </connections>
                             </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9HC-oU-lBR">
-                                <rect key="frame" x="111" y="349" width="168" height="21"/>
+                                <rect key="frame" x="104" y="349" width="168" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="168" id="5It-PI-d1u"/>
                                 </constraints>
@@ -1302,7 +1302,7 @@ communication experience</string>
                                 </connections>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Password" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CbB-VC-ODn">
-                                <rect key="frame" x="16" y="349" width="96" height="21"/>
+                                <rect key="frame" x="16" y="349" width="89" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -1534,7 +1534,7 @@ communication experience</string>
                 <pageViewController storyboardIdentifier="TutorialPageViewController" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="v95-0U-oWP" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bmM-zf-tnt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1828" y="153"/>
+            <point key="canvasLocation" x="-2268" y="-83"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="hLe-zi-uzW">
@@ -1630,7 +1630,7 @@ communication experience</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QWF-sO-Pux" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="632" y="540"/>
+            <point key="canvasLocation" x="-1376" y="-488"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="c25-1t-XVN">
