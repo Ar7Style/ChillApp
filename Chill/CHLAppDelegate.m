@@ -20,7 +20,6 @@
 #import "GAITracker.h"
 #import <Fabric/Fabric.h>
 #import <TwitterKit/TwitterKit.h>
-
 #import <Crashlytics/Crashlytics.h>
 
 
@@ -77,10 +76,7 @@ static NSString *const CHLIsOpenedBeforeKey = @"CHLIsOpenedBeforeKey";
                                                              diskPath:@"NSURLCache"];
     [NSURLCache setSharedURLCache:URLCache];
     
-    ///Fabric crachlytics
     [Fabric with:@[TwitterKit, CrashlyticsKit]];
-
-    // [Fabric with:@[TwitterKit]];
     
     // Google Analytics
     [GAI sharedInstance].trackUncaughtExceptions = YES;
