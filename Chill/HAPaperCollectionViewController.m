@@ -156,7 +156,7 @@
 }
 - (NSURL *)urlOfStaticMapFromLatitude:(CGFloat)latitude1 longitude:(CGFloat)longitude1 {
     
-    NSString *urlString = [NSString stringWithFormat:@"http://maps.googleapis.com/maps/api/staticmap?center=%f,%f&zoom=16&size=%0.fx%0.f&scale=2&sensor=true&markers=icon:http://lwts.ru/marker.png|%f,%f", latitude1, longitude1,self.view.frame.size.width,self.view.frame.size.width, latitude1, longitude1];
+    NSString *urlString = [NSString stringWithFormat:@"http://maps.googleapis.com/maps/api/staticmap?center=%f,%f&zoom=16&size=%0.fx%0.f&scale=2&sensor=true&markers=icon:http://i11.pixs.ru/storage/2/9/4/location2x_8770259_18071294.png|%f,%f", latitude1, longitude1,self.view.frame.size.width,self.view.frame.size.width, latitude1, longitude1];
     return [NSURL URLWithString:[urlString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
 }
 
@@ -201,9 +201,8 @@
 {
     
     [HUD hide:YES];
-    @try {
-        
-   
+    
+    
     if (_friendUserID==1){
         UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"Empty cell" forIndexPath:indexPath];
         cell.backgroundColor = [UIColor whiteColor];
@@ -367,11 +366,19 @@
                                                               @"waves":     @"received_waves"};
                     
                     UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.width)];
+                    
                     imageView.backgroundColor = [UIColor whiteColor];
                     [cell.placeholderContentView addSubview:imageView];
                     imageView.contentMode = UIViewContentModeCenter;
                     imageView.clipsToBounds = YES;
                     [imageView setImage:[UIImage imageNamed:[receivedIconsDictionary objectForKey:location.content]]];
+                    UIImage* pleaseUpdateImage = [UIImage imageNamed:@"oups"];
+                    if (![self isIconWasReceived:receivedIconsDictionary in:location.content]) {
+
+                        imageView.contentMode = UIViewContentModeScaleAspectFit;
+                        [imageView setImage:pleaseUpdateImage];
+                    }
+                    
                     cell.cellLabel.text = [self dateStringForUserFromInternalString:location.date_created];
                     cell.cellLabel.hidden = YES;
                 }
@@ -408,14 +415,16 @@
             return cell;
         }
     }
-    }
-    @catch (NSException *exception) {
-        NSLog(@"123");
-    }
-    @finally {
-        NSLog(@"123");
+ 
+}
 
+-(BOOL)isIconWasReceived: (NSDictionary *)receivedIconsDictionary in: (NSString *)locationContent {
+    for (NSString* iconType in receivedIconsDictionary) {
+        if ([[NSString stringWithFormat:@"%@", receivedIconsDictionary] containsString: locationContent]) {
+            return true;
+        }
     }
+    return false;
 }
 
 //wow, such aMethod

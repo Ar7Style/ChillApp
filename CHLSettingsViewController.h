@@ -23,6 +23,4 @@
 
 - (IBAction)Done:(id)sender;
 
-- (IBAction)pressLogout:(id)sender;
-
 @end

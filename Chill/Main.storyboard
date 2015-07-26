@@ -492,7 +492,7 @@ communication experience</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SdZ-x9-0oU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="632" y="-94"/>
+            <point key="canvasLocation" x="-1674" y="-114"/>
         </scene>
         <!--Tutorial Page Content View Controller-->
         <scene sceneID="9vO-hH-Wfl">
@@ -533,7 +533,7 @@ communication experience</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hBF-Ud-0HA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1496" y="-502"/>
+            <point key="canvasLocation" x="-2016" y="-502"/>
         </scene>
         <!--Complete View Controller-->
         <scene sceneID="bEa-u1-z5a">
@@ -658,6 +658,7 @@ communication experience</string>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
+                                    <outlet property="secondLineOnCell" destination="SK1-Fu-9Zh" id="SGn-rp-vEb"/>
                                     <outlet property="senderLabel" destination="yjR-74-qrk" id="OVv-zF-ibZ"/>
                                     <outlet property="shieldik" destination="SK1-Fu-9Zh" id="Wlz-8k-h77"/>
                                     <outlet property="shieldik2" destination="0eJ-UF-H6b" id="yDa-gf-71I"/>
@@ -671,9 +672,9 @@ communication experience</string>
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Dialogs" id="azA-dR-oBQ">
-                        <barButtonItem key="leftBarButtonItem" image="back.png" id="Fgn-g0-dMv">
+                        <barButtonItem key="leftBarButtonItem" image="settings" id="Fgn-g0-dMv">
                             <connections>
-                                <action selector="logout:" destination="SIJ-SC-s5b" id="G3D-e3-rS5"/>
+                                <segue destination="Akt-0V-klI" kind="modal" id="4Ye-gB-o9A"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" image="add_people.png" id="k8F-Oq-O8b">
@@ -1284,7 +1285,7 @@ communication experience</string>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="pressLogout:" destination="CLK-tV-RIZ" eventType="touchUpInside" id="J4q-4C-wIh"/>
+                                    <action selector="logout:" destination="CLK-tV-RIZ" eventType="touchUpInside" id="jXO-dR-0Ex"/>
                                     <segue destination="ZIh-XF-2sk" kind="modal" identifier="AuthViewController" id="oIG-5Z-NB0"/>
                                 </connections>
                             </button>
@@ -1307,7 +1308,7 @@ communication experience</string>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="name@iamchill.co" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xkZ-IQ-vDU">
-                                <rect key="frame" x="103" y="176" width="184" height="21"/>
+                                <rect key="frame" x="85" y="176" width="184" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="184" id="CHq-SA-GoI"/>
                                 </constraints>
@@ -1326,16 +1327,16 @@ communication experience</string>
                             <constraint firstAttribute="trailing" secondItem="3yD-me-UqL" secondAttribute="trailing" id="449-gT-Pix"/>
                             <constraint firstItem="CbB-VC-ODn" firstAttribute="top" secondItem="PIM-fW-uRk" secondAttribute="bottom" constant="28" id="4K9-l9-cjy"/>
                             <constraint firstItem="tfP-XD-qcS" firstAttribute="leading" secondItem="V5g-rU-NPW" secondAttribute="leadingMargin" id="4j9-Le-QMe"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="9HC-oU-lBR" secondAttribute="trailing" constant="25" id="4zb-3w-CVU"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="9HC-oU-lBR" secondAttribute="trailing" constant="32" id="4zb-3w-CVU"/>
                             <constraint firstAttribute="trailing" secondItem="VnP-Wn-LAN" secondAttribute="trailing" id="5kG-gC-m3c"/>
                             <constraint firstItem="nEY-nJ-ZXO" firstAttribute="leading" secondItem="V5g-rU-NPW" secondAttribute="leadingMargin" id="8uE-2n-Loa"/>
-                            <constraint firstItem="xkZ-IQ-vDU" firstAttribute="leading" secondItem="eqZ-7d-C5O" secondAttribute="trailing" constant="-9" id="G3t-Yt-KgO"/>
+                            <constraint firstItem="xkZ-IQ-vDU" firstAttribute="leading" secondItem="eqZ-7d-C5O" secondAttribute="trailing" id="G3t-Yt-KgO"/>
                             <constraint firstItem="PIM-fW-uRk" firstAttribute="leading" secondItem="V5g-rU-NPW" secondAttribute="leading" id="MHn-hb-XAq"/>
                             <constraint firstItem="eqZ-7d-C5O" firstAttribute="top" secondItem="e6I-Hg-jpK" secondAttribute="bottom" constant="28" id="S79-Lt-5b0"/>
                             <constraint firstItem="VnP-Wn-LAN" firstAttribute="top" secondItem="xkZ-IQ-vDU" secondAttribute="bottom" constant="26" id="SG1-7h-AZd"/>
                             <constraint firstItem="e6I-Hg-jpK" firstAttribute="top" secondItem="egT-a8-0bg" secondAttribute="bottom" constant="27" id="SZC-fA-EnR"/>
                             <constraint firstItem="xkZ-IQ-vDU" firstAttribute="top" secondItem="e6I-Hg-jpK" secondAttribute="bottom" constant="27" id="agF-7M-qWh"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="xkZ-IQ-vDU" secondAttribute="trailing" constant="17" id="ckj-3W-juf"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="xkZ-IQ-vDU" secondAttribute="trailing" constant="35" id="ckj-3W-juf"/>
                             <constraint firstAttribute="trailing" secondItem="PIM-fW-uRk" secondAttribute="trailing" id="d2z-Mm-Bva"/>
                             <constraint firstItem="nEY-nJ-ZXO" firstAttribute="trailing" secondItem="V5g-rU-NPW" secondAttribute="trailingMargin" id="fcS-iH-fUd"/>
                             <constraint firstAttribute="trailing" secondItem="e6I-Hg-jpK" secondAttribute="trailing" id="gcW-iJ-K6J"/>
@@ -1677,7 +1678,6 @@ communication experience</string>
     <resources>
         <image name="add.png" width="44" height="44"/>
         <image name="add_people.png" width="25" height="26"/>
-        <image name="back.png" width="12" height="12"/>
         <image name="chill_logo" width="192" height="74"/>
         <image name="locationios_right.png" width="1478" height="802"/>
         <image name="picios_right.png" width="1478" height="802"/>
@@ -1693,6 +1693,7 @@ communication experience</string>
         <image name="reaction_telephone" width="33" height="33"/>
         <image name="reaction_trophy" width="33" height="33"/>
         <image name="reaction_waves" width="32" height="33"/>
+        <image name="settings" width="26" height="5"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
@@ -1700,8 +1701,8 @@ communication experience</string>
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="qRD-Z3-ksL"/>
-        <segue reference="oIG-5Z-NB0"/>
         <segue reference="jnP-xo-jaE"/>
+        <segue reference="oIG-5Z-NB0"/>
+        <segue reference="qRD-Z3-ksL"/>
     </inferredMetricsTieBreakers>
 </document>
