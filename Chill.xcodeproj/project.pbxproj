@@ -1242,7 +1242,7 @@
 			attributes = {
 				CLASSPREFIX = CHL;
 				LastUpgradeCheck = 0610;
-				ORGANIZATIONNAME = "Victor Shamanov";
+				ORGANIZATIONNAME = Chlil;
 				TargetAttributes = {
 					028A85661AFAA8F60034069E = {
 						CreatedOnToolsVersion = 6.3;

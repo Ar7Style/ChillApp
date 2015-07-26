@@ -13,6 +13,7 @@
 
 {
     bool isKeyboardShow;
+    
 }
 
 @property (weak, nonatomic) IBOutlet UILabel *nickNameLabel;
@@ -22,5 +23,10 @@
 - (IBAction)actionTextChanged:(id)sender;
 
 - (IBAction)Done:(id)sender;
+
+@property (readwrite) NSString *email;
+@property (readwrite) NSString *password;
+
+
 
 @end

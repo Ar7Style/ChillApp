@@ -9,6 +9,7 @@
 #import "AUTHViewController.h"
 #import "APPROVEDViewController.h"
 #import "Reachability.h"
+#import "CHLSettingsViewController.h"
 #import <Parse/Parse.h>
 #import "GAI.h"
 #import "GAIFields.h"
@@ -177,6 +178,9 @@
                 
                     [userCache setValue:[[[json valueForKey:@"response"] valueForKey:@"name"]componentsJoinedByString:@""] forKey:@"name"];
                     [userCache setValue:[[[json valueForKey:@"response"] valueForKey:@"email"]componentsJoinedByString:@""] forKey:@"email"];
+                    CHLSettingsViewController *settingsVC = [[CHLSettingsViewController alloc]init];
+
+                    settingsVC.email = [json valueForKey:@"email"];
                     [userCache setValue:[[[json valueForKey:@"response"] valueForKey:@"hash"]componentsJoinedByString:@""] forKey:@"hash"];
                     [userCache setValue:[[[json valueForKey:@"response"] valueForKey:@"key"]componentsJoinedByString:@""] forKey:@"key"];
                     [userCache setValue:[[[json valueForKey:@"response"] valueForKey:@"date_reg"]componentsJoinedByString:@""] forKey:@"date_reg"];

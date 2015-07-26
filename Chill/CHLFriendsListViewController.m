@@ -26,6 +26,7 @@
 #import "GAIDictionaryBuilder.h"
 #import "GAITracker.h"
 #import "LLACircularProgressView.h"
+#import "CHLSettingsViewController.h"
 
 
 #define UIColorFromRGBA(rgbValue,a) [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:a]
@@ -542,6 +543,17 @@ NSMutableData *mutData;
         shareViewController.cellStatusView = [(CHLFriendCell *)sender type];
         shareViewController.progressViewsDictionary = self.progressViewsDictionary;
     }
+    
+    else if ([segue.identifier isEqualToString:@"toTheSettings"]) {
+        [timer invalidate];
+        timer = nil;
+        NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
+        
+
+       // settingsVC.email = location.email;
+        
+    }
+
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [timer invalidate];

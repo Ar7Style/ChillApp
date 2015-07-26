@@ -694,7 +694,7 @@ communication experience</string>
                     <navigationItem key="navigationItem" title="Dialogs" id="azA-dR-oBQ">
                         <barButtonItem key="leftBarButtonItem" image="settings" id="Fgn-g0-dMv">
                             <connections>
-                                <segue destination="Akt-0V-klI" kind="modal" id="4Ye-gB-o9A"/>
+                                <segue destination="Akt-0V-klI" kind="modal" identifier="toTheSettings" id="4Ye-gB-o9A"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" image="add_people.png" id="k8F-Oq-O8b">
