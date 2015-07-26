@@ -29,8 +29,6 @@
     MBProgressHUD *HUD;
 }
 
-@property(nonatomic, strong) UIView *invitationView;
-
 @end
 NSMutableData *mutData;
 
@@ -46,7 +44,7 @@ NSMutableData *mutData;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    //self.navigationController.view.layer.cornerRadius=6;
+    self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName: [UIColor whiteColor]};
     self.navigationController.view.clipsToBounds=YES;
     self.tableView.tableFooterView = [UIView new];
     self.navigationController.navigationBar.barTintColor = [UIColor chillMintColor];
@@ -57,41 +55,9 @@ NSMutableData *mutData;
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    if (!self.invitationView) {
-        [self addInvitationView];
-    }
-    
     id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
     [tracker set:kGAIScreenName value:@"Contact search screen"];
     [tracker send:[[GAIDictionaryBuilder createAppView] build]];
-}
-
-- (void)addInvitationView {
-    NSUserDefaults *userCache = [[NSUserDefaults standardUserDefaults] initWithSuiteName:@"group.co.getchill.chill"];
-    if ([userCache integerForKey:@"Available invites number"] != 0) {
-        self.invitationView = [[UIView alloc] initWithFrame:self.tableView.bounds];
-        self.invitationView.userInteractionEnabled = NO;
-        
-        NSArray *friendsAmountStrings = @[@"1 more friend", @"2 more friends", @"3 friends"];
-        NSString *chosenFriendsAmountString = friendsAmountStrings[[userCache integerForKey:@"Available invites number"] - 1];
-        UILabel *mainLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0.35 * self.invitationView.frame.size.height, self.invitationView.frame.size.width, 70)];
-        mainLabel.text = [NSString stringWithFormat:@"Help %@\nto get Chill", chosenFriendsAmountString];
-        mainLabel.textAlignment = NSTextAlignmentCenter;
-        mainLabel.textColor = [UIColor chillMintColor];
-        mainLabel.font = [UIFont boldSystemFontOfSize:26];
-        mainLabel.numberOfLines = 2;
-        [self.invitationView addSubview:mainLabel];
-        
-        UILabel *subLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0.35 * self.invitationView.frame.size.height + 70, self.invitationView.frame.size.width, 70)];
-        subLabel.text = @"or add the ones\nalready Chilling";
-        subLabel.textAlignment = NSTextAlignmentCenter;
-        subLabel.textColor = [UIColor chillDarkGrayColor];
-        subLabel.font = [UIFont systemFontOfSize:20];
-        subLabel.numberOfLines = 2;
-        [self.invitationView addSubview:subLabel];
-        
-        [self.tableView setBackgroundView:self.invitationView];
-    }
 }
 
 -(void) searchBarTextDidBeginEditing:(UISearchBar *)searchBar
@@ -130,7 +96,6 @@ NSMutableData *mutData;
     }
     else
     {
-        self.invitationView.hidden = YES;
         NSUserDefaults *userCache = [[NSUserDefaults standardUserDefaults] initWithSuiteName:@"group.co.getchill.chill"];
 
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
