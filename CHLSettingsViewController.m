@@ -143,10 +143,8 @@
     [_emailField.text stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     [_passwordField.text stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     
-    self.email = _emailField.text;
-    self.password = _passwordField.text;
 
-    NSMutableURLRequest *request = [[NSMutableURLRequest alloc]initWithURL:[NSURL URLWithString: [NSString stringWithFormat:@"http://178.62.151.46/v1/users/update/"]]];
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc]initWithURL:[NSURL URLWithString: [NSString stringWithFormat:@"http://api.iamchill.co/v1/users/update/"]]];
     //                [request setValue:@"Chill" forHTTPHeaderField:@"User-Agent"];
     [request setValue:[[NSUserDefaults standardUserDefaults] valueForKey:@"token"] forHTTPHeaderField:@"X-API-TOKEN"];
     
@@ -206,6 +204,7 @@
     
    // [userCache synchronize];
     
+
 }
 
 # pragma mark - Actions

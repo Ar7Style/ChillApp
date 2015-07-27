@@ -224,7 +224,6 @@
 		068C0B021AA36ED6005A0577 /* Portrait 1.png in Resources */ = {isa = PBXBuildFile; fileRef = 068C0AFE1AA36ED6005A0577 /* Portrait 1.png */; };
 		06A5BF3F1AAE0AFC00D34CFF /* CHLConnectionRefusedController.m in Sources */ = {isa = PBXBuildFile; fileRef = 06A5BF3E1AAE0AFC00D34CFF /* CHLConnectionRefusedController.m */; };
 		06A5BF411AAE179000D34CFF /* No_internet.png in Resources */ = {isa = PBXBuildFile; fileRef = 06A5BF401AAE179000D34CFF /* No_internet.png */; };
-		06B195EB1B00D8EC00641219 /* ODRefreshControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 06B195EA1B00D8EC00641219 /* ODRefreshControl.m */; };
 		06DA1B1E1AC4B1B9005472E4 /* reaction_blank_forCell.png in Resources */ = {isa = PBXBuildFile; fileRef = 06DA1B181AC4B1B9005472E4 /* reaction_blank_forCell.png */; };
 		06DA1B1F1AC4B1B9005472E4 /* reaction_chill_forCell.png in Resources */ = {isa = PBXBuildFile; fileRef = 06DA1B191AC4B1B9005472E4 /* reaction_chill_forCell.png */; };
 		06DA1B201AC4B1B9005472E4 /* reaction_clock_forCell.png in Resources */ = {isa = PBXBuildFile; fileRef = 06DA1B1A1AC4B1B9005472E4 /* reaction_clock_forCell.png */; };
@@ -501,8 +500,6 @@
 		06A5BF3D1AAE0AFC00D34CFF /* CHLConnectionRefusedController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHLConnectionRefusedController.h; sourceTree = "<group>"; };
 		06A5BF3E1AAE0AFC00D34CFF /* CHLConnectionRefusedController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHLConnectionRefusedController.m; sourceTree = "<group>"; };
 		06A5BF401AAE179000D34CFF /* No_internet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = No_internet.png; sourceTree = "<group>"; };
-		06B195E91B00D8EC00641219 /* ODRefreshControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ODRefreshControl.h; sourceTree = "<group>"; };
-		06B195EA1B00D8EC00641219 /* ODRefreshControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ODRefreshControl.m; sourceTree = "<group>"; };
 		06BBD48E1AB88DB5003E2B1D /* TurnLeft.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = TurnLeft.caf; sourceTree = "<group>"; };
 		06DA1B181AC4B1B9005472E4 /* reaction_blank_forCell.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = reaction_blank_forCell.png; sourceTree = "<group>"; };
 		06DA1B191AC4B1B9005472E4 /* reaction_chill_forCell.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = reaction_chill_forCell.png; sourceTree = "<group>"; };
@@ -1314,7 +1311,6 @@
 				028A85731AFAA8F60034069E /* Chill WatchKit App.app in Resources */,
 				06499F1B1B03DC3A0005E422 /* 172.png in Resources */,
 				028A85DB1AFAB4240034069E /* Rectangle_18__soda7_5@2x.png in Resources */,
-				06B4309A1B2D8678003AD787 /* TwitterKitResources.bundle in Resources */,
 				061B5D561B57DD9200A3B9FB /* update_for_new_icons.png in Resources */,
 				06499F251B03DC600005E422 /* 48.png in Resources */,
 				06499F191B03DC330005E422 /* 196.png in Resources */,

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14F6a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="XNp-CI-eTV">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="XNp-CI-eTV">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
@@ -450,14 +450,7 @@ communication experience</string>
                             <outlet property="delegate" destination="MTj-8n-zMY" id="DVu-Uq-QSq"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="All Contacts" id="3oE-jI-HFe">
-                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="mov-LF-A9O">
-                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            <connections>
-                                <action selector="closeButtonPressed:" destination="MTj-8n-zMY" id="40q-gi-Fgo"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="All Contacts" id="3oE-jI-HFe"/>
                     <connections>
                         <outlet property="contactsTableView" destination="ncM-Bm-P9C" id="7i1-co-qCR"/>
                         <outlet property="searchDisplayController" destination="nfo-mA-MNy" id="UVc-P5-f28"/>
@@ -748,13 +741,7 @@ communication experience</string>
                             <outlet property="delegate" destination="OHS-5E-G0C" id="FDU-HT-FwS"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Search Users" id="dQr-xC-pSb">
-                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="e1C-qf-lIa">
-                            <connections>
-                                <action selector="close:" destination="OHS-5E-G0C" id="Mr8-mI-kmP"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Search Users" id="dQr-xC-pSb"/>
                     <connections>
                         <outlet property="searchBar" destination="fyc-In-H2v" id="e0E-FZ-048"/>
                     </connections>
@@ -1478,7 +1465,7 @@ communication experience</string>
                     </tableView>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Add friends" id="3Yl-V2-RAI">
-                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="Ef5-uW-Kah">
+                        <barButtonItem key="rightBarButtonItem" image="close.png" id="Ef5-uW-Kah">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <action selector="closeButtonTapped:" destination="apb-R1-WFE" id="gfM-LL-Kqk"/>
@@ -1679,6 +1666,7 @@ communication experience</string>
         <image name="add.png" width="44" height="44"/>
         <image name="add_people.png" width="25" height="26"/>
         <image name="chill_logo" width="192" height="74"/>
+        <image name="close.png" width="12" height="12"/>
         <image name="locationios_right.png" width="1478" height="802"/>
         <image name="picios_right.png" width="1478" height="802"/>
         <image name="reaction_blank" width="33" height="33"/>

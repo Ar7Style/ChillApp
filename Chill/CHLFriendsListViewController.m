@@ -259,7 +259,7 @@ NSMutableData *mutData;
     
         if (![location.email isEqualToString:@"chillteam@iamchill.co"]){
             cell.shieldik.hidden = NO;
-            cell.shieldik2.hidden=NO;
+            cell.shieldik2.hidden= NO;
             if (![location.read isKindOfClass:[NSNull class]]) {
                 if ([location.read isEqualToString:@"0"] && !cell.type.subviews.firstObject) {
                     if ([location.type isEqualToString:@"location"]){
