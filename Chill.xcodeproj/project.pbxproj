@@ -115,6 +115,11 @@
 		061B5D551B57DD9200A3B9FB /* update_for_new_icons.png in Resources */ = {isa = PBXBuildFile; fileRef = 061B5D541B57DD9200A3B9FB /* update_for_new_icons.png */; };
 		061B5D561B57DD9200A3B9FB /* update_for_new_icons.png in Resources */ = {isa = PBXBuildFile; fileRef = 061B5D541B57DD9200A3B9FB /* update_for_new_icons.png */; };
 		061B5D571B57DD9200A3B9FB /* update_for_new_icons.png in Resources */ = {isa = PBXBuildFile; fileRef = 061B5D541B57DD9200A3B9FB /* update_for_new_icons.png */; };
+		0633D5FE1B6FC1C300255BA5 /* PebbleVendor.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0633D5FD1B6FC1C300255BA5 /* PebbleVendor.framework */; };
+		0633D6001B6FC20F00255BA5 /* ExternalAccessory.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0633D5FF1B6FC20F00255BA5 /* ExternalAccessory.framework */; };
+		0633D6021B6FC34900255BA5 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0633D6011B6FC34900255BA5 /* CoreMotion.framework */; };
+		0633D6031B6FC35500255BA5 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0EC27E31B17285400F857FD /* CFNetwork.framework */; };
+		0633D6051B6FC40300255BA5 /* PebbleKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0633D6041B6FC40300255BA5 /* PebbleKit.framework */; };
 		0643661A1B2A411B00C603C4 /* ocheredgrisha.png in Resources */ = {isa = PBXBuildFile; fileRef = 064366191B2A411B00C603C4 /* ocheredgrisha.png */; };
 		06499F0C1B03C7F20005E422 /* 1024.png in Resources */ = {isa = PBXBuildFile; fileRef = 06499F0B1B03C7F20005E422 /* 1024.png */; };
 		06499F131B03DC1D0005E422 /* 48.png in Resources */ = {isa = PBXBuildFile; fileRef = 06499F0D1B03DC1D0005E422 /* 48.png */; };
@@ -456,6 +461,10 @@
 		060848E01AC0BF24003EBE90 /* Portrait 3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Portrait 3.png"; sourceTree = "<group>"; };
 		0614D4921B598A8600CFA8D5 /* oups.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = oups.png; sourceTree = "<group>"; };
 		061B5D541B57DD9200A3B9FB /* update_for_new_icons.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = update_for_new_icons.png; sourceTree = "<group>"; };
+		0633D5FD1B6FC1C300255BA5 /* PebbleVendor.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PebbleVendor.framework; sourceTree = "<group>"; };
+		0633D5FF1B6FC20F00255BA5 /* ExternalAccessory.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ExternalAccessory.framework; path = System/Library/Frameworks/ExternalAccessory.framework; sourceTree = SDKROOT; };
+		0633D6011B6FC34900255BA5 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
+		0633D6041B6FC40300255BA5 /* PebbleKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PebbleKit.framework; sourceTree = "<group>"; };
 		064366191B2A411B00C603C4 /* ocheredgrisha.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ocheredgrisha.png; sourceTree = "<group>"; };
 		06499F0B1B03C7F20005E422 /* 1024.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1024.png; sourceTree = "<group>"; };
 		06499F0D1B03DC1D0005E422 /* 48.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 48.png; sourceTree = "<group>"; };
@@ -632,6 +641,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0633D6031B6FC35500255BA5 /* CFNetwork.framework in Frameworks */,
+				0633D6021B6FC34900255BA5 /* CoreMotion.framework in Frameworks */,
+				E6A67B02198EEB490067E34E /* libz.dylib in Frameworks */,
+				0633D6001B6FC20F00255BA5 /* ExternalAccessory.framework in Frameworks */,
 				E63A0F2919A1327800C0522A /* MessageUI.framework in Frameworks */,
 				ADE222C41A94ECEB007777A4 /* libsqlite3.dylib in Frameworks */,
 				ADD038621A93CC1A00D3A0D9 /* AdSupport.framework in Frameworks */,
@@ -643,7 +656,6 @@
 				E6A67AFC198EEB310067E34E /* ImageIO.framework in Frameworks */,
 				E63A0F1E19A1193500C0522A /* AddressBook.framework in Frameworks */,
 				06B22A601B67C8AD0056455D /* Crashlytics.framework in Frameworks */,
-				E6A67B02198EEB490067E34E /* libz.dylib in Frameworks */,
 				E6A67AFE198EEB380067E34E /* libc++.dylib in Frameworks */,
 				0256F4981A3E31A2001D9A23 /* GoogleMaps.framework in Frameworks */,
 				06B22A581B67C8200056455D /* TwitterKit.framework in Frameworks */,
@@ -664,6 +676,8 @@
 				0254909F1A61C51400D9222B /* GameKit.framework in Frameworks */,
 				E6C7C21C191A8C790071D83F /* CoreData.framework in Frameworks */,
 				06B22A5D1B67C8200056455D /* TwitterCore.framework in Frameworks */,
+				0633D6051B6FC40300255BA5 /* PebbleKit.framework in Frameworks */,
+				0633D5FE1B6FC1C300255BA5 /* PebbleVendor.framework in Frameworks */,
 				E6C7C1D3191A1B220071D83F /* CoreGraphics.framework in Frameworks */,
 				E6C7C1D5191A1B220071D83F /* UIKit.framework in Frameworks */,
 				E6C7C1D1191A1B220071D83F /* Foundation.framework in Frameworks */,
@@ -1008,6 +1022,8 @@
 		E6C7C1C4191A1B220071D83F = {
 			isa = PBXGroup;
 			children = (
+				0633D6041B6FC40300255BA5 /* PebbleKit.framework */,
+				0633D5FD1B6FC1C300255BA5 /* PebbleVendor.framework */,
 				06B22A5F1B67C8AD0056455D /* Crashlytics.framework */,
 				06B22A521B67C8200056455D /* Fabric.framework */,
 				06B22A531B67C8200056455D /* TwitterKit.framework */,
@@ -1036,6 +1052,8 @@
 		E6C7C1CF191A1B220071D83F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0633D6011B6FC34900255BA5 /* CoreMotion.framework */,
+				0633D5FF1B6FC20F00255BA5 /* ExternalAccessory.framework */,
 				D0EC27E71B17287300F857FD /* libz.1.1.3.dylib */,
 				D0EC27E31B17285400F857FD /* CFNetwork.framework */,
 				ADE222C31A94ECEB007777A4 /* libsqlite3.dylib */,

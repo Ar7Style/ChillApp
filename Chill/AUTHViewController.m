@@ -15,6 +15,8 @@
 #import "GAIFields.h"
 #import "GAIDictionaryBuilder.h"
 #import "GAITracker.h"
+#import <PebbleKit/PebbleKit.h>
+
 
 @interface AUTHViewController (){
     NSMutableArray *json;
@@ -33,6 +35,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+ 
 }
 -  (void)viewDidAppear:(BOOL)animated {
    // self.navigationController.view.layer.cornerRadius=6;
