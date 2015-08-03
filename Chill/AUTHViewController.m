@@ -111,6 +111,23 @@
     [alert addAction:okayAction];
     [self presentViewController:alert animated:YES completion:nil];
 }
+
+- (NSString*) getDateTime {
+    NSDate *currDate = [NSDate date];
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
+    long long milliseconds = (long long)([[NSDate date] timeIntervalSince1970] * 1000.0);
+    
+    [currDate timeIntervalSince1970];
+    // NSTimeZone* generalTimeZone1 = [NSTimeZone timeZoneWithName:@"CET"];
+    
+    //[dateFormatter setTimeZone: generalTimeZone1];
+    [dateFormatter setDateFormat:@"dd.MM.YY HH:mm:ss"];
+    NSString* dateString =[NSString stringWithFormat:@"%lld",milliseconds];
+    NSLog(@"%@", dateString);
+    
+    return dateString;
+}
+
 - (IBAction)nextBut:(id)sender {
     
     [_loginField1.text stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
@@ -121,15 +138,17 @@
             [self conRefused];
         }
         else {
-            NSMutableURLRequest *request = [[NSMutableURLRequest alloc]initWithURL:[NSURL URLWithString: [NSString stringWithFormat:@"http://api.iamchill.co/v1/users/index"]]];
+            NSMutableURLRequest *request = [[NSMutableURLRequest alloc]initWithURL:[NSURL URLWithString: [NSString stringWithFormat:@"http://api.iamchill.co/v2/users/index"]]];
 //            [request setValue:@"Chill" forHTTPHeaderField:@"User-Agent"];
             [request setValue:[[NSUserDefaults standardUserDefaults] valueForKey:@"token"] forHTTPHeaderField:@"X-API-TOKEN"];
+            [request setValue:@"76eb29d3ca26fe805545812850e6d75af933214a" forHTTPHeaderField:@"X-API-KEY"];
+
 
             [request setHTTPMethod:@"POST"];
 
             NSURLResponse *response = nil;
             NSError *error = nil;
-            NSString *postString = [NSString stringWithFormat:@"login=%@&password=%@",_loginField1.text, _passwordField1.text];
+            NSString *postString = [NSString stringWithFormat:@"login=%@&password=%@&date=%@",_loginField1.text, _passwordField1.text, [self getDateTime]];
             
 //            [request setValue:[NSString
 //                               stringWithFormat:@"%lu", (unsigned long)[postString length]]
@@ -161,9 +180,10 @@
                 [self setupGAUserID: [userCache valueForKey:@"id_user"]];
                 userCache = [[NSUserDefaults standardUserDefaults] initWithSuiteName:@"group.co.getchill.chill"];
                 
-                request = [[NSMutableURLRequest alloc]initWithURL:[NSURL URLWithString: [NSString stringWithFormat:@"http://api.iamchill.co/v1/users/index/id_user/%@",[userCache valueForKey:@"id_user"]]]];
+                request = [[NSMutableURLRequest alloc]initWithURL:[NSURL URLWithString: [NSString stringWithFormat:@"http://api.iamchill.co/v2/users/index/id_user/%@",[userCache valueForKey:@"id_user"]]]];
                 //[request setValue:@"Chill" forHTTPHeaderField:@"User-Agent"];
-                [request setValue:[[NSUserDefaults standardUserDefaults] valueForKey:@"token"] forHTTPHeaderField:@"X-API-TOKEN"];
+                [request setValue:[[NSUserDefaults standardUserDefaults] valueForKey:@"token"] forHTTPHeaderField:@"X-API-TOKEN"]; [request setValue:@"76eb29d3ca26fe805545812850e6d75af933214a" forHTTPHeaderField:@"X-API-KEY"];
+
                 response = nil;
                 error = nil;
                 

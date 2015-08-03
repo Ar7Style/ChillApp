@@ -143,12 +143,12 @@
     [_emailField.text stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     [_passwordField.text stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     
-    self.email = _emailField.text;
-    self.password = _passwordField.text;
 
-    NSMutableURLRequest *request = [[NSMutableURLRequest alloc]initWithURL:[NSURL URLWithString: [NSString stringWithFormat:@"http://178.62.151.46/v1/users/update/"]]];
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc]initWithURL:[NSURL URLWithString: [NSString stringWithFormat:@"http://api.iamchill.co/v2/users/update/"]]];
     //                [request setValue:@"Chill" forHTTPHeaderField:@"User-Agent"];
-    [request setValue:[[NSUserDefaults standardUserDefaults] valueForKey:@"token"] forHTTPHeaderField:@"X-API-TOKEN"];
+    [request setValue:[[NSUserDefaults standardUserDefaults] valueForKey:@"token"] forHTTPHeaderField:@"X-API-TOKEN"]; [request setValue:@"76eb29d3ca26fe805545812850e6d75af933214a" forHTTPHeaderField:@"X-API-KEY"];
+
+    [request setValue:@"76eb29d3ca26fe805545812850e6d75af933214a" forHTTPHeaderField:@"X-API-KEY"];
     
     [request setHTTPMethod:@"POST"];
     
@@ -188,8 +188,6 @@
         [self setupGAUserID: [userCache valueForKey:@"id_user"]];
         userCache = [[NSUserDefaults standardUserDefaults] initWithSuiteName:@"group.co.getchill.chill"];
         
-        
-        
     }
 
 }
@@ -206,6 +204,7 @@
     
    // [userCache synchronize];
     
+
 }
 
 # pragma mark - Actions

@@ -164,19 +164,37 @@ NSMutableData *mutData;
     [HUD hide:YES afterDelay:2];
 }
 
+- (NSString*) getDateTime {
+    NSDate *currDate = [NSDate date];
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
+    long long milliseconds = (long long)([[NSDate date] timeIntervalSince1970] * 1000.0);
+    
+    [currDate timeIntervalSince1970];
+    // NSTimeZone* generalTimeZone1 = [NSTimeZone timeZoneWithName:@"CET"];
+    
+    //[dateFormatter setTimeZone: generalTimeZone1];
+    [dateFormatter setDateFormat:@"dd.MM.YY HH:mm:ss"];
+    NSString* dateString =[NSString stringWithFormat:@"%lld",milliseconds];
+    NSLog(@"%@", dateString);
+    
+    return dateString;
+}
+
 - (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation
 {
     CLLocation *currentLocation = newLocation;
 
     NSMutableURLRequest *request =
     [[NSMutableURLRequest alloc] initWithURL:
-     [NSURL URLWithString:@"http://api.iamchill.co/v1/messages/index/"]];
+     [NSURL URLWithString:@"http://api.iamchill.co/v2/messages/index/"]];
     [request setValue:[[NSUserDefaults standardUserDefaults] valueForKey:@"token"] forHTTPHeaderField:@"X-API-TOKEN"];
+    [request setValue:@"76eb29d3ca26fe805545812850e6d75af933214a" forHTTPHeaderField:@"X-API-KEY"];
+
 
     [request setHTTPMethod:@"POST"];
     NSUserDefaults *userCache = [[NSUserDefaults standardUserDefaults] initWithSuiteName:@"group.co.getchill.chill"];
 
-    NSString *postString = [NSString stringWithFormat:@"id_contact=%ld&id_user=%@&content=%@ %@&type=location",(long)_userIdTo,[userCache valueForKey:@"id_user"],[NSString stringWithFormat:@"%.8f", currentLocation.coordinate.latitude], [NSString stringWithFormat:@"%.8f", currentLocation.coordinate.longitude]];
+    NSString *postString = [NSString stringWithFormat:@"id_contact=%ld&id_user=%@&content=%@ %@&type=location&date=%@",(long)_userIdTo,[userCache valueForKey:@"id_user"],[NSString stringWithFormat:@"%.8f", currentLocation.coordinate.latitude], [NSString stringWithFormat:@"%.8f", currentLocation.coordinate.longitude], [self getDateTime]];
     
     [request setHTTPBody:[postString
                           dataUsingEncoding:NSUTF8StringEncoding]];
@@ -213,13 +231,15 @@ NSMutableData *mutData;
 }
 
 - (void)shareIconOfType:(NSString *)iconType {
-    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:@"http://api.iamchill.co/v1/messages/index/"]];
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:@"http://api.iamchill.co/v2/messages/index/"]];
     [request setValue:[[NSUserDefaults standardUserDefaults] valueForKey:@"token"] forHTTPHeaderField:@"X-API-TOKEN"];
+    [request setValue:@"76eb29d3ca26fe805545812850e6d75af933214a" forHTTPHeaderField:@"X-API-KEY"];
+
     [request setHTTPMethod:@"POST"];
     
     NSUserDefaults *userCache = [[NSUserDefaults standardUserDefaults] initWithSuiteName:@"group.co.getchill.chill"];
     
-    NSString *postString = [NSString stringWithFormat:@"id_contact=%ld&id_user=%@&content=%@&type=icon", (long)_userIdTo, [userCache valueForKey:@"id_user"], iconType];
+    NSString *postString = [NSString stringWithFormat:@"id_contact=%ld&id_user=%@&content=%@&type=icon&date=%@", (long)_userIdTo, [userCache valueForKey:@"id_user"], iconType, [self getDateTime]];
     
     [request setHTTPBody:[postString dataUsingEncoding:NSUTF8StringEncoding]];
     NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:request delegate:self];

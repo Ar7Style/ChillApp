@@ -253,6 +253,22 @@ NSMutableData *mutData;
     //
 }
 
+- (NSString*) getDateTime {
+    NSDate *currDate = [NSDate date];
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
+    long long milliseconds = (long long)([[NSDate date] timeIntervalSince1970] * 1000.0);
+    
+    [currDate timeIntervalSince1970];
+    // NSTimeZone* generalTimeZone1 = [NSTimeZone timeZoneWithName:@"CET"];
+    
+    //[dateFormatter setTimeZone: generalTimeZone1];
+    [dateFormatter setDateFormat:@"dd.MM.YY HH:mm:ss"];
+    NSString* dateString =[NSString stringWithFormat:@"%lld",milliseconds];
+    NSLog(@"%@", dateString);
+    
+    return dateString;
+}
+
 -(IBAction)photoSelected:(id)sender
 {
     
@@ -282,15 +298,15 @@ NSMutableData *mutData;
                     
                     [newPhotoObject saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
                         if (!error) {
-                            NSMutableURLRequest *request = [[NSMutableURLRequest alloc]initWithURL:[NSURL URLWithString: [NSString stringWithFormat:@"http://api.iamchill.co/v1/messages/index/"]]];
-                            //[request setValue:@"Chill" forHTTPHeaderField:@"User-Agent"];
-                            [request setValue:[[NSUserDefaults standardUserDefaults] valueForKey:@"token"] forHTTPHeaderField:@"X-API-TOKEN"];
+                            NSMutableURLRequest *request = [[NSMutableURLRequest alloc]initWithURL:[NSURL URLWithString: [NSString stringWithFormat:@"http://api.iamchill.co/v2/messages/index/"]]];
+                            [request setValue:[[NSUserDefaults standardUserDefaults] valueForKey:@"token"] forHTTPHeaderField:@"X-API-TOKEN"]; [request setValue:@"76eb29d3ca26fe805545812850e6d75af933214a" forHTTPHeaderField:@"X-API-KEY"];
+
 
                             [request setHTTPMethod:@"POST"];
                             
                             NSURLResponse *response = nil;
                             NSError *error = nil;
-                            NSString *postString = [NSString stringWithFormat:@"id_contact=%ld&id_user=%@&content=%@&type=parse",(long)_userIdTo,[[NSUserDefaults standardUserDefaults] valueForKey:@"id_user"],imageFile.url];
+                            NSString *postString = [NSString stringWithFormat:@"id_contact=%ld&id_user=%@&content=%@&type=parse&date=%@",(long)_userIdTo,[[NSUserDefaults standardUserDefaults] valueForKey:@"id_user"],imageFile.url,[self getDateTime]];
                             
                             //[request setValue:[NSString
                             //                   stringWithFormat:@"%lu", (unsigned long)[postString length]]

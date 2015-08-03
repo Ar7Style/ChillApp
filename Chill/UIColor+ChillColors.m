@@ -27,7 +27,8 @@
 }
 
 + (instancetype)chillDarkGrayColor {
-    return [self colorWith255Gray:210];
+    //return [self colorWith255Gray:210];
+    return [UIColor colorWith255Red:161 green:161 blue:161];
 }
 
 @end

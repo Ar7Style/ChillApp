@@ -10,7 +10,10 @@
 #import <TwitterKit/TwitterKit.h>
 #import "CHLFriendCell.h"
 
-@interface CHLTwitterVC ()
+@interface CHLTwitterVC () {
+    NSMutableArray *json;
+
+}
 
 @property(nonatomic, strong) TWTRSession *twitterSession;
 @property(nonatomic, strong) TWTRLogInButton *logInButton;
@@ -95,7 +98,44 @@
 }
 
 - (void)sendTwitterIDToBackend {
-    //TODO: implement it
+//    NSLog(@"MASSIV IDIWNIKOV: %@", self.toInviteIDs);
+//    //TODO: implement it
+//    NSString* str_twitter_IDs = [self.toInviteIDs componentsJoinedByString:@"??"];
+//    
+//    NSLog(@"Stroka s twitterID: %@", str_twitter_IDs);
+//    
+//    NSMutableURLRequest *request = [[NSMutableURLRequest alloc]initWithURL:[NSURL URLWithString: [NSString stringWithFormat:@"http://api.iamchill.co/v2/search/twitter/"]]];
+//    //                [request setValue:@"Chill" forHTTPHeaderField:@"User-Agent"];
+//    [request setValue:[[NSUserDefaults standardUserDefaults] valueForKey:@"token"] forHTTPHeaderField:@"X-API-TOKEN"]; [request setValue:@"76eb29d3ca26fe805545812850e6d75af933214a" forHTTPHeaderField:@"X-API-KEY"];
+
+//    
+//    [request setHTTPMethod:@"POST"];
+//    
+//    NSURLResponse *response = nil;
+//    NSError *error = nil;
+//    NSString *postString = [NSString stringWithFormat:@"id_user=%@&str_twitter_id=%@",[[NSUserDefaults standardUserDefaults] valueForKey:@"id_user"],  str_twitter_IDs];
+//    
+//        [request setHTTPBody:[postString
+//                          dataUsingEncoding:NSUTF8StringEncoding]];
+//    json = [NSJSONSerialization JSONObjectWithData:[NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error] options:NSJSONReadingMutableContainers error:&error];
+//    
+//    
+//    NSLog(@"REQUEST's STATUS: %@", json);
+//    
+//    if ([[json valueForKey:@"status"] isEqualToString:@"failed"]){
+//        UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Sorry"
+//                                                                       message:@"Can't find Your friends in Twitter"
+//                                                                preferredStyle:UIAlertControllerStyleAlert];
+//        
+//        UIAlertAction* okayAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
+//                                                           handler:^(UIAlertAction * action) {}];
+//        [alert addAction:okayAction];
+//        [self presentViewController:alert animated:YES completion:nil];
+//        
+//    }
+//    else if ([[json valueForKey:@"status"] isEqualToString:@"success"]) {
+//        NSLog(@"SUCCESS TWITTER RESPONCE");
+//    }
 }
 
 #pragma mark - Table view data source
@@ -119,11 +159,13 @@
     [tableView deselectRowAtIndexPath:indexPath animated:true];
     TWTRComposer *composer = [[TWTRComposer alloc] init];
     
-    NSString *tweetText = [NSString stringWithFormat:@"Hey @%@, check out Chill, the only wearable messenger that finally makes sense: iamchill.co", self.toInviteNicknames[indexPath.row]];
+    NSString *tweetText = [NSString stringWithFormat:@"Hey @%@, Check out Chill- a textless/ voiceless communication app for wearables: iamchill.co", self.toInviteNicknames[indexPath.row]];
     [composer setText:tweetText];
     [composer showFromViewController:self completion:^(TWTRComposerResult result) {
         if (result == TWTRComposerResultCancelled) {
             NSLog(@"Tweet composition cancelled");
+            [self sendTwitterIDToBackend]; // For testing. TODO: delete it :)
+
         }
         else {
             NSLog(@"Sending Tweet!");

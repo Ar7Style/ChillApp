@@ -134,7 +134,7 @@ NSMutableData *mutData;
     NSUserDefaults *userCache = [[NSUserDefaults standardUserDefaults] initWithSuiteName:@"group.co.getchill.chill"];
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
         
-            _locations = [[[JSONLoader alloc] init] locationsFromJSONFile:[[NSURL alloc] initWithString:[NSString stringWithFormat:@"http://api.iamchill.co/v1/messages/index/id_user/%@/id_contact/%i", [userCache valueForKey:@"id_user"], friendid]] typeJSON:@"Messages"];
+            _locations = [[[JSONLoader alloc] init] locationsFromJSONFile:[[NSURL alloc] initWithString:[NSString stringWithFormat:@"http://api.iamchill.co/v2/messages/index/id_user/%@/id_contact/%i", [userCache valueForKey:@"id_user"], friendid]] typeJSON:@"Messages"];
             [self configureTableWithData];
     });
     }
@@ -177,6 +177,22 @@ NSMutableData *mutData;
  
 }
 
+- (NSString*) getDateTime {
+    NSDate *currDate = [NSDate date];
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
+    long long milliseconds = (long long)([[NSDate date] timeIntervalSince1970] * 1000.0);
+    
+    [currDate timeIntervalSince1970];
+    // NSTimeZone* generalTimeZone1 = [NSTimeZone timeZoneWithName:@"CET"];
+    
+    //[dateFormatter setTimeZone: generalTimeZone1];
+    [dateFormatter setDateFormat:@"dd.MM.YY HH:mm:ss"];
+    NSString* dateString =[NSString stringWithFormat:@"%lld",milliseconds];
+    NSLog(@"%@", dateString);
+    
+    return dateString;
+}
+
 - (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation
 {
     CLLocation *currentLocation = newLocation;
@@ -184,13 +200,15 @@ NSMutableData *mutData;
 
     NSMutableURLRequest *request =
     [[NSMutableURLRequest alloc] initWithURL:
-     [NSURL URLWithString:@"http://api.iamchill.co/v1/messages/index/"]];
+     [NSURL URLWithString:@"http://api.iamchill.co/v2/messages/index/"]];
     [request setValue:[[NSUserDefaults standardUserDefaults] valueForKey:@"token"] forHTTPHeaderField:@"X-API-TOKEN"];
+    [request setValue:@"76eb29d3ca26fe805545812850e6d75af933214a" forHTTPHeaderField:@"X-API-KEY"];
+
     
     [request setHTTPMethod:@"POST"];
     NSUserDefaults *userCache = [[NSUserDefaults standardUserDefaults] initWithSuiteName:@"group.co.getchill.chill"];
     
-    NSString *postString = [NSString stringWithFormat:@"id_contact=%ld&id_user=%@&content=%@ %@&type=location",(long)friendid,[userCache valueForKey:@"id_user"],[NSString stringWithFormat:@"%.8f", currentLocation.coordinate.latitude], [NSString stringWithFormat:@"%.8f", currentLocation.coordinate.longitude]];
+    NSString *postString = [NSString stringWithFormat:@"id_contact=%ld&id_user=%@&content=%@ %@&type=location&date=%@",(long)friendid,[userCache valueForKey:@"id_user"],[NSString stringWithFormat:@"%.8f", currentLocation.coordinate.latitude], [NSString stringWithFormat:@"%.8f", currentLocation.coordinate.longitude], [self getDateTime]];
     
     [request setHTTPBody:[postString
                           dataUsingEncoding:NSUTF8StringEncoding]];

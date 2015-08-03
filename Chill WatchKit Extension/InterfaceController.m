@@ -36,8 +36,8 @@
     if([self connected]){
     NSUserDefaults *userCache = [[NSUserDefaults standardUserDefaults] initWithSuiteName:@"group.co.getchill.chill"];
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
-        NSLog(@"http://api.iamchill.co/v1/contacts/index/id_user/%@", [userCache valueForKey:@"id_user"]);
-        NSArray *preLoad =[[[JSONLoader alloc] init] locationsFromJSONFile:[[NSURL alloc] initWithString:[NSString stringWithFormat:@"http://api.iamchill.co/v1/contacts/index/id_user/%@", [userCache valueForKey:@"id_user"]]] typeJSON:@"Friends"];
+        NSLog(@"http://api.iamchill.co/v2/contacts/index/id_user/%@", [userCache valueForKey:@"id_user"]);
+        NSArray *preLoad =[[[JSONLoader alloc] init] locationsFromJSONFile:[[NSURL alloc] initWithString:[NSString stringWithFormat:@"http://api.iamchill.co/v2/contacts/index/id_user/%@", [userCache valueForKey:@"id_user"]]] typeJSON:@"Friends"];
         if (![preLoad isEqualToArray:_locations])
         {
             _locations = preLoad;

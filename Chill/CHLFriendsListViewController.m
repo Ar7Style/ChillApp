@@ -172,8 +172,8 @@ NSMutableData *mutData;
         @try {
             NSUserDefaults *userCache = [[NSUserDefaults standardUserDefaults] initWithSuiteName:@"group.co.getchill.chill"];
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
-                NSLog(@"http://api.iamchill.co/v1/contacts/index/id_user/%@", [userCache valueForKey:@"id_user"]);
-                NSArray *preLoad =[[[JSONLoader alloc] init] locationsFromJSONFile:[[NSURL alloc] initWithString:[NSString stringWithFormat:@"http://api.iamchill.co/v1/contacts/index/id_user/%@", [userCache valueForKey:@"id_user"]]] typeJSON:@"Friends"];
+                NSLog(@"http://api.iamchill.co/v2/contacts/index/id_user/%@", [userCache valueForKey:@"id_user"]);
+                NSArray *preLoad =[[[JSONLoader alloc] init] locationsFromJSONFile:[[NSURL alloc] initWithString:[NSString stringWithFormat:@"http://api.iamchill.co/v2/contacts/index/id_user/%@", [userCache valueForKey:@"id_user"]]] typeJSON:@"Friends"];
              
                 
                 if (![preLoad isEqualToArray:_locations])
@@ -259,7 +259,7 @@ NSMutableData *mutData;
     
         if (![location.email isEqualToString:@"chillteam@iamchill.co"]){
             cell.shieldik.hidden = NO;
-            cell.shieldik2.hidden=NO;
+            cell.shieldik2.hidden= NO;
             if (![location.read isKindOfClass:[NSNull class]]) {
                 if ([location.read isEqualToString:@"0"] && !cell.type.subviews.firstObject) {
                     if ([location.type isEqualToString:@"location"]){
@@ -384,8 +384,9 @@ NSMutableData *mutData;
         
 //        NSError *error = nil;
 
-        [request setURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://api.iamchill.co/v1/contacts/delete/"]]];
-        [request setValue:[[NSUserDefaults standardUserDefaults] valueForKey:@"token"] forHTTPHeaderField:@"X-API-TOKEN"];
+        [request setURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://api.iamchill.co/v2/contacts/delete/"]]];
+        [request setValue:[[NSUserDefaults standardUserDefaults] valueForKey:@"token"] forHTTPHeaderField:@"X-API-TOKEN"]; [request setValue:@"76eb29d3ca26fe805545812850e6d75af933214a" forHTTPHeaderField:@"X-API-KEY"];
+
         
         //NSString *postString = [NSString stringWithFormat:@"id_user/%@", [userCache valueForKey:@"id_user"]];
         

@@ -163,9 +163,9 @@
 - (void) loadJSON {
     NSUserDefaults *userCache = [[NSUserDefaults standardUserDefaults] initWithSuiteName:@"group.co.getchill.chill"];
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
-    NSLog(@"http://api.iamchill.co/v1/messages/index/id_user/%@/id_contact/%li", [userCache valueForKey:@"id_user"], (long)_friendUserID);
-//        NSLog(@"http://api.iamchill.co/v1/messages/index/id_user/%@/id_user_to/%li", [userCache valueForKey:@"id_user"], (long)_friendUserID);
-        _locations = [[[JSONLoader alloc] init] locationsFromJSONFile:[[NSURL alloc] initWithString:[NSString stringWithFormat:@"http://api.iamchill.co/v1/messages/index/id_user/%@/id_contact/%li", [userCache valueForKey:@"id_user"], (long)_friendUserID]] typeJSON:@"Messages"];
+    NSLog(@"http://api.iamchill.co/v2/messages/index/id_user/%@/id_contact/%li", [userCache valueForKey:@"id_user"], (long)_friendUserID);
+//        NSLog(@"http://api.iamchill.co/v2/messages/index/id_user/%@/id_user_to/%li", [userCache valueForKey:@"id_user"], (long)_friendUserID);
+        _locations = [[[JSONLoader alloc] init] locationsFromJSONFile:[[NSURL alloc] initWithString:[NSString stringWithFormat:@"http://api.iamchill.co/v2/messages/index/id_user/%@/id_contact/%li", [userCache valueForKey:@"id_user"], (long)_friendUserID]] typeJSON:@"Messages"];
         if (_locations.count == 0 || !_locations.count){
             emptyMessages = 1;
         }
@@ -215,7 +215,7 @@
             
             UILabel* name1= [[UILabel alloc] initWithFrame:CGRectMake((self.view.frame.size.width - 280)/2, self.view.frame.size.height-180, 280, 110)] ;
             [cell addSubview:name1] ;
-            name1.textColor = [UIColor darkGrayColor];
+            name1.textColor = [UIColor chillDarkGrayColor];
             name1.backgroundColor = [UIColor clearColor];
             name1.numberOfLines = 3;
             name1.textAlignment = NSTextAlignmentCenter;
@@ -228,7 +228,7 @@
             map.image = [UIImage imageNamed:@"add_peop_cart"];
             UILabel* name1= [[UILabel alloc] initWithFrame:CGRectMake((self.view.frame.size.width - 280)/2, self.view.frame.size.height-180, 280, 110)] ;
             [cell addSubview:name1] ;
-            name1.textColor = [UIColor darkGrayColor];
+            name1.textColor = [UIColor chillDarkGrayColor];
             name1.backgroundColor = [UIColor clearColor];
             name1.numberOfLines = 3;
             name1.textAlignment = NSTextAlignmentCenter;
@@ -242,7 +242,7 @@
             map.image = [UIImage imageNamed:@"arrow"];
             UILabel* name1= [[UILabel alloc] initWithFrame:CGRectMake((self.view.frame.size.width - 280)/2, self.view.frame.size.height-180, 280, 110)] ;
             [cell addSubview:name1] ;
-            name1.textColor = [UIColor darkGrayColor];
+            name1.textColor = [UIColor chillDarkGrayColor];
             name1.backgroundColor = [UIColor clearColor];
             name1.numberOfLines = 3;
             name1.textAlignment = NSTextAlignmentCenter;
@@ -266,7 +266,7 @@
                 
                 UILabel* name1= [[UILabel alloc] initWithFrame:CGRectMake((self.view.frame.size.width - 280)/2, self.view.frame.size.height-180, 280, 110)] ;
                 [cell addSubview:name1] ;
-                name1.textColor = [UIColor darkGrayColor];
+                name1.textColor = [UIColor chillDarkGrayColor];
                 name1.backgroundColor = [UIColor clearColor];
                 name1.numberOfLines = 3;
                 name1.textAlignment = NSTextAlignmentCenter;
@@ -396,22 +396,16 @@
             cell.layer.cornerRadius = 8;
             cell.clipsToBounds = YES;
             
-            UIImageView *map = [[UIImageView alloc] initWithFrame:CGRectMake((self.view.frame.size.width - 138)/2, (self.view.frame.size.height - 200)/2, 138, 160)];
+            UIImageView *map = [[UIImageView alloc] initWithFrame:CGRectMake(0,0, self.view.frame.size.width,self.view.frame.size.height)];
             [cell addSubview:map]; // 130 instead 100
-            map.image = [UIImage imageNamed:@"Chill_logo1.jpg"];
+            map.contentMode = UIViewContentModeScaleAspectFit;
+            map.image = [UIImage imageNamed:@"no_chills_yet"];
             /*
             UIWebView *text = [[UIWebView alloc] initWithFrame:CGRectMake((self.view.frame.size.width - 300)/2, 280, 300, 100)];
             [cell addSubview:text];
             [text  loadHTMLString:[NSString stringWithFormat:@"<center><p style='font-size:24pt;font-family:HelveticaNeue-Bold'>%@<a style='color:gray;font-family:HelveticaNeue-Light'> wants<br>to chill with you", _nickName] baseURL:nil];
              */
-            UILabel* name1= [[UILabel alloc] initWithFrame:CGRectMake((self.view.frame.size.width - 280)/2, self.view.frame.size.height-150, 280, 110)] ; //120 instead 90
-            [cell addSubview:name1] ;
-            name1.textColor = [UIColor darkGrayColor];
-            name1.backgroundColor = [UIColor clearColor];
-            name1.numberOfLines = 3;
-            name1.textAlignment = NSTextAlignmentCenter;
-            name1.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:28.0 ];
-            name1.text = [NSString stringWithFormat:@"Send something to\nstart chilling"];
+            
             return cell;
         }
     }

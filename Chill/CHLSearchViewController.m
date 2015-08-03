@@ -99,8 +99,8 @@ NSMutableData *mutData;
         NSUserDefaults *userCache = [[NSUserDefaults standardUserDefaults] initWithSuiteName:@"group.co.getchill.chill"];
 
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
-            _locations = [[[JSONLoader alloc] init] locationsFromJSONFile:[[NSURL alloc] initWithString:[NSString stringWithFormat:@"http://api.iamchill.co/v1/search/index/id_user/%@/login/%@", [userCache valueForKey:@"id_user"], searchBar.text]] typeJSON:@"Search"];
-            NSLog(@"http://api.iamchill.co/v1/search/index/id_user/%@/login/%@", [userCache valueForKey:@"id_user"], searchBar.text);
+            _locations = [[[JSONLoader alloc] init] locationsFromJSONFile:[[NSURL alloc] initWithString:[NSString stringWithFormat:@"http://api.iamchill.co/v2/search/index/id_user/%@/login/%@", [userCache valueForKey:@"id_user"], searchBar.text]] typeJSON:@"Search"];
+            NSLog(@"http://api.iamchill.co/v2/search/index/id_user/%@/login/%@", [userCache valueForKey:@"id_user"], searchBar.text);
             [self.tableView performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:YES];
         });
 
@@ -223,10 +223,11 @@ NSMutableData *mutData;
 - (void)addFriendFromIndex:(NSInteger)index {
     NSMutableURLRequest *request =
     [[NSMutableURLRequest alloc] initWithURL:
-     [NSURL URLWithString:@"http://api.iamchill.co/v1/contacts/index/"]];
+     [NSURL URLWithString:@"http://api.iamchill.co/v2/contacts/index/"]];
     
     [request setHTTPMethod:@"POST"];
-    [request setValue:[[NSUserDefaults standardUserDefaults] valueForKey:@"token"] forHTTPHeaderField:@"X-API-TOKEN"];
+    [request setValue:[[NSUserDefaults standardUserDefaults] valueForKey:@"token"] forHTTPHeaderField:@"X-API-TOKEN"]; [request setValue:@"76eb29d3ca26fe805545812850e6d75af933214a" forHTTPHeaderField:@"X-API-KEY"];
+
     NSUserDefaults *userCache = [[NSUserDefaults standardUserDefaults] initWithSuiteName:@"group.co.getchill.chill"];
     SearchJSON *location = [_locations objectAtIndex:index];
     friendUserId = [location.id_user integerValue];
