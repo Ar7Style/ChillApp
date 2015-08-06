@@ -250,6 +250,7 @@
 		06E5E7DC1B5BD09A00BBA563 /* settings.png in Resources */ = {isa = PBXBuildFile; fileRef = 06E5E7DB1B5BD09A00BBA563 /* settings.png */; };
 		06EAB9591AA7AE6300149DF2 /* Chill_logo_hand.png in Resources */ = {isa = PBXBuildFile; fileRef = 06EAB9551AA7AE6300149DF2 /* Chill_logo_hand.png */; };
 		06EAB95C1AA7AE6300149DF2 /* Portrait 4.png in Resources */ = {isa = PBXBuildFile; fileRef = 06EAB9581AA7AE6300149DF2 /* Portrait 4.png */; };
+		06F3318D1B721A710064BD1C /* CHLInviteFromAddressBookViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 06F3318C1B721A710064BD1C /* CHLInviteFromAddressBookViewController.m */; };
 		06FEA8681AFFA1CC00BC0934 /* Chillwatch-2.png in Resources */ = {isa = PBXBuildFile; fileRef = 06FEA8671AFFA1CC00BC0934 /* Chillwatch-2.png */; };
 		06FEA8691AFFA1CC00BC0934 /* Chillwatch-2.png in Resources */ = {isa = PBXBuildFile; fileRef = 06FEA8671AFFA1CC00BC0934 /* Chillwatch-2.png */; };
 		AD39F35B1B6052AF003936C4 /* CHLFriendsSourcesVC.m in Sources */ = {isa = PBXBuildFile; fileRef = AD39F35A1B6052AF003936C4 /* CHLFriendsSourcesVC.m */; };
@@ -532,6 +533,8 @@
 		06E5E7DB1B5BD09A00BBA563 /* settings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = settings.png; sourceTree = "<group>"; };
 		06EAB9551AA7AE6300149DF2 /* Chill_logo_hand.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Chill_logo_hand.png; sourceTree = SOURCE_ROOT; };
 		06EAB9581AA7AE6300149DF2 /* Portrait 4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Portrait 4.png"; sourceTree = SOURCE_ROOT; };
+		06F3318B1B721A710064BD1C /* CHLInviteFromAddressBookViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHLInviteFromAddressBookViewController.h; sourceTree = "<group>"; };
+		06F3318C1B721A710064BD1C /* CHLInviteFromAddressBookViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHLInviteFromAddressBookViewController.m; sourceTree = "<group>"; };
 		06FEA8671AFFA1CC00BC0934 /* Chillwatch-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Chillwatch-2.png"; path = "Images.xcassets/Chillwatch-2.png"; sourceTree = "<group>"; };
 		AD39F3591B6052AF003936C4 /* CHLFriendsSourcesVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHLFriendsSourcesVC.h; sourceTree = "<group>"; };
 		AD39F35A1B6052AF003936C4 /* CHLFriendsSourcesVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHLFriendsSourcesVC.m; sourceTree = "<group>"; };
@@ -940,6 +943,8 @@
 			children = (
 				E60427A8196F191C000F8F02 /* CHLAddressBookViewController.h */,
 				E60427A9196F191C000F8F02 /* CHLAddressBookViewController.m */,
+				06F3318B1B721A710064BD1C /* CHLInviteFromAddressBookViewController.h */,
+				06F3318C1B721A710064BD1C /* CHLInviteFromAddressBookViewController.m */,
 			);
 			name = AddressBook;
 			sourceTree = "<group>";
@@ -1608,6 +1613,7 @@
 				029ED8F21A54E43B0084D04B /* HACollectionViewLargeLayout.m in Sources */,
 				025B2B491A18CC4F00857E83 /* AUTHViewController.m in Sources */,
 				AD39F35B1B6052AF003936C4 /* CHLFriendsSourcesVC.m in Sources */,
+				06F3318D1B721A710064BD1C /* CHLInviteFromAddressBookViewController.m in Sources */,
 				ADAE943D1AA280D200DBF97E /* LLACircularProgressView.m in Sources */,
 				E60427AA196F191C000F8F02 /* CHLAddressBookViewController.m in Sources */,
 				020B35761A1E402C00DC2F23 /* MBProgressHUD.m in Sources */,

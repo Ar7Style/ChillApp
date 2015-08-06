@@ -140,9 +140,7 @@ BOOL withSearchText;
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if (tableView == self.searchDisplayController.searchResultsTableView) {
-        return [searchResults count];
-    }
+    
     return self.users.count;
 }
 

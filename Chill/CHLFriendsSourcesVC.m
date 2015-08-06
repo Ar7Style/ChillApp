@@ -36,7 +36,7 @@
 
 - (void)addInvitationView {
     NSUserDefaults *userCache = [[NSUserDefaults standardUserDefaults] initWithSuiteName:@"group.co.getchill.chill"];
-    if ([userCache integerForKey:@"Available invites number"] != 0) {
+  //  if ([userCache integerForKey:@"Available invites number"] != 0) {
         self.invitationView = [[UIView alloc] initWithFrame:self.tableView.bounds];
         self.invitationView.userInteractionEnabled = NO;
         
@@ -52,7 +52,7 @@
         [self.invitationView addSubview:mainLabel];
         
         UILabel *subLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0.55 * self.invitationView.frame.size.height + 50, self.invitationView.frame.size.width, 70)];
-        subLabel.text = @"or invite from\nTwitter / Adress Book";
+        subLabel.text = @"or invite from\nTwitter / Address Book";
         subLabel.textAlignment = NSTextAlignmentCenter;
         subLabel.textColor = [UIColor grayColor];
         subLabel.font = [UIFont systemFontOfSize:20];
@@ -60,7 +60,7 @@
         [self.invitationView addSubview:subLabel];
         
         [self.tableView setBackgroundView:self.invitationView];
-    }
+    //}
 }
 
 
