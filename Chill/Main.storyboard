@@ -466,7 +466,26 @@ communication experience</string>
                     </connections>
                 </searchDisplayController>
             </objects>
-            <point key="canvasLocation" x="-128" y="127"/>
+            <point key="canvasLocation" x="-180" y="143"/>
+        </scene>
+        <!--Invite From Address Book View Controller-->
+        <scene sceneID="7Fy-2L-5mg">
+            <objects>
+                <viewController id="MSz-Sl-KhQ" customClass="CHLInviteFromAddressBookViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="zHD-L2-h5b"/>
+                        <viewControllerLayoutGuide type="bottom" id="ZWG-g2-NNU"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="wms-AY-WBI">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="oy9-DC-CQJ"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iZp-HJ-mAX" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="226" y="191"/>
         </scene>
         <!--Tutorial View Controller-->
         <scene sceneID="XGq-yX-8sa">
@@ -1384,7 +1403,7 @@ communication experience</string>
         <!--Add friends-->
         <scene sceneID="IkW-bg-luk">
             <objects>
-                <tableViewController id="apb-R1-WFE" customClass="CHLFriendsSourcesVC" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="CHLFriendsSourcesVC" id="apb-R1-WFE" customClass="CHLFriendsSourcesVC" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="qUm-5F-rF8">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1439,20 +1458,20 @@ communication experience</string>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="NnB-hq-r2D" id="TrT-D6-WRZ">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="From address book" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rNs-yp-kwu">
-                                                    <rect key="frame" x="78.5" y="10" width="164.5" height="23"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="From address book" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4GS-56-ZLa">
+                                                    <rect key="frame" x="78" y="10" width="164.5" height="23"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="19"/>
                                                     <color key="textColor" red="0.63137254899999995" green="0.63137254899999995" blue="0.63137254899999995" alpha="1" colorSpace="deviceRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="centerX" secondItem="rNs-yp-kwu" secondAttribute="centerX" constant="-0.5" id="v7M-lM-Rbk"/>
-                                                <constraint firstAttribute="centerY" secondItem="rNs-yp-kwu" secondAttribute="centerY" id="vae-io-ucu"/>
+                                                <constraint firstAttribute="centerY" secondItem="4GS-56-ZLa" secondAttribute="centerY" id="D8z-1B-K7d"/>
+                                                <constraint firstAttribute="centerX" secondItem="4GS-56-ZLa" secondAttribute="centerX" id="hK1-Ow-78W"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="MTj-8n-zMY" kind="push" id="kv4-jy-LBb"/>
+                                            <segue destination="MSz-Sl-KhQ" kind="push" id="PBW-yJ-JkX"/>
                                         </connections>
                                     </tableViewCell>
                                 </cells>
@@ -1473,6 +1492,9 @@ communication experience</string>
                         </barButtonItem>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="FromAddressBookButton" destination="NnB-hq-r2D" id="9YS-0c-3PJ"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pCc-Kc-QFw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

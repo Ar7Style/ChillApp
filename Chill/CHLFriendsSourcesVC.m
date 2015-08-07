@@ -9,7 +9,11 @@
 #import "CHLFriendsSourcesVC.h"
 #import "UIColor+ChillColors.h"
 
-@interface CHLFriendsSourcesVC ()
+
+
+@interface CHLFriendsSourcesVC () 
+
+@property (weak, nonatomic) IBOutlet UITableViewCell *FromAddressBookButton;
 
 @property(nonatomic, strong) UIView *invitationView;
 
@@ -32,6 +36,13 @@
     [super viewWillAppear:animated];
     [self.tableView setBackgroundView:nil];
     [self addInvitationView];
+}
+
+
+
+- (IBAction)fromAddressBookButtonPressed:(id)sender {
+    
+    
 }
 
 - (void)addInvitationView {
