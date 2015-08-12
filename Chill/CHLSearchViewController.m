@@ -117,10 +117,6 @@ NSMutableData *mutData;
     [alert addAction:okayAction];
     [self presentViewController:alert animated:YES completion:nil];
 }
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
 
 #pragma mark - Table view data source
 

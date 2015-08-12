@@ -32,7 +32,6 @@
 }
 
 @property(nonatomic, strong) NSString *sendedContentType;
-//@property (readwrite) LLACircularProgressView* progressView;
 
 @end
 
@@ -107,8 +106,8 @@ NSMutableData *mutData;
         mutData = [NSMutableData data];
     }
     
-    //LLACircularProgressView *progressView = [[LLACircularProgressView alloc] initProgressViewWithDummyProgress:0.0 cellStatusView:self.cellStatusView];
-    [self.progressViewsDictionary setObject:_progressView forKey:[NSNumber numberWithInteger:self.userIdTo]];
+    LLACircularProgressView *progressView = [[LLACircularProgressView alloc] initProgressViewWithDummyProgress:0.0 cellStatusView:self.cellStatusView];
+    [self.progressViewsDictionary setObject:progressView forKey:[NSNumber numberWithInteger:self.userIdTo]];
     
     [(UINavigationController *)self.parentViewController popToRootViewControllerAnimated:YES];
     NSLog(@"1 IT HAPPENES MUFUCK %ld", (long)self.userIdTo);
@@ -188,9 +187,8 @@ NSMutableData *mutData;
  totalBytesWritten:(NSInteger)totalBytesWritten
 totalBytesExpectedToWrite:(NSInteger)totalBytesExpectedToWrite {
     float currentProgress = (float)totalBytesWritten / totalBytesExpectedToWrite;
-   // LLACircularProgressView *currentProgressView = [self.progressViewsDictionary objectForKey:[NSNumber numberWithInteger:self.userIdTo]];
-    [_currentProgressView setProgress:(currentProgress > _currentProgressView.progress ? currentProgress : _currentProgressView.progress) animated:YES];
-    NSLog(@"6 CONNECTION HAPPENS");
+    LLACircularProgressView *currentProgressView = [self.progressViewsDictionary objectForKey:[NSNumber numberWithInteger:self.userIdTo]];
+    [currentProgressView setProgress:(currentProgress > currentProgressView.progress ? currentProgress : currentProgressView.progress) animated:YES];
 }
 
 -(void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error

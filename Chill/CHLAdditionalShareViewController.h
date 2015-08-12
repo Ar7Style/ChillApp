@@ -14,10 +14,8 @@
 
 @property (weak, nonatomic) UIImageView *cellStatusView;
 @property (readwrite) NSInteger userIdTo;
-@property (readwrite) LLACircularProgressView* progressView;
-@property (readwrite) LLACircularProgressView *currentProgressView;
-
 @property(nonatomic, strong) NSMutableDictionary *progressViewsDictionary;
+
 - (IBAction)showEmail:(id)sender;
 
 @end

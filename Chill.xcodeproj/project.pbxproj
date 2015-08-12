@@ -262,6 +262,10 @@
 		AD8417841A91203D0078F57A /* CHLTutorialPageContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD8417831A91203D0078F57A /* CHLTutorialPageContentViewController.m */; };
 		ADAE943A1AA27D7100DBF97E /* location@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ADAE94391AA27D7100DBF97E /* location@2x.png */; };
 		ADAE943D1AA280D200DBF97E /* LLACircularProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = ADAE943C1AA280D200DBF97E /* LLACircularProgressView.m */; };
+		ADCFBFC21B78185E0013763E /* CHLFacebookVC.m in Sources */ = {isa = PBXBuildFile; fileRef = ADCFBFC11B78185E0013763E /* CHLFacebookVC.m */; };
+		ADCFBFCC1B781C600013763E /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ADCFBFC91B781C600013763E /* FBSDKCoreKit.framework */; };
+		ADCFBFCD1B781C600013763E /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ADCFBFCA1B781C600013763E /* FBSDKLoginKit.framework */; };
+		ADCFBFCE1B781C600013763E /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ADCFBFCB1B781C600013763E /* FBSDKShareKit.framework */; };
 		ADD038621A93CC1A00D3A0D9 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ADD038611A93CC1A00D3A0D9 /* AdSupport.framework */; };
 		ADE222C41A94ECEB007777A4 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = ADE222C31A94ECEB007777A4 /* libsqlite3.dylib */; };
 		ADE222C71A94FE4F007777A4 /* libGoogleAnalyticsServices.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ADE222C51A94FE4F007777A4 /* libGoogleAnalyticsServices.a */; };
@@ -551,6 +555,11 @@
 		ADAE94391AA27D7100DBF97E /* location@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "location@2x.png"; sourceTree = "<group>"; };
 		ADAE943B1AA280D200DBF97E /* LLACircularProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLACircularProgressView.h; sourceTree = "<group>"; };
 		ADAE943C1AA280D200DBF97E /* LLACircularProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLACircularProgressView.m; sourceTree = "<group>"; };
+		ADCFBFC01B78185E0013763E /* CHLFacebookVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHLFacebookVC.h; sourceTree = "<group>"; };
+		ADCFBFC11B78185E0013763E /* CHLFacebookVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHLFacebookVC.m; sourceTree = "<group>"; };
+		ADCFBFC91B781C600013763E /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKCoreKit.framework; path = ../../../Documents/FacebookSDK/FBSDKCoreKit.framework; sourceTree = "<group>"; };
+		ADCFBFCA1B781C600013763E /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKLoginKit.framework; path = ../../../Documents/FacebookSDK/FBSDKLoginKit.framework; sourceTree = "<group>"; };
+		ADCFBFCB1B781C600013763E /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKShareKit.framework; path = ../../../Documents/FacebookSDK/FBSDKShareKit.framework; sourceTree = "<group>"; };
 		ADD038611A93CC1A00D3A0D9 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
 		ADE222C31A94ECEB007777A4 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		ADE222C51A94FE4F007777A4 /* libGoogleAnalyticsServices.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libGoogleAnalyticsServices.a; sourceTree = "<group>"; };
@@ -669,7 +678,10 @@
 				E6A67AF4198EEB0B0067E34E /* AVFoundation.framework in Frameworks */,
 				E6CF48E6193B7CA000CD48B6 /* AssetsLibrary.framework in Frameworks */,
 				E685AB5E191FA0A40088D0E5 /* AudioToolbox.framework in Frameworks */,
+				ADCFBFCD1B781C600013763E /* FBSDKLoginKit.framework in Frameworks */,
+				ADCFBFCC1B781C600013763E /* FBSDKCoreKit.framework in Frameworks */,
 				0254909D1A61C4FB00D9222B /* StoreKit.framework in Frameworks */,
+				ADCFBFCE1B781C600013763E /* FBSDKShareKit.framework in Frameworks */,
 				E685AB5C191FA09F0088D0E5 /* QuartzCore.framework in Frameworks */,
 				ADE222C71A94FE4F007777A4 /* libGoogleAnalyticsServices.a in Frameworks */,
 				E6C7C222191A8CA50071D83F /* MobileCoreServices.framework in Frameworks */,
@@ -996,6 +1008,8 @@
 				AD39F35A1B6052AF003936C4 /* CHLFriendsSourcesVC.m */,
 				AD39F35C1B605C74003936C4 /* CHLTwitterVC.h */,
 				AD39F35D1B605C74003936C4 /* CHLTwitterVC.m */,
+				ADCFBFC01B78185E0013763E /* CHLFacebookVC.h */,
+				ADCFBFC11B78185E0013763E /* CHLFacebookVC.m */,
 			);
 			name = Friends;
 			sourceTree = "<group>";
@@ -1027,6 +1041,9 @@
 		E6C7C1C4191A1B220071D83F = {
 			isa = PBXGroup;
 			children = (
+				ADCFBFC91B781C600013763E /* FBSDKCoreKit.framework */,
+				ADCFBFCA1B781C600013763E /* FBSDKLoginKit.framework */,
+				ADCFBFCB1B781C600013763E /* FBSDKShareKit.framework */,
 				0633D6041B6FC40300255BA5 /* PebbleKit.framework */,
 				0633D5FD1B6FC1C300255BA5 /* PebbleVendor.framework */,
 				06B22A5F1B67C8AD0056455D /* Crashlytics.framework */,
@@ -1628,6 +1645,7 @@
 				E6D972BF19A3ECEE00E7E4A3 /* PKImagePickerViewController.m in Sources */,
 				029ED8CD1A534A4C0084D04B /* SearchJSON.m in Sources */,
 				020B35731A1E402C00DC2F23 /* FriendsJSON.m in Sources */,
+				ADCFBFC21B78185E0013763E /* CHLFacebookVC.m in Sources */,
 				020B35781A1E402C00DC2F23 /* UIImageView+JMImageCache.m in Sources */,
 				E6A67B08198EEC400067E34E /* CHLLocationDisplayViewController.m in Sources */,
 				E6726EAB19570CBF00DEADF9 /* UIColor+ChillColors.m in Sources */,
@@ -1763,6 +1781,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/TwitterKit.framework/Versions/A/Resources/TwitterKitResources.bundle",
+					/Users/IvanGrachev/Documents/FacebookSDK,
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Chill/Chill-Prefix.pch";

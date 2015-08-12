@@ -286,9 +286,6 @@ NSMutableData *mutData;
     self.sendedContentType = @"🚀";
 }
 
-
-
-
 - (void)connection:(NSURLConnection *)connection
    didSendBodyData:(NSInteger)bytesWritten
  totalBytesWritten:(NSInteger)totalBytesWritten
@@ -331,8 +328,8 @@ totalBytesExpectedToWrite:(NSInteger)totalBytesExpectedToWrite {
     {
         CHLAdditionalShareViewController *asvc = [segue destinationViewController];
         asvc.userIdTo = _userIdTo;
-        asvc.progressView = [[LLACircularProgressView alloc] initProgressViewWithDummyProgress:0.0 cellStatusView:self.cellStatusView];
-        asvc.currentProgressView = [self.progressViewsDictionary objectForKey:[NSNumber numberWithInteger:self.userIdTo]];
+        asvc.cellStatusView = self.cellStatusView;
+        asvc.progressViewsDictionary = self.progressViewsDictionary;
     }
 }
 

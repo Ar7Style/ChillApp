@@ -27,6 +27,7 @@
 @property (readwrite) NSString *nameUser;
 @property (weak, nonatomic) UIImageView *cellStatusView;
 @property(nonatomic, strong) NSMutableDictionary *progressViewsDictionary;
+
 //@property (readwrite) NSInteger friendUserID;
 
 
