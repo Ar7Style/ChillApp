@@ -128,8 +128,10 @@
     NSString *postString = [NSString stringWithFormat:@"id_user=%@&id_twitter=%@",[[NSUserDefaults standardUserDefaults] valueForKey:@"id_user"], self.twitterSession.userID];
     
     [request setHTTPBody:[postString dataUsingEncoding:NSUTF8StringEncoding]];
-    jsonResponse = [NSJSONSerialization JSONObjectWithData:[NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error] options:NSJSONReadingMutableContainers error:&error];
-    NSLog(@"Request's data: %@", jsonResponse);
+    NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
+    if (data != nil) {
+        jsonResponse = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&error];
+    }
     if([response statusCode] != 200){
         NSLog(@"Error getting, HTTP status code %li", (long)[response statusCode]);
     }
@@ -204,9 +206,10 @@
         return cell;
     }
     else {
+        NSUInteger twitterIndex = [self.toInviteIDs indexOfObject:self.returnedFromChillToInviteTwitterIDs[indexPath.row]];
         CHLFriendCell *cell = [tableView dequeueReusableCellWithIdentifier:@"InviteCell"];
-        cell.senderLabel.text = self.toInviteDisplayNames[indexPath.row];
-        cell.lastChilTitleLabel.text = [NSString stringWithFormat:@"@%@", self.toInviteNicknames[indexPath.row]];
+        cell.senderLabel.text = self.toInviteDisplayNames[twitterIndex];
+        cell.lastChilTitleLabel.text = [NSString stringWithFormat:@"@%@", self.toInviteNicknames[twitterIndex]];
         return cell;
     }
 }
@@ -235,8 +238,9 @@
     else {
         [tableView deselectRowAtIndexPath:indexPath animated:true];
         TWTRComposer *composer = [[TWTRComposer alloc] init];
+        NSUInteger twitterIndex = [self.toInviteIDs indexOfObject:self.returnedFromChillToInviteTwitterIDs[indexPath.row]];
         
-        NSString *tweetText = [NSString stringWithFormat:@"Hey @%@, сheck out Chill — a textless/voiceless communication app for wearables: iamchill.co", self.toInviteNicknames[indexPath.row]];
+        NSString *tweetText = [NSString stringWithFormat:@"Hey @%@, сheck out Chill — a textless/voiceless communication app for wearables: iamchill.co", self.toInviteNicknames[twitterIndex]];
         [composer setText:tweetText];
         [composer showFromViewController:self completion:^(TWTRComposerResult result) {
             if (result == TWTRComposerResultCancelled) {
