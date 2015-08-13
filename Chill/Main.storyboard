@@ -1606,7 +1606,7 @@ communication experience</string>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="ауау" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="267" translatesAutoresizingMaskIntoConstraints="NO" id="41W-p8-afn">
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="267" translatesAutoresizingMaskIntoConstraints="NO" id="41W-p8-afn">
                                             <rect key="frame" x="20" y="41" width="267" height="26"/>
                                             <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="15"/>
                                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
@@ -1699,29 +1699,69 @@ communication experience</string>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="InviteCell" rowHeight="81" id="91o-Xe-TJG" customClass="CHLFriendCell">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="InviteCell" rowHeight="81" id="xvP-5H-KHe" customClass="CHLFriendCell">
                                 <rect key="frame" x="0.0" y="86" width="320" height="81"/>
                                 <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="91o-Xe-TJG" id="tDs-kc-GcC">
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="xvP-5H-KHe" id="3Bx-WI-kan">
                                     <rect key="frame" x="0.0" y="0.0" width="287" height="80"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ykA-gB-PNa">
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RWp-cw-HSU">
                                             <rect key="frame" x="20" y="11" width="267" height="21"/>
                                             <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="17"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="267" translatesAutoresizingMaskIntoConstraints="NO" id="P0N-OF-Q0M">
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="267" translatesAutoresizingMaskIntoConstraints="NO" id="j81-dC-c8T">
                                             <rect key="frame" x="20" y="41" width="267" height="26"/>
                                             <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="15"/>
                                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Invite" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E9A-nk-xw7">
-                                            <rect key="frame" x="244" y="29" width="59" height="24"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Invite" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n04-Ev-nYv">
+                                            <rect key="frame" x="264" y="29" width="48" height="24"/>
+                                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
+                                            <color key="textColor" red="0.13725490200000001" green="0.7725490196" blue="0.61960784310000006" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="j81-dC-c8T" firstAttribute="top" secondItem="RWp-cw-HSU" secondAttribute="bottom" constant="6" id="RFe-TE-pbf"/>
+                                        <constraint firstItem="n04-Ev-nYv" firstAttribute="top" secondItem="3Bx-WI-kan" secondAttribute="topMargin" constant="21" id="UgE-cf-XTk"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="n04-Ev-nYv" secondAttribute="trailing" id="iZJ-fL-Vbs"/>
+                                        <constraint firstItem="RWp-cw-HSU" firstAttribute="leading" secondItem="3Bx-WI-kan" secondAttribute="leadingMargin" constant="8" id="lDN-kp-2ao"/>
+                                        <constraint firstItem="RWp-cw-HSU" firstAttribute="top" secondItem="3Bx-WI-kan" secondAttribute="topMargin" constant="12" id="lNo-fh-HXB"/>
+                                        <constraint firstItem="j81-dC-c8T" firstAttribute="leading" secondItem="3Bx-WI-kan" secondAttribute="leadingMargin" constant="8" id="uSK-at-u46"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="lastChilTitleLabel" destination="j81-dC-c8T" id="kfI-ln-PI8"/>
+                                    <outlet property="senderLabel" destination="RWp-cw-HSU" id="k1l-ah-WlW"/>
+                                </connections>
+                            </tableViewCell>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="AddCell" rowHeight="81" id="b6W-ub-Ht0" customClass="CHLFriendCell">
+                                <rect key="frame" x="0.0" y="86" width="320" height="81"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="b6W-ub-Ht0" id="icM-JT-A3C">
+                                    <rect key="frame" x="0.0" y="0.0" width="287" height="80"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="8X2-c5-a3c">
+                                            <rect key="frame" x="20" y="11" width="40" height="21"/>
+                                            <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="17"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" preferredMaxLayoutWidth="267" translatesAutoresizingMaskIntoConstraints="NO" id="yiI-yf-fPy">
+                                            <rect key="frame" x="20" y="41" width="40" height="0.0"/>
+                                            <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="15"/>
+                                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p3j-uM-xSa">
+                                            <rect key="frame" x="271" y="29" width="41" height="24"/>
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="59" id="HN7-Kt-pMm"/>
+                                                <constraint firstAttribute="width" constant="41" id="jQI-Xx-5bg"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
                                             <color key="textColor" red="0.13725490200000001" green="0.7725490196" blue="0.61960784310000006" alpha="1" colorSpace="calibratedRGB"/>
@@ -1729,13 +1769,19 @@ communication experience</string>
                                         </label>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="E9A-nk-xw7" firstAttribute="top" secondItem="tDs-kc-GcC" secondAttribute="topMargin" constant="21" id="MeC-NP-vOJ"/>
-                                        <constraint firstAttribute="trailingMargin" secondItem="E9A-nk-xw7" secondAttribute="trailing" constant="9" id="g97-E4-sg3"/>
+                                        <constraint firstItem="8X2-c5-a3c" firstAttribute="top" secondItem="icM-JT-A3C" secondAttribute="topMargin" constant="8" id="9nE-vR-bbI"/>
+                                        <constraint firstItem="yiI-yf-fPy" firstAttribute="top" secondItem="8X2-c5-a3c" secondAttribute="bottom" constant="6" id="G2Q-1o-YP9"/>
+                                        <constraint firstItem="8X2-c5-a3c" firstAttribute="leading" secondItem="icM-JT-A3C" secondAttribute="leadingMargin" constant="12" id="SzD-2p-G4D"/>
+                                        <constraint firstItem="p3j-uM-xSa" firstAttribute="leading" secondItem="8X2-c5-a3c" secondAttribute="trailing" priority="750" constant="4" id="YDO-6o-2jt"/>
+                                        <constraint firstItem="p3j-uM-xSa" firstAttribute="leading" secondItem="yiI-yf-fPy" secondAttribute="trailing" priority="750" constant="4" id="ZrV-zc-nJh"/>
+                                        <constraint firstItem="p3j-uM-xSa" firstAttribute="top" secondItem="icM-JT-A3C" secondAttribute="topMargin" constant="21" id="Zsq-4j-c4q"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="p3j-uM-xSa" secondAttribute="trailing" id="aF8-cy-OiY"/>
+                                        <constraint firstItem="yiI-yf-fPy" firstAttribute="leading" secondItem="icM-JT-A3C" secondAttribute="leadingMargin" constant="12" id="oO0-zz-LRo"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="lastChilTitleLabel" destination="P0N-OF-Q0M" id="mTl-Ua-n24"/>
-                                    <outlet property="senderLabel" destination="ykA-gB-PNa" id="LfW-aZ-tWI"/>
+                                    <outlet property="lastChilTitleLabel" destination="yiI-yf-fPy" id="b51-W5-YPI"/>
+                                    <outlet property="senderLabel" destination="8X2-c5-a3c" id="SEr-6P-O2p"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
