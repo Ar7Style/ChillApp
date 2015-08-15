@@ -154,6 +154,7 @@
     NSHTTPURLResponse* response = nil;
     
     jsonResponse = [NSJSONSerialization JSONObjectWithData:[NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error] options:NSJSONReadingMutableContainers error:&error][@"response"];
+    
     if (((NSArray *)jsonResponse[@"chill"]).count != 0) {
         for (NSDictionary *subJSON in jsonResponse[@"chill"][0]) {
             NSString *chillID = subJSON[@"id"];
