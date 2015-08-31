@@ -113,8 +113,8 @@
 
 }
 
-- (IBAction)stampbut {
-    [self share:@"stamp" icon:@"🌈"];
+- (IBAction)questionbut {
+    [self share:@"question" icon:@"❔"];
 
 }
 

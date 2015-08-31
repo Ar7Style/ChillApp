@@ -227,7 +227,7 @@ BOOL withSearchText;
         MFMessageComposeViewController *messageViewController = [[MFMessageComposeViewController alloc] init];
         messageViewController.recipients = @[userInfo.phoneNumber];
         messageViewController.messageComposeDelegate = self;
-        messageViewController.body = @"✌️ 😉 😆 👇\n Get an invite to Chill - the first communication app that makes sense for wearables!\n http://iamchill.co";
+        messageViewController.body = @"✌️ 😉 😆 👇\n Check out Chill - a textless/voiceless commutication app I love!\n http://iamchill.co";
         [self presentViewController:messageViewController animated:YES completion:nil];
     } else {
         UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Error!"

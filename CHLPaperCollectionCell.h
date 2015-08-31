@@ -13,6 +13,5 @@
 @property (weak, nonatomic) IBOutlet UIView *placeholderContentView;
 @property (weak, nonatomic) IBOutlet UILabel *cellLabel;
 @property (readwrite) NSInteger friendUserID;
-@property (weak, nonatomic) IBOutlet UILabel *iconsDescriptionLabel;
 
 @end

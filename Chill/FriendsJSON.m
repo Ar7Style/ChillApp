@@ -23,6 +23,7 @@
         _read           = [jsonDictionary objectForKey:@"read"];
         _type           = [jsonDictionary objectForKey:@"type"];
         _content        = [jsonDictionary objectForKey:@"content"];
+        _twitter_name   = [jsonDictionary objectForKey:@"twitter_name"];
     }
     
     return self;

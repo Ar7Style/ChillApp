@@ -147,9 +147,9 @@ totalBytesExpectedToWrite:(NSInteger)totalBytesExpectedToWrite {
     [self shareIconOfType:@"coffee"];
     self.sendedContentType = @"☕️";
 }
-- (IBAction)blankButtonTapped:(id)sender {
-    [self shareIconOfType:@"stamp"];
-    self.sendedContentType = @"🌈";
+- (IBAction)questionButtonTapped:(id)sender {
+    [self shareIconOfType:@"question"];
+    self.sendedContentType = @"❔";
 }
 - (IBAction)chillButtonTapped:(id)sender {
     [self shareIconOfType:@"logo"];

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14F25a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
@@ -24,7 +24,7 @@
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.29999999999999999" preferredMaxLayoutWidth="305" translatesAutoresizingMaskIntoConstraints="NO" id="be5-ex-uIB">
-                                <rect key="frame" x="8" y="322" width="298" height="22"/>
+                                <rect key="frame" x="8" y="322" width="298" height="21.5"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="298" id="qjb-kT-yjW"/>
                                 </constraints>
@@ -51,7 +51,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GXo-9b-45q">
-                                <rect key="frame" x="219" y="375" width="22" height="33"/>
+                                <rect key="frame" x="219" y="374" width="22" height="33"/>
                                 <state key="normal" backgroundImage="reaction_soda">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -60,16 +60,16 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Aph-OQ-g9j">
-                                <rect key="frame" x="63" y="442" width="33" height="33"/>
-                                <state key="normal" backgroundImage="reaction_blank">
+                                <rect key="frame" x="69.5" y="439" width="20" height="39"/>
+                                <state key="normal" backgroundImage="reaction_question">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="blankButtonTapped:" destination="gTV-IL-0wX" eventType="touchUpInside" id="ZyF-tA-D1q"/>
+                                    <action selector="questionButtonTapped:" destination="gTV-IL-0wX" eventType="touchUpInside" id="g8X-oy-4Fq"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YXX-5R-XlD">
-                                <rect key="frame" x="63" y="375" width="33" height="33"/>
+                                <rect key="frame" x="63" y="374" width="33" height="33"/>
                                 <state key="normal" backgroundImage="reaction_clock">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -82,15 +82,15 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Em4-7L-jsx" userLabel="Top alignment view">
-                                <rect key="frame" x="0.0" y="344" width="314" height="31"/>
+                                <rect key="frame" x="0.0" y="343" width="314" height="31"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="I6s-Bx-bNb" userLabel="Middle verticle alignment view">
-                                <rect key="frame" x="0.0" y="408" width="314" height="31"/>
+                                <rect key="frame" x="0.0" y="407" width="314" height="31.5"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wk6-Yu-88D">
-                                <rect key="frame" x="143" y="375" width="29" height="33"/>
+                                <rect key="frame" x="143" y="374" width="29" height="33"/>
                                 <state key="normal" backgroundImage="reaction_drink">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -98,12 +98,6 @@
                                     <action selector="drinkButtonTapped:" destination="gTV-IL-0wX" eventType="touchUpInside" id="20Q-Ce-iPc"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Respond with icon:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XGr-iC-wnl">
-                                <rect key="frame" x="87" y="325" width="140" height="20"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                <color key="textColor" red="0.73818353569999995" green="0.73818353569999995" blue="0.73818353569999995" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -111,9 +105,7 @@
                             <constraint firstItem="wk6-Yu-88D" firstAttribute="leading" secondItem="YXX-5R-XlD" secondAttribute="trailing" constant="47" id="2mz-tc-LQh"/>
                             <constraint firstItem="I6s-Bx-bNb" firstAttribute="width" secondItem="ORf-tr-Wgk" secondAttribute="width" id="3RI-la-OIe"/>
                             <constraint firstAttribute="centerX" secondItem="RZz-gq-rP8" secondAttribute="centerX" id="6j5-qt-1UY"/>
-                            <constraint firstItem="be5-ex-uIB" firstAttribute="centerX" secondItem="XGr-iC-wnl" secondAttribute="centerX" id="8og-kn-09J"/>
                             <constraint firstItem="Fsa-AS-1Uf" firstAttribute="top" secondItem="ORf-tr-Wgk" secondAttribute="top" id="AsJ-au-NZw"/>
-                            <constraint firstItem="be5-ex-uIB" firstAttribute="centerY" secondItem="XGr-iC-wnl" secondAttribute="centerY" constant="-2" id="Cqz-5P-iux"/>
                             <constraint firstItem="be5-ex-uIB" firstAttribute="top" secondItem="Fsa-AS-1Uf" secondAttribute="bottom" constant="8" id="DTP-lZ-4oQ"/>
                             <constraint firstItem="GXo-9b-45q" firstAttribute="leading" secondItem="wk6-Yu-88D" secondAttribute="trailing" constant="47" id="DnP-F9-Ksw"/>
                             <constraint firstAttribute="centerX" secondItem="tch-3p-BDx" secondAttribute="centerX" id="EkX-r8-9PT"/>
@@ -152,17 +144,16 @@
             <size key="customSize" width="314" height="528"/>
             <connections>
                 <outlet property="cellLabel" destination="be5-ex-uIB" id="Q2v-7C-5G1"/>
-                <outlet property="iconsDescriptionLabel" destination="XGr-iC-wnl" id="T8h-sZ-e3k"/>
                 <outlet property="placeholderContentView" destination="Fsa-AS-1Uf" id="Apc-Ym-nQf"/>
             </connections>
             <point key="canvasLocation" x="300" y="364"/>
         </collectionViewCell>
     </objects>
     <resources>
-        <image name="reaction_blank" width="33" height="33"/>
         <image name="reaction_chill" width="33" height="38"/>
         <image name="reaction_clock" width="33" height="33"/>
         <image name="reaction_drink" width="29" height="33"/>
+        <image name="reaction_question" width="20" height="39"/>
         <image name="reaction_rocket" width="33" height="33"/>
         <image name="reaction_soda" width="22" height="33"/>
     </resources>

@@ -13,10 +13,10 @@
 - (IBAction)clock;
 @property (weak, nonatomic) IBOutlet WKInterfaceButton *beer;
 @property (weak, nonatomic) IBOutlet WKInterfaceButton *coffee;
-@property (weak, nonatomic) IBOutlet WKInterfaceButton *stamp;
+@property (weak, nonatomic) IBOutlet WKInterfaceButton *question;
 - (IBAction)beerbut;
 - (IBAction)coffeebut;
-- (IBAction)stampbut;
+- (IBAction)questionbut;
 - (IBAction)chillbut;
 - (IBAction)rocketbut;
 

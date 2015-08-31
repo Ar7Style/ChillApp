@@ -160,16 +160,20 @@ NSMutableData *mutData;
     }
     
     UILabel *nameLabel = (UILabel*) [cell viewWithTag:100];
+    UILabel *twitterName = (UILabel*) [cell viewWithTag:1000];
     //nameLabel.text = location.name;
     if (![location.name isKindOfClass:[NSNull class]])
     {
         nameLabel.text = location.name;
+        if (![location.twitter_name isEqualToString:@"empty"])
+        {
+            twitterName.text =[NSString stringWithFormat:@"@%@", location.twitter_name];
+        }
+        else
+            twitterName.text = nil;
     }
         else nameLabel.text = location.login;
-    //}
-
-
-    
+        
     return cell;
 }
 

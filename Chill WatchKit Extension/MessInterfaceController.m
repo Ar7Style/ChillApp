@@ -70,11 +70,10 @@ NSMutableData *mutData;
             [theRow.image3 setImageNamed:@"Rectangle_19__rocket61_5@2x"];
             
         }
-        else if ([location.content isEqualToString:@"stamp"]){
-            [theRow.image3 setImageNamed:@"Rectangle_21__blank17_4@2x"];
+        else if ([location.content isEqualToString:@"question"]){
+            [theRow.image3 setImageNamed:@"Rectangle_question@2x"];
             
         }
-            
             
         //additional icons
             
@@ -103,7 +102,6 @@ NSMutableData *mutData;
             
         }
             
-            
         }
         else if ([location.type isEqualToString:@"location"]){
             NSString *aString = location.content;
@@ -124,7 +122,7 @@ NSMutableData *mutData;
 }
 - (NSURL *)urlOfStaticMapFromLatitude:(CGFloat)latitude1 longitude:(CGFloat)longitude1 {
     
-    NSString *urlString = [NSString stringWithFormat:@"http://maps.googleapis.com/maps/api/staticmap?center=%f,%f&zoom=16&size=%0dx%0d&scale=2&sensor=true&markers=icon:http://lwts.ru/marker.png|%f,%f", latitude1, longitude1,272,300, latitude1, longitude1];
+    NSString *urlString = [NSString stringWithFormat:@"http://maps.googleapis.com/maps/api/staticmap?center=%f,%f&zoom=16&size=%0dx%0d&scale=2&sensor=true&markers=icon:http://i11.pixs.ru/storage/2/9/4/location2x_8770259_18071294.png|%f,%f", latitude1, longitude1,272,300, latitude1, longitude1];
     return [NSURL URLWithString:[urlString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
 }
 - (void) loadJSON {
@@ -162,7 +160,6 @@ NSMutableData *mutData;
 - (IBAction)geoBut {
     locationManager = [[CLLocationManager alloc] init];
     
-
     //    [HUD show:YES];
     
     locationManager.delegate = self;

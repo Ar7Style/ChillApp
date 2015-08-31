@@ -18,5 +18,7 @@
 @property (readonly) NSString *key;
 @property (readonly) NSString *login;
 @property (readonly) NSString *name;
+@property (readonly) NSString *twitter_name;
+
 
 @end

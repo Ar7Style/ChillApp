@@ -18,6 +18,7 @@
         _id_user        = [jsonDictionary objectForKey:@"id"];
         _login          = [jsonDictionary objectForKey:@"login"];
         _name           = [jsonDictionary objectForKey:@"name"];
+        _twitter_name   = [jsonDictionary objectForKey:@"twitter_name"];
     }
     
     return self;

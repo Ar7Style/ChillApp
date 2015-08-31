@@ -31,8 +31,6 @@
     int emptyMessages;
     BOOL loadComplete;
 }
-
-
 @end
 
 
@@ -287,7 +285,7 @@
             CHLPaperCollectionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:CELL_ID forIndexPath:indexPath];
             cell.friendUserID = self.friendUserID;
             cell.backgroundColor = [UIColor whiteColor];
-            cell.iconsDescriptionLabel.hidden = NO;
+            
             cell.layer.cornerRadius = 8;
             cell.clipsToBounds = YES;
             cell.cellLabel.minimumScaleFactor = 0.3;
@@ -295,7 +293,6 @@
             cell.cellLabel.adjustsFontSizeToFitWidth = YES;
             
             if ([location.type isEqualToString:@"location"]) {
-                cell.iconsDescriptionLabel.hidden = YES;
                 NSString *aString = location.content;
                 NSArray *arrayLOC = [aString componentsSeparatedByCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
                 arrayLOC = [arrayLOC filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"SELF != ''"]];
@@ -340,6 +337,7 @@
                 if(![location.content isEqualToString:@""]){
                     UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.width)];
                     [cell.placeholderContentView addSubview:imageView];
+                  //  imageView.contentMode = UIViewContentModeScaleAspectFit; //Fill
                     imageView.contentMode = UIViewContentModeScaleAspectFill;
                     imageView.clipsToBounds = YES;
                     [imageView setImageWithURL:[NSURL URLWithString:location.content] key:nil placeholder:[UIImage imageNamed:@""] completionBlock:nil failureBlock:nil];
@@ -357,7 +355,7 @@
                     NSDictionary *receivedIconsDictionary = @{@"clock":    @"received_clock",
                                                               @"beer":     @"received_drink",
                                                               @"coffee":   @"received_soda",
-                                                              @"stamp":    @"received_blank",
+                                                              @"question": @"received_question",
                                                               @"logo":     @"received_logo",
                                                               @"rocket":   @"received_rocket",
                                                               
@@ -370,14 +368,8 @@
                     
                     UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.width)];
                     
-                    UIView *separatorView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width - 40, 1)];
-                    separatorView.backgroundColor = [UIColor lightGrayColor];
-                    separatorView.center = CGPointMake(imageView.center.x,
-                                                       imageView.center.y + imageView.frame.size.height / 2);
-                    
                     imageView.backgroundColor = [UIColor whiteColor];
                     [cell.placeholderContentView addSubview:imageView];
-                    [imageView addSubview:separatorView];
                     imageView.contentMode = UIViewContentModeCenter;
                     imageView.clipsToBounds = YES;
                     [imageView setImage:[UIImage imageNamed:[receivedIconsDictionary objectForKey:location.content]]];

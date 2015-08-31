@@ -241,7 +241,7 @@
         TWTRComposer *composer = [[TWTRComposer alloc] init];
         NSUInteger twitterIndex = [self.toInviteIDs indexOfObject:self.returnedFromChillToInviteTwitterIDs[indexPath.row]];
         
-        NSString *tweetText = [NSString stringWithFormat:@"Hey @%@, сheck out Chill — a textless/voiceless communication app for wearables: iamchill.co", self.toInviteNicknames[twitterIndex]];
+        NSString *tweetText = [NSString stringWithFormat:@"Hey @%@, сheck out Chill — a textless/voiceless communication app I love: iamchill.co", self.toInviteNicknames[twitterIndex]];
         [composer setText:tweetText];
         [composer showFromViewController:self completion:^(TWTRComposerResult result) {
             if (result == TWTRComposerResultCancelled) {

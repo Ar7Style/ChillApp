@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="7706" systemVersion="14A389" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="AgC-eL-Hgc">
+<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="AgC-eL-Hgc">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="7701"/>
@@ -104,9 +104,9 @@
                         </group>
                         <group width="1" height="43" alignment="center" verticalAlignment="center" id="LNI-YE-W9q">
                             <items>
-                                <button width="40" height="40" alignment="center" backgroundImage="stampwatch.png" id="Om1-FM-pSb">
+                                <button width="40" height="40" alignment="center" backgroundImage="questionwatch.png" id="Om1-FM-pSb">
                                     <connections>
-                                        <action selector="stampbut" destination="vgB-CA-GVG" id="ip8-S9-VFG"/>
+                                        <action selector="questionbut" destination="vgB-CA-GVG" id="3FF-3l-o98"/>
                                     </connections>
                                 </button>
                                 <button width="40" height="40" alignment="center" backgroundImage="handwatch.png" id="i6C-Mw-8Sx">
@@ -125,7 +125,6 @@
                     <connections>
                         <outlet property="beer" destination="r1v-tf-EOr" id="mJm-F5-pXE"/>
                         <outlet property="coffee" destination="gIj-Qw-lBj" id="ddg-2g-7lN"/>
-                        <outlet property="stamp" destination="Om1-FM-pSb" id="bKf-bl-RNy"/>
                     </connections>
                 </controller>
             </objects>

@@ -236,7 +236,12 @@ NSMutableData *mutData;
         CHLFriendCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
         FriendsJSON *location = [_locations objectAtIndex:indexPath.row];
             cell.senderLabel.text = location.name;
-
+    UILabel* twitter_name = (UILabel*) [cell viewWithTag:10];
+    if (![location.twitter_name isEqualToString:@"empty"])
+        twitter_name.text = [NSString stringWithFormat:@"@%@", location.twitter_name];
+    else
+        twitter_name.text = nil;
+                                    
         LLACircularProgressView *oldProgressView = (LLACircularProgressView *)[self.progressViewsDictionary objectForKey:[NSNumber numberWithInteger:[location.id_contact integerValue]]];
         if (cell.type.subviews.firstObject && oldProgressView && cell.type.subviews.firstObject != oldProgressView) {
             [cell.type.subviews.firstObject removeFromSuperview];
@@ -291,8 +296,8 @@ NSMutableData *mutData;
                        if ([location.content isEqualToString:@"logo"])
                            [cell.type setImage:[UIImage imageNamed: @"reaction_chill_forCell.png"]];
                        
-                       if ([location.content isEqualToString:@"stamp"])
-                           [cell.type setImage:[UIImage imageNamed: @"reaction_blank_forCell.png"]];
+                       if ([location.content isEqualToString:@"question"])
+                           [cell.type setImage:[UIImage imageNamed: @"reaction_question_forCell.png"]];
                        
                        if ([location.content isEqualToString:@"rocket"])
                            [cell.type setImage:[UIImage imageNamed: @"reaction_rocket_forCell.png"]];
