@@ -66,9 +66,6 @@ NSMutableData *mutData;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-//    
-//    ODRefreshControl *refreshControl = [[ODRefreshControl alloc] initInScrollView:self.tableView];
-//    [refreshControl addTarget:self action:@selector(dropViewDidBeginRefreshing:) forControlEvents:UIControlEventValueChanged];
 
     
     UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
