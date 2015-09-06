@@ -107,16 +107,7 @@ NSMutableData *mutData;
 
 }
 
-/*
-- (void)refresh:(UIRefreshControl *)refreshControl {
-    if ([NSData dataWithContentsOfURL:[NSURL URLWithString:@"http://getchill.co"]]){
-        [self loadJSON];
-    }
-    else {
-        [self conRefused];
-    }
-    [refreshControl endRefreshing];
-} */
+
 
 - (void)viewDidAppear:(BOOL)animated{
     //self.navigationController.view.layer.cornerRadius=6;

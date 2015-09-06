@@ -4,9 +4,7 @@
 <dict>
 	<key>com.apple.security.application-groups</key>
 	<array>
-		<string>group.Chill</string>
 		<string>group.co.getchill.chill</string>
-		<string>group.co.iamchill.watch</string>
 	</array>
 </dict>
 </plist>

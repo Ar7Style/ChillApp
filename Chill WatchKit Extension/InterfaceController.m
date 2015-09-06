@@ -78,7 +78,6 @@
         [controllers addObject:@"yourInterfaceControllerIdentifier"];
     }
     
-    
 }
 
 - (void)willActivate {
