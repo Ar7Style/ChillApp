@@ -72,7 +72,10 @@ NSMutableData *mutData;
         }
         else if ([location.content isEqualToString:@"question"]){
             [theRow.image3 setImageNamed:@"Rectangle_question@2x"];
-            
+        }
+        
+        else if ([location.content isEqualToString:@"stamp"]){
+            [theRow.image3 setImageNamed:@"Rectangle_21__blank17_4@2x"];
         }
             
         //additional icons

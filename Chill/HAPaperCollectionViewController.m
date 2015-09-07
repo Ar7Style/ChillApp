@@ -358,6 +358,7 @@
                                                               @"question": @"received_question",
                                                               @"logo":     @"received_logo",
                                                               @"rocket":   @"received_rocket",
+                                                              @"stamp":    @"received_blank",
                                                               
                                                               @"trophy":    @"received_trophy",
                                                               @"gym":       @"received_gym",

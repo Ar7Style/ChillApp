@@ -101,9 +101,7 @@ NSMutableData *mutData;
         [self dismissViewControllerAnimated:YES completion:nil];
     }
 
-
 }
-
 
 
 - (void)viewDidAppear:(BOOL)animated{
@@ -289,6 +287,10 @@ NSMutableData *mutData;
                        
                        if ([location.content isEqualToString:@"rocket"])
                            [cell.type setImage:[UIImage imageNamed: @"reaction_rocket_forCell.png"]];
+                       
+                       if ([location.content isEqualToString:@"stamp"])
+                           [cell.type setImage:[UIImage imageNamed: @"reaction_blank_forCell.png"]];
+
                        
                        
                        //additional icons
