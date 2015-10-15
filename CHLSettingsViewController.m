@@ -44,6 +44,7 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     
+    
     self.navigationController.view.clipsToBounds=YES;
     NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
     [center addObserver:self selector:@selector(willShowKeyboard) name:UIKeyboardDidShowNotification object:nil];
@@ -156,12 +157,7 @@
     NSError *error = nil;
     NSString *postString = [NSString stringWithFormat:@"id_user=%@&email=%@&password=%@",[[NSUserDefaults standardUserDefaults] valueForKey:@"id_user"],  _emailField.text, _passwordField.text];
     
-    //NSLog(@"ID_USER V NS USER DEFAULTS POLUCHILSYA SLEDUYUWIY: %@", [[NSUserDefaults standardUserDefaults] valueForKey:@"id_user"]);
-    //
-    //                [request setValue:[NSString
-    //                                   stringWithFormat:@"%lu", (unsigned long)[postString length]]
-    //                forHTTPHeaderField:@"Content-length"];
-    //
+   
     [request setHTTPBody:[postString
                           dataUsingEncoding:NSUTF8StringEncoding]];
     json = [NSJSONSerialization JSONObjectWithData:[NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error] options:NSJSONReadingMutableContainers error:&error];
@@ -212,7 +208,7 @@
 
 - (IBAction)actionTextChanged:(id)sender {
     
-   // [self saveSettings];
+   
 }
 
 - (IBAction)Done:(id)sender {

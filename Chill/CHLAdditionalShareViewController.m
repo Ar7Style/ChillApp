@@ -41,9 +41,6 @@ NSMutableData *mutData;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
-    NSLog(@"Additional _userIdTo HERE : %ld",  self.userIdTo);
-    
     // Do any additional setup after loading the view.
 }
 
@@ -65,9 +62,9 @@ NSMutableData *mutData;
                            @"fromUserId": [userCache valueForKey:@"id_user"]
                            };
     PFPush *push = [[PFPush alloc] init];
-     NSLog(@"2 IT HAPPENES MUFUCK");
+    
     [push setChannel:[NSString stringWithFormat:@"us%li",(long)_userIdTo]];
-    NSLog(@"5 %ld", (long)_userIdTo);
+    
     [push setData:data];
     [push sendPushInBackground];
 }
@@ -120,48 +117,46 @@ NSMutableData *mutData;
     [tracker set:kGAIScreenName value:nil];
 }
 
-- (IBAction)clockButtonTapped:(id)sender {
-    [self shareIconOfType:@"clock"];
-    self.sendedContentType = @"🕒";
+- (IBAction)plusButtonTapped:(id)sender {
+    [self shareIconOfType:@"plus"];
+    self.sendedContentType = @"+";
 }
 
-- (IBAction)drinkButtonTapped:(id)sender {
-    [self shareIconOfType:@"beer"];
-    self.sendedContentType = @"🍺";
+- (IBAction)minusButtonTapped:(id)sender {
+    [self shareIconOfType:@"minus"];
+    self.sendedContentType = @"-";
 }
-- (IBAction)sodaButtonTapped:(id)sender {
-    [self shareIconOfType:@"coffee"];
-    self.sendedContentType = @"☕️";
+- (IBAction)dollarButtonTapped:(id)sender {
+    [self shareIconOfType:@"dollar"];
+    self.sendedContentType = @"💲";
 }
-- (IBAction)questionButtonTapped:(id)sender {
-    [self shareIconOfType:@"question"];
-    self.sendedContentType = @"❔";
+- (IBAction)sleepButtonTapped:(id)sender {
+    [self shareIconOfType:@"sleep"];
+    self.sendedContentType = @"💤";
 }
-- (IBAction)chillButtonTapped:(id)sender {
-    [self shareIconOfType:@"logo"];
-    self.sendedContentType = @"✌️";
+- (IBAction)pizzaButtonTapped:(id)sender {
+    [self shareIconOfType:@"pizza"];
+    self.sendedContentType = @"🍕";
 }
-- (IBAction)rocketButtonTapped:(id)sender {
-    [self shareIconOfType:@"rocket"];
-    self.sendedContentType = @"🚀";
+- (IBAction)ballButtonTapped:(id)sender {
+    [self shareIconOfType:@"ball"];
+    self.sendedContentType = @"⚽️";
 }
 
 #pragma mark - Additional icons
 
 - (IBAction)trophyButtonPressed:(id)sender {
-    [self.presentingViewController dismissViewControllerAnimated:NO completion:nil];
-    //[self dismissViewControllerAnimated:YES completion:nil];
     [self shareIconOfType:@"trophy"];
     self.sendedContentType = @"🏆";
 }
 
-- (IBAction)gymButtonTapped:(id)sender {
-    [self shareIconOfType:@"gym"];
-    self.sendedContentType = @"💪🏼";
+- (IBAction)heartButtonTapped:(id)sender {
+    [self shareIconOfType:@"heart"];
+    self.sendedContentType = @"❤️";
 }
-- (IBAction)flagButtonTapped:(id)sender {
-    [self shareIconOfType:@"flag"];
-    self.sendedContentType = @"🏁";
+- (IBAction)controllerButtonTapped:(id)sender {
+    [self shareIconOfType:@"controller"];
+    self.sendedContentType = @"🎮";
 }
 - (IBAction)telephoneButtonTapped:(id)sender {
     [self shareIconOfType:@"telephone"];

@@ -352,20 +352,29 @@
             }
             else if ([location.type isEqualToString:@"icon"]) {
                 if(![location.content isEqualToString:@""]){
-                    NSDictionary *receivedIconsDictionary = @{@"clock":    @"received_clock",
-                                                              @"beer":     @"received_drink",
-                                                              @"coffee":   @"received_soda",
-                                                              @"question": @"received_question",
-                                                              @"logo":     @"received_logo",
-                                                              @"rocket":   @"received_rocket",
-                                                              @"stamp":    @"received_blank",
+                    NSDictionary *receivedIconsDictionary = @{@"clock":      @"received_clock",
+                                                              @"beer":       @"received_drink",
+                                                              @"coffee":     @"received_soda",
+                                                              @"question":   @"received_question",
+                                                              @"logo":       @"received_logo",
+                                                              @"rocket":     @"received_rocket",
+                                                              @"stamp":      @"received_blank",
                                                               
-                                                              @"trophy":    @"received_trophy",
-                                                              @"gym":       @"received_gym",
-                                                              @"flag":      @"received_flag",
-                                                              @"telephone": @"received_telephone",
-                                                              @"book":      @"received_book",
-                                                              @"waves":     @"received_waves"};
+                                                              @"trophy":     @"received_trophy",
+                                                              @"gym":        @"received_gym",
+                                                              @"flag":       @"received_flag",
+                                                              @"telephone":  @"received_telephone",
+                                                              @"book":       @"received_book",
+                                                              @"waves":      @"received_waves",
+                                                              
+                                                              @"plus":       @"received_plus",
+                                                              @"minus":      @"received_minus",
+                                                              @"dollar":     @"received_dollar",
+                                                              @"sleep":      @"received_sleep",
+                                                              @"pizza":      @"received_pizza",
+                                                              @"ball":       @"received_ball",
+                                                              @"heart":      @"received_heart",
+                                                              @"controller": @"received_controller"};
                     
                     UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.width)];
                     

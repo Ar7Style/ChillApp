@@ -105,6 +105,39 @@ NSMutableData *mutData;
             
         }
             
+        //new additional icons
+        else if ([location.content isEqualToString:@"plus"]){
+            [theRow.image3 setImageNamed: @"Rectangle_received_plus@2x.png"];
+            
+        }
+        else if ([location.content isEqualToString:@"heart"]){
+            [theRow.image3 setImageNamed:@"Rectangle_received_heart@2x"];
+            
+        }
+        else if ([location.content isEqualToString:@"controller"]){
+            [theRow.image3 setImageNamed:@"Rectangle_received_controller@2x"];
+            
+        }
+        else if ([location.content isEqualToString:@"pizza"]){
+            [theRow.image3 setImageNamed:@"Rectangle_received_pizza@2x"];
+        }
+        else if ([location.content isEqualToString:@"dollar"]){
+            [theRow.image3 setImageNamed:@"Rectangle_received_doller@2x"];
+            
+        }
+        else if ([location.content isEqualToString:@"sleep"]){
+            [theRow.image3 setImageNamed:@"Rectangle_received_sleep@2x"];
+            
+        }
+        else if ([location.content isEqualToString:@"minus"]){
+            [theRow.image3 setImageNamed:@"Rectangle_received_minus@2x"];
+            
+        }
+        else if ([location.content isEqualToString:@"ball"]){
+            [theRow.image3 setImageNamed:@"Rectangle_received_ball@2x"];
+            
+        }
+            
         }
         else if ([location.type isEqualToString:@"location"]){
             NSString *aString = location.content;

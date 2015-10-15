@@ -976,7 +976,7 @@ communication experience</string>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="tGi-KZ-QKl">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="02K-9A-dPD">
+                        <barButtonItem key="rightBarButtonItem" title="More" style="plain" id="02K-9A-dPD">
                             <connections>
                                 <segue destination="JP3-rM-pBa" kind="push" identifier="additionalShare" id="tpW-1p-dJe"/>
                             </connections>
@@ -1012,29 +1012,29 @@ communication experience</string>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jjb-kP-2QB">
                                                         <rect key="frame" x="167" y="10" width="43" height="42"/>
-                                                        <state key="normal" image="reaction_soda">
+                                                        <state key="normal" image="reaction_dollar">
                                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                         </state>
                                                         <connections>
-                                                            <action selector="sodaButtonTapped:" destination="JP3-rM-pBa" eventType="touchUpInside" id="MjX-3e-Vjx"/>
+                                                            <action selector="dollarButtonTapped:" destination="JP3-rM-pBa" eventType="touchUpInside" id="L11-x5-gON"/>
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vk2-RJ-zyv">
                                                         <rect key="frame" x="88" y="8" width="42" height="40"/>
-                                                        <state key="normal" image="reaction_drink">
+                                                        <state key="normal" image="reaction_minus">
                                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                         </state>
                                                         <connections>
-                                                            <action selector="drinkButtonTapped:" destination="JP3-rM-pBa" eventType="touchUpInside" id="gGy-lx-nVT"/>
+                                                            <action selector="minusButtonTapped:" destination="JP3-rM-pBa" eventType="touchUpInside" id="Xim-De-FuF"/>
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Ee-lt-eMo">
                                                         <rect key="frame" x="8" y="8" width="38" height="44"/>
-                                                        <state key="normal" image="reaction_clock">
+                                                        <state key="normal" image="reaction_plus">
                                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                         </state>
                                                         <connections>
-                                                            <action selector="clockButtonTapped:" destination="JP3-rM-pBa" eventType="touchUpInside" id="Eve-yM-FHQ"/>
+                                                            <action selector="plusButtonTapped:" destination="JP3-rM-pBa" eventType="touchUpInside" id="P1y-XE-THe"/>
                                                         </connections>
                                                     </button>
                                                 </subviews>
@@ -1049,29 +1049,29 @@ communication experience</string>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sH5-A4-nKr">
                                                         <rect key="frame" x="8" y="9" width="38" height="41"/>
-                                                        <state key="normal" image="reaction_question">
+                                                        <state key="normal" image="reaction_sleep">
                                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                         </state>
                                                         <connections>
-                                                            <action selector="questionButtonTapped:" destination="JP3-rM-pBa" eventType="touchUpInside" id="zh1-9h-gNe"/>
+                                                            <action selector="sleepButtonTapped:" destination="JP3-rM-pBa" eventType="touchUpInside" id="hRw-W7-zwG"/>
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3hI-B4-Bgk">
                                                         <rect key="frame" x="91" y="6" width="37" height="41"/>
-                                                        <state key="normal" image="reaction_chill">
+                                                        <state key="normal" image="reaction_pizza">
                                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                         </state>
                                                         <connections>
-                                                            <action selector="chillButtonTapped:" destination="JP3-rM-pBa" eventType="touchUpInside" id="xjh-ig-wb0"/>
+                                                            <action selector="pizzaButtonTapped:" destination="JP3-rM-pBa" eventType="touchUpInside" id="8Dr-Ik-LqF"/>
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A9I-Z0-5ki">
                                                         <rect key="frame" x="167" y="8" width="43" height="42"/>
-                                                        <state key="normal" image="reaction_rocket">
+                                                        <state key="normal" image="reaction_ball">
                                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                         </state>
                                                         <connections>
-                                                            <action selector="rocketButtonTapped:" destination="JP3-rM-pBa" eventType="touchUpInside" id="buL-VT-B0Q"/>
+                                                            <action selector="ballButtonTapped:" destination="JP3-rM-pBa" eventType="touchUpInside" id="6wf-XU-5Gh"/>
                                                         </connections>
                                                     </button>
                                                 </subviews>
@@ -1095,20 +1095,20 @@ communication experience</string>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CqE-wC-TnK">
                                                         <rect key="frame" x="91" y="6" width="37" height="41"/>
-                                                        <state key="normal" image="reaction_gym">
+                                                        <state key="normal" image="reaction_heart">
                                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                         </state>
                                                         <connections>
-                                                            <action selector="gymButtonTapped:" destination="JP3-rM-pBa" eventType="touchUpInside" id="QJd-h0-35Z"/>
+                                                            <action selector="heartButtonTapped:" destination="JP3-rM-pBa" eventType="touchUpInside" id="1wW-G8-4ht"/>
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bJB-zi-NZM">
                                                         <rect key="frame" x="167" y="8" width="43" height="42"/>
-                                                        <state key="normal" image="reaction_flag">
+                                                        <state key="normal" image="reaction_controller">
                                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                         </state>
                                                         <connections>
-                                                            <action selector="flagButtonTapped:" destination="JP3-rM-pBa" eventType="touchUpInside" id="hLD-Og-UrC"/>
+                                                            <action selector="controllerButtonTapped:" destination="JP3-rM-pBa" eventType="touchUpInside" id="Zai-Vm-c95"/>
                                                         </connections>
                                                     </button>
                                                 </subviews>
@@ -1230,13 +1230,7 @@ communication experience</string>
                             <constraint firstItem="tlz-Dk-zkA" firstAttribute="top" secondItem="FAl-Fx-D44" secondAttribute="bottom" id="u6m-FI-3xC"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="oyr-Ey-vaJ">
-                        <barButtonItem key="leftBarButtonItem" title="Back" id="Wfr-Jq-YEU">
-                            <connections>
-                                <action selector="backButtonPressed:" destination="JP3-rM-pBa" id="4YL-Q3-MFP"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" id="oyr-Ey-vaJ"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="320" height="568"/>
                 </viewController>
@@ -1886,14 +1880,20 @@ communication experience</string>
         <image name="close.png" width="12" height="12"/>
         <image name="locationios_right.png" width="1478" height="802"/>
         <image name="picios_right.png" width="1478" height="802"/>
+        <image name="reaction_ball" width="33" height="33"/>
         <image name="reaction_book" width="33" height="31"/>
         <image name="reaction_chill" width="33" height="38"/>
         <image name="reaction_clock" width="33" height="33"/>
+        <image name="reaction_controller" width="33" height="25"/>
+        <image name="reaction_dollar" width="33" height="33"/>
         <image name="reaction_drink" width="29" height="33"/>
-        <image name="reaction_flag" width="25" height="33"/>
-        <image name="reaction_gym" width="66" height="30"/>
+        <image name="reaction_heart" width="33" height="29"/>
+        <image name="reaction_minus" width="33" height="6"/>
+        <image name="reaction_pizza" width="32" height="33"/>
+        <image name="reaction_plus" width="33" height="33"/>
         <image name="reaction_question" width="20" height="39"/>
         <image name="reaction_rocket" width="33" height="33"/>
+        <image name="reaction_sleep" width="32" height="33"/>
         <image name="reaction_soda" width="22" height="33"/>
         <image name="reaction_telephone" width="33" height="33"/>
         <image name="reaction_trophy" width="33" height="33"/>
