@@ -142,16 +142,7 @@ NSMutableData *mutData;
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
-//    if (indexPath.row < NUMBER_OF_STATIC_CELLS) {
-//          NSString *cellIdentifier = @"staticCell";
-//        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
-//        cell.textLabel.text = @"Invite from Twitter";
-//        cell.textLabel.textColor = [UIColor colorWithRed:161 green:161 blue:161 alpha:1];
-//        
-    
-    //}
-  //  else {
-   // UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
+
     SearchJSON *location = [_locations objectAtIndex:indexPath.row];
 
     if (cell == nil)
