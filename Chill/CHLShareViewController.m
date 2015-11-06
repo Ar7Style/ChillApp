@@ -223,9 +223,8 @@ NSMutableData *mutData;
                            @"fromUserId": [userCache valueForKey:@"id_user"]
                            };
     PFPush *push = [[PFPush alloc] init];
-     NSLog(@"3 IT HAPPENES MUFUCK");
     [push setChannel:[NSString stringWithFormat:@"us%li",(long)_userIdTo]];
-    NSLog(@"4 %ld", (long)_userIdTo);
+   
     [push setData:data];
     [push sendPushInBackground];
 }
