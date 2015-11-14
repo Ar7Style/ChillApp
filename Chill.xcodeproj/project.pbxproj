@@ -116,6 +116,8 @@
 		061B5D551B57DD9200A3B9FB /* update_for_new_icons.png in Resources */ = {isa = PBXBuildFile; fileRef = 061B5D541B57DD9200A3B9FB /* update_for_new_icons.png */; };
 		061B5D561B57DD9200A3B9FB /* update_for_new_icons.png in Resources */ = {isa = PBXBuildFile; fileRef = 061B5D541B57DD9200A3B9FB /* update_for_new_icons.png */; };
 		061B5D571B57DD9200A3B9FB /* update_for_new_icons.png in Resources */ = {isa = PBXBuildFile; fileRef = 061B5D541B57DD9200A3B9FB /* update_for_new_icons.png */; };
+		062614F81BF780DC001D704A /* chill_edu1.png in Resources */ = {isa = PBXBuildFile; fileRef = 062614F71BF780DC001D704A /* chill_edu1.png */; };
+		062614FA1BF780E3001D704A /* chill_edu2.png in Resources */ = {isa = PBXBuildFile; fileRef = 062614F91BF780E3001D704A /* chill_edu2.png */; };
 		0633D5FE1B6FC1C300255BA5 /* PebbleVendor.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0633D5FD1B6FC1C300255BA5 /* PebbleVendor.framework */; };
 		0633D6001B6FC20F00255BA5 /* ExternalAccessory.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0633D5FF1B6FC20F00255BA5 /* ExternalAccessory.framework */; };
 		0633D6021B6FC34900255BA5 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0633D6011B6FC34900255BA5 /* CoreMotion.framework */; };
@@ -517,6 +519,8 @@
 		060D0C071BF40028007A7146 /* close_card.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = close_card.png; sourceTree = "<group>"; };
 		0614D4921B598A8600CFA8D5 /* oups.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = oups.png; sourceTree = "<group>"; };
 		061B5D541B57DD9200A3B9FB /* update_for_new_icons.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = update_for_new_icons.png; sourceTree = "<group>"; };
+		062614F71BF780DC001D704A /* chill_edu1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = chill_edu1.png; sourceTree = "<group>"; };
+		062614F91BF780E3001D704A /* chill_edu2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = chill_edu2.png; sourceTree = "<group>"; };
 		0633D5FD1B6FC1C300255BA5 /* PebbleVendor.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PebbleVendor.framework; sourceTree = "<group>"; };
 		0633D5FF1B6FC20F00255BA5 /* ExternalAccessory.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ExternalAccessory.framework; path = System/Library/Frameworks/ExternalAccessory.framework; sourceTree = SDKROOT; };
 		0633D6011B6FC34900255BA5 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
@@ -1305,6 +1309,8 @@
 		E6C7C1D7191A1B230071D83F /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				062614F71BF780DC001D704A /* chill_edu1.png */,
+				062614F91BF780E3001D704A /* chill_edu2.png */,
 				060D0C071BF40028007A7146 /* close_card.png */,
 				06D7BED61BCFD119009AE04A /* NewAdditionalIcons */,
 				E6C7C1E8191A1B230071D83F /* Images.xcassets */,
@@ -1673,6 +1679,7 @@
 				0670541C1B04EEC300BBA3AA /* icon86@2x.png in Resources */,
 				06D7BEF91BCFD4BB009AE04A /* reaction_sleep_forCell.png in Resources */,
 				068445401B2CBB3C006D3826 /* reaction_trophy_forCell.png in Resources */,
+				062614F81BF780DC001D704A /* chill_edu1.png in Resources */,
 				068445431B2CBB3C006D3826 /* reaction_waves_forCell.png in Resources */,
 				068445521B2CBB3C006D3826 /* reaction_trophy.png in Resources */,
 				0670540A1B04EEC300BBA3AA /* icon24@2x.png in Resources */,
@@ -1763,6 +1770,7 @@
 				06D7BEE91BCFD4A9009AE04A /* reaction_sleep.png in Resources */,
 				06D7BEE51BCFD4A9009AE04A /* reaction_heart.png in Resources */,
 				027A95C61A5B7DFC004E0914 /* Line@2x.png in Resources */,
+				062614FA1BF780E3001D704A /* chill_edu2.png in Resources */,
 				060D0C081BF40028007A7146 /* close_card.png in Resources */,
 				067054191B04EEC300BBA3AA /* icon44@2x.png in Resources */,
 				AD63256A1ABB73EF00DD8F0D /* CHLPaperCollectionCell.xib in Resources */,

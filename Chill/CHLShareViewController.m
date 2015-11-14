@@ -48,19 +48,84 @@ NSMutableData *mutData;
     
     [super viewDidLoad];
     
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self
+                                                                          action:@selector(dismissKeyboard)];
+    
+    [self.view addGestureRecognizer:tap];
+
+    
+}
+
+-(void)dismissKeyboard {
+    [_shareText resignFirstResponder];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
+    
     
     if (CLLocationManager.authorizationStatus == kCLAuthorizationStatusNotDetermined) {
         [_locationManager requestWhenInUseAuthorization];
     }
     
+    if([[UIDevice currentDevice]userInterfaceIdiom]==UIUserInterfaceIdiomPhone)
+    {
+        if ([[UIScreen mainScreen] bounds].size.height <= 568) // <= iphone 5
+        {
+            NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
+            [center addObserver:self selector:@selector(willShowKeyboard) name:UIKeyboardDidShowNotification object:nil];
+            [center addObserver:self selector:@selector(willHideKeyboard) name:UIKeyboardWillHideNotification object:nil];
+        }
+        
+    }
+    
+    [super viewDidAppear:animated];
+    
     id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
     [tracker set:kGAIScreenName value:@"Share screen"];
     [tracker send:[[GAIDictionaryBuilder createAppView] build]];
 }
+
+-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
+    //Iterate through your subviews, or some other custom array of views
+    for (UIView *view in self.view.subviews)
+        [view resignFirstResponder];
+}
+
+#pragma mark - Keyboard Notification
+
+- (void)willShowKeyboard{
+    if (!isKeyboardShow){
+        isKeyboardShow = true;
+        [UIView beginAnimations:nil context:NULL];
+        [UIView setAnimationDelegate:self];
+        [UIView setAnimationDuration:0.5];
+        [UIView setAnimationBeginsFromCurrentState:YES];
+        self.view.frame = CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y-216.0,
+                                     self.view.frame.size.width, self.view.frame.size.height);
+        [UIView commitAnimations];
+    }
+}
+- (void)backgroundTouchedHideKeyboard:(id)sender
+{
+    [self.shareText resignFirstResponder];
+    
+}
+
+- (void)willHideKeyboard{
+    isKeyboardShow = false;
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationDelegate:self];
+    [UIView setAnimationDuration:0.5];
+    [UIView setAnimationBeginsFromCurrentState:YES];
+    self.view.frame = CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y+216.0,
+                                 self.view.frame.size.width, self.view.frame.size.height);
+    [UIView commitAnimations];
+}
+-(void)didTapAnywhere: (UITapGestureRecognizer*) recognizer {
+    //[self.emailField resignFirstResponder];
+    [self.shareText resignFirstResponder];
+}
+
 
 #pragma mark - Private methods
 
@@ -238,8 +303,10 @@ NSMutableData *mutData;
     
     NSUserDefaults *userCache = [[NSUserDefaults standardUserDefaults] initWithSuiteName:@"group.co.getchill.chill"];
     
-    NSString *postString = [NSString stringWithFormat:@"id_contact=%ld&id_user=%@&content=%@&type=icon&date=%@", (long)_userIdTo, [userCache valueForKey:@"id_user"], iconType, [self getDateTime]];
-    
+    NSString *contentType = [_shareText.text isEqualToString:@""] ? @"icon" : @"text";
+    NSString *content = [iconType isEqualToString:@"text"] ? contentType : iconType;
+    NSString *postString = [NSString stringWithFormat:@"id_contact=%ld&id_user=%@&content=%@&type=%@&date=%@", (long)_userIdTo, [userCache valueForKey:@"id_user"], iconType, contentType, [self getDateTime]];
+    NSLog(@"POST STRING: %@", postString);
     [request setHTTPBody:[postString dataUsingEncoding:NSUTF8StringEncoding]];
     NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
     if (connection) {

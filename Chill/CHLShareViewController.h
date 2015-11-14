@@ -20,7 +20,9 @@
 
 @end
 
-@interface CHLShareViewController : UIViewController 
+@interface CHLShareViewController : UIViewController {
+        bool isKeyboardShow;
+}
 
 @property (assign, nonatomic) BOOL isNonChillUser;
 @property (readwrite) NSInteger userIdTo;
@@ -31,6 +33,9 @@
 //@property (readwrite) NSInteger friendUserID;
 
 @property(nonatomic,retain) CLLocationManager* locationManager;
+
+
+@property (weak, nonatomic) IBOutlet UITextField *shareText;
 
 
 @property (weak, nonatomic) id <CHLShareViewControllerDelegate> delegate;

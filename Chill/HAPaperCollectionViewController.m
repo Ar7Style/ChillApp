@@ -82,14 +82,15 @@
         UIButton* closeButton = [[UIButton alloc]init];
         if ([[UIScreen mainScreen] bounds].size.height <= 568) // <= iphone 5
         {
-            closeButton.frame = CGRectMake(237, 35, 100, 30);
+            closeButton.frame = CGRectMake(232, 35, 100, 30);
             [closeButton setImage:[UIImage imageNamed:@"close_card"] forState:UIControlStateNormal];
             [closeButton addTarget:self action:@selector(dismissPaperCollection:) forControlEvents:UIControlEventTouchUpInside];
             [self.view addSubview:closeButton];
+            NSLog(@"Iphone 4s or 5");
         }
         
         
-        if ([UIScreen mainScreen].scale >= 2.9) // >= iphone 6plus
+        else if ([UIScreen mainScreen].scale >= 2.9) // >= iphone 6plus
         {
             closeButton.frame = CGRectMake(337, 35, 100, 30);
             [closeButton setImage:[UIImage imageNamed:@"close_card"] forState:UIControlStateNormal];
@@ -98,12 +99,13 @@
             NSLog(@"Iphone 6 plus");
         }
         
-        else {
-            closeButton.frame = CGRectMake(270, 35, 100, 30);
+        else { // iphone 6
+            closeButton.frame = CGRectMake(279, 35, 100, 30);
             
             [closeButton setImage:[UIImage imageNamed:@"close_card"] forState:UIControlStateNormal];
             [closeButton addTarget:self action:@selector(dismissPaperCollection:) forControlEvents:UIControlEventTouchUpInside];
             [self.view addSubview:closeButton];
+            NSLog(@"Iphone 6");
         }
     }
     
@@ -247,31 +249,16 @@
         cell.layer.cornerRadius = 8;
         cell.clipsToBounds = YES;
         if (indexPath.row==0){
-            UIImageView *map = [[UIImageView alloc] initWithFrame:CGRectMake((self.view.frame.size.width - 259)/2, (self.view.frame.size.height-180)/2-45, 259, 90)];
+            UIImageView *map = [[UIImageView alloc] initWithFrame:CGRectMake(0, 30, self.view.frame.size.width, self.view.frame.size.height)];
+            map.contentMode = UIViewContentModeScaleAspectFit;
             [cell addSubview:map];
-            map.image = [UIImage imageNamed:@"Oval_43_Oval_44_Line"];
-            
-            UILabel* name1= [[UILabel alloc] initWithFrame:CGRectMake((self.view.frame.size.width - 280)/2, self.view.frame.size.height-180, 280, 110)] ;
-            [cell addSubview:name1] ;
-            name1.textColor = [UIColor chillDarkGrayColor];
-            name1.backgroundColor = [UIColor clearColor];
-            name1.numberOfLines = 3;
-            name1.textAlignment = NSTextAlignmentCenter;
-            name1.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:28.0 ];
-            name1.text = [NSString stringWithFormat:@"Swipe left\nto see more"];
+            map.image = [UIImage imageNamed:@"chill_edu1"];
         }
         else if(indexPath.row==1){
-            UIImageView *map = [[UIImageView alloc] initWithFrame:CGRectMake((self.view.frame.size.width - 96)/2, (self.view.frame.size.height-180)/2-50, 96, 101)];
+            UIImageView *map = [[UIImageView alloc] initWithFrame:CGRectMake(0, 30, self.view.frame.size.width, self.view.frame.size.height)];
+            map.contentMode = UIViewContentModeScaleAspectFit;
             [cell addSubview:map];
-            map.image = [UIImage imageNamed:@"add_peop_cart"];
-            UILabel* name1= [[UILabel alloc] initWithFrame:CGRectMake((self.view.frame.size.width - 280)/2, self.view.frame.size.height-180, 280, 110)] ;
-            [cell addSubview:name1] ;
-            name1.textColor = [UIColor chillDarkGrayColor];
-            name1.backgroundColor = [UIColor clearColor];
-            name1.numberOfLines = 3;
-            name1.textAlignment = NSTextAlignmentCenter;
-            name1.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:28.0 ];
-            name1.text = [NSString stringWithFormat:@"Press this dude\nto add chillers"];
+            map.image = [UIImage imageNamed:@"chill_edu2"];
 
         }
         else if(indexPath.row==2){
@@ -464,9 +451,6 @@
  
 }
 
--(void) closeCard:(id) sender {
-    NSLog(@"");
-}
 
 -(BOOL)isIconWasReceived: (NSDictionary *)receivedIconsDictionary in: (NSString *)locationContent {
     for (NSString* iconType in receivedIconsDictionary) {
@@ -519,7 +503,7 @@
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     if(_friendUserID==1)
-        return 4;
+        return 2;
     else{
         if (emptyMessages == 0)
             return _locations.count;
