@@ -27,6 +27,8 @@
 #import "GAITracker.h"
 #import "LLACircularProgressView.h"
 #import "CHLSettingsViewController.h"
+#import <Fabric/Fabric.h>
+#import <Crashlytics/Crashlytics.h>
 
 
 #define UIColorFromRGBA(rgbValue,a) [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:a]
@@ -80,6 +82,7 @@ NSMutableData *mutData;
     separatorLineView.backgroundColor = [UIColor groupTableViewBackgroundColor];
     [self.tableView.tableFooterView addSubview:separatorLineView];
     
+    [self logUser];
     
     id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
     [tracker set:kGAIScreenName value:@"Friends list screen"];
@@ -151,11 +154,7 @@ NSMutableData *mutData;
     [self loadJSON];
 }
 - (void) loadJSON {
-    if (![self connected]) {
-        [self conRefused];
-    }
-    else {
-        @try {
+ 
             NSUserDefaults *userCache = [[NSUserDefaults standardUserDefaults] initWithSuiteName:@"group.co.getchill.chill"];
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
                 NSLog(@"http://api.iamchill.co/v2/contacts/index/id_user/%@", [userCache valueForKey:@"id_user"]);
@@ -168,15 +167,8 @@ NSMutableData *mutData;
                     [self.tableView performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:YES];
                 }
             });
-        }
-        @catch (NSException *exception) {
-            NSLog(@"%@", exception.reason);
-            [self conRefused];
-        }
-        @finally {
-            NSLog(@"Exception was not in @try block");
-        }
-    }
+        
+    
 }
 #pragma mark - Table view delegate
 
@@ -570,11 +562,6 @@ NSMutableData *mutData;
     else if ([segue.identifier isEqualToString:@"toTheSettings"]) {
         [timer invalidate];
         timer = nil;
-        NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
-        
-
-       // settingsVC.email = location.email;
-        
     }
 
 }
@@ -604,6 +591,14 @@ NSMutableData *mutData;
     
 }
 
+- (void) logUser {
+  
+     NSUserDefaults *userCache = [[NSUserDefaults standardUserDefaults] initWithSuiteName:@"group.co.getchill.chill"];
+    
+    [CrashlyticsKit setUserIdentifier:[userCache valueForKey:@"id_user"]];
+    [CrashlyticsKit setUserEmail:[userCache valueForKey:@"email"]];
+    [CrashlyticsKit setUserName:[userCache valueForKey:@"login_user"]];
+}
 
 
 

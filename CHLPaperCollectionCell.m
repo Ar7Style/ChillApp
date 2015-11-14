@@ -63,12 +63,12 @@
 }
 
 - (void)shareIconOfType:(NSString *)iconType {
-    [self.viewController dismissPaperCollection];
+    [self.viewController dismissPaperCollection:(nil)];
     
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:@"http://api.iamchill.co/v2/messages/index/"]];
     [request setValue:[[NSUserDefaults standardUserDefaults] valueForKey:@"token"] forHTTPHeaderField:@"X-API-TOKEN"];
     [request setValue:@"76eb29d3ca26fe805545812850e6d75af933214a" forHTTPHeaderField:@"X-API-KEY"];
-
+    
     [request setHTTPMethod:@"POST"];
     NSUserDefaults *userCache = [[NSUserDefaults standardUserDefaults] initWithSuiteName:@"group.co.getchill.chill"];
     

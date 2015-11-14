@@ -30,6 +30,8 @@
 
 //@property (readwrite) NSInteger friendUserID;
 
+@property(nonatomic,retain) CLLocationManager* locationManager;
+
 
 @property (weak, nonatomic) id <CHLShareViewControllerDelegate> delegate;
 

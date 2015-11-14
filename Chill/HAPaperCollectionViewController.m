@@ -77,9 +77,39 @@
     self.navigationController.view.layer.cornerRadius=6;
     self.navigationController.view.clipsToBounds=YES;
     
+    if([[UIDevice currentDevice]userInterfaceIdiom]==UIUserInterfaceIdiomPhone)
+    {
+        UIButton* closeButton = [[UIButton alloc]init];
+        if ([[UIScreen mainScreen] bounds].size.height <= 568) // <= iphone 5
+        {
+            closeButton.frame = CGRectMake(237, 35, 100, 30);
+            [closeButton setImage:[UIImage imageNamed:@"close_card"] forState:UIControlStateNormal];
+            [closeButton addTarget:self action:@selector(dismissPaperCollection:) forControlEvents:UIControlEventTouchUpInside];
+            [self.view addSubview:closeButton];
+        }
+        
+        
+        if ([UIScreen mainScreen].scale >= 2.9) // >= iphone 6plus
+        {
+            closeButton.frame = CGRectMake(337, 35, 100, 30);
+            [closeButton setImage:[UIImage imageNamed:@"close_card"] forState:UIControlStateNormal];
+            [closeButton addTarget:self action:@selector(dismissPaperCollection:) forControlEvents:UIControlEventTouchUpInside];
+            [self.view addSubview:closeButton];
+            NSLog(@"Iphone 6 plus");
+        }
+        
+        else {
+            closeButton.frame = CGRectMake(270, 35, 100, 30);
+            
+            [closeButton setImage:[UIImage imageNamed:@"close_card"] forState:UIControlStateNormal];
+            [closeButton addTarget:self action:@selector(dismissPaperCollection:) forControlEvents:UIControlEventTouchUpInside];
+            [self.view addSubview:closeButton];
+        }
+    }
+    
 }
 
-- (void)dismissPaperCollection {
+- (void)dismissPaperCollection:(id)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
     [transitionManager updateInteractiveTransition:0];
     [self performSelector:@selector(finishDismissing) withObject:nil afterDelay:0.03];
@@ -133,6 +163,13 @@
     }
     else {
         self.collectionView.backgroundColor = [UIColor clearColor];
+//        UIButton* closeButton = [[UIButton alloc]init];//buttonWithType:UIButtonTypeRoundedRect];
+//        closeButton.frame = CGRectMake(270, 35, 100, 30);
+//        
+//        [closeButton setImage:[UIImage imageNamed:@"close_card"] forState:UIControlStateNormal];
+//        [closeButton addTarget:self action:@selector(dismissPaperCollection:) forControlEvents:UIControlEventTouchUpInside];
+//        [self.view addSubview:closeButton];
+        
         HUD = [[MBProgressHUD alloc] initWithView:self.collectionView];
         [self.collectionView addSubview:HUD];
         HUD.dimBackground = NO;
@@ -146,6 +183,7 @@
     [tracker set:kGAIScreenName value:@"Cards screen"];
     [tracker send:[[GAIDictionaryBuilder createAppView] build]];
 }
+
 -(void)handleSwipeGesture:(UISwipeGestureRecognizer *) sender
 {
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
@@ -383,6 +421,9 @@
                     imageView.contentMode = UIViewContentModeCenter;
                     imageView.clipsToBounds = YES;
                     [imageView setImage:[UIImage imageNamed:[receivedIconsDictionary objectForKey:location.content]]];
+                    
+                    
+
                     UIImage* pleaseUpdateImage = [UIImage imageNamed:@"oups"];
                     if (![self isIconWasReceived:receivedIconsDictionary in:location.content]) {
 
@@ -421,6 +462,10 @@
         }
     }
  
+}
+
+-(void) closeCard:(id) sender {
+    NSLog(@"");
 }
 
 -(BOOL)isIconWasReceived: (NSDictionary *)receivedIconsDictionary in: (NSString *)locationContent {

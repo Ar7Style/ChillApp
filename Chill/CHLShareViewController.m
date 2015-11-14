@@ -34,7 +34,7 @@
 NSMutableData *mutData;
 
 @implementation CHLShareViewController {
-    CLLocationManager *locationManager;
+    //CLLocationManager *locationManager;
 }
 
 #pragma mark - View controller lifecycle
@@ -43,7 +43,7 @@ NSMutableData *mutData;
 
 {
     
-    locationManager = [[CLLocationManager alloc] init];
+    _locationManager = [[CLLocationManager alloc] init];
     self.title = _nameUser;
     
     [super viewDidLoad];
@@ -54,7 +54,7 @@ NSMutableData *mutData;
     [super viewDidAppear:animated];
     
     if (CLLocationManager.authorizationStatus == kCLAuthorizationStatusNotDetermined) {
-        [locationManager requestWhenInUseAuthorization];
+        [_locationManager requestWhenInUseAuthorization];
     }
     
     id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
@@ -115,7 +115,7 @@ NSMutableData *mutData;
     }
     
     else {
-        locationManager = [[CLLocationManager alloc] init];
+        _locationManager = [[CLLocationManager alloc] init];
         
         HUD = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
         [self.navigationController.view addSubview:HUD];
@@ -123,11 +123,11 @@ NSMutableData *mutData;
         HUD.delegate = self;
         //    [HUD show:YES];
         
-        locationManager.delegate = self;
-        locationManager.distanceFilter = kCLDistanceFilterNone;
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+        _locationManager.delegate = self;
+        _locationManager.distanceFilter = kCLDistanceFilterNone;
+        _locationManager.desiredAccuracy = kCLLocationAccuracyBest;
         
-        [locationManager startUpdatingLocation];
+        [_locationManager startUpdatingLocation];
         self.sendedContentType = @"location";
         
         id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
@@ -198,7 +198,7 @@ NSMutableData *mutData;
     
     [request setHTTPBody:[postString
                           dataUsingEncoding:NSUTF8StringEncoding]];
-    [locationManager stopUpdatingLocation];
+    [_locationManager stopUpdatingLocation];
     NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
     if (connection) {
         mutData = [NSMutableData data];

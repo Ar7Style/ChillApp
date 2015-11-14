@@ -14,7 +14,7 @@
 }
 
 - (UICollectionViewController*)nextViewControllerAtPoint:(CGPoint)point;
-- (void)dismissPaperCollection;
+- (void)dismissPaperCollection:(id)sender;
 @property (strong, nonatomic) NSString *nickName;
 @property (readwrite) NSInteger friendUserID;
 @property (weak, nonatomic) UIImageView *cellStatusView;

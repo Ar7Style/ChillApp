@@ -66,18 +66,15 @@ static NSString *const CHLIsOpenedBeforeKey = @"CHLIsOpenedBeforeKey";
     pageControl.backgroundColor = [UIColor whiteColor];
     
     NSUserDefaults *userCache = [[NSUserDefaults standardUserDefaults] initWithSuiteName:@"group.co.getchill.chill"];
-    if (![userCache boolForKey:@"Initilized invites"]) {
-        [userCache setInteger:3 forKey:@"Available invites number"];
-        [userCache setBool:YES forKey:@"Initilized invites"];
-    }
     
     //NSURLCache кэширование
-    NSURLCache *URLCache = [[NSURLCache alloc] initWithMemoryCapacity:4 * 1024 * 1024
+    NSURLCache *URLCache = [[NSURLCache alloc] initWithMemoryCapacity:4 * 1024 * 1024 // costilu ebanye
                                                          diskCapacity:100 * 1024 * 1024
                                                              diskPath:@"NSURLCache"];
     [NSURLCache setSharedURLCache:URLCache];
     
     [Fabric with:@[TwitterKit, CrashlyticsKit]];
+    // [self logUser];
     
     // Google Analytics
     [GAI sharedInstance].trackUncaughtExceptions = YES;
@@ -89,6 +86,16 @@ static NSString *const CHLIsOpenedBeforeKey = @"CHLIsOpenedBeforeKey";
 
     return [[FBSDKApplicationDelegate sharedInstance] application:application
                                     didFinishLaunchingWithOptions:launchOptions];
+}
+
+
+//just example
+- (void) logUser {
+    // TODO: Use the current user's information
+    // You can call any combination of these three methods
+    [CrashlyticsKit setUserIdentifier:@"12345"];
+    [CrashlyticsKit setUserEmail:@"user@fabric.io"];
+    [CrashlyticsKit setUserName:@"Test User from AppDelegate"];
 }
 
 - (void)application:(UIApplication *)application didRegisterUserNotificationSettings:(UIUserNotificationSettings *)notificationSettings
