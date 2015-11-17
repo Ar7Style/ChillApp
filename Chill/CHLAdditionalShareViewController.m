@@ -31,7 +31,7 @@
 
 @property(nonatomic, strong) NSString *sendedContentType;
 @property(nonatomic, strong) NSString *textForAdditionalScreen;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *constraintBottom;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *constraintBottomForAdditionalScreen;
 
 
 @end
@@ -56,24 +56,23 @@ NSInteger defaultValueForAdditionalScreen = 10;
 }
 
 
-    -(void) viewWillAappear:(BOOL)animated {
-        [self an_subscribeKeyboardWithAnimations:^(CGRect keyboardRect, NSTimeInterval duration, BOOL isShowing) {
-            
-            self.constraintBottom.constant = isShowing ?  CGRectGetHeight(keyboardRect) : 0;
-            [self.view layoutIfNeeded];
-        } completion:nil];
-        [self.view layoutIfNeeded];
-    }
-    
-    -(void)viewWillDisappear:(BOOL)animated {
-        [self an_unsubscribeKeyboard];
-    }
+//-(void)viewWillAppear:(BOOL)animated {
+//        [self an_subscribeKeyboardWithAnimations:^(CGRect keyboardRect, NSTimeInterval duration, BOOL isShowing) {
+//                        self.constraintBottomForAdditionalScreen.constant = isShowing ?  CGRectGetHeight(keyboardRect) : 83;
+//            [self.view layoutIfNeeded];
+//        } completion:nil];
+//        [self.view layoutIfNeeded];
+//    }
+//    
+//-(void)viewWillDisappear:(BOOL)animated {
+//        [self an_unsubscribeKeyboard];
+//}
 
 - (void)viewDidAppear:(BOOL)animated {
 //    
-//            NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
-//            [center addObserver:self selector:@selector(willShowKeyboard) name:UIKeyboardDidShowNotification object:nil];
-//            [center addObserver:self selector:@selector(willHideKeyboard) name:UIKeyboardWillHideNotification object:nil];
+            NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
+            [center addObserver:self selector:@selector(willShowKeyboard) name:UIKeyboardDidShowNotification object:nil];
+            [center addObserver:self selector:@selector(willHideKeyboard) name:UIKeyboardWillHideNotification object:nil];
     
     [super viewDidAppear:animated];
     
@@ -245,6 +244,10 @@ NSInteger defaultValueForAdditionalScreen = 10;
 
 - (IBAction)textInAddScreenDidEditing:(id)sender {
     _counterForAdditionalScreen.text = [NSString stringWithFormat:@"%ld", (long)(defaultValueForAdditionalScreen - _shareTextForAdditionalScreen.text.length)];
+    
+//    if ((long)(defaultValueForAdditionalScreen - _shareTextForAdditionalScreen.text.length) <=0) {
+//        _shareTextForAdditionalScreen.userInteractionEnabled = false;
+//    }
 }
 
 - (void)connection:(NSURLConnection *)connection

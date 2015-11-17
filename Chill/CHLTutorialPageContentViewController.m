@@ -6,7 +6,7 @@
 //  Copyright (c) 2015 Chill. All rights reserved.
 //
 
-#define PAGE_AMOUNT 4
+#define PAGE_AMOUNT 3
 //используется, чтобы решать, показывать кнопку GO или нет
 
 #import "CHLTutorialPageContentViewController.h"

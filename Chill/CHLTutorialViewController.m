@@ -12,7 +12,7 @@
 #import "GAIDictionaryBuilder.h"
 #import "GAITracker.h"
 
-#define PAGE_AMOUNT 4
+#define PAGE_AMOUNT 3
 
 @interface CHLTutorialViewController ()
 
@@ -65,13 +65,13 @@
     if (index == 2) {
         imageView = [[UIImageView alloc] initWithFrame:self.view.frame];
         [contentView addSubview:imageView];
-        imageView.image = [UIImage imageNamed:@"Portrait 3"];
+        imageView.image = [UIImage imageNamed:@"go_edu"];
     }
-    if (index == 3) {
-        imageView = [[UIImageView alloc] initWithFrame:self.view.frame];
-        [contentView addSubview:imageView];
-        imageView.image = [UIImage imageNamed:@"Portrait 4"];
-    }
+//    if (index == 3) {
+//        imageView = [[UIImageView alloc] initWithFrame:self.view.frame];
+//        [contentView addSubview:imageView];
+//        imageView.image = [UIImage imageNamed:@"Portrait 4"];
+//    }
     imageView.contentMode = UIViewContentModeScaleAspectFit;
     return contentView;
 }

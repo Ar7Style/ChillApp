@@ -105,7 +105,7 @@ NSInteger defaultValue = 10;
         {
             if ([[UIScreen mainScreen] bounds].size.height < 568) // < iphone 5
             {
-                self.constraintBottom.constant = isShowing ?  CGRectGetHeight(keyboardRect) : 160;
+                self.constraintBottom.constant = isShowing ?  CGRectGetHeight(keyboardRect)+20 : 160;
             }
             else
             {
