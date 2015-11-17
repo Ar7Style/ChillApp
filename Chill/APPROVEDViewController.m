@@ -93,19 +93,19 @@
                [userCache setBool:true forKey:@"isApproved"];
                [userCache synchronize];
                
-               NSString *message = [NSString stringWithFormat:@"Wohoo! You've been approved, check the app out!🎉✌️👇"];
-               NSDictionary *data = @{
-                                      @"alert": message,
-                                      @"type": @"Location",
-                                      @"sound": @"default",
-                                      @"badge" : @1,//@"Increment",
-                                      @"fromUserId": [userCache valueForKey:@"id_user"]
-                                      };
-               PFPush *push = [[PFPush alloc] init];
-               
-               [push setChannel:[NSString stringWithFormat:@"us%li",(long)[userCache valueForKey:@"id_user"]]];
-               [push setData:data];
-               [push sendPushInBackground];
+//               NSString *message = [NSString stringWithFormat:@"Wohoo! You've been approved, check the app out!🎉✌️👇"];
+//               NSDictionary *data = @{
+//                                      @"alert": message,
+//                                      @"type": @"Location",
+//                                      @"sound": @"default",
+//                                      @"badge" : @1,//@"Increment",
+//                                      @"fromUserId": [userCache valueForKey:@"id_user"]
+//                                      };
+//               PFPush *push = [[PFPush alloc] init];
+//               
+//               [push setChannel:[NSString stringWithFormat:@"us%li",(long)[userCache valueForKey:@"id_user"]]];
+//               [push setData:data];
+//               [push sendPushInBackground];
                
                UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
                

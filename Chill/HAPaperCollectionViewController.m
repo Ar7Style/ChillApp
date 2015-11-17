@@ -100,7 +100,7 @@
         }
         
         else { // iphone 6
-            closeButton.frame = CGRectMake(279, 35, 100, 30);
+            closeButton.frame = CGRectMake(289, 35, 100, 30);
             
             [closeButton setImage:[UIImage imageNamed:@"close_card"] forState:UIControlStateNormal];
             [closeButton addTarget:self action:@selector(dismissPaperCollection:) forControlEvents:UIControlEventTouchUpInside];
@@ -408,7 +408,10 @@
                     imageView.contentMode = UIViewContentModeCenter;
                     imageView.clipsToBounds = YES;
                     [imageView setImage:[UIImage imageNamed:[receivedIconsDictionary objectForKey:location.content]]];
+                    cell.cellLabel.font = [UIFont systemFontOfSize:25];
+                    cell.cellLabel.textColor = [UIColor chillDarkGrayColor];
                     
+                    cell.cellLabel.text = [NSString stringWithFormat:@"%@", [location.text isEqualToString:@""] ? @"" : [NSString stringWithFormat:@"#%@", location.text]];
                     
 
                     UIImage* pleaseUpdateImage = [UIImage imageNamed:@"oups"];
@@ -418,8 +421,8 @@
                         [imageView setImage:pleaseUpdateImage];
                     }
                     
-                    cell.cellLabel.text = [self dateStringForUserFromInternalString:location.date_created];
-                    cell.cellLabel.hidden = YES;
+                   // cell.cellLabel.text = [self dateStringForUserFromInternalString:location.date_created];
+                    cell.cellLabel.hidden = NO;
                 }
                 else {
                     UIImageView *imageView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"2"]];

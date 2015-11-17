@@ -28,14 +28,18 @@
 }
 
 @property(nonatomic, strong) NSString *sendedContentType;
+@property(nonatomic, strong) NSString *text;
+
+@property (weak, nonatomic) IBOutlet UILabel *counter;
 
 @end
 
 NSMutableData *mutData;
 
-@implementation CHLShareViewController {
+@implementation CHLShareViewController
     //CLLocationManager *locationManager;
-}
+NSInteger defaultValue = 10;
+
 
 #pragma mark - View controller lifecycle
 
@@ -126,6 +130,11 @@ NSMutableData *mutData;
     [self.shareText resignFirstResponder];
 }
 
+#pragma textField methods 
+
+- (IBAction)textDidEditing:(id)sender {
+    _counter.text = [NSString stringWithFormat:@"%ld", (long)(defaultValue - _shareText.text.length)];
+}
 
 #pragma mark - Private methods
 
@@ -274,12 +283,8 @@ NSMutableData *mutData;
 {
     NSUserDefaults *userCache = [[NSUserDefaults standardUserDefaults] initWithSuiteName:@"group.co.getchill.chill"];
     NSString *message;
-    if ([self.sendedContentType isEqualToString:@"location"]) {
-        message = [NSString stringWithFormat:@"📍 from %@",[userCache valueForKey:@"name"]];
-    }
-    else {
-        message = [NSString stringWithFormat:@"%@: %@",[userCache valueForKey:@"name"], self.sendedContentType];
-    }
+    message = [self.sendedContentType isEqualToString:@"location"] ? [NSString stringWithFormat:@"📍 from %@",[userCache valueForKey:@"name"]] : [NSString stringWithFormat:@"%@: %@%@",[userCache valueForKey:@"name"], self.sendedContentType, [self.text isEqualToString:@""] ? @"" : [NSString stringWithFormat:@"#%@", self.text]];
+    
     NSDictionary *data = @{
                            @"alert": message,
                            @"type": @"Location",
@@ -295,6 +300,28 @@ NSMutableData *mutData;
 }
 
 - (void)shareIconOfType:(NSString *)iconType {
+    
+    if ([_counter.text integerValue] < 0) {
+        UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Too long"
+                                    
+                                                                       message:@"You can only send 10 symbols"
+                                    
+                                                                preferredStyle:UIAlertControllerStyleAlert];
+        
+        
+        
+        UIAlertAction* okayAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
+                                     
+                                                           handler:^(UIAlertAction * action) {}];
+        
+        [alert addAction:okayAction];
+        
+        [self presentViewController:alert animated:YES completion:nil];
+        
+        _shareText.text = @"";
+        _counter.text = [NSString stringWithFormat:@"%d", 10];
+    }
+    else {
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:@"http://api.iamchill.co/v2/messages/index/"]];
     [request setValue:[[NSUserDefaults standardUserDefaults] valueForKey:@"token"] forHTTPHeaderField:@"X-API-TOKEN"];
     [request setValue:@"76eb29d3ca26fe805545812850e6d75af933214a" forHTTPHeaderField:@"X-API-KEY"];
@@ -302,10 +329,10 @@ NSMutableData *mutData;
     [request setHTTPMethod:@"POST"];
     
     NSUserDefaults *userCache = [[NSUserDefaults standardUserDefaults] initWithSuiteName:@"group.co.getchill.chill"];
-    
-    NSString *contentType = [_shareText.text isEqualToString:@""] ? @"icon" : @"text";
-    NSString *content = [iconType isEqualToString:@"text"] ? contentType : iconType;
-    NSString *postString = [NSString stringWithFormat:@"id_contact=%ld&id_user=%@&content=%@&type=%@&date=%@", (long)_userIdTo, [userCache valueForKey:@"id_user"], iconType, contentType, [self getDateTime]];
+        
+    [_shareText.text stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    self.text = _shareText.text;
+    NSString *postString = [NSString stringWithFormat:@"id_contact=%ld&id_user=%@&content=%@&type=icon&text=%@", (long)_userIdTo, [userCache valueForKey:@"id_user"], iconType, _shareText.text];
     NSLog(@"POST STRING: %@", postString);
     [request setHTTPBody:[postString dataUsingEncoding:NSUTF8StringEncoding]];
     NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
@@ -317,6 +344,7 @@ NSMutableData *mutData;
     [self.progressViewsDictionary setObject:progressView forKey:[NSNumber numberWithInteger:self.userIdTo]];
     
     [(UINavigationController *)self.parentViewController popToRootViewControllerAnimated:YES];
+    }
     
     id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
     [tracker set:kGAIScreenName value:@"Share screen"];

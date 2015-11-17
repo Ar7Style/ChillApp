@@ -18,5 +18,6 @@
 @property (readonly) NSString *read;
 @property (readonly) NSString *type;
 @property (readonly) NSString *code;
+@property (readonly) NSString *text;
 
 @end
