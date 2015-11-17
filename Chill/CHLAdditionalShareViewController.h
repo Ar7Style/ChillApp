@@ -10,11 +10,15 @@
 #import <MessageUI/MessageUI.h>
 #import "LLACircularProgressView.h"
 
-@interface CHLAdditionalShareViewController : UIViewController <MFMailComposeViewControllerDelegate>
+@interface CHLAdditionalShareViewController : UIViewController <MFMailComposeViewControllerDelegate> {
+    bool isKeyboardShow;
+}
 
 @property (weak, nonatomic) UIImageView *cellStatusView;
 @property (readwrite) NSInteger userIdTo;
 @property(nonatomic, strong) NSMutableDictionary *progressViewsDictionary;
+@property (weak, nonatomic) IBOutlet UITextField *shareTextForAdditionalScreen;
+@property (weak, nonatomic) IBOutlet UILabel *counterForAdditionalScreen;
 
 - (IBAction)showEmail:(id)sender;
 

@@ -21,9 +21,6 @@
 #import "GAITracker.h"
 #import "LLACircularProgressView.h"
 #import "CHLPaperCollectionCell.h"
-#import "LLACircularProgressView.h"
-
-
 
 
 @interface CHLAdditionalShareViewController ()<UIActionSheetDelegate, MBProgressHUDDelegate> {
@@ -32,17 +29,43 @@
 }
 
 @property(nonatomic, strong) NSString *sendedContentType;
+@property(nonatomic, strong) NSString *textForAdditionalScreen;
+
 
 @end
 
 NSMutableData *mutData;
 
 @implementation CHLAdditionalShareViewController
+NSInteger defaultValueForAdditionalScreen = 10;
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self
+                                                                          action:@selector(dismissKeyboard)];
+    
+    [self.view addGestureRecognizer:tap];
 }
+
+-(void)dismissKeyboard {
+    [_shareTextForAdditionalScreen resignFirstResponder];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    
+            NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
+            [center addObserver:self selector:@selector(willShowKeyboard) name:UIKeyboardDidShowNotification object:nil];
+            [center addObserver:self selector:@selector(willHideKeyboard) name:UIKeyboardWillHideNotification object:nil];
+    
+    [super viewDidAppear:animated];
+    
+    id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+    [tracker set:kGAIScreenName value:@"Additional share screen"];
+    [tracker send:[[GAIDictionaryBuilder createAppView] build]];
+}
+
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
@@ -52,7 +75,7 @@ NSMutableData *mutData;
         message = [NSString stringWithFormat:@"📍 from %@",[userCache valueForKey:@"name"]];
     }
     else {
-        message = [NSString stringWithFormat:@"%@: %@",[userCache valueForKey:@"name"], self.sendedContentType];
+        message = [NSString stringWithFormat:@"%@: %@%@",[userCache valueForKey:@"name"], self.sendedContentType, [self.shareTextForAdditionalScreen.text isEqualToString:@""] ? [NSString stringWithFormat:@""] : [NSString stringWithFormat:@"#%@", self.shareTextForAdditionalScreen.text]];
     }
     NSDictionary *data = @{
                            @"alert": message,
@@ -87,6 +110,28 @@ NSMutableData *mutData;
 }
 
 - (void)shareIconOfType:(NSString *)iconType {
+    
+    if ([_counterForAdditionalScreen.text integerValue] < 0) {
+        UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Too long"
+                                    
+                                                                       message:@"You can only send 10 symbols"
+                                    
+                                                                preferredStyle:UIAlertControllerStyleAlert];
+        
+        
+        
+        UIAlertAction* okayAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
+                                     
+                                                           handler:^(UIAlertAction * action) {}];
+        
+        [alert addAction:okayAction];
+        
+        [self presentViewController:alert animated:YES completion:nil];
+        
+        _shareTextForAdditionalScreen.text = @"";
+        _counterForAdditionalScreen.text = [NSString stringWithFormat:@"%d", 10];
+    }
+    else {
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:@"http://api.iamchill.co/v2/messages/index/"]];
     [request setValue:[[NSUserDefaults standardUserDefaults] valueForKey:@"token"] forHTTPHeaderField:@"X-API-TOKEN"];
     [request setValue:@"76eb29d3ca26fe805545812850e6d75af933214a" forHTTPHeaderField:@"X-API-KEY"];
@@ -94,8 +139,8 @@ NSMutableData *mutData;
     [request setHTTPMethod:@"POST"];
     
     NSUserDefaults *userCache = [[NSUserDefaults standardUserDefaults] initWithSuiteName:@"group.co.getchill.chill"];
-    
-    NSString *postString = [NSString stringWithFormat:@"id_contact=%ld&id_user=%@&content=%@&type=icon&date=%@", (long)_userIdTo, [userCache valueForKey:@"id_user"], iconType, [self getDateTime]];
+    [_shareTextForAdditionalScreen.text stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    NSString *postString = [NSString stringWithFormat:@"id_contact=%ld&id_user=%@&content=%@&type=icon&text=%@", (long)_userIdTo, [userCache valueForKey:@"id_user"], iconType, _shareTextForAdditionalScreen.text];
     
     [request setHTTPBody:[postString dataUsingEncoding:NSUTF8StringEncoding]];
     NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
@@ -108,6 +153,7 @@ NSMutableData *mutData;
     
     [(UINavigationController *)self.parentViewController popToRootViewControllerAnimated:YES];
     NSLog(@"1 IT HAPPENES MUFUCK %ld", (long)self.userIdTo);
+    }
     id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
     [tracker set:kGAIScreenName value:@"Share screen"];
     [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"UX"
@@ -116,6 +162,8 @@ NSMutableData *mutData;
                                                            value:nil] build]];
     [tracker set:kGAIScreenName value:nil];
 }
+
+
 
 - (IBAction)plusButtonTapped:(id)sender {
     [self shareIconOfType:@"plus"];
@@ -175,6 +223,10 @@ NSMutableData *mutData;
     
     [self dismissViewControllerAnimated:YES completion:nil];
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (IBAction)textInAddScreenDidEditing:(id)sender {
+    _counterForAdditionalScreen.text = [NSString stringWithFormat:@"%ld", (long)(defaultValueForAdditionalScreen - _shareTextForAdditionalScreen.text.length)];
 }
 
 - (void)connection:(NSURLConnection *)connection
@@ -252,4 +304,49 @@ totalBytesExpectedToWrite:(NSInteger)totalBytesExpectedToWrite {
     // Close the Mail Interface
     [self dismissViewControllerAnimated:YES completion:NULL];
 }
+
+
+# pragma mark - textField delegate
+
+-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
+    //Iterate through your subviews, or some other custom array of views
+    for (UIView *view in self.view.subviews)
+        [view resignFirstResponder];
+}
+
+#pragma mark - Keyboard Notification
+
+- (void)willShowKeyboard{
+    if (!isKeyboardShow){
+        isKeyboardShow = true;
+        [UIView beginAnimations:nil context:NULL];
+        [UIView setAnimationDelegate:self];
+        [UIView setAnimationDuration:0.5];
+        [UIView setAnimationBeginsFromCurrentState:YES];
+        self.view.frame = CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y-216.0,
+                                     self.view.frame.size.width, self.view.frame.size.height);
+        [UIView commitAnimations];
+    }
+}
+- (void)backgroundTouchedHideKeyboard:(id)sender
+{
+    [self.shareTextForAdditionalScreen resignFirstResponder];
+    
+}
+
+- (void)willHideKeyboard{
+    isKeyboardShow = false;
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationDelegate:self];
+    [UIView setAnimationDuration:0.5];
+    [UIView setAnimationBeginsFromCurrentState:YES];
+    self.view.frame = CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y+216.0,
+                                 self.view.frame.size.width, self.view.frame.size.height);
+    [UIView commitAnimations];
+}
+-(void)didTapAnywhere: (UITapGestureRecognizer*) recognizer {
+    //[self.emailField resignFirstResponder];
+    [self.shareTextForAdditionalScreen resignFirstResponder];
+}
+
 @end

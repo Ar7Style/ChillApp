@@ -7,9 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <MessageUI/MessageUI.h>
 
 
-@interface CHLSettingsViewController : UIViewController <UITextFieldDelegate>
+@interface CHLSettingsViewController : UIViewController <UITextFieldDelegate, MFMailComposeViewControllerDelegate>
 
 {
     bool isKeyboardShow;
