@@ -16,6 +16,7 @@
 #import "GAIDictionaryBuilder.h"
 #import "GAITracker.h"
 #import <PebbleKit/PebbleKit.h>
+#import "UIViewController+KeyboardAnimation.h"
 
 
 @interface AUTHViewController (){
@@ -24,6 +25,7 @@
 }
 @property (strong, nonatomic) IBOutlet UIView *viewMain;
 - (IBAction)GO:(id)sender;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *constraintBottom;
 
 @end
 
@@ -40,15 +42,26 @@
 -  (void)viewDidAppear:(BOOL)animated {
    // self.navigationController.view.layer.cornerRadius=6;
     self.navigationController.view.clipsToBounds=YES;
-    NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
-    [center addObserver:self selector:@selector(willShowKeyboard) name:UIKeyboardDidShowNotification object:nil];
-    [center addObserver:self selector:@selector(willHideKeyboard) name:UIKeyboardWillHideNotification object:nil];
     NSUserDefaults *userCache = [[NSUserDefaults standardUserDefaults] initWithSuiteName:@"group.co.getchill.chill"];
     BOOL isApproved = [userCache boolForKey:@"isApproved"];
     BOOL isAuthComplete = [userCache boolForKey:@"isAuth"];
     if (isAuthComplete && !isApproved){
         [self performSegueWithIdentifier:@"AuthWaitingViewController" sender:self];
     }
+}
+
+-(void)viewWillAppear:(BOOL)animated {
+    
+    [self an_subscribeKeyboardWithAnimations:^(CGRect keyboardRect, NSTimeInterval duration, BOOL isShowing) {
+        
+        self.constraintBottom.constant = isShowing ?  CGRectGetHeight(keyboardRect) : 0;
+        [self.view layoutIfNeeded];
+    } completion:nil];
+    [self.view layoutIfNeeded];
+}
+
+-(void)viewWillDisappear:(BOOL)animated {
+    [self an_unsubscribeKeyboard];
 }
 - (void)willShowKeyboard{
     if (!isKeyboardShow){

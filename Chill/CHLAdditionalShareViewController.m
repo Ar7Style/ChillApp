@@ -21,6 +21,7 @@
 #import "GAITracker.h"
 #import "LLACircularProgressView.h"
 #import "CHLPaperCollectionCell.h"
+#import "UIViewController+KeyboardAnimation.h"
 
 
 @interface CHLAdditionalShareViewController ()<UIActionSheetDelegate, MBProgressHUDDelegate> {
@@ -30,6 +31,7 @@
 
 @property(nonatomic, strong) NSString *sendedContentType;
 @property(nonatomic, strong) NSString *textForAdditionalScreen;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *constraintBottom;
 
 
 @end
@@ -53,11 +55,25 @@ NSInteger defaultValueForAdditionalScreen = 10;
     [_shareTextForAdditionalScreen resignFirstResponder];
 }
 
-- (void)viewDidAppear:(BOOL)animated {
+
+    -(void) viewWillAappear:(BOOL)animated {
+        [self an_subscribeKeyboardWithAnimations:^(CGRect keyboardRect, NSTimeInterval duration, BOOL isShowing) {
+            
+            self.constraintBottom.constant = isShowing ?  CGRectGetHeight(keyboardRect) : 0;
+            [self.view layoutIfNeeded];
+        } completion:nil];
+        [self.view layoutIfNeeded];
+    }
     
-            NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
-            [center addObserver:self selector:@selector(willShowKeyboard) name:UIKeyboardDidShowNotification object:nil];
-            [center addObserver:self selector:@selector(willHideKeyboard) name:UIKeyboardWillHideNotification object:nil];
+    -(void)viewWillDisappear:(BOOL)animated {
+        [self an_unsubscribeKeyboard];
+    }
+
+- (void)viewDidAppear:(BOOL)animated {
+//    
+//            NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
+//            [center addObserver:self selector:@selector(willShowKeyboard) name:UIKeyboardDidShowNotification object:nil];
+//            [center addObserver:self selector:@selector(willHideKeyboard) name:UIKeyboardWillHideNotification object:nil];
     
     [super viewDidAppear:animated];
     
@@ -130,6 +146,8 @@ NSInteger defaultValueForAdditionalScreen = 10;
         
         _shareTextForAdditionalScreen.text = @"";
         _counterForAdditionalScreen.text = [NSString stringWithFormat:@"%d", 10];
+        
+        [self dismissKeyboard];
     }
     else {
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:@"http://api.iamchill.co/v2/messages/index/"]];

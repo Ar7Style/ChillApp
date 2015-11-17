@@ -110,6 +110,7 @@
 		060848DF1AC0BF1F003EBE90 /* Portrait 2.png in Resources */ = {isa = PBXBuildFile; fileRef = 060848DE1AC0BF1F003EBE90 /* Portrait 2.png */; };
 		060848E11AC0BF24003EBE90 /* Portrait 3 (0).png in Resources */ = {isa = PBXBuildFile; fileRef = 060848E01AC0BF24003EBE90 /* Portrait 3 (0).png */; };
 		060D0C081BF40028007A7146 /* close_card.png in Resources */ = {isa = PBXBuildFile; fileRef = 060D0C071BF40028007A7146 /* close_card.png */; };
+		060F06951BFB9E750030B11B /* UIViewController+KeyboardAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 060F06941BFB9E750030B11B /* UIViewController+KeyboardAnimation.m */; };
 		0614D4931B598A8600CFA8D5 /* oups.png in Resources */ = {isa = PBXBuildFile; fileRef = 0614D4921B598A8600CFA8D5 /* oups.png */; };
 		0614D4941B598A8600CFA8D5 /* oups.png in Resources */ = {isa = PBXBuildFile; fileRef = 0614D4921B598A8600CFA8D5 /* oups.png */; };
 		0614D4951B598A8600CFA8D5 /* oups.png in Resources */ = {isa = PBXBuildFile; fileRef = 0614D4921B598A8600CFA8D5 /* oups.png */; };
@@ -517,6 +518,8 @@
 		060848DE1AC0BF1F003EBE90 /* Portrait 2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Portrait 2.png"; sourceTree = "<group>"; };
 		060848E01AC0BF24003EBE90 /* Portrait 3 (0).png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Portrait 3 (0).png"; sourceTree = "<group>"; };
 		060D0C071BF40028007A7146 /* close_card.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = close_card.png; sourceTree = "<group>"; };
+		060F06931BFB9E750030B11B /* UIViewController+KeyboardAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+KeyboardAnimation.h"; sourceTree = "<group>"; };
+		060F06941BFB9E750030B11B /* UIViewController+KeyboardAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+KeyboardAnimation.m"; sourceTree = "<group>"; };
 		0614D4921B598A8600CFA8D5 /* oups.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = oups.png; sourceTree = "<group>"; };
 		061B5D541B57DD9200A3B9FB /* update_for_new_icons.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = update_for_new_icons.png; sourceTree = "<group>"; };
 		062614F71BF780DC001D704A /* chill_edu1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = chill_edu1.png; sourceTree = "<group>"; };
@@ -1277,6 +1280,8 @@
 		E6C7C1D6191A1B230071D83F /* Chill */ = {
 			isa = PBXGroup;
 			children = (
+				060F06931BFB9E750030B11B /* UIViewController+KeyboardAnimation.h */,
+				060F06941BFB9E750030B11B /* UIViewController+KeyboardAnimation.m */,
 				06499F0B1B03C7F20005E422 /* 1024.png */,
 				021098F31A7E83FF00701878 /* Chill_logo_green@2x.png */,
 				020FD6711A76DFEF00F079A5 /* Oval_43_Oval_44_Line@2x.png */,
@@ -1835,6 +1840,7 @@
 				0222F36C1A52FF6400830448 /* MessagesJSON.m in Sources */,
 				E6C7C207191A1B740071D83F /* CHLFriendsListViewController.m in Sources */,
 				E6C7C1E1191A1B230071D83F /* CHLAppDelegate.m in Sources */,
+				060F06951BFB9E750030B11B /* UIViewController+KeyboardAnimation.m in Sources */,
 				02B8F8621A62BEDC0068F3D5 /* MPTransition.m in Sources */,
 				E6C7C1DD191A1B230071D83F /* main.m in Sources */,
 				025B2B571A1A677600857E83 /* APPROVEDViewController.m in Sources */,

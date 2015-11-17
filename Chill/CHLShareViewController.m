@@ -21,12 +21,14 @@
 #import "GAITracker.h"
 #import "LLACircularProgressView.h"
 #import "CHLPaperCollectionCell.h"
+#import "UIViewController+KeyboardAnimation.h"
 
 
 @interface CHLShareViewController () <UIActionSheetDelegate, PKImagePickerViewControllerDelegate, CLLocationManagerDelegate, MBProgressHUDDelegate> {
     MBProgressHUD *HUD;
 }
 
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *constraintBottom;
 @property(nonatomic, strong) NSString *sendedContentType;
 @property(nonatomic, strong) NSString *text;
 
@@ -51,43 +53,75 @@ NSInteger defaultValue = 10;
     self.title = _nameUser;
     
     [super viewDidLoad];
-    
+    if([[UIDevice currentDevice]userInterfaceIdiom]==UIUserInterfaceIdiomPhone)
+            {
+                if ([[UIScreen mainScreen] bounds].size.height < 568) // < iphone 5
+                {
+                    self.constraintBottom.constant = 160;
+                }
+            }
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self
                                                                           action:@selector(dismissKeyboard)];
     
     [self.view addGestureRecognizer:tap];
-
     
+    
+       
 }
 
 -(void)dismissKeyboard {
     [_shareText resignFirstResponder];
 }
 
-- (void)viewDidAppear:(BOOL)animated {
+//- (void)viewDidAppear:(BOOL)animated {
+//    
+//    
+//    if (CLLocationManager.authorizationStatus == kCLAuthorizationStatusNotDetermined) {
+//        [_locationManager requestWhenInUseAuthorization];
+//    }
+
+//    if([[UIDevice currentDevice]userInterfaceIdiom]==UIUserInterfaceIdiomPhone)
+//    {
+//        if ([[UIScreen mainScreen] bounds].size.height <= 568) // <= iphone 5
+//        {
+//            NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
+//            [center addObserver:self selector:@selector(willShowKeyboard) name:UIKeyboardDidShowNotification object:nil];
+//            [center addObserver:self selector:@selector(willHideKeyboard) name:UIKeyboardWillHideNotification object:nil];
+//        }
+//        
+//    }
     
-    
-    if (CLLocationManager.authorizationStatus == kCLAuthorizationStatusNotDetermined) {
-        [_locationManager requestWhenInUseAuthorization];
-    }
-    
-    if([[UIDevice currentDevice]userInterfaceIdiom]==UIUserInterfaceIdiomPhone)
-    {
-        if ([[UIScreen mainScreen] bounds].size.height <= 568) // <= iphone 5
+//    [super viewDidAppear:animated];
+//    
+//    id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+//    [tracker set:kGAIScreenName value:@"Share screen"];
+//    [tracker send:[[GAIDictionaryBuilder createAppView] build]];
+//}
+
+-(void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self an_subscribeKeyboardWithAnimations:^(CGRect keyboardRect, NSTimeInterval duration, BOOL isShowing) {
+        if([[UIDevice currentDevice]userInterfaceIdiom]==UIUserInterfaceIdiomPhone)
         {
-            NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
-            [center addObserver:self selector:@selector(willShowKeyboard) name:UIKeyboardDidShowNotification object:nil];
-            [center addObserver:self selector:@selector(willHideKeyboard) name:UIKeyboardWillHideNotification object:nil];
+            if ([[UIScreen mainScreen] bounds].size.height < 568) // < iphone 5
+            {
+                self.constraintBottom.constant = isShowing ?  CGRectGetHeight(keyboardRect) : 160;
+            }
+            else
+            {
+                self.constraintBottom.constant = isShowing ?  CGRectGetHeight(keyboardRect) : 207;
+            }
         }
+
         
-    }
-    
-    [super viewDidAppear:animated];
-    
-    id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
-    [tracker set:kGAIScreenName value:@"Share screen"];
-    [tracker send:[[GAIDictionaryBuilder createAppView] build]];
+        [self.view layoutIfNeeded];
+    } completion:nil];
+    [self.view layoutIfNeeded];
 }
+-(void)viewWillDisappear:(BOOL)animated {
+    [self an_unsubscribeKeyboard];
+}
+
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
     //Iterate through your subviews, or some other custom array of views
