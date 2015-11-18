@@ -56,23 +56,50 @@ NSInteger defaultValueForAdditionalScreen = 10;
 }
 
 
-//-(void)viewWillAppear:(BOOL)animated {
-//        [self an_subscribeKeyboardWithAnimations:^(CGRect keyboardRect, NSTimeInterval duration, BOOL isShowing) {
-//                        self.constraintBottomForAdditionalScreen.constant = isShowing ?  CGRectGetHeight(keyboardRect) : 83;
-//            [self.view layoutIfNeeded];
-//        } completion:nil];
-//        [self.view layoutIfNeeded];
-//    }
-//    
-//-(void)viewWillDisappear:(BOOL)animated {
-//        [self an_unsubscribeKeyboard];
-//}
+-(void)viewWillAppear:(BOOL)animated {
+    
+        [self an_subscribeKeyboardWithAnimations:^(CGRect keyboardRect, NSTimeInterval duration, BOOL isShowing) {
+            if([[UIDevice currentDevice]userInterfaceIdiom]==UIUserInterfaceIdiomPhone)
+            {
+                if ([[UIScreen mainScreen] bounds].size.height < 568) // = iphone 4
+                {
+                    self.constraintBottomForAdditionalScreen.constant = isShowing ?  CGRectGetHeight(keyboardRect)+85 : 83;
+                    NSLog(@"Iphone 4");
+                }
+                else if ([[UIScreen mainScreen] bounds].size.height == 568) // == iphone 5
+                {
+                     self.constraintBottomForAdditionalScreen.constant = isShowing ?  CGRectGetHeight(keyboardRect)+70 : 83;
+                    NSLog(@"Iphone 5");
+                }
+                
+                
+                else if ([UIScreen mainScreen].scale >= 2.9) // >= iphone 6plus
+                {
+                     self.constraintBottomForAdditionalScreen.constant = isShowing ?  CGRectGetHeight(keyboardRect)-20 : 83;
+                    NSLog(@"Iphone 6 plus");
+                }
+                
+                else { // iphone 6
+                    self.constraintBottomForAdditionalScreen.constant = isShowing ?  CGRectGetHeight(keyboardRect)-20 : 83;
+                    NSLog(@"Iphone 6");
+                }
+            }
+
+            
+            [self.view layoutIfNeeded];
+        } completion:nil];
+        [self.view layoutIfNeeded];
+    }
+    
+-(void)viewWillDisappear:(BOOL)animated {
+        [self an_unsubscribeKeyboard];
+}
 
 - (void)viewDidAppear:(BOOL)animated {
 //    
-            NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
-            [center addObserver:self selector:@selector(willShowKeyboard) name:UIKeyboardDidShowNotification object:nil];
-            [center addObserver:self selector:@selector(willHideKeyboard) name:UIKeyboardWillHideNotification object:nil];
+//            NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
+//            [center addObserver:self selector:@selector(willShowKeyboard) name:UIKeyboardDidShowNotification object:nil];
+//            [center addObserver:self selector:@selector(willHideKeyboard) name:UIKeyboardWillHideNotification object:nil];
     
     [super viewDidAppear:animated];
     

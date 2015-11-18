@@ -50,10 +50,12 @@
     }
 }
 
+
 -(void)viewWillAppear:(BOOL)animated {
-    
+    __weak __typeof(self) weakSelf = self;
+
     [self an_subscribeKeyboardWithAnimations:^(CGRect keyboardRect, NSTimeInterval duration, BOOL isShowing) {
-        
+        __typeof__(self) strongSelf = weakSelf;
         self.constraintBottom.constant = isShowing ?  CGRectGetHeight(keyboardRect) : 0;
         [self.view layoutIfNeeded];
     } completion:nil];

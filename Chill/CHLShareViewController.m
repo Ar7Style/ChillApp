@@ -51,7 +51,7 @@ NSInteger defaultValue = 10;
     
     _locationManager = [[CLLocationManager alloc] init];
     self.title = _nameUser;
-    
+    _counter.textColor = [UIColor chillMintColor];
     [super viewDidLoad];
     if([[UIDevice currentDevice]userInterfaceIdiom]==UIUserInterfaceIdiomPhone)
             {
@@ -168,6 +168,12 @@ NSInteger defaultValue = 10;
 
 - (IBAction)textDidEditing:(id)sender {
     _counter.text = [NSString stringWithFormat:@"%ld", (long)(defaultValue - _shareText.text.length)];
+    if ((long)(defaultValue - _shareText.text.length) <= 0) {
+        _counter.textColor = [UIColor redColor];
+    }
+    else {
+        _counter.textColor = [UIColor chillMintColor];
+    }
 }
 
 #pragma mark - Private methods
@@ -353,7 +359,9 @@ NSInteger defaultValue = 10;
         [self presentViewController:alert animated:YES completion:nil];
         
         _shareText.text = @"";
+        _counter.textColor = [UIColor chillMintColor];
         _counter.text = [NSString stringWithFormat:@"%d", 10];
+        
     }
     else {
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:@"http://api.iamchill.co/v2/messages/index/"]];

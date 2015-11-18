@@ -7,14 +7,14 @@
 	<key>IDESourceControlProjectIdentifier</key>
 	<string>9CF0FD43-C64B-43F6-BCC6-1C1B4C2336AD</string>
 	<key>IDESourceControlProjectName</key>
-	<string>project</string>
+	<string>Chill</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
 		<key>5FA1959F9D22C8A55998E517F1D3E1A41D57C3D7</key>
 		<string>https://github.com/Ar7Style/ChillApp.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>Chill.xcodeproj/project.xcworkspace</string>
+	<string>Chill.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>5FA1959F9D22C8A55998E517F1D3E1A41D57C3D7</key>
