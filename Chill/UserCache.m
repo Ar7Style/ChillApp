@@ -36,6 +36,9 @@
 +(BOOL)isAprooved {
     return [self NSUserDefaultsBool:@"isApproved"];
 }
++(BOOL)showGuide {
+    return [self NSUserDefaultsBool:@"guide"];
+}
 +(NSString *)showNews {
     if ([self NSUserDefaultsBool:@"news"]) {
         return @"true";
@@ -52,6 +55,11 @@
 +(void)changeAprooved:(BOOL)auth {
     NSUserDefaults *userCache = [[NSUserDefaults standardUserDefaults] initWithSuiteName:@"group.co.getchill.chill"];
     [userCache setBool:auth forKey:@"isApproved"];
+    [userCache synchronize];
+}
++(void)changeGuide:(BOOL)guide {
+    NSUserDefaults *userCache = [[NSUserDefaults standardUserDefaults] initWithSuiteName:@"group.co.getchill.chill"];
+    [userCache setBool:guide forKey:@"guide"];
     [userCache synchronize];
 }
 +(void)setValue:(NSString *)value forKey:(NSString *)key {

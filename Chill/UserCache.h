@@ -16,8 +16,10 @@
 +(NSString *) userPicture;
 +(NSString *) userType;
 +(BOOL) isAuth;
++(BOOL) showGuide;
 +(BOOL) isAprooved;
 +(void) changeAuth:(BOOL)auth;
 +(void) changeAprooved:(BOOL)auth;
++(void) changeGuide:(BOOL)guide;
 +(void) setValue:(NSString*)value forKey:(NSString*)key;
 @end

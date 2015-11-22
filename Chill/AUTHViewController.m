@@ -18,8 +18,9 @@
 #import "UIViewController+KeyboardAnimation.h"
 #import <AFNetworking/AFNetworking.h>
 #import "UserCache.h"
+#import <WatchConnectivity/WatchConnectivity.h>
 
-@interface AUTHViewController ()
+@interface AUTHViewController () <WCSessionDelegate>
 @property (strong, nonatomic) IBOutlet UIView *viewMain;
 - (IBAction)GO:(id)sender;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *constraintBottom;
@@ -168,7 +169,7 @@
                 [currentInstallation saveInBackground];
                 
                 [self setupGAUserID: [NSUserDefaults userID]];
-                
+
                 AFHTTPRequestOperationManager *manager2 = [AFHTTPRequestOperationManager manager];
                 manager2.responseSerializer = [AFJSONResponseSerializer serializer];
                 manager2.requestSerializer = [AFJSONRequestSerializer serializer];
@@ -190,6 +191,12 @@
                         [NSUserDefaults setValue:[[[responseObject2 valueForKey:@"response"] valueForKey:@"token"] componentsJoinedByString:@""] forKey:@"token1"];
                         
                             [NSUserDefaults changeAprooved:true];
+//                        NSDictionary *applicationDict = @{@"userID":[NSUserDefaults userID]};// Create a dict of application data
+//                        [[WCSession defaultSession] transferUserInfo:applicationDict];
+                        WCSession *session = [WCSession defaultSession];
+                        NSError *error;
+                        
+                        [session updateApplicationContext:@{@"userID": [NSUserDefaults userID], @"token":[NSUserDefaults userToken], @"isAuth":@"true", @"isApproved": @"true"} error:&error];
                             [self performSegueWithIdentifier:@"toTutorialViewController" sender:self];
                     }
 

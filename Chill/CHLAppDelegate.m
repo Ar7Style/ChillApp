@@ -22,7 +22,7 @@
 #import <Crashlytics/Crashlytics.h>
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
 #import <FBSDKLoginKit/FBSDKLoginKit.h>
-
+#import "UserCache.h"
 
 static NSString *const CHLIsOpenedBeforeKey = @"CHLIsOpenedBeforeKey";
 
@@ -42,7 +42,11 @@ static NSString *const CHLIsOpenedBeforeKey = @"CHLIsOpenedBeforeKey";
     [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
     [GMSServices provideAPIKey:@"AIzaSyB0lfyrXe3bodtQ6cAUtCeXR5twEJlolZQ"];
     [Parse setApplicationId:@"vlSSbINvhblgGlipWpUWR6iJum3Q2xd7GthrDVUI" clientKey:@"ZR93BdaHDWTzjIvfDur3X02D3tNs0gATKwY1srh8"];
-    
+    if ([WCSession isSupported]) {
+        WCSession* session = [WCSession defaultSession];
+        session.delegate = self;
+        [session activateSession];
+    }
     
     if ([application respondsToSelector:@selector(isRegisteredForRemoteNotifications)])
     {
@@ -86,6 +90,14 @@ static NSString *const CHLIsOpenedBeforeKey = @"CHLIsOpenedBeforeKey";
 
     return [[FBSDKApplicationDelegate sharedInstance] application:application
                                     didFinishLaunchingWithOptions:launchOptions];
+}
+
+- (void) session:(nonnull WCSession *)session didReceiveApplicationContext:(nonnull NSDictionary<NSString *,id> *)applicationContext {
+    if ([[applicationContext objectForKey:@"type"] isEqualToString:@"getAuth"]) {
+        WCSession *session = [WCSession defaultSession];
+        NSError *error;
+        [session updateApplicationContext:@{@"userID": [NSUserDefaults userID], @"token":[NSUserDefaults userToken], @"isAuth":@"true", @"isApproved": @"true"} error:&error];
+    }
 }
 
 
