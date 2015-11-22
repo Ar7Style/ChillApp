@@ -312,6 +312,8 @@
 		06F3318D1B721A710064BD1C /* CHLInviteFromAddressBookViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 06F3318C1B721A710064BD1C /* CHLInviteFromAddressBookViewController.m */; };
 		06FEA8681AFFA1CC00BC0934 /* Chillwatch-2.png in Resources */ = {isa = PBXBuildFile; fileRef = 06FEA8671AFFA1CC00BC0934 /* Chillwatch-2.png */; };
 		06FEA8691AFFA1CC00BC0934 /* Chillwatch-2.png in Resources */ = {isa = PBXBuildFile; fileRef = 06FEA8671AFFA1CC00BC0934 /* Chillwatch-2.png */; };
+		41FE050740B03C88D3A752AC /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9D3EDFC36C2AB2A0DD4F4A96 /* libPods.a */; };
+		53EA0C231C01328300E161C6 /* UserCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 53EA0C221C01328300E161C6 /* UserCache.m */; settings = {ASSET_TAGS = (); }; };
 		AD39F35B1B6052AF003936C4 /* CHLFriendsSourcesVC.m in Sources */ = {isa = PBXBuildFile; fileRef = AD39F35A1B6052AF003936C4 /* CHLFriendsSourcesVC.m */; };
 		AD39F35E1B605C74003936C4 /* CHLTwitterVC.m in Sources */ = {isa = PBXBuildFile; fileRef = AD39F35D1B605C74003936C4 /* CHLTwitterVC.m */; };
 		AD6325691ABB73EF00DD8F0D /* CHLPaperCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AD6325671ABB73EF00DD8F0D /* CHLPaperCollectionCell.m */; };
@@ -644,6 +646,9 @@
 		06F3318B1B721A710064BD1C /* CHLInviteFromAddressBookViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHLInviteFromAddressBookViewController.h; sourceTree = "<group>"; };
 		06F3318C1B721A710064BD1C /* CHLInviteFromAddressBookViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHLInviteFromAddressBookViewController.m; sourceTree = "<group>"; };
 		06FEA8671AFFA1CC00BC0934 /* Chillwatch-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Chillwatch-2.png"; path = "Images.xcassets/Chillwatch-2.png"; sourceTree = "<group>"; };
+		53EA0C211C01328300E161C6 /* UserCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserCache.h; sourceTree = "<group>"; };
+		53EA0C221C01328300E161C6 /* UserCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserCache.m; sourceTree = "<group>"; };
+		9D3EDFC36C2AB2A0DD4F4A96 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		AD39F3591B6052AF003936C4 /* CHLFriendsSourcesVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHLFriendsSourcesVC.h; sourceTree = "<group>"; };
 		AD39F35A1B6052AF003936C4 /* CHLFriendsSourcesVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHLFriendsSourcesVC.m; sourceTree = "<group>"; };
 		AD39F35C1B605C74003936C4 /* CHLTwitterVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHLTwitterVC.h; sourceTree = "<group>"; };
@@ -675,6 +680,7 @@
 		ADE222D01A94FE5A007777A4 /* GAIEcommerceFields.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAIEcommerceFields.h; sourceTree = "<group>"; };
 		ADE222D11A94FE5A007777A4 /* GAIDictionaryBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAIDictionaryBuilder.h; sourceTree = "<group>"; };
 		ADE222D21A94FE5A007777A4 /* GAI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAI.h; sourceTree = "<group>"; };
+		D072A7F170CFB919C2955BAA /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		D0EC27E31B17285400F857FD /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		D0EC27E71B17287300F857FD /* libz.1.1.3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.1.3.dylib; path = usr/lib/libz.1.1.3.dylib; sourceTree = SDKROOT; };
 		E60427A8196F191C000F8F02 /* CHLAddressBookViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHLAddressBookViewController.h; sourceTree = "<group>"; };
@@ -798,6 +804,7 @@
 				E6C7C1D5191A1B220071D83F /* UIKit.framework in Frameworks */,
 				E6C7C1D1191A1B220071D83F /* Foundation.framework in Frameworks */,
 				06B22A561B67C8200056455D /* Fabric.framework in Frameworks */,
+				41FE050740B03C88D3A752AC /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1122,6 +1129,14 @@
 			name = "Google Analytics";
 			sourceTree = "<group>";
 		};
+		E2B9041887BCC105519745FF /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				D072A7F170CFB919C2955BAA /* Pods.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		E604279E196F18F3000F8F02 /* AddressBook */ = {
 			isa = PBXGroup;
 			children = (
@@ -1230,6 +1245,7 @@
 				028A85761AFAA8F60034069E /* Chill WatchKit App */,
 				E6C7C1CF191A1B220071D83F /* Frameworks */,
 				E6C7C1CE191A1B220071D83F /* Products */,
+				E2B9041887BCC105519745FF /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -1282,6 +1298,7 @@
 				E6C7C1D4191A1B220071D83F /* UIKit.framework */,
 				021111CD1A434D7F001690DA /* NotificationCenter.framework */,
 				E6C7C1EF191A1B230071D83F /* XCTest.framework */,
+				9D3EDFC36C2AB2A0DD4F4A96 /* libPods.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -1378,6 +1395,8 @@
 				020B355A1A1E400500DC2F23 /* JSON_LWTS */,
 				E6D972C919A3ECF300E7E4A3 /* PKImagePickerViewController */,
 				E6DB66B41956F49A00D30E85 /* MCSwipeTableViewCell */,
+				53EA0C211C01328300E161C6 /* UserCache.h */,
+				53EA0C221C01328300E161C6 /* UserCache.m */,
 			);
 			name = External;
 			sourceTree = "<group>";
@@ -1453,11 +1472,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = E6C7C1FF191A1B230071D83F /* Build configuration list for PBXNativeTarget "Chill" */;
 			buildPhases = (
+				5A6B0A57C9EC7A247069511F /* Check Pods Manifest.lock */,
 				E6C7C1C9191A1B220071D83F /* Sources */,
 				E6C7C1CA191A1B220071D83F /* Frameworks */,
 				E6C7C1CB191A1B220071D83F /* Resources */,
 				021111DD1A434D7F001690DA /* Embed App Extensions */,
 				AD39F35F1B606CA8003936C4 /* Run Script */,
+				16DEE299753D0F15AA3A60DB /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1804,6 +1825,36 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		16DEE299753D0F15AA3A60DB /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		5A6B0A57C9EC7A247069511F /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
 		AD39F35F1B606CA8003936C4 /* Run Script */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1857,6 +1908,7 @@
 				E6C7C1DD191A1B230071D83F /* main.m in Sources */,
 				025B2B571A1A677600857E83 /* APPROVEDViewController.m in Sources */,
 				02CF5EB71A5EE49100C71C8D /* PromoViewController.m in Sources */,
+				53EA0C231C01328300E161C6 /* UserCache.m in Sources */,
 				06A5BF3F1AAE0AFC00D34CFF /* CHLConnectionRefusedController.m in Sources */,
 				E6CF48B4193B78DC00CD48B6 /* CHLShareViewController.m in Sources */,
 				AD6325691ABB73EF00DD8F0D /* CHLPaperCollectionCell.m in Sources */,
@@ -2004,6 +2056,7 @@
 		};
 		E6C7C201191A1B230071D83F /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D072A7F170CFB919C2955BAA /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-2";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -2034,7 +2087,11 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
-				OTHER_LDFLAGS = "-ObjC";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"-l\"AFNetworking\"",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Chill/Chill-Bridging-Header.h";
