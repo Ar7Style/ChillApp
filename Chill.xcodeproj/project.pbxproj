@@ -18,10 +18,6 @@
 		021098F41A7E83FF00701878 /* Chill_logo_green@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 021098F31A7E83FF00701878 /* Chill_logo_green@2x.png */; };
 		021F00CC1A3CD7D7000A83D2 /* CHLSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 021F00CB1A3CD7D7000A83D2 /* CHLSearchViewController.m */; };
 		0222F36C1A52FF6400830448 /* MessagesJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 0222F36B1A52FF6400830448 /* MessagesJSON.m */; };
-		022304A71C0367C8008D0D4F /* JMImageCache.h in Sources */ = {isa = PBXBuildFile; fileRef = 020B35681A1E402C00DC2F23 /* JMImageCache.h */; };
-		022304A81C0367C8008D0D4F /* JMImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 020B35691A1E402C00DC2F23 /* JMImageCache.m */; };
-		022304A91C0367C8008D0D4F /* UIImageView+JMImageCache.h in Sources */ = {isa = PBXBuildFile; fileRef = 020B356E1A1E402C00DC2F23 /* UIImageView+JMImageCache.h */; };
-		022304AA1C0367C8008D0D4F /* UIImageView+JMImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 020B356F1A1E402C00DC2F23 /* UIImageView+JMImageCache.m */; };
 		023B42741C0230B200E124A8 /* libPods-AFNetworking.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 023B42731C0230B200E124A8 /* libPods-AFNetworking.a */; };
 		023B42781C0230E900E124A8 /* libPods-Chill WatchOS 2 Extension.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 023B42771C0230E900E124A8 /* libPods-Chill WatchOS 2 Extension.a */; };
 		023B427A1C0230F300E124A8 /* libPods-Chill WatchOS 2 Extension-AFNetworking.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 023B42791C0230F300E124A8 /* libPods-Chill WatchOS 2 Extension-AFNetworking.a */; };
@@ -181,6 +177,7 @@
 		06EAB9591AA7AE6300149DF2 /* Chill_logo_hand.png in Resources */ = {isa = PBXBuildFile; fileRef = 06EAB9551AA7AE6300149DF2 /* Chill_logo_hand.png */; };
 		06EAB95C1AA7AE6300149DF2 /* Portrait 4.png in Resources */ = {isa = PBXBuildFile; fileRef = 06EAB9581AA7AE6300149DF2 /* Portrait 4.png */; };
 		06F3318D1B721A710064BD1C /* CHLInviteFromAddressBookViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 06F3318C1B721A710064BD1C /* CHLInviteFromAddressBookViewController.m */; };
+		53C8670A1C03796F00FD9014 /* IconsIC.m in Sources */ = {isa = PBXBuildFile; fileRef = 53C867091C03796F00FD9014 /* IconsIC.m */; settings = {ASSET_TAGS = (); }; };
 		53EA0C231C01328300E161C6 /* UserCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 53EA0C221C01328300E161C6 /* UserCache.m */; };
 		AD39F35B1B6052AF003936C4 /* CHLFriendsSourcesVC.m in Sources */ = {isa = PBXBuildFile; fileRef = AD39F35A1B6052AF003936C4 /* CHLFriendsSourcesVC.m */; };
 		AD39F35E1B605C74003936C4 /* CHLTwitterVC.m in Sources */ = {isa = PBXBuildFile; fileRef = AD39F35D1B605C74003936C4 /* CHLTwitterVC.m */; };
@@ -499,6 +496,8 @@
 		06EAB9581AA7AE6300149DF2 /* Portrait 4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Portrait 4.png"; sourceTree = SOURCE_ROOT; };
 		06F3318B1B721A710064BD1C /* CHLInviteFromAddressBookViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHLInviteFromAddressBookViewController.h; sourceTree = "<group>"; };
 		06F3318C1B721A710064BD1C /* CHLInviteFromAddressBookViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHLInviteFromAddressBookViewController.m; sourceTree = "<group>"; };
+		53C867081C03796F00FD9014 /* IconsIC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IconsIC.h; sourceTree = "<group>"; };
+		53C867091C03796F00FD9014 /* IconsIC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IconsIC.m; sourceTree = "<group>"; };
 		53EA0C211C01328300E161C6 /* UserCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserCache.h; sourceTree = "<group>"; };
 		53EA0C221C01328300E161C6 /* UserCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserCache.m; sourceTree = "<group>"; };
 		8ECBB04CB52865DAA92D4949 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -719,6 +718,8 @@
 				029F1BC41C020EB300368AD4 /* ContactRow.m */,
 				029F1BC01C02073500368AD4 /* ContactsIC.h */,
 				029F1BC11C02073500368AD4 /* ContactsIC.m */,
+				53C867081C03796F00FD9014 /* IconsIC.h */,
+				53C867091C03796F00FD9014 /* IconsIC.m */,
 				029F1BAC1C01E56300368AD4 /* ExtensionDelegate.h */,
 				029F1BAD1C01E56300368AD4 /* ExtensionDelegate.m */,
 				029F1BAF1C01E56300368AD4 /* NotificationController.h */,
@@ -1608,10 +1609,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				022304A71C0367C8008D0D4F /* JMImageCache.h in Sources */,
-				022304A81C0367C8008D0D4F /* JMImageCache.m in Sources */,
-				022304A91C0367C8008D0D4F /* UIImageView+JMImageCache.h in Sources */,
-				022304AA1C0367C8008D0D4F /* UIImageView+JMImageCache.m in Sources */,
+				53C8670A1C03796F00FD9014 /* IconsIC.m in Sources */,
 				029F1BBE1C01FFE200368AD4 /* UserCache.h in Sources */,
 				029F1BBF1C01FFE200368AD4 /* UserCache.m in Sources */,
 				029F1BC21C02073500368AD4 /* ContactsIC.m in Sources */,

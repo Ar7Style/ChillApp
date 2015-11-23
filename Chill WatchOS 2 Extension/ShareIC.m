@@ -8,11 +8,11 @@
 
 #import "ShareIC.h"
 #import "UserCache.h"
-#import "JMImageCache.h"
 #import <AFNetworking/AFNetworking.h>
 
 @interface ShareIC () {
     NSArray *json;
+    NSInteger *itemsPicker[60];
 }
 
 @end
@@ -25,12 +25,26 @@
         [NSUserDefaults changeGuide:true];
         [self presentControllerWithName:@"HelpIC" context:nil];
     }
+    self.title = @"Back";
+    NSLog(@"CON %@", context);
     // Configure interface objects here.
 }
 
 - (void)willActivate {
     // This method is called when watch view controller is about to be visible to user
     [super willActivate];
+    [self loadData];
+    _pickerItems = [[NSMutableArray alloc] init];
+    WKPickerItem *item = [[WKPickerItem alloc] init];;
+    [item setTitle:[NSString stringWithFormat:@" "]];
+    [_pickerItems insertObject:item atIndex:0];
+    for (int i = 0; i < 60; i++) {
+        WKPickerItem *item = [[WKPickerItem alloc] init];;
+        [item setTitle:[NSString stringWithFormat:@"%i",i+1]];
+        [_pickerItems insertObject:item atIndex:i+1];
+    }
+    [_countValue setItems:self.pickerItems];
+
 }
 
 - (void) loadData {
@@ -39,7 +53,7 @@
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
     [manager.requestSerializer setValue:[NSUserDefaults userToken] forHTTPHeaderField:@"X-API-TOKEN"];
     [manager.requestSerializer setValue:@"76eb29d3ca26fe805545812850e6d75af933214a" forHTTPHeaderField:@"X-API-KEY"];
-    [manager GET:[NSString stringWithFormat:@"http://api.iamchill.co/v2/contacts/index/id_user/%@", [NSUserDefaults userID]] parameters:nil success:^(NSURLSessionTask *task, id responseObject) {
+    [manager GET:[NSString stringWithFormat:@"http://api.iamchill.co/v2/icons/index/id_user/%@", [NSUserDefaults userID]] parameters:nil success:^(NSURLSessionTask *task, id responseObject) {
         if ([[responseObject objectForKey:@"status"] isEqualToString:@"success"]) {
             json = [responseObject objectForKey:@"response"];
             [self setIcons];
@@ -51,7 +65,7 @@
 }
 
 - (void) setIcons {
-    
+    [_icon1 setBackgroundImageData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[json[0] valueForKey:@"size80"]]]];
     
     
 }

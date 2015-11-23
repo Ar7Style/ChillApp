@@ -53,7 +53,7 @@
 }
 
 - (void)table:(WKInterfaceTable *)table didSelectRowAtIndex:(NSInteger)rowIndex {
-    [self pushControllerWithName:@"ShareIC" context:nil];
+    [self presentControllerWithNames:@[@"ShareIC", @"IconsIC"] contexts:@[@"12"]];
 }
 
 - (void)configureTable {

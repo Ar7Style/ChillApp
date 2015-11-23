@@ -17,5 +17,7 @@
 @property (unsafe_unretained, nonatomic) IBOutlet WKInterfaceButton *icon4;
 @property (unsafe_unretained, nonatomic) IBOutlet WKInterfaceButton *icon5;
 @property (unsafe_unretained, nonatomic) IBOutlet WKInterfaceButton *icon6;
+@property (unsafe_unretained, nonatomic) IBOutlet WKInterfacePicker *countValue;
+@property (strong, nonatomic) NSMutableArray <WKPickerItem *> *pickerItems;
 
 @end
