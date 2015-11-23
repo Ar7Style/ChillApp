@@ -18,6 +18,10 @@
 		021098F41A7E83FF00701878 /* Chill_logo_green@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 021098F31A7E83FF00701878 /* Chill_logo_green@2x.png */; };
 		021F00CC1A3CD7D7000A83D2 /* CHLSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 021F00CB1A3CD7D7000A83D2 /* CHLSearchViewController.m */; };
 		0222F36C1A52FF6400830448 /* MessagesJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 0222F36B1A52FF6400830448 /* MessagesJSON.m */; };
+		022304A71C0367C8008D0D4F /* JMImageCache.h in Sources */ = {isa = PBXBuildFile; fileRef = 020B35681A1E402C00DC2F23 /* JMImageCache.h */; };
+		022304A81C0367C8008D0D4F /* JMImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 020B35691A1E402C00DC2F23 /* JMImageCache.m */; };
+		022304A91C0367C8008D0D4F /* UIImageView+JMImageCache.h in Sources */ = {isa = PBXBuildFile; fileRef = 020B356E1A1E402C00DC2F23 /* UIImageView+JMImageCache.h */; };
+		022304AA1C0367C8008D0D4F /* UIImageView+JMImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 020B356F1A1E402C00DC2F23 /* UIImageView+JMImageCache.m */; };
 		023B42741C0230B200E124A8 /* libPods-AFNetworking.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 023B42731C0230B200E124A8 /* libPods-AFNetworking.a */; };
 		023B42781C0230E900E124A8 /* libPods-Chill WatchOS 2 Extension.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 023B42771C0230E900E124A8 /* libPods-Chill WatchOS 2 Extension.a */; };
 		023B427A1C0230F300E124A8 /* libPods-Chill WatchOS 2 Extension-AFNetworking.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 023B42791C0230F300E124A8 /* libPods-Chill WatchOS 2 Extension-AFNetworking.a */; };
@@ -1604,6 +1608,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				022304A71C0367C8008D0D4F /* JMImageCache.h in Sources */,
+				022304A81C0367C8008D0D4F /* JMImageCache.m in Sources */,
+				022304A91C0367C8008D0D4F /* UIImageView+JMImageCache.h in Sources */,
+				022304AA1C0367C8008D0D4F /* UIImageView+JMImageCache.m in Sources */,
 				029F1BBE1C01FFE200368AD4 /* UserCache.h in Sources */,
 				029F1BBF1C01FFE200368AD4 /* UserCache.m in Sources */,
 				029F1BC21C02073500368AD4 /* ContactsIC.m in Sources */,

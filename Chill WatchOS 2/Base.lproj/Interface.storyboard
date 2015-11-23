@@ -61,9 +61,61 @@
         <!--ShareIC-->
         <scene sceneID="eIO-Tt-eL9">
             <objects>
-                <controller identifier="ShareIC" id="ljR-vO-91f"/>
+                <controller identifier="ShareIC" id="ljR-vO-91f" customClass="ShareIC">
+                    <items>
+                        <group width="1" alignment="left" id="oVw-y2-ldq">
+                            <items>
+                                <button width="40" height="40" alignment="left" title="Button" id="QWA-2i-V5b">
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </button>
+                                <button width="40" height="40" alignment="left" title="Button" id="jCY-8d-9me">
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </button>
+                                <button width="40" height="40" alignment="left" title="Button" id="RMD-MZ-XZw">
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </button>
+                            </items>
+                        </group>
+                        <group width="1" alignment="left" id="Y7Q-2V-xSi">
+                            <items>
+                                <button width="40" height="40" alignment="left" title="Button" id="GoU-Jy-i4w">
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </button>
+                                <button width="40" height="40" alignment="left" title="Button" id="0lk-KV-YSY">
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </button>
+                                <button width="40" height="40" alignment="left" title="Button" id="kkX-ie-rhO">
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </button>
+                            </items>
+                        </group>
+                        <group width="1" alignment="left" id="2XO-ib-KpR">
+                            <items>
+                                <label width="52" height="39" alignment="left" text="#" textAlignment="right" id="g1e-gU-ffn"/>
+                                <picker width="70" height="39" alignment="left" id="0Pi-Nm-wSU"/>
+                            </items>
+                        </group>
+                    </items>
+                    <edgeInsets key="margins" left="6" right="1" top="14" bottom="0.0"/>
+                    <connections>
+                        <outlet property="icon1" destination="QWA-2i-V5b" id="cU6-AR-FqW"/>
+                        <outlet property="icon2" destination="jCY-8d-9me" id="iNj-21-rXt"/>
+                        <outlet property="icon3" destination="RMD-MZ-XZw" id="Wpg-0q-a00"/>
+                        <outlet property="icon4" destination="GoU-Jy-i4w" id="aHa-ll-5SD"/>
+                        <outlet property="icon5" destination="0lk-KV-YSY" id="dqI-gt-Lxc"/>
+                        <outlet property="icon6" destination="kkX-ie-rhO" id="jCr-H3-uUu"/>
+                        <segue destination="HvD-lE-RxT" kind="relationship" relationship="nextPage" id="w45-39-MxF"/>
+                    </connections>
+                </controller>
             </objects>
             <point key="canvasLocation" x="582" y="345"/>
+        </scene>
+        <!--Interface Controller-->
+        <scene sceneID="76O-Hf-DGR">
+            <objects>
+                <controller id="HvD-lE-RxT"/>
+            </objects>
+            <point key="canvasLocation" x="771" y="345"/>
         </scene>
         <!--HelpIC-->
         <scene sceneID="vuk-R6-bYc">
@@ -84,7 +136,7 @@
                     </items>
                 </controller>
             </objects>
-            <point key="canvasLocation" x="758" y="345"/>
+            <point key="canvasLocation" x="939" y="345"/>
         </scene>
         <!--Static Notification Interface Controller-->
         <scene sceneID="AEw-b0-oYE">
