@@ -1314,18 +1314,18 @@ communication experience</string>
                         <viewControllerLayoutGuide type="bottom" id="c2s-jc-r3q"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="V5g-rU-NPW">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="e6I-Hg-jpK">
-                                <rect key="frame" x="0.0" y="148" width="320" height="1"/>
+                                <rect key="frame" x="0.0" y="84" width="320" height="1"/>
                                 <color key="backgroundColor" red="0.69803921568627447" green="0.69803921568627447" blue="0.69803921568627447" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="1" id="A73-4q-by3"/>
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="nicknamehere" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="egT-a8-0bg">
-                                <rect key="frame" x="16" y="98" width="288" height="23"/>
+                                <rect key="frame" x="16" y="34" width="288" height="23"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="288" id="bZs-cS-YqQ"/>
                                 </constraints>
@@ -1334,40 +1334,40 @@ communication experience</string>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eqZ-7d-C5O">
-                                <rect key="frame" x="16" y="177" width="69" height="20.5"/>
+                                <rect key="frame" x="16" y="113" width="69" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VnP-Wn-LAN">
-                                <rect key="frame" x="0.0" y="223" width="320" height="1"/>
+                                <rect key="frame" x="0.0" y="159" width="320" height="1"/>
                                 <color key="backgroundColor" red="0.69650829081632648" green="0.69650829081632648" blue="0.69650829081632648" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="1" id="S6c-4J-NUu"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PIM-fW-uRk">
-                                <rect key="frame" x="0.0" y="319" width="320" height="1"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PIM-fW-uRk">
+                                <rect key="frame" x="0.0" y="256" width="320" height="1"/>
                                 <color key="backgroundColor" red="0.69650829079999999" green="0.69650829079999999" blue="0.69650829079999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="1" id="1r3-wY-lZf"/>
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Change password?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nEY-nJ-ZXO">
-                                <rect key="frame" x="16" y="289" width="288" height="20.5"/>
+                                <rect key="frame" x="16" y="225" width="288" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.67087850765306123" green="0.67087850765306123" blue="0.67087850765306123" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3yD-me-UqL">
-                                <rect key="frame" x="0.0" y="393" width="320" height="1"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3yD-me-UqL">
+                                <rect key="frame" x="0.0" y="330" width="320" height="1"/>
                                 <color key="backgroundColor" red="0.69650829079999999" green="0.69650829079999999" blue="0.69650829079999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="1" id="SR3-WE-cnB"/>
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tfP-XD-qcS">
-                                <rect key="frame" x="16" y="527" width="288" height="33"/>
+                                <rect key="frame" x="16" y="463" width="288" height="33"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <state key="normal" title="Log out">
                                     <color key="titleColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -1378,8 +1378,8 @@ communication experience</string>
                                     <segue destination="ZIh-XF-2sk" kind="modal" identifier="AuthViewController" id="oIG-5Z-NB0"/>
                                 </connections>
                             </button>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9HC-oU-lBR">
-                                <rect key="frame" x="104" y="348" width="168" height="21"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9HC-oU-lBR">
+                                <rect key="frame" x="104" y="285" width="168" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="168" id="5It-PI-d1u"/>
                                 </constraints>
@@ -1390,14 +1390,14 @@ communication experience</string>
                                     <outlet property="delegate" destination="CLK-tV-RIZ" id="cJ4-a5-vgC"/>
                                 </connections>
                             </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Password" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CbB-VC-ODn">
-                                <rect key="frame" x="16" y="348" width="89" height="20.5"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Password" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CbB-VC-ODn">
+                                <rect key="frame" x="16" y="285" width="89" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="name@iamchill.co" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xkZ-IQ-vDU">
-                                <rect key="frame" x="85" y="176" width="184" height="21"/>
+                                <rect key="frame" x="85" y="112" width="184" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="184" id="CHq-SA-GoI"/>
                                 </constraints>
@@ -1408,19 +1408,36 @@ communication experience</string>
                                     <outlet property="delegate" destination="CLK-tV-RIZ" id="rs0-xr-AgL"/>
                                 </connections>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oVq-Pi-Ug2">
-                                <rect key="frame" x="14" y="413" width="292" height="26"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oVq-Pi-Ug2">
+                                <rect key="frame" x="14" y="350" width="202" height="26"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="292" id="g24-8D-vUP"/>
-                                    <constraint firstAttribute="height" constant="26" id="rGZ-4B-zuR"/>
+                                    <constraint firstAttribute="width" constant="202" id="odP-VE-MKc"/>
+                                    <constraint firstAttribute="height" constant="26" id="uJV-mc-j2c"/>
                                 </constraints>
-                                <state key="normal" image="mail_settings2">
-                                    <attributedString key="attributedTitle"/>
+                                <state key="normal">
+                                    <attributedString key="attributedTitle">
+                                        <fragment content="Tell us what you want">
+                                            <attributes>
+                                                <color key="NSColor" red="0.31372549019607843" green="0.84705882352941175" blue="0.68627450980392157" alpha="1" colorSpace="calibratedRGB"/>
+                                                <font key="NSFont" size="18" name="Helvetica"/>
+                                                <font key="NSOriginalFont" size="18" name="Helvetica"/>
+                                                <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                                                <integer key="NSUnderline" value="1"/>
+                                            </attributes>
+                                        </fragment>
+                                    </attributedString>
                                 </state>
                                 <connections>
                                     <action selector="showEmail:" destination="CLK-tV-RIZ" eventType="touchUpInside" id="hpB-of-m0n"/>
                                 </connections>
                             </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mail_settings" translatesAutoresizingMaskIntoConstraints="NO" id="fOO-WV-ZKN">
+                                <rect key="frame" x="280" y="354" width="24" height="18"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="18" id="bCr-eo-AVW"/>
+                                    <constraint firstAttribute="width" constant="24" id="t8l-oH-7wR"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -1433,11 +1450,13 @@ communication experience</string>
                             <constraint firstAttribute="trailing" secondItem="VnP-Wn-LAN" secondAttribute="trailing" id="5kG-gC-m3c"/>
                             <constraint firstItem="nEY-nJ-ZXO" firstAttribute="leading" secondItem="V5g-rU-NPW" secondAttribute="leadingMargin" id="8uE-2n-Loa"/>
                             <constraint firstItem="xkZ-IQ-vDU" firstAttribute="leading" secondItem="eqZ-7d-C5O" secondAttribute="trailing" id="G3t-Yt-KgO"/>
+                            <constraint firstItem="fOO-WV-ZKN" firstAttribute="trailing" secondItem="V5g-rU-NPW" secondAttribute="trailingMargin" id="Iow-Vd-MNz"/>
                             <constraint firstItem="PIM-fW-uRk" firstAttribute="leading" secondItem="V5g-rU-NPW" secondAttribute="leading" id="MHn-hb-XAq"/>
                             <constraint firstItem="eqZ-7d-C5O" firstAttribute="top" secondItem="e6I-Hg-jpK" secondAttribute="bottom" constant="28" id="S79-Lt-5b0"/>
                             <constraint firstItem="VnP-Wn-LAN" firstAttribute="top" secondItem="xkZ-IQ-vDU" secondAttribute="bottom" constant="26" id="SG1-7h-AZd"/>
                             <constraint firstItem="e6I-Hg-jpK" firstAttribute="top" secondItem="egT-a8-0bg" secondAttribute="bottom" constant="27" id="SZC-fA-EnR"/>
-                            <constraint firstAttribute="centerX" secondItem="oVq-Pi-Ug2" secondAttribute="centerX" id="Uv1-H2-J4f"/>
+                            <constraint firstItem="fOO-WV-ZKN" firstAttribute="top" secondItem="3yD-me-UqL" secondAttribute="bottom" constant="23" id="XYy-Jk-GdI"/>
+                            <constraint firstItem="oVq-Pi-Ug2" firstAttribute="leading" secondItem="V5g-rU-NPW" secondAttribute="leadingMargin" constant="-2" id="Xi8-Iw-oHD"/>
                             <constraint firstItem="xkZ-IQ-vDU" firstAttribute="top" secondItem="e6I-Hg-jpK" secondAttribute="bottom" constant="27" id="agF-7M-qWh"/>
                             <constraint firstAttribute="trailingMargin" secondItem="xkZ-IQ-vDU" secondAttribute="trailing" constant="35" id="ckj-3W-juf"/>
                             <constraint firstAttribute="trailing" secondItem="PIM-fW-uRk" secondAttribute="trailing" id="d2z-Mm-Bva"/>
@@ -1445,13 +1464,13 @@ communication experience</string>
                             <constraint firstAttribute="trailing" secondItem="e6I-Hg-jpK" secondAttribute="trailing" id="gcW-iJ-K6J"/>
                             <constraint firstItem="3yD-me-UqL" firstAttribute="top" secondItem="9HC-oU-lBR" secondAttribute="bottom" constant="24" id="ggK-Rf-HN7"/>
                             <constraint firstItem="e6I-Hg-jpK" firstAttribute="leading" secondItem="V5g-rU-NPW" secondAttribute="leading" id="k1I-kR-tAi"/>
+                            <constraint firstItem="oVq-Pi-Ug2" firstAttribute="top" secondItem="3yD-me-UqL" secondAttribute="bottom" constant="19" id="lCg-iq-R17"/>
                             <constraint firstItem="c2s-jc-r3q" firstAttribute="top" secondItem="tfP-XD-qcS" secondAttribute="bottom" constant="8" id="m1m-Fl-qUP"/>
                             <constraint firstItem="3yD-me-UqL" firstAttribute="leading" secondItem="V5g-rU-NPW" secondAttribute="leading" id="oNA-TL-5AJ"/>
                             <constraint firstItem="VnP-Wn-LAN" firstAttribute="leading" secondItem="V5g-rU-NPW" secondAttribute="leading" id="pAB-ey-aut"/>
                             <constraint firstItem="PIM-fW-uRk" firstAttribute="top" secondItem="nEY-nJ-ZXO" secondAttribute="bottom" constant="10.5" id="tXU-mQ-euZ"/>
                             <constraint firstItem="egT-a8-0bg" firstAttribute="leading" secondItem="V5g-rU-NPW" secondAttribute="leadingMargin" id="u49-1g-G3R"/>
                             <constraint firstItem="9HC-oU-lBR" firstAttribute="top" secondItem="PIM-fW-uRk" secondAttribute="bottom" constant="28" id="uKT-MG-YQf"/>
-                            <constraint firstItem="oVq-Pi-Ug2" firstAttribute="top" secondItem="3yD-me-UqL" secondAttribute="bottom" constant="18" id="v15-wg-xtj"/>
                             <constraint firstItem="9HC-oU-lBR" firstAttribute="leading" secondItem="CbB-VC-ODn" secondAttribute="trailing" constant="-1" id="wcP-uK-qlA"/>
                             <constraint firstItem="egT-a8-0bg" firstAttribute="trailing" secondItem="V5g-rU-NPW" secondAttribute="trailingMargin" id="wr0-fr-vUj"/>
                             <constraint firstItem="CbB-VC-ODn" firstAttribute="leading" secondItem="V5g-rU-NPW" secondAttribute="leadingMargin" id="xrg-3O-UXV"/>
@@ -1467,7 +1486,9 @@ communication experience</string>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <connections>
+                        <outlet property="constraintBottom" destination="ggK-Rf-HN7" id="rfe-gd-rnU"/>
                         <outlet property="emailField" destination="xkZ-IQ-vDU" id="QJJ-Mv-ogb"/>
                         <outlet property="nickNameLabel" destination="egT-a8-0bg" id="xaj-zJ-hrx"/>
                         <outlet property="passwordField" destination="9HC-oU-lBR" id="632-5n-Hc2"/>
@@ -1625,9 +1646,15 @@ communication experience</string>
                 <navigationController id="Akt-0V-klI" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="2yk-Hr-CpO"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="abd-Lc-t3o">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="20"/>
+                            <offsetWrapper key="textShadowOffset" horizontal="0.0" vertical="0.0"/>
+                        </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -1961,7 +1988,7 @@ communication experience</string>
         <image name="chill_logo" width="192" height="74"/>
         <image name="close.png" width="12" height="12"/>
         <image name="locationios_right.png" width="1478" height="802"/>
-        <image name="mail_settings2" width="284" height="17"/>
+        <image name="mail_settings" width="21" height="16"/>
         <image name="picios_right.png" width="1478" height="802"/>
         <image name="reaction_ball" width="33" height="33"/>
         <image name="reaction_book" width="33" height="31"/>
@@ -1989,8 +2016,8 @@ communication experience</string>
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="jnP-xo-jaE"/>
         <segue reference="oIG-5Z-NB0"/>
+        <segue reference="jnP-xo-jaE"/>
         <segue reference="qRD-Z3-ksL"/>
     </inferredMetricsTieBreakers>
 </document>

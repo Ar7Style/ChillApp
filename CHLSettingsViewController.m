@@ -17,11 +17,15 @@
 #import "GAIDictionaryBuilder.h"
 #import "GAITracker.h"
 #import "CHLFriendsListViewController.h"
+#import "UIViewController+KeyboardAnimation.h"
 
 @interface CHLSettingsViewController () {
     NSMutableArray *json;
     
+    
 }
+
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *constraintBottom;
 
 @end
 
@@ -37,10 +41,33 @@
 }
 
 - (void)viewDidLoad {
+    //[self.navigationController.navigationBar setBackgroundColor:[UIColor whiteColor]];
+   // self.navigationController.title = @"Profile";
+//     @{
+//       NSFontAttributeName:[UIFont fontWithName:@"HelveticaNeue" size:19]}];
     
     [self loadSettings];
     
 }
+
+//-(void)viewWillAppear:(BOOL)animated {
+//    __weak __typeof(self) weakSelf = self;
+//    [self an_subscribeKeyboardWithAnimations:^(CGRect keyboardRect, NSTimeInterval duration, BOOL isShowing) {
+//        __typeof__(self) strongSelf = weakSelf;
+//     self.constraintBottom.constant = isShowing ?  CGRectGetHeight(keyboardRect) : 20;
+//        
+//        [self.view layoutIfNeeded];
+//    } completion:nil];
+//    [self.view layoutIfNeeded];
+//
+//}
+//
+//-(void)viewWillDisappear:(BOOL)animated {
+//    [self an_unsubscribeKeyboard];
+//}
+
+
+
 
 - (void)viewDidAppear:(BOOL)animated {
     
@@ -211,7 +238,7 @@
     // Email Content
     NSString *messageBody = @"";
     // To address
-    NSArray *toRecipents = [NSArray arrayWithObject:@"kirill.chekanov2@gmail.com"];
+    NSArray *toRecipents = [NSArray arrayWithObject:@"kirill.chekanov1@gmail.com"];
     
     MFMailComposeViewController *mc = [[MFMailComposeViewController alloc] init];
     mc.mailComposeDelegate = self;

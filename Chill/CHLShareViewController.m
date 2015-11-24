@@ -49,7 +49,7 @@ NSInteger defaultValue = 10;
 
 {
     
-    _locationManager = [[CLLocationManager alloc] init];
+    _locationManager = [[CLLocationManager alloc] init]; 
     self.title = _nameUser;
     _counter.textColor = [UIColor chillMintColor];
     [super viewDidLoad];
@@ -73,12 +73,12 @@ NSInteger defaultValue = 10;
     [_shareText resignFirstResponder];
 }
 
-//- (void)viewDidAppear:(BOOL)animated {
+- (void)viewDidAppear:(BOOL)animated {
 //    
 //    
-//    if (CLLocationManager.authorizationStatus == kCLAuthorizationStatusNotDetermined) {
-//        [_locationManager requestWhenInUseAuthorization];
-//    }
+    if (CLLocationManager.authorizationStatus == kCLAuthorizationStatusNotDetermined) {
+        [_locationManager requestWhenInUseAuthorization];
+    }
 
 //    if([[UIDevice currentDevice]userInterfaceIdiom]==UIUserInterfaceIdiomPhone)
 //    {
@@ -96,11 +96,14 @@ NSInteger defaultValue = 10;
 //    id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
 //    [tracker set:kGAIScreenName value:@"Share screen"];
 //    [tracker send:[[GAIDictionaryBuilder createAppView] build]];
-//}
+}
 
 -(void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    
+    __weak __typeof(self) weakSelf = self;
     [self an_subscribeKeyboardWithAnimations:^(CGRect keyboardRect, NSTimeInterval duration, BOOL isShowing) {
+        __typeof__(self) strongSelf = weakSelf;
         if([[UIDevice currentDevice]userInterfaceIdiom]==UIUserInterfaceIdiomPhone)
         {
             if ([[UIScreen mainScreen] bounds].size.height < 568) // < iphone 5
@@ -168,7 +171,7 @@ NSInteger defaultValue = 10;
 
 - (IBAction)textDidEditing:(id)sender {
     _counter.text = [NSString stringWithFormat:@"%ld", (long)(defaultValue - _shareText.text.length)];
-    if ((long)(defaultValue - _shareText.text.length) <= 0) {
+    if ((long)(defaultValue - _shareText.text.length) < 0) {
         _counter.textColor = [UIColor redColor];
     }
     else {

@@ -214,6 +214,7 @@
 		068678181BFBE5070053F545 /* mail_settings2.png in Resources */ = {isa = PBXBuildFile; fileRef = 068678171BFBE5070053F545 /* mail_settings2.png */; };
 		0686781A1BFBE81E0053F545 /* go_edu1.png in Resources */ = {isa = PBXBuildFile; fileRef = 068678191BFBE81E0053F545 /* go_edu1.png */; };
 		0686781C1BFBE8240053F545 /* go_edu.png in Resources */ = {isa = PBXBuildFile; fileRef = 0686781B1BFBE8240053F545 /* go_edu.png */; };
+		0686781E1BFD26370053F545 /* mail_settings.png in Resources */ = {isa = PBXBuildFile; fileRef = 0686781D1BFD26370053F545 /* mail_settings.png */; };
 		0686BC411B49CDF500515EA0 /* CHLAdditionalShareViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0686BC401B49CDF500515EA0 /* CHLAdditionalShareViewController.m */; };
 		0686BC831B4A924D00515EA0 /* received_book.png in Resources */ = {isa = PBXBuildFile; fileRef = 0686BC7D1B4A924D00515EA0 /* received_book.png */; };
 		0686BC841B4A924D00515EA0 /* received_flag.png in Resources */ = {isa = PBXBuildFile; fileRef = 0686BC7E1B4A924D00515EA0 /* received_flag.png */; };
@@ -566,6 +567,7 @@
 		068678171BFBE5070053F545 /* mail_settings2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mail_settings2.png; sourceTree = "<group>"; };
 		068678191BFBE81E0053F545 /* go_edu1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = go_edu1.png; sourceTree = "<group>"; };
 		0686781B1BFBE8240053F545 /* go_edu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = go_edu.png; sourceTree = "<group>"; };
+		0686781D1BFD26370053F545 /* mail_settings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mail_settings.png; sourceTree = "<group>"; };
 		0686BC3F1B49CDF500515EA0 /* CHLAdditionalShareViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHLAdditionalShareViewController.h; sourceTree = "<group>"; };
 		0686BC401B49CDF500515EA0 /* CHLAdditionalShareViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHLAdditionalShareViewController.m; sourceTree = "<group>"; };
 		0686BC7D1B4A924D00515EA0 /* received_book.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = received_book.png; sourceTree = "<group>"; };
@@ -1025,6 +1027,7 @@
 				068780981A82905900413173 /* CHLSettingsViewController.h */,
 				068780991A82905900413173 /* CHLSettingsViewController.m */,
 				068678171BFBE5070053F545 /* mail_settings2.png */,
+				0686781D1BFD26370053F545 /* mail_settings.png */,
 			);
 			name = Settings;
 			path = ..;
@@ -1784,6 +1787,7 @@
 				02BE077C1A4226C700560926 /* pic@2x.png in Resources */,
 				068678181BFBE5070053F545 /* mail_settings2.png in Resources */,
 				AD6D3C841A88A7FA00B5BE18 /* Chill_logo_grey.png in Resources */,
+				0686781E1BFD26370053F545 /* mail_settings.png in Resources */,
 				06D7BEE91BCFD4A9009AE04A /* reaction_sleep.png in Resources */,
 				06D7BEE51BCFD4A9009AE04A /* reaction_heart.png in Resources */,
 				027A95C61A5B7DFC004E0914 /* Line@2x.png in Resources */,
