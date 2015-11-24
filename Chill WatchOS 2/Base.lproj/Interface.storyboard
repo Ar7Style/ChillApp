@@ -34,6 +34,8 @@
             <objects>
                 <controller identifier="ContactsIC" id="g2m-gF-IBW" customClass="ContactsIC">
                     <items>
+                        <label width="136" height="99" alignment="left" text="Loading..." textAlignment="center" numberOfLines="0" id="VXk-yQ-ym6"/>
+                        <button width="1" alignment="left" title="Reload" id="sKP-GP-nwx"/>
                         <table alignment="left" id="TPk-4G-jnG">
                             <items>
                                 <tableRow identifier="cell" id="qEj-Md-Gk2" customClass="ContactRow">
@@ -52,11 +54,13 @@
                         </table>
                     </items>
                     <connections>
+                        <outlet property="reloadButton" destination="sKP-GP-nwx" id="lin-4y-JbV"/>
+                        <outlet property="statusLabel" destination="VXk-yQ-ym6" id="DoF-8C-WT5"/>
                         <outlet property="table" destination="TPk-4G-jnG" id="SKZ-QT-7fl"/>
                     </connections>
                 </controller>
             </objects>
-            <point key="canvasLocation" x="399" y="345"/>
+            <point key="canvasLocation" x="397" y="361"/>
         </scene>
         <!--ShareIC-->
         <scene sceneID="eIO-Tt-eL9">
@@ -190,9 +194,17 @@
         <!--Notification Controller-->
         <scene sceneID="ZPc-GJ-vnh">
             <objects>
-                <controller id="4sK-HA-Art" customClass="NotificationController"/>
+                <controller id="4sK-HA-Art" customClass="NotificationController">
+                    <items>
+                        <imageView width="136" height="136" alignment="center" contentMode="scaleAspectFit" id="SCZ-aU-4tJ"/>
+                        <label width="136" alignment="left" text="#Hash" textAlignment="center" id="kQT-6l-OX2"/>
+                    </items>
+                    <connections>
+                        <outlet property="image" destination="SCZ-aU-4tJ" id="pDI-B9-nfn"/>
+                    </connections>
+                </controller>
             </objects>
-            <point key="canvasLocation" x="468" y="643"/>
+            <point key="canvasLocation" x="468" y="642.5"/>
         </scene>
     </scenes>
 </document>

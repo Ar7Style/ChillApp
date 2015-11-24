@@ -20,6 +20,7 @@
 
 - (void)awakeWithContext:(id)context {
     [super awakeWithContext:context];
+    [_reloadButton setHidden:YES];
     NSLog(@"Open ContactsIC");
     // Configure interface objects here.
 }
@@ -33,10 +34,14 @@
     [manager GET:[NSString stringWithFormat:@"http://api.iamchill.co/v2/contacts/index/id_user/%@", [NSUserDefaults userID]] parameters:nil success:^(NSURLSessionTask *task, id responseObject) {
         if ([[responseObject objectForKey:@"status"] isEqualToString:@"success"]) {
             json = [responseObject objectForKey:@"response"];
+            [_statusLabel setHidden:YES];
+            [_reloadButton setHidden:YES];
             [self configureTable];
         }
         NSLog(@"JSON: %@", responseObject);
     } failure:^(NSURLSessionTask *operation, NSError *error) {
+        [_statusLabel setText:@"Connection refused"];
+        [_reloadButton setHidden:NO];
         NSLog(@"Error: %@", error);
     }];
 }

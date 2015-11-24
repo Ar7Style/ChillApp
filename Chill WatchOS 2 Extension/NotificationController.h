@@ -10,5 +10,6 @@
 #import <Foundation/Foundation.h>
 
 @interface NotificationController : WKUserNotificationInterfaceController
+@property (unsafe_unretained, nonatomic) IBOutlet WKInterfaceImage *image;
 
 @end
