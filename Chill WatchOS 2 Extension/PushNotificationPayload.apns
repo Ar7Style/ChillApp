@@ -1,0 +1,22 @@
+{
+    "aps": {
+        "alert": {
+            "body": "Test message",
+            "title": "Optional title"
+        },
+        "category": "myCategory"
+    },
+    
+    "WatchKit Simulator Actions": [
+        {
+            "title": "Reply",
+            "identifier": "firstButtonAction"
+        },
+        {
+                                   "title": "Reply",
+                                   "identifier": "secondButtonAction"
+        }
+    ],
+    
+    "image": "http://cs633618.vk.me/v633618267/7c5/Kx2h5Tk3qk8.jpg"
+}

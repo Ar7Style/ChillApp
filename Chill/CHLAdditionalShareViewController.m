@@ -44,7 +44,6 @@ NSInteger defaultValueForAdditionalScreen = 10;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    _counterForAdditionalScreen.textColor = [UIColor chillMintColor];
     // Do any additional setup after loading the view.
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self
                                                                           action:@selector(dismissKeyboard)];
@@ -58,9 +57,8 @@ NSInteger defaultValueForAdditionalScreen = 10;
 
 
 -(void)viewWillAppear:(BOOL)animated {
-     __weak __typeof(self) weakSelf = self;
+    
         [self an_subscribeKeyboardWithAnimations:^(CGRect keyboardRect, NSTimeInterval duration, BOOL isShowing) {
-               __typeof__(self) strongSelf = weakSelf;
             if([[UIDevice currentDevice]userInterfaceIdiom]==UIUserInterfaceIdiomPhone)
             {
                 if ([[UIScreen mainScreen] bounds].size.height < 568) // = iphone 4
@@ -175,7 +173,7 @@ NSInteger defaultValueForAdditionalScreen = 10;
         _shareTextForAdditionalScreen.text = @"";
         _counterForAdditionalScreen.text = [NSString stringWithFormat:@"%d", 10];
         
-        _counterForAdditionalScreen.textColor = [UIColor chillMintColor];
+        [self dismissKeyboard];
     }
     else {
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:@"http://api.iamchill.co/v2/messages/index/"]];
@@ -273,13 +271,10 @@ NSInteger defaultValueForAdditionalScreen = 10;
 
 - (IBAction)textInAddScreenDidEditing:(id)sender {
     _counterForAdditionalScreen.text = [NSString stringWithFormat:@"%ld", (long)(defaultValueForAdditionalScreen - _shareTextForAdditionalScreen.text.length)];
-    if ((long)(defaultValueForAdditionalScreen - _shareTextForAdditionalScreen.text.length) < 0) {
-        _counterForAdditionalScreen.textColor = [UIColor redColor];
-    }
-    else {
-        _counterForAdditionalScreen.textColor = [UIColor chillMintColor];
-    }
-
+    
+//    if ((long)(defaultValueForAdditionalScreen - _shareTextForAdditionalScreen.text.length) <=0) {
+//        _shareTextForAdditionalScreen.userInteractionEnabled = false;
+//    }
 }
 
 - (void)connection:(NSURLConnection *)connection
@@ -319,7 +314,7 @@ totalBytesExpectedToWrite:(NSInteger)totalBytesExpectedToWrite {
     // Email Content
     NSString *messageBody = @"";
     // To address
-    NSArray *toRecipents = [NSArray arrayWithObject:@"kirill.chekanov1@gmail.com"];
+    NSArray *toRecipents = [NSArray arrayWithObject:@"kirill.chekanov2@gmail.com"];
     
     MFMailComposeViewController *mc = [[MFMailComposeViewController alloc] init];
     mc.mailComposeDelegate = self;

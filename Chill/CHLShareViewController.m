@@ -46,10 +46,9 @@ NSInteger defaultValue = 10;
 #pragma mark - View controller lifecycle
 
 - (void)viewDidLoad
-
 {
     
-    _locationManager = [[CLLocationManager alloc] init]; 
+    _locationManager = [[CLLocationManager alloc] init];
     self.title = _nameUser;
     _counter.textColor = [UIColor chillMintColor];
     [super viewDidLoad];
@@ -66,7 +65,6 @@ NSInteger defaultValue = 10;
     [self.view addGestureRecognizer:tap];
     
     
-       
 }
 
 -(void)dismissKeyboard {
@@ -74,36 +72,21 @@ NSInteger defaultValue = 10;
 }
 
 - (void)viewDidAppear:(BOOL)animated {
-//    
-//    
+    
     if (CLLocationManager.authorizationStatus == kCLAuthorizationStatusNotDetermined) {
         [_locationManager requestWhenInUseAuthorization];
     }
-
-//    if([[UIDevice currentDevice]userInterfaceIdiom]==UIUserInterfaceIdiomPhone)
-//    {
-//        if ([[UIScreen mainScreen] bounds].size.height <= 568) // <= iphone 5
-//        {
-//            NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
-//            [center addObserver:self selector:@selector(willShowKeyboard) name:UIKeyboardDidShowNotification object:nil];
-//            [center addObserver:self selector:@selector(willHideKeyboard) name:UIKeyboardWillHideNotification object:nil];
-//        }
-//        
-//    }
     
-//    [super viewDidAppear:animated];
-//    
-//    id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
-//    [tracker set:kGAIScreenName value:@"Share screen"];
-//    [tracker send:[[GAIDictionaryBuilder createAppView] build]];
+    [super viewDidAppear:animated];
+    
+    id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+    [tracker set:kGAIScreenName value:@"Share screen"];
+    [tracker send:[[GAIDictionaryBuilder createAppView] build]];
 }
 
 -(void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    
-    __weak __typeof(self) weakSelf = self;
     [self an_subscribeKeyboardWithAnimations:^(CGRect keyboardRect, NSTimeInterval duration, BOOL isShowing) {
-        __typeof__(self) strongSelf = weakSelf;
         if([[UIDevice currentDevice]userInterfaceIdiom]==UIUserInterfaceIdiomPhone)
         {
             if ([[UIScreen mainScreen] bounds].size.height < 568) // < iphone 5
@@ -119,59 +102,17 @@ NSInteger defaultValue = 10;
         
         [self.view layoutIfNeeded];
     } completion:nil];
-    [self.view layoutIfNeeded];
 }
+
 -(void)viewWillDisappear:(BOOL)animated {
     [self an_unsubscribeKeyboard];
-}
-
-
--(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
-    //Iterate through your subviews, or some other custom array of views
-    for (UIView *view in self.view.subviews)
-        [view resignFirstResponder];
-}
-
-#pragma mark - Keyboard Notification
-
-- (void)willShowKeyboard{
-    if (!isKeyboardShow){
-        isKeyboardShow = true;
-        [UIView beginAnimations:nil context:NULL];
-        [UIView setAnimationDelegate:self];
-        [UIView setAnimationDuration:0.5];
-        [UIView setAnimationBeginsFromCurrentState:YES];
-        self.view.frame = CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y-216.0,
-                                     self.view.frame.size.width, self.view.frame.size.height);
-        [UIView commitAnimations];
-    }
-}
-- (void)backgroundTouchedHideKeyboard:(id)sender
-{
-    [self.shareText resignFirstResponder];
-    
-}
-
-- (void)willHideKeyboard{
-    isKeyboardShow = false;
-    [UIView beginAnimations:nil context:NULL];
-    [UIView setAnimationDelegate:self];
-    [UIView setAnimationDuration:0.5];
-    [UIView setAnimationBeginsFromCurrentState:YES];
-    self.view.frame = CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y+216.0,
-                                 self.view.frame.size.width, self.view.frame.size.height);
-    [UIView commitAnimations];
-}
--(void)didTapAnywhere: (UITapGestureRecognizer*) recognizer {
-    //[self.emailField resignFirstResponder];
-    [self.shareText resignFirstResponder];
 }
 
 #pragma textField methods 
 
 - (IBAction)textDidEditing:(id)sender {
     _counter.text = [NSString stringWithFormat:@"%ld", (long)(defaultValue - _shareText.text.length)];
-    if ((long)(defaultValue - _shareText.text.length) < 0) {
+    if ((long)(defaultValue - _shareText.text.length) <= 0) {
         _counter.textColor = [UIColor redColor];
     }
     else {

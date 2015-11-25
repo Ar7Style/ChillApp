@@ -29,15 +29,15 @@
 #import "CHLSettingsViewController.h"
 #import <Fabric/Fabric.h>
 #import <Crashlytics/Crashlytics.h>
-
-
+#import <WatchConnectivity/WatchConnectivity.h>
+#import "UserCache.h"
 #define UIColorFromRGBA(rgbValue,a) [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:a]
 #define UIColorFromRGB(rgbValue) \
 [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 \
 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 \
 blue:((float)(rgbValue & 0xFF))/255.0 \
 alpha:1.0]
-@interface CHLFriendsListViewController () <MBProgressHUDDelegate, UIScrollViewDelegate> {
+@interface CHLFriendsListViewController () <MBProgressHUDDelegate, UIScrollViewDelegate, WCSessionDelegate> {
     MBProgressHUD *HUD;
     Reachability *internetReachableFoo;
     long long expectedLength;
@@ -68,7 +68,11 @@ NSMutableData *mutData;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
+    if ([WCSession isSupported]) {
+        WCSession* session = [WCSession defaultSession];
+        session.delegate = self;
+        [session activateSession];
+    }
     
     UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
     [refreshControl setBackgroundColor:[UIColor groupTableViewBackgroundColor]];
@@ -89,6 +93,13 @@ NSMutableData *mutData;
     [tracker send:[[GAIDictionaryBuilder createAppView] build]];
 }
 
+- (void) session:(nonnull WCSession *)session didReceiveApplicationContext:(nonnull NSDictionary<NSString *,id> *)applicationContext {
+    if ([[applicationContext objectForKey:@"type"] isEqualToString:@"getAuth"]) {
+        WCSession *session = [WCSession defaultSession];
+        NSError *error;
+        [session updateApplicationContext:@{@"userID": [NSUserDefaults userID], @"token":[NSUserDefaults userToken], @"isAuth":@"true", @"isApproved": @"true"} error:&error];
+    }
+}
 
 - (void) conRefused {
     
