@@ -67,16 +67,27 @@
             <objects>
                 <controller identifier="ShareIC" id="ljR-vO-91f" customClass="ShareIC">
                     <items>
+                        <imageView width="50" height="50" alignment="center" verticalAlignment="center" image="confirm.png" contentMode="scaleAspectFit" id="BK3-SF-j9V"/>
+                        <label width="124" height="34" alignment="left" verticalAlignment="bottom" text="Loading..." textAlignment="center" numberOfLines="0" id="J1K-dl-N9w"/>
                         <group width="1" height="47" alignment="left" id="oVw-y2-ldq">
                             <items>
                                 <button width="40" height="40" alignment="left" verticalAlignment="bottom" id="QWA-2i-V5b">
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    <connections>
+                                        <action selector="b1" destination="ljR-vO-91f" id="fS6-7n-UOz"/>
+                                    </connections>
                                 </button>
                                 <button width="40" height="40" alignment="left" verticalAlignment="bottom" id="jCY-8d-9me">
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    <connections>
+                                        <action selector="b2" destination="ljR-vO-91f" id="s9X-bc-ajx"/>
+                                    </connections>
                                 </button>
                                 <button width="40" height="40" alignment="left" verticalAlignment="bottom" id="RMD-MZ-XZw">
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    <connections>
+                                        <action selector="b3" destination="ljR-vO-91f" id="LiF-Il-0XC"/>
+                                    </connections>
                                 </button>
                             </items>
                         </group>
@@ -84,12 +95,21 @@
                             <items>
                                 <button width="40" height="40" alignment="left" id="GoU-Jy-i4w">
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    <connections>
+                                        <action selector="b4" destination="ljR-vO-91f" id="Teb-WA-2Ic"/>
+                                    </connections>
                                 </button>
                                 <button width="40" height="40" alignment="left" id="0lk-KV-YSY">
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    <connections>
+                                        <action selector="b5" destination="ljR-vO-91f" id="MJA-sR-1Di"/>
+                                    </connections>
                                 </button>
                                 <button width="40" height="40" alignment="left" id="kkX-ie-rhO">
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    <connections>
+                                        <action selector="b6" destination="ljR-vO-91f" id="5jX-gD-hdP"/>
+                                    </connections>
                                 </button>
                             </items>
                         </group>
@@ -105,17 +125,22 @@
                     <edgeInsets key="margins" left="6" right="1" top="0.0" bottom="0.0"/>
                     <connections>
                         <outlet property="countValue" destination="0Pi-Nm-wSU" id="xIr-m8-tqG"/>
+                        <outlet property="group1" destination="oVw-y2-ldq" id="GXy-fA-Rra"/>
+                        <outlet property="group2" destination="Y7Q-2V-xSi" id="50F-gv-phJ"/>
+                        <outlet property="group3" destination="2XO-ib-KpR" id="vjT-6v-uen"/>
                         <outlet property="icon1" destination="QWA-2i-V5b" id="cU6-AR-FqW"/>
                         <outlet property="icon2" destination="jCY-8d-9me" id="iNj-21-rXt"/>
                         <outlet property="icon3" destination="RMD-MZ-XZw" id="Wpg-0q-a00"/>
                         <outlet property="icon4" destination="GoU-Jy-i4w" id="aHa-ll-5SD"/>
                         <outlet property="icon5" destination="0lk-KV-YSY" id="dqI-gt-Lxc"/>
                         <outlet property="icon6" destination="kkX-ie-rhO" id="jCr-H3-uUu"/>
+                        <outlet property="statusIMG" destination="BK3-SF-j9V" id="MBo-Is-Tpl"/>
+                        <outlet property="statusText" destination="J1K-dl-N9w" id="gR2-K8-chV"/>
                         <segue destination="HvD-lE-RxT" kind="relationship" relationship="nextPage" id="w45-39-MxF"/>
                     </connections>
                 </controller>
             </objects>
-            <point key="canvasLocation" x="582" y="345"/>
+            <point key="canvasLocation" x="582" y="353.5"/>
         </scene>
         <!--IconsIC-->
         <scene sceneID="76O-Hf-DGR">
