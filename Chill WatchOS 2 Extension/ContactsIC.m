@@ -58,7 +58,7 @@
 }
 
 - (void)table:(WKInterfaceTable *)table didSelectRowAtIndex:(NSInteger)rowIndex {
-    [self presentControllerWithNames:@[@"ShareIC", @"IconsIC"] contexts:@[[json[rowIndex] valueForKey:@"id_contact"]]];
+    [self presentControllerWithNames:@[@"ShareIC", @"IconsIC"] contexts:@[[json[rowIndex] valueForKey:@"id_contact"], [json[rowIndex] valueForKey:@"id_contact"]]];
 }
 
 - (void)configureTable {
@@ -70,6 +70,9 @@
     }
 }
 
+- (IBAction)reload {
+    [self loadData];
+}
 @end
 
 

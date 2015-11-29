@@ -185,6 +185,8 @@
 		531836ED1C079556001AE40D /* decline@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 531836EB1C079556001AE40D /* decline@2x.png */; settings = {ASSET_TAGS = (); }; };
 		532D46A41C062E440070C105 /* IconRow.m in Sources */ = {isa = PBXBuildFile; fileRef = 532D46A31C062E440070C105 /* IconRow.m */; settings = {ASSET_TAGS = (); }; };
 		532D46A71C0640C30070C105 /* ButtonIconID.m in Sources */ = {isa = PBXBuildFile; fileRef = 532D46A61C0640C30070C105 /* ButtonIconID.m */; settings = {ASSET_TAGS = (); }; };
+		53402F831C0A647C009E4FD9 /* location@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 53402F821C0A647C009E4FD9 /* location@2x.png */; settings = {ASSET_TAGS = (); }; };
+		53402F841C0A647C009E4FD9 /* location@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 53402F821C0A647C009E4FD9 /* location@2x.png */; settings = {ASSET_TAGS = (); }; };
 		53C8670A1C03796F00FD9014 /* IconsIC.m in Sources */ = {isa = PBXBuildFile; fileRef = 53C867091C03796F00FD9014 /* IconsIC.m */; settings = {ASSET_TAGS = (); }; };
 		53EA0C231C01328300E161C6 /* UserCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 53EA0C221C01328300E161C6 /* UserCache.m */; };
 		AD39F35B1B6052AF003936C4 /* CHLFriendsSourcesVC.m in Sources */ = {isa = PBXBuildFile; fileRef = AD39F35A1B6052AF003936C4 /* CHLFriendsSourcesVC.m */; };
@@ -511,6 +513,7 @@
 		532D46A31C062E440070C105 /* IconRow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IconRow.m; sourceTree = "<group>"; };
 		532D46A51C0640C30070C105 /* ButtonIconID.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ButtonIconID.h; sourceTree = "<group>"; };
 		532D46A61C0640C30070C105 /* ButtonIconID.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ButtonIconID.m; sourceTree = "<group>"; };
+		53402F821C0A647C009E4FD9 /* location@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "location@2x.png"; sourceTree = "<group>"; };
 		53C867081C03796F00FD9014 /* IconsIC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IconsIC.h; sourceTree = "<group>"; };
 		53C867091C03796F00FD9014 /* IconsIC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IconsIC.m; sourceTree = "<group>"; };
 		53EA0C211C01328300E161C6 /* UserCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserCache.h; sourceTree = "<group>"; };
@@ -728,6 +731,7 @@
 		029F1BA61C01E56300368AD4 /* Chill WatchOS 2 Extension */ = {
 			isa = PBXGroup;
 			children = (
+				53402F821C0A647C009E4FD9 /* location@2x.png */,
 				532D46A51C0640C30070C105 /* ButtonIconID.h */,
 				532D46A61C0640C30070C105 /* ButtonIconID.m */,
 				029F1BA91C01E56300368AD4 /* InterfaceController.h */,
@@ -1381,6 +1385,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				53402F831C0A647C009E4FD9 /* location@2x.png in Resources */,
 				531836EC1C079556001AE40D /* decline@2x.png in Resources */,
 				531836E91C079550001AE40D /* confirm@2x.png in Resources */,
 				029F1B9C1C01E56300368AD4 /* Assets.xcassets in Resources */,
@@ -1395,6 +1400,7 @@
 			files = (
 				531836E71C077D47001AE40D /* Checkmark-100@2x.png in Resources */,
 				029F1BB31C01E56300368AD4 /* Assets.xcassets in Resources */,
+				53402F841C0A647C009E4FD9 /* location@2x.png in Resources */,
 				531836ED1C079556001AE40D /* decline@2x.png in Resources */,
 				531836EA1C079550001AE40D /* confirm@2x.png in Resources */,
 			);

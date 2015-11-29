@@ -15,16 +15,19 @@
 @interface IconsIC () {
     NSArray *json;
     NSMutableDictionary *buttonIDs;
+    NSString *contactID;
 }
 
 @end
 
 @implementation IconsIC
+@synthesize myTimer;
 
 - (void)awakeWithContext:(id)context {
     [super awakeWithContext:context];
     self.title = @"";
     [_iconButton setValue:@"" forKey:@""];
+    NSLog(@"cID %@", context);
     // Configure interface objects here.
 }
 
@@ -59,6 +62,49 @@
         NSLog(@"Error: %@", error);
     }];
 }
+//- (void) sendMessage:(NSString*)idButton {
+//    NSDictionary *parametrs = @{@"id_user":[NSUserDefaults userID], @"id_contact":contactID, @"content":[idButton lowercaseString], @"type":@"icon"};
+//    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+//    manager.responseSerializer = [AFJSONResponseSerializer serializer];
+//    manager.requestSerializer = [AFJSONRequestSerializer serializer];
+//    [manager.requestSerializer setValue:[NSUserDefaults userToken] forHTTPHeaderField:@"X-API-TOKEN"];
+//    [manager.requestSerializer setValue:@"76eb29d3ca26fe805545812850e6d75af933214a" forHTTPHeaderField:@"X-API-KEY"];
+//    [manager POST:[NSString stringWithFormat:@"http://api.iamchill.co/v2/messages/index/"] parameters:parametrs success:^(NSURLSessionTask *task, id responseObject) {
+//        if ([[responseObject objectForKey:@"status"] isEqualToString:@"success"]) {
+//            [_group1 setHidden:YES];
+//            [_group2 setHidden:YES];
+//            [_group3 setHidden:YES];
+//            [_statusIMG setHidden:NO];
+//            [_statusText setHidden:NO];
+//            [_statusText setText:@"Done"];
+//            [_statusIMG setImageNamed:@"confirm"];
+//            self.title = @"";
+//            self.myTimer = [NSTimer scheduledTimerWithTimeInterval:2.0f
+//                                                            target:self
+//                                                          selector:@selector(tick)
+//                                                          userInfo:nil
+//                                                           repeats:YES];
+//            
+//            //            [self popController];
+//        }
+//        NSLog(@"JSON: %@", responseObject);
+//    } failure:^(NSURLSessionTask *operation, NSError *error) {
+//        [_group1 setHidden:YES];
+//        [_group2 setHidden:YES];
+//        [_group3 setHidden:YES];
+//        [_statusIMG setHidden:NO];
+//        [_statusText setHidden:NO];
+//        [_statusText setText:@"Failed"];
+//        [_statusIMG setImageNamed:@"decline"];
+//        self.title = @"";
+//        self.myTimer = [NSTimer scheduledTimerWithTimeInterval:2.0f
+//                                                        target:self
+//                                                      selector:@selector(tick)
+//                                                      userInfo:nil
+//                                                       repeats:YES];
+//        NSLog(@"Error: %@", error);
+//    }];
+//}
 
 - (void) configureTable {
     int num = json.count/3;

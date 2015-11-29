@@ -14,6 +14,7 @@
     NSArray *json;
     NSInteger *itemsPicker[60];
     NSString *contactID;
+    NSString *valueSelected;
 }
 
 @end
@@ -29,7 +30,7 @@
     }
     self.title = @"Back";
     contactID = context;
-
+    valueSelected = @"";
     NSLog(@"CON %@", context);
     // Configure interface objects here.
 }
@@ -89,7 +90,7 @@
 }
 
 - (void) sendMessage:(NSString*)idButton {
-    NSDictionary *parametrs = @{@"id_user":[NSUserDefaults userID], @"id_contact":contactID, @"content":[idButton lowercaseString], @"type":@"icon"};
+    NSDictionary *parametrs = @{@"id_user":[NSUserDefaults userID], @"id_contact":contactID, @"content":[idButton lowercaseString], @"type":@"icon", @"text":valueSelected};
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.responseSerializer = [AFJSONResponseSerializer serializer];
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
@@ -167,6 +168,83 @@
 - (IBAction)b6 {
     [self sendMessage:[json[5] valueForKey:@"name"]];
 }
+
+- (IBAction)didChangeValue:(NSInteger)value {
+    if (value != 0)
+        valueSelected = [NSString stringWithFormat:@"%i", value];
+    else
+        valueSelected = @"";
+}
+
+- (IBAction)sendLocation {
+    [self startLocationReporting];
+}
+- (void)startLocationReporting {
+    NSLog(@"startLocation");
+    _locationManager = [[CLLocationManager alloc] init];
+    _locationManager.delegate = self;//or whatever class you have for managing location
+    _locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters;
+    [_locationManager requestAlwaysAuthorization];
+    [_locationManager requestWhenInUseAuthorization];
+    [_locationManager requestLocation];
+    //    [_locationManager startMonitoringSignificantLocationChanges];
+}
+-(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations {
+        NSLog(@"locationManager %@", locations);
+    NSDictionary *parametrs = @{@"id_user":[NSUserDefaults userID], @"id_contact":contactID, @"content":[NSString stringWithFormat:@"%f %f", locations.lastObject.coordinate.latitude, locations.lastObject.coordinate.longitude], @"type":@"location"};
+    AFHTTPSessionManager *sManager = [AFHTTPSessionManager manager];
+    sManager.responseSerializer = [AFJSONResponseSerializer serializer];
+    sManager.requestSerializer = [AFJSONRequestSerializer serializer];
+    [sManager.requestSerializer setValue:[NSUserDefaults userToken] forHTTPHeaderField:@"X-API-TOKEN"];
+    [sManager.requestSerializer setValue:@"76eb29d3ca26fe805545812850e6d75af933214a" forHTTPHeaderField:@"X-API-KEY"];
+    [sManager POST:[NSString stringWithFormat:@"http://api.iamchill.co/v2/messages/index/"] parameters:parametrs success:^(NSURLSessionTask *task, id responseObject) {
+        if ([[responseObject objectForKey:@"status"] isEqualToString:@"success"]) {
+            [_group1 setHidden:YES];
+            [_group2 setHidden:YES];
+            [_group3 setHidden:YES];
+            [_statusIMG setHidden:NO];
+            [_statusText setHidden:NO];
+            [_statusText setText:@"Done"];
+            [_statusIMG setImageNamed:@"confirm"];
+            self.title = @"";
+            self.myTimer = [NSTimer scheduledTimerWithTimeInterval:2.0f
+                                                            target:self
+                                                          selector:@selector(tick)
+                                                          userInfo:nil
+                                                           repeats:YES];
+            
+            //            [self popController];
+        }
+        NSLog(@"JSON: %@", responseObject);
+    } failure:^(NSURLSessionTask *operation, NSError *error) {
+        [_group1 setHidden:YES];
+        [_group2 setHidden:YES];
+        [_group3 setHidden:YES];
+        [_statusIMG setHidden:NO];
+        [_statusText setHidden:NO];
+        [_statusText setText:@"Failed"];
+        [_statusIMG setImageNamed:@"decline"];
+        self.title = @"";
+        self.myTimer = [NSTimer scheduledTimerWithTimeInterval:2.0f
+                                                        target:self
+                                                      selector:@selector(tick)
+                                                      userInfo:nil
+                                                       repeats:YES];
+        NSLog(@"Error: %@", error);
+    }];
+    [manager stopUpdatingLocation];
+
+}
+-(void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error {
+    NSLog(@"fail");
+}
+//- (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation {
+//    NSLog(@"locationManager");
+//    latUser = newLocation.coordinate.latitude;
+//    lonUser= newLocation.coordinate.longitude;
+//    NSLog(@"coord %f %f", latUser, lonUser);
+//    //    [_locationManager stopUpdatingLocation];
+//}
 @end
 
 
