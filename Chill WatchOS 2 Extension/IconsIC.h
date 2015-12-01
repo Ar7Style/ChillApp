@@ -15,5 +15,8 @@
 @property (unsafe_unretained, nonatomic) IBOutlet WKInterfaceButton *iconButton;
 @property (unsafe_unretained, nonatomic) IBOutlet WKInterfaceTable *table;
 @property (nonatomic, retain) NSTimer *myTimer;
+@property (unsafe_unretained, nonatomic) IBOutlet WKInterfaceLabel *textMore;
+@property (unsafe_unretained, nonatomic) IBOutlet WKInterfaceImage *statusIMG;
+@property (unsafe_unretained, nonatomic) IBOutlet WKInterfaceLabel *statusText;
 
 @end

@@ -202,13 +202,18 @@
                                 </tableRow>
                             </items>
                         </table>
+                        <imageView width="50" height="50" alignment="center" verticalAlignment="center" image="confirm.png" contentMode="scaleAspectFit" id="IOC-cn-qR4"/>
+                        <label width="136" height="34" alignment="left" verticalAlignment="bottom" text="Loading..." textAlignment="center" numberOfLines="0" id="F0j-Rf-Hgo"/>
                     </items>
                     <connections>
+                        <outlet property="statusIMG" destination="IOC-cn-qR4" id="5LA-XU-xVu"/>
+                        <outlet property="statusText" destination="F0j-Rf-Hgo" id="eoE-g2-6Ic"/>
                         <outlet property="table" destination="A5N-NF-Q6t" id="H7u-va-LKc"/>
+                        <outlet property="textMore" destination="D6b-eE-SMQ" id="oN0-4t-RcV"/>
                     </connections>
                 </controller>
             </objects>
-            <point key="canvasLocation" x="771" y="345"/>
+            <point key="canvasLocation" x="771" y="344.5"/>
         </scene>
         <!--HelpIC-->
         <scene sceneID="vuk-R6-bYc">
