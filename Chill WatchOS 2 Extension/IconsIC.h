@@ -9,8 +9,11 @@
 #import <WatchKit/WatchKit.h>
 #import <Foundation/Foundation.h>
 
-@interface IconsIC : WKInterfaceController
+@interface IconsIC : WKInterfaceController {
+    NSTimer *myTimer;
+}
 @property (unsafe_unretained, nonatomic) IBOutlet WKInterfaceButton *iconButton;
 @property (unsafe_unretained, nonatomic) IBOutlet WKInterfaceTable *table;
+@property (nonatomic, retain) NSTimer *myTimer;
 
 @end

@@ -13,5 +13,6 @@
 @property (unsafe_unretained, nonatomic) IBOutlet WKInterfaceTable *table;
 @property (unsafe_unretained, nonatomic) IBOutlet WKInterfaceLabel *statusLabel;
 @property (unsafe_unretained, nonatomic) IBOutlet WKInterfaceButton *reloadButton;
+- (IBAction)reload;
 
 @end

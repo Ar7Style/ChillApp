@@ -35,7 +35,11 @@
                 <controller identifier="ContactsIC" id="g2m-gF-IBW" customClass="ContactsIC">
                     <items>
                         <label width="136" height="99" alignment="left" text="Loading..." textAlignment="center" numberOfLines="0" id="VXk-yQ-ym6"/>
-                        <button width="1" alignment="left" title="Reload" id="sKP-GP-nwx"/>
+                        <button width="1" alignment="left" title="Reload" id="sKP-GP-nwx">
+                            <connections>
+                                <action selector="reload" destination="g2m-gF-IBW" id="HCB-kD-pcU"/>
+                            </connections>
+                        </button>
                         <table alignment="left" id="TPk-4G-jnG">
                             <items>
                                 <tableRow identifier="cell" id="qEj-Md-Gk2" customClass="ContactRow">
@@ -118,10 +122,23 @@
                                 <label width="43" height="39" alignment="left" text="#" textAlignment="right" id="g1e-gU-ffn">
                                     <color key="textColor" red="0.36470588240000001" green="1" blue="0.86274509799999999" alpha="1" colorSpace="calibratedRGB"/>
                                 </label>
-                                <picker width="35" height="39" alignment="left" id="0Pi-Nm-wSU"/>
+                                <picker width="35" height="39" alignment="left" id="0Pi-Nm-wSU">
+                                    <connections>
+                                        <action selector="didChangeValue:" destination="ljR-vO-91f" id="2gN-xh-IWx"/>
+                                    </connections>
+                                </picker>
                             </items>
                         </group>
                     </items>
+                    <menu key="menu" id="hvS-Qc-r93">
+                        <items>
+                            <menuItem title="Location" image="location" id="yao-8j-4er">
+                                <connections>
+                                    <action selector="sendLocation" destination="ljR-vO-91f" id="bHH-zo-v8P"/>
+                                </connections>
+                            </menuItem>
+                        </items>
+                    </menu>
                     <edgeInsets key="margins" left="6" right="1" top="0.0" bottom="0.0"/>
                     <connections>
                         <outlet property="countValue" destination="0Pi-Nm-wSU" id="xIr-m8-tqG"/>
