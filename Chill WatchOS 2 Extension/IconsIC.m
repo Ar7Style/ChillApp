@@ -26,6 +26,8 @@
 - (void)awakeWithContext:(id)context {
     [super awakeWithContext:context];
     self.title = @"";
+    contactID = context;
+
     [_iconButton setValue:@"" forKey:@""];
     NSLog(@"cID %@", context);
     // Configure interface objects here.
@@ -34,6 +36,8 @@
 - (void)willActivate {
     // This method is called when watch view controller is about to be visible to user
     [super willActivate];
+    [_statusIMG setHidden:YES];
+    [_statusText setHidden:YES];
     buttonIDs = [NSMutableDictionary new];
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(didGetMyNotification:)
@@ -44,8 +48,56 @@
 
 - (void)didGetMyNotification:(NSNotification*)notification {
     NSLog(@"hello %@", [buttonIDs objectForKey:[NSString stringWithFormat:@"%@",[notification object]]]);
-}
 
+    NSDictionary *parametrs = @{@"id_user":[NSUserDefaults userID], @"id_contact":contactID, @"content":[buttonIDs objectForKey:[NSString stringWithFormat:@"%@",[notification object]]], @"type":@"icon"};
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.responseSerializer = [AFJSONResponseSerializer serializer];
+    manager.requestSerializer = [AFJSONRequestSerializer serializer];
+    [manager.requestSerializer setValue:[NSUserDefaults userToken] forHTTPHeaderField:@"X-API-TOKEN"];
+    [manager.requestSerializer setValue:@"76eb29d3ca26fe805545812850e6d75af933214a" forHTTPHeaderField:@"X-API-KEY"];
+    [manager POST:[NSString stringWithFormat:@"http://api.iamchill.co/v2/messages/index/"] parameters:parametrs success:^(NSURLSessionTask *task, id responseObject) {
+        if ([[responseObject objectForKey:@"status"] isEqualToString:@"success"]) {
+            [_table setHidden:YES];
+            [_textMore setHidden:YES];
+            [_statusIMG setHidden:NO];
+            [_statusText setHidden:NO];
+            [_statusText setText:@"Done"];
+            [_statusIMG setImageNamed:@"confirm"];
+            self.title = @"";
+            self.myTimer = [NSTimer scheduledTimerWithTimeInterval:2.0f
+                                                            target:self
+                                                          selector:@selector(tick)
+                                                          userInfo:nil
+                                                           repeats:YES];
+            
+            //            [self popController];
+        }
+        NSLog(@"JSON: %@", responseObject);
+    } failure:^(NSURLSessionTask *operation, NSError *error) {
+        [_table setHidden:YES];
+        [_textMore setHidden:YES];
+        [_statusIMG setHidden:NO];
+        [_statusText setHidden:NO];
+        [_statusText setText:@"Failed"];
+        [_statusIMG setImageNamed:@"decline"];
+        self.title = @"";
+        self.myTimer = [NSTimer scheduledTimerWithTimeInterval:2.0f
+                                                        target:self
+                                                      selector:@selector(tick)
+                                                      userInfo:nil
+                                                       repeats:YES];
+        NSLog(@"Error: %@", error);
+    }];
+
+}
+- (void)tick {
+    if ([myTimer isValid]) {
+        
+        [myTimer invalidate];
+        NSArray *array1=[[NSArray alloc] initWithObjects:@"ContactsIC", nil];
+        [WKInterfaceController reloadRootControllersWithNames:array1 contexts:nil];
+    }
+}
 - (void) loadData {
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.responseSerializer = [AFJSONResponseSerializer serializer];
@@ -115,16 +167,16 @@
         IconRow* theRow = [self.table rowControllerAtIndex:j];
         if (n == 0 ) {
             [theRow.button1 setBackgroundImageData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[json[i] valueForKey:@"size80"]]]];
-            [buttonIDs setObject:[json[i] valueForKey:@"id"] forKey:[NSString stringWithFormat:@"%@", theRow.button1]];
+            [buttonIDs setObject:[json[i] valueForKey:@"name"] forKey:[NSString stringWithFormat:@"%@", theRow.button1]];
             
         }
         else if (n == 1) {
             [theRow.button2 setBackgroundImageData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[json[i] valueForKey:@"size80"]]]];
-            [buttonIDs setObject:[json[i] valueForKey:@"id"] forKey:[NSString stringWithFormat:@"%@", theRow.button2]];
+            [buttonIDs setObject:[json[i] valueForKey:@"name"] forKey:[NSString stringWithFormat:@"%@", theRow.button2]];
         }
         else if (n == 2) {
             [theRow.button3 setBackgroundImageData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[json[i] valueForKey:@"size80"]]]];
-            [buttonIDs setObject:[json[i] valueForKey:@"id"] forKey:[NSString stringWithFormat:@"%@", theRow.button3]];
+            [buttonIDs setObject:[json[i] valueForKey:@"name"] forKey:[NSString stringWithFormat:@"%@", theRow.button3]];
         }
         n++;
         if (!((i+1)%3)){
