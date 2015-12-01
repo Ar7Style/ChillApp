@@ -17,11 +17,15 @@
 #import "GAIDictionaryBuilder.h"
 #import "GAITracker.h"
 #import "CHLFriendsListViewController.h"
+#import "UIViewController+KeyboardAnimation.h"
 
 @interface CHLSettingsViewController () {
     NSMutableArray *json;
     
+    
 }
+
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *constraintBottom;
 
 @end
 
@@ -42,13 +46,38 @@
     
 }
 
+//-(void)viewWillAppear:(BOOL)animated {
+//    __weak __typeof(self) weakSelf = self;
+//    [self an_subscribeKeyboardWithAnimations:^(CGRect keyboardRect, NSTimeInterval duration, BOOL isShowing) {
+//        __typeof__(self) strongSelf = weakSelf;
+//     self.constraintBottom.constant = isShowing ?  CGRectGetHeight(keyboardRect) : 20;
+//        
+//        [self.view layoutIfNeeded];
+//    } completion:nil];
+//    [self.view layoutIfNeeded];
+//
+//}
+//
+//-(void)viewWillDisappear:(BOOL)animated {
+//    [self an_unsubscribeKeyboard];
+//}
+
+
+
+
 - (void)viewDidAppear:(BOOL)animated {
     
     
     self.navigationController.view.clipsToBounds=YES;
-    NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
-    [center addObserver:self selector:@selector(willShowKeyboard) name:UIKeyboardDidShowNotification object:nil];
-    [center addObserver:self selector:@selector(willHideKeyboard) name:UIKeyboardWillHideNotification object:nil];
+    if([[UIDevice currentDevice]userInterfaceIdiom]==UIUserInterfaceIdiomPhone)
+    {
+        if ([[UIScreen mainScreen] bounds].size.height <= 568) // < iphone 5
+        {
+            NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
+            [center addObserver:self selector:@selector(willShowKeyboard) name:UIKeyboardDidShowNotification object:nil];
+            [center addObserver:self selector:@selector(willHideKeyboard) name:UIKeyboardWillHideNotification object:nil];
+        }
+    }
     
     [super viewDidAppear:animated];
     id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];

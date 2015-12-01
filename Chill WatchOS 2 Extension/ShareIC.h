@@ -16,12 +16,6 @@
 }
 @property (nonatomic,retain) CLLocationManager *locationManager;
 
-<<<<<<< HEAD
-@interface ShareIC : WKInterfaceController {
-    NSTimer *myTimer;
-}
-=======
->>>>>>> c6b5dca4d14148f199961f370481cf32455f6519
 @property (unsafe_unretained, nonatomic) IBOutlet WKInterfaceButton *icon1;
 @property (unsafe_unretained, nonatomic) IBOutlet WKInterfaceButton *icon2;
 @property (unsafe_unretained, nonatomic) IBOutlet WKInterfaceButton *icon3;
@@ -37,11 +31,8 @@
 - (IBAction)b4;
 - (IBAction)b5;
 - (IBAction)b6;
-<<<<<<< HEAD
-=======
 - (IBAction)didChangeValue:(NSInteger)value;
 - (IBAction)sendLocation;
->>>>>>> c6b5dca4d14148f199961f370481cf32455f6519
 @property (unsafe_unretained, nonatomic) IBOutlet WKInterfaceGroup *group1;
 @property (unsafe_unretained, nonatomic) IBOutlet WKInterfaceGroup *group2;
 @property (unsafe_unretained, nonatomic) IBOutlet WKInterfaceGroup *group3;

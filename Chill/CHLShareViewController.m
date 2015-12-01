@@ -116,7 +116,7 @@ NSInteger defaultValue = 10;
         
         [self.view layoutIfNeeded];
     } completion:nil];
-    //[self.view layoutIfNeeded];
+    
 }
 -(void)viewWillDisappear:(BOOL)animated {
     [self an_unsubscribeKeyboard];

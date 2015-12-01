@@ -14,10 +14,7 @@
     NSArray *json;
     NSInteger *itemsPicker[60];
     NSString *contactID;
-<<<<<<< HEAD
-=======
     NSString *valueSelected;
->>>>>>> c6b5dca4d14148f199961f370481cf32455f6519
 }
 
 @end
@@ -33,11 +30,7 @@
     }
     self.title = @"Back";
     contactID = context;
-<<<<<<< HEAD
-
-=======
     valueSelected = @"";
->>>>>>> c6b5dca4d14148f199961f370481cf32455f6519
     NSLog(@"CON %@", context);
     // Configure interface objects here.
 }
@@ -97,11 +90,7 @@
 }
 
 - (void) sendMessage:(NSString*)idButton {
-<<<<<<< HEAD
-    NSDictionary *parametrs = @{@"id_user":[NSUserDefaults userID], @"id_contact":contactID, @"content":[idButton lowercaseString], @"type":@"icon"};
-=======
     NSDictionary *parametrs = @{@"id_user":[NSUserDefaults userID], @"id_contact":contactID, @"content":[idButton lowercaseString], @"type":@"icon", @"text":valueSelected};
->>>>>>> c6b5dca4d14148f199961f370481cf32455f6519
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.responseSerializer = [AFJSONResponseSerializer serializer];
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
@@ -179,8 +168,6 @@
 - (IBAction)b6 {
     [self sendMessage:[json[5] valueForKey:@"name"]];
 }
-<<<<<<< HEAD
-=======
 
 - (IBAction)didChangeValue:(NSInteger)value {
     if (value != 0)
@@ -258,7 +245,6 @@
 //    NSLog(@"coord %f %f", latUser, lonUser);
 //    //    [_locationManager stopUpdatingLocation];
 //}
->>>>>>> c6b5dca4d14148f199961f370481cf32455f6519
 @end
 
 
