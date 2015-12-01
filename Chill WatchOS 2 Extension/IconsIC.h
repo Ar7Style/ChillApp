@@ -10,5 +10,7 @@
 #import <Foundation/Foundation.h>
 
 @interface IconsIC : WKInterfaceController
+@property (unsafe_unretained, nonatomic) IBOutlet WKInterfaceButton *iconButton;
+@property (unsafe_unretained, nonatomic) IBOutlet WKInterfaceTable *table;
 
 @end

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="9060" systemVersion="15B42" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="AgC-eL-Hgc">
+<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="8191" systemVersion="15B42" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="AgC-eL-Hgc">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="9019"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="8092"/>
     </dependencies>
     <customFonts key="customFonts">
         <mutableArray key="Tharlon-Regular.ttf">
@@ -67,16 +67,27 @@
             <objects>
                 <controller identifier="ShareIC" id="ljR-vO-91f" customClass="ShareIC">
                     <items>
+                        <imageView width="50" height="50" alignment="center" verticalAlignment="center" image="confirm.png" contentMode="scaleAspectFit" id="BK3-SF-j9V"/>
+                        <label width="124" height="34" alignment="left" verticalAlignment="bottom" text="Loading..." textAlignment="center" numberOfLines="0" id="J1K-dl-N9w"/>
                         <group width="1" height="47" alignment="left" id="oVw-y2-ldq">
                             <items>
                                 <button width="40" height="40" alignment="left" verticalAlignment="bottom" id="QWA-2i-V5b">
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    <connections>
+                                        <action selector="b1" destination="ljR-vO-91f" id="fS6-7n-UOz"/>
+                                    </connections>
                                 </button>
                                 <button width="40" height="40" alignment="left" verticalAlignment="bottom" id="jCY-8d-9me">
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    <connections>
+                                        <action selector="b2" destination="ljR-vO-91f" id="s9X-bc-ajx"/>
+                                    </connections>
                                 </button>
                                 <button width="40" height="40" alignment="left" verticalAlignment="bottom" id="RMD-MZ-XZw">
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    <connections>
+                                        <action selector="b3" destination="ljR-vO-91f" id="LiF-Il-0XC"/>
+                                    </connections>
                                 </button>
                             </items>
                         </group>
@@ -84,72 +95,100 @@
                             <items>
                                 <button width="40" height="40" alignment="left" id="GoU-Jy-i4w">
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    <connections>
+                                        <action selector="b4" destination="ljR-vO-91f" id="Teb-WA-2Ic"/>
+                                    </connections>
                                 </button>
                                 <button width="40" height="40" alignment="left" id="0lk-KV-YSY">
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    <connections>
+                                        <action selector="b5" destination="ljR-vO-91f" id="MJA-sR-1Di"/>
+                                    </connections>
                                 </button>
                                 <button width="40" height="40" alignment="left" id="kkX-ie-rhO">
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    <connections>
+                                        <action selector="b6" destination="ljR-vO-91f" id="5jX-gD-hdP"/>
+                                    </connections>
                                 </button>
                             </items>
                         </group>
                         <group width="123" alignment="left" id="2XO-ib-KpR">
                             <items>
-                                <label width="40" height="39" alignment="left" text="#" textAlignment="right" id="g1e-gU-ffn"/>
-                                <picker width="39" height="39" alignment="left" id="0Pi-Nm-wSU"/>
+                                <label width="43" height="39" alignment="left" text="#" textAlignment="right" id="g1e-gU-ffn">
+                                    <color key="textColor" red="0.36470588240000001" green="1" blue="0.86274509799999999" alpha="1" colorSpace="calibratedRGB"/>
+                                </label>
+                                <picker width="35" height="39" alignment="left" id="0Pi-Nm-wSU"/>
                             </items>
                         </group>
                     </items>
                     <edgeInsets key="margins" left="6" right="1" top="0.0" bottom="0.0"/>
                     <connections>
                         <outlet property="countValue" destination="0Pi-Nm-wSU" id="xIr-m8-tqG"/>
+                        <outlet property="group1" destination="oVw-y2-ldq" id="GXy-fA-Rra"/>
+                        <outlet property="group2" destination="Y7Q-2V-xSi" id="50F-gv-phJ"/>
+                        <outlet property="group3" destination="2XO-ib-KpR" id="vjT-6v-uen"/>
                         <outlet property="icon1" destination="QWA-2i-V5b" id="cU6-AR-FqW"/>
                         <outlet property="icon2" destination="jCY-8d-9me" id="iNj-21-rXt"/>
                         <outlet property="icon3" destination="RMD-MZ-XZw" id="Wpg-0q-a00"/>
                         <outlet property="icon4" destination="GoU-Jy-i4w" id="aHa-ll-5SD"/>
                         <outlet property="icon5" destination="0lk-KV-YSY" id="dqI-gt-Lxc"/>
                         <outlet property="icon6" destination="kkX-ie-rhO" id="jCr-H3-uUu"/>
+                        <outlet property="statusIMG" destination="BK3-SF-j9V" id="MBo-Is-Tpl"/>
+                        <outlet property="statusText" destination="J1K-dl-N9w" id="gR2-K8-chV"/>
                         <segue destination="HvD-lE-RxT" kind="relationship" relationship="nextPage" id="w45-39-MxF"/>
                     </connections>
                 </controller>
             </objects>
-            <point key="canvasLocation" x="582" y="345"/>
+            <point key="canvasLocation" x="582" y="353.5"/>
         </scene>
         <!--IconsIC-->
         <scene sceneID="76O-Hf-DGR">
             <objects>
                 <controller identifier="IconsIC" id="HvD-lE-RxT" customClass="IconsIC">
                     <items>
-                        <table alignment="left" id="jUE-eG-pU8"/>
+                        <label width="136" alignment="left" text="More" textAlignment="center" id="D6b-eE-SMQ"/>
                         <table alignment="left" id="A5N-NF-Q6t">
                             <items>
-                                <tableRow id="DdP-OQ-OF1">
-                                    <group key="rootItem" width="1" height="25.5" alignment="left" radius="6" id="U8g-9l-c9n">
-                                        <items>
-                                            <label width="136" height="22" alignment="left" text="More" textAlignment="center" id="AGa-Rm-5rV"/>
-                                        </items>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                    </group>
-                                </tableRow>
-                                <tableRow identifier="cell" id="M49-BG-wWQ">
+                                <tableRow identifier="cell" id="M49-BG-wWQ" customClass="IconRow">
                                     <group key="rootItem" width="1" height="40" alignment="left" id="eXd-9g-xsD">
                                         <items>
                                             <button width="38" height="38" alignment="center" verticalAlignment="bottom" title="Button" id="7EH-2d-ICk">
+                                                <color key="titleColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                <connections>
+                                                    <action selector="b1" destination="M49-BG-wWQ" id="MaW-ZB-eLY"/>
+                                                </connections>
                                             </button>
                                             <button width="38" height="38" alignment="center" verticalAlignment="bottom" title="Button" id="fKJ-8z-o3r">
+                                                <color key="titleColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                <connections>
+                                                    <action selector="b2" destination="M49-BG-wWQ" id="N86-c8-G3g"/>
+                                                </connections>
                                             </button>
                                             <button width="38" height="38" alignment="center" verticalAlignment="bottom" title="Button" id="0bn-pu-Fav">
+                                                <color key="titleColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                <connections>
+                                                    <action selector="b3" destination="M49-BG-wWQ" id="zQ0-r7-kiM"/>
+                                                </connections>
                                             </button>
                                         </items>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     </group>
+                                    <connections>
+                                        <outlet property="button1" destination="7EH-2d-ICk" id="YAV-W7-hxr"/>
+                                        <outlet property="button2" destination="fKJ-8z-o3r" id="UPE-S6-30J"/>
+                                        <outlet property="button3" destination="0bn-pu-Fav" id="IpR-Hb-Cuc"/>
+                                    </connections>
                                 </tableRow>
                             </items>
                         </table>
                     </items>
+                    <connections>
+                        <outlet property="table" destination="A5N-NF-Q6t" id="H7u-va-LKc"/>
+                    </connections>
                 </controller>
             </objects>
             <point key="canvasLocation" x="771" y="345"/>
@@ -199,6 +238,7 @@
                         <imageView width="136" height="136" alignment="center" contentMode="scaleAspectFit" id="SCZ-aU-4tJ"/>
                         <label width="136" alignment="left" text="#Hash" textAlignment="center" id="kQT-6l-OX2"/>
                     </items>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <connections>
                         <outlet property="image" destination="SCZ-aU-4tJ" id="pDI-B9-nfn"/>
                     </connections>

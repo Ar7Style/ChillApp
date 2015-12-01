@@ -177,6 +177,14 @@
 		06EAB9591AA7AE6300149DF2 /* Chill_logo_hand.png in Resources */ = {isa = PBXBuildFile; fileRef = 06EAB9551AA7AE6300149DF2 /* Chill_logo_hand.png */; };
 		06EAB95C1AA7AE6300149DF2 /* Portrait 4.png in Resources */ = {isa = PBXBuildFile; fileRef = 06EAB9581AA7AE6300149DF2 /* Portrait 4.png */; };
 		06F3318D1B721A710064BD1C /* CHLInviteFromAddressBookViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 06F3318C1B721A710064BD1C /* CHLInviteFromAddressBookViewController.m */; };
+		531836E61C077D47001AE40D /* Checkmark-100@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 531836E51C077D47001AE40D /* Checkmark-100@2x.png */; settings = {ASSET_TAGS = (); }; };
+		531836E71C077D47001AE40D /* Checkmark-100@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 531836E51C077D47001AE40D /* Checkmark-100@2x.png */; settings = {ASSET_TAGS = (); }; };
+		531836E91C079550001AE40D /* confirm@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 531836E81C079550001AE40D /* confirm@2x.png */; settings = {ASSET_TAGS = (); }; };
+		531836EA1C079550001AE40D /* confirm@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 531836E81C079550001AE40D /* confirm@2x.png */; settings = {ASSET_TAGS = (); }; };
+		531836EC1C079556001AE40D /* decline@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 531836EB1C079556001AE40D /* decline@2x.png */; settings = {ASSET_TAGS = (); }; };
+		531836ED1C079556001AE40D /* decline@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 531836EB1C079556001AE40D /* decline@2x.png */; settings = {ASSET_TAGS = (); }; };
+		532D46A41C062E440070C105 /* IconRow.m in Sources */ = {isa = PBXBuildFile; fileRef = 532D46A31C062E440070C105 /* IconRow.m */; settings = {ASSET_TAGS = (); }; };
+		532D46A71C0640C30070C105 /* ButtonIconID.m in Sources */ = {isa = PBXBuildFile; fileRef = 532D46A61C0640C30070C105 /* ButtonIconID.m */; settings = {ASSET_TAGS = (); }; };
 		53C8670A1C03796F00FD9014 /* IconsIC.m in Sources */ = {isa = PBXBuildFile; fileRef = 53C867091C03796F00FD9014 /* IconsIC.m */; settings = {ASSET_TAGS = (); }; };
 		53EA0C231C01328300E161C6 /* UserCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 53EA0C221C01328300E161C6 /* UserCache.m */; };
 		AD39F35B1B6052AF003936C4 /* CHLFriendsSourcesVC.m in Sources */ = {isa = PBXBuildFile; fileRef = AD39F35A1B6052AF003936C4 /* CHLFriendsSourcesVC.m */; };
@@ -496,6 +504,13 @@
 		06EAB9581AA7AE6300149DF2 /* Portrait 4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Portrait 4.png"; sourceTree = SOURCE_ROOT; };
 		06F3318B1B721A710064BD1C /* CHLInviteFromAddressBookViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHLInviteFromAddressBookViewController.h; sourceTree = "<group>"; };
 		06F3318C1B721A710064BD1C /* CHLInviteFromAddressBookViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHLInviteFromAddressBookViewController.m; sourceTree = "<group>"; };
+		531836E51C077D47001AE40D /* Checkmark-100@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Checkmark-100@2x.png"; sourceTree = "<group>"; };
+		531836E81C079550001AE40D /* confirm@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "confirm@2x.png"; sourceTree = "<group>"; };
+		531836EB1C079556001AE40D /* decline@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "decline@2x.png"; sourceTree = "<group>"; };
+		532D46A21C062E440070C105 /* IconRow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IconRow.h; sourceTree = "<group>"; };
+		532D46A31C062E440070C105 /* IconRow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IconRow.m; sourceTree = "<group>"; };
+		532D46A51C0640C30070C105 /* ButtonIconID.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ButtonIconID.h; sourceTree = "<group>"; };
+		532D46A61C0640C30070C105 /* ButtonIconID.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ButtonIconID.m; sourceTree = "<group>"; };
 		53C867081C03796F00FD9014 /* IconsIC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IconsIC.h; sourceTree = "<group>"; };
 		53C867091C03796F00FD9014 /* IconsIC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IconsIC.m; sourceTree = "<group>"; };
 		53EA0C211C01328300E161C6 /* UserCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserCache.h; sourceTree = "<group>"; };
@@ -701,6 +716,9 @@
 			isa = PBXGroup;
 			children = (
 				029F1B981C01E56300368AD4 /* Interface.storyboard */,
+				531836E51C077D47001AE40D /* Checkmark-100@2x.png */,
+				531836E81C079550001AE40D /* confirm@2x.png */,
+				531836EB1C079556001AE40D /* decline@2x.png */,
 				029F1B9B1C01E56300368AD4 /* Assets.xcassets */,
 				029F1B9D1C01E56300368AD4 /* Info.plist */,
 			);
@@ -710,12 +728,16 @@
 		029F1BA61C01E56300368AD4 /* Chill WatchOS 2 Extension */ = {
 			isa = PBXGroup;
 			children = (
+				532D46A51C0640C30070C105 /* ButtonIconID.h */,
+				532D46A61C0640C30070C105 /* ButtonIconID.m */,
 				029F1BA91C01E56300368AD4 /* InterfaceController.h */,
 				029F1BAA1C01E56300368AD4 /* InterfaceController.m */,
 				023B427B1C023E8500E124A8 /* ShareIC.h */,
 				023B427C1C023E8500E124A8 /* ShareIC.m */,
 				029F1BC31C020EB300368AD4 /* ContactRow.h */,
 				029F1BC41C020EB300368AD4 /* ContactRow.m */,
+				532D46A21C062E440070C105 /* IconRow.h */,
+				532D46A31C062E440070C105 /* IconRow.m */,
 				029F1BC01C02073500368AD4 /* ContactsIC.h */,
 				029F1BC11C02073500368AD4 /* ContactsIC.m */,
 				53C867081C03796F00FD9014 /* IconsIC.h */,
@@ -1359,8 +1381,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				531836EC1C079556001AE40D /* decline@2x.png in Resources */,
+				531836E91C079550001AE40D /* confirm@2x.png in Resources */,
 				029F1B9C1C01E56300368AD4 /* Assets.xcassets in Resources */,
 				029F1B9A1C01E56300368AD4 /* Interface.storyboard in Resources */,
+				531836E61C077D47001AE40D /* Checkmark-100@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1368,7 +1393,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				531836E71C077D47001AE40D /* Checkmark-100@2x.png in Resources */,
 				029F1BB31C01E56300368AD4 /* Assets.xcassets in Resources */,
+				531836ED1C079556001AE40D /* decline@2x.png in Resources */,
+				531836EA1C079550001AE40D /* confirm@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1613,8 +1641,10 @@
 				029F1BBE1C01FFE200368AD4 /* UserCache.h in Sources */,
 				029F1BBF1C01FFE200368AD4 /* UserCache.m in Sources */,
 				029F1BC21C02073500368AD4 /* ContactsIC.m in Sources */,
+				532D46A41C062E440070C105 /* IconRow.m in Sources */,
 				023B427D1C023E8500E124A8 /* ShareIC.m in Sources */,
 				029F1BAE1C01E56300368AD4 /* ExtensionDelegate.m in Sources */,
+				532D46A71C0640C30070C105 /* ButtonIconID.m in Sources */,
 				023B42801C024C1600E124A8 /* HelpIC.m in Sources */,
 				029F1BAB1C01E56300368AD4 /* InterfaceController.m in Sources */,
 				029F1BC51C020EB300368AD4 /* ContactRow.m in Sources */,
