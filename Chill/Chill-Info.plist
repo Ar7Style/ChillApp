@@ -24,11 +24,6 @@
 	<string>1.6</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
-    <key>NSAppTransportSecurity</key>
-    <dict>
-        <key>NSAllowsArbitraryLoads</key>
-        <true/>
-    </dict>
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
@@ -71,6 +66,11 @@
 	<string>Chill!</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
+	</dict>
 	<key>NSLocationAlwaysUsageDescription</key>
 	<string>Share Your locaiton</string>
 	<key>NSLocationWhenInUseUsageDescription</key>

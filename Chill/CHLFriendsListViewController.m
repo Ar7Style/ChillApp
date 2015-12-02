@@ -178,7 +178,6 @@ NSMutableData *mutData;
                     [self.tableView performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:YES];
                 }
             });
-        
     
 }
 #pragma mark - Table view delegate
