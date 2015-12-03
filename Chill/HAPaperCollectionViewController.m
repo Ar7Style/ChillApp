@@ -20,11 +20,16 @@
 #import <GoogleMaps/GoogleMaps.h>
 #import <Parse/Parse.h>
 #import "MPTransition.h"
+#import "UserCache.h"
+#import <AFNetworking/AFNetworking.h>
 #import "GAI.h"
 #import "GAIFields.h"
 #import "GAIDictionaryBuilder.h"
 #import "GAITracker.h"
+
 @interface HAPaperCollectionViewController () <MBProgressHUDDelegate>{
+     NSArray *json;
+    NSIndexPath* currentIndexPath;
     MBProgressHUD *HUD;
     UIPanGestureRecognizer *pan;
     MPTransition *transitionManager;
@@ -84,33 +89,68 @@
         if ([[UIScreen mainScreen] bounds].size.height <= 568) // <= iphone 5
         {
             closeButton.frame = CGRectMake(232, 35, 100, 30);
-            [closeButton setImage:[UIImage imageNamed:@"x"] forState:UIControlStateNormal];
+            [closeButton setImage:[UIImage imageNamed:@"x-2"] forState:UIControlStateNormal];
             [closeButton addTarget:self action:@selector(dismissPaperCollection:) forControlEvents:UIControlEventTouchUpInside];
             [self.view addSubview:closeButton];
-            NSLog(@"Iphone 4s or 5");
+           
         }
         
         
         else if ([UIScreen mainScreen].scale >= 2.9) // >= iphone 6plus
         {
             closeButton.frame = CGRectMake(337, 35, 100, 30);
-            [closeButton setImage:[UIImage imageNamed:@"x"] forState:UIControlStateNormal];
+            [closeButton setImage:[UIImage imageNamed:@"x-2"] forState:UIControlStateNormal];
             [closeButton addTarget:self action:@selector(dismissPaperCollection:) forControlEvents:UIControlEventTouchUpInside];
             [self.view addSubview:closeButton];
-            NSLog(@"Iphone 6 plus");
         }
         
         else { // iphone 6
             closeButton.frame = CGRectMake(289, 35, 100, 30);
             
-            [closeButton setImage:[UIImage imageNamed:@"x"] forState:UIControlStateNormal];
+            [closeButton setImage:[UIImage imageNamed:@"x-2"] forState:UIControlStateNormal];
             [closeButton addTarget:self action:@selector(dismissPaperCollection:) forControlEvents:UIControlEventTouchUpInside];
             [self.view addSubview:closeButton];
-            NSLog(@"Iphone 6");
+            
         }
     }
+   // [self loadData];
+    
     
 }
+
+//- (void) loadData:(NSIndexPath *)indexPath withCollectionView:(UICollectionView *)collectionView{
+//    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+//    manager.responseSerializer = [AFJSONResponseSerializer serializer];
+//    manager.requestSerializer = [AFJSONRequestSerializer serializer];
+//    [manager.requestSerializer setValue:[NSUserDefaults userToken] forHTTPHeaderField:@"X-API-TOKEN"];
+//    [manager.requestSerializer setValue:@"76eb29d3ca26fe805545812850e6d75af933214a" forHTTPHeaderField:@"X-API-KEY"];
+//    [manager GET:[NSString stringWithFormat:@"http://api.iamchill.co/v2/icons/index/id_user/%@", [NSUserDefaults userID]] parameters:nil success:^(NSURLSessionTask *task, id responseObject) {
+//        if ([[responseObject objectForKey:@"status"] isEqualToString:@"success"]) {
+//            json = [responseObject objectForKey:@"response"];
+//            CHLPaperCollectionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:CELL_ID forIndexPath:indexPath];
+//            [cell.icon3 setHidden:NO];
+//            //[self setIcons:indexPath withCollectionView:collectionView];
+//
+//        }
+//        NSLog(@"JSON FROM LOAD DATA: %@", [json[0] valueForKey:@"size42"]);
+//            } failure:^(NSURLSessionTask *operation, NSError *error) {
+//        [self dismissViewControllerAnimated:NO completion:nil];
+//        NSLog(@"Error from load data: %@", error);
+//    }];
+//}
+
+- (void) setIcons:(NSIndexPath *)indexPath withCollectionView:(UICollectionView *)collectionView {
+    CHLPaperCollectionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:CELL_ID forIndexPath:indexPath];
+    [cell.icon3 setHidden:NO];
+    [cell.icon1 setImage:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[json[0] valueForKey:@"size42"]]]] forState:UIControlStateNormal];
+    NSLog(@"icons must be setten");
+//    [cell.icon2 setBackgroundImageData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[json[1] valueForKey:@"size80"]]]];
+//    [_icon3 setBackgroundImageData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[json[2] valueForKey:@"size80"]]]];
+//    [_icon4 setBackgroundImageData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[json[3] valueForKey:@"size80"]]]];
+//    [_icon5 setBackgroundImageData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[json[4] valueForKey:@"size80"]]]];
+//    [_icon6 setBackgroundImageData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[json[0] valueForKey:@"size80"]]]];
+}
+
 
 - (void)dismissPaperCollection:(id)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
@@ -166,20 +206,13 @@
     }
     else {
         self.collectionView.backgroundColor = [UIColor clearColor];
-//        UIButton* closeButton = [[UIButton alloc]init];//buttonWithType:UIButtonTypeRoundedRect];
-//        closeButton.frame = CGRectMake(270, 35, 100, 30);
-//        
-//        [closeButton setImage:[UIImage imageNamed:@"close_card"] forState:UIControlStateNormal];
-//        [closeButton addTarget:self action:@selector(dismissPaperCollection:) forControlEvents:UIControlEventTouchUpInside];
-//        [self.view addSubview:closeButton];
         
-        HUD = [[MBProgressHUD alloc] initWithView:self.collectionView];
-        [self.collectionView addSubview:HUD];
-        HUD.dimBackground = NO;
-        HUD.color = [UIColor clearColor];
-        HUD.delegate = self;
-        [HUD show:YES];
-        [self loadJSON];
+//        HUD = [[MBProgressHUD alloc] initWithView:self.collectionView];
+//        [self.collectionView addSubview:HUD];
+//        HUD.dimBackground = NO;
+//        HUD.color = [UIColor clearColor];
+//        HUD.delegate = self;
+//        [HUD show:YES];
     }
     
     id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
@@ -201,23 +234,22 @@
     return [NSURL URLWithString:[urlString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
 }
 
-- (void) loadJSON {
-    NSUserDefaults *userCache = [[NSUserDefaults standardUserDefaults] initWithSuiteName:@"group.co.getchill.chill"];
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
-    NSLog(@"http://api.iamchill.co/v2/messages/index/id_user/%@/id_contact/%li", [userCache valueForKey:@"id_user"], (long)_friendUserID);
-//        NSLog(@"http://api.iamchill.co/v2/messages/index/id_user/%@/id_user_to/%li", [userCache valueForKey:@"id_user"], (long)_friendUserID);
-        _locations = [[[JSONLoader alloc] init] locationsFromJSONFile:[[NSURL alloc] initWithString:[NSString stringWithFormat:@"http://api.iamchill.co/v2/messages/index/id_user/%@/id_contact/%li", [userCache valueForKey:@"id_user"], (long)_friendUserID]] typeJSON:@"Messages"];
-        if (_locations.count == 0 || !_locations.count){
-            emptyMessages = 1;
-        }
-        else {
-            emptyMessages = 0;
-        }
-        self.collectionView.backgroundColor = [UIColor clearColor];
-        [self.collectionView performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:YES];
-
-    });
-}
+//- (void) loadJSON {
+//    NSUserDefaults *userCache = [[NSUserDefaults standardUserDefaults] initWithSuiteName:@"group.co.getchill.chill"];
+//    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+////        NSLog(@"http://api.iamchill.co/v2/messages/index/id_user/%@/id_user_to/%li", [userCache valueForKey:@"id_user"], (long)_friendUserID);
+//        _locations = [[[JSONLoader alloc] init] locationsFromJSONFile:[[NSURL alloc] initWithString:[NSString stringWithFormat:@"http://api.iamchill.co/v2/messages/index/id_user/%@/id_contact/%li", [userCache valueForKey:@"id_user"], (long)_friendUserID]] typeJSON:@"Messages"];
+//        if (_locations.count == 0 || !_locations.count){
+//            emptyMessages = 1;
+//        }
+//        else {
+//            emptyMessages = 0;
+//        }
+//        self.collectionView.backgroundColor = [UIColor clearColor];
+//        [self.collectionView performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:YES];
+//
+//    });
+//}
 
 
 
@@ -240,11 +272,11 @@
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    
+    currentIndexPath = indexPath;
     [HUD hide:YES];
     
     
-    if (_friendUserID==1){
+    if (_friendUserID==1){ //How to Chill
         UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"Empty cell" forIndexPath:indexPath];
         cell.backgroundColor = [UIColor whiteColor];
         cell.layer.cornerRadius = 8;
@@ -262,44 +294,6 @@
             map.image = [UIImage imageNamed:@"chill_edu2"];
 
         }
-        else if(indexPath.row==2){
-            UIImageView *map = [[UIImageView alloc] initWithFrame:CGRectMake((self.view.frame.size.width - 58)/2, (self.view.frame.size.height-180)/2-50, 58, 101)];
-            [cell addSubview:map];
-            map.image = [UIImage imageNamed:@"arrow"];
-            UILabel* name1= [[UILabel alloc] initWithFrame:CGRectMake((self.view.frame.size.width - 280)/2, self.view.frame.size.height-180, 280, 110)] ;
-            [cell addSubview:name1] ;
-            name1.textColor = [UIColor chillDarkGrayColor];
-            name1.backgroundColor = [UIColor clearColor];
-            name1.numberOfLines = 3;
-            name1.textAlignment = NSTextAlignmentCenter;
-            name1.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:28.0 ];
-            name1.text = [NSString stringWithFormat:@"Swipe the contact\nto send content"];
-            
-        }
-
-            else if(indexPath.row==3){
-                UIImageView *map = [[UIImageView alloc] initWithFrame:CGRectMake((self.view.frame.size.width - 90)/2,  (self.view.frame.size.height/2)-211, 90, 90)];
-                [cell addSubview:map];
-                map.image = [UIImage imageNamed:@"Oval 43"];
-                
-                UIImageView *map1 = [[UIImageView alloc] initWithFrame:CGRectMake((self.view.frame.size.width - 65)/2,  (self.view.frame.size.height/2)-198, 65, 65)];
-                [cell addSubview:map1];
-                map1.image = [UIImage imageNamed:@"Oval 44"];
-                
-                UIImageView *map2 = [[UIImageView alloc] initWithFrame:CGRectMake((self.view.frame.size.width - 105)/2, (self.view.frame.size.height/2)-123, 105, 247)];
-                [cell addSubview:map2];
-                map2.image = [UIImage imageNamed:@"Line"];
-                
-                UILabel* name1= [[UILabel alloc] initWithFrame:CGRectMake((self.view.frame.size.width - 280)/2, self.view.frame.size.height-180, 280, 110)] ;
-                [cell addSubview:name1] ;
-                name1.textColor = [UIColor chillDarkGrayColor];
-                name1.backgroundColor = [UIColor clearColor];
-                name1.numberOfLines = 3;
-                name1.textAlignment = NSTextAlignmentCenter;
-                name1.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:28.0 ];
-                     name1.text = [NSString stringWithFormat:@"Swipe down\nto pause chilling"];
-              }
-        
         return cell;
     }
         
@@ -309,10 +303,47 @@
         if (emptyMessages==0){
             MessagesJSON *location = [_locations objectAtIndex:indexPath.row];
             CHLPaperCollectionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:CELL_ID forIndexPath:indexPath];
-            
-//            if ([[UIScreen mainScreen] bounds].size.height < 568) {
-//                   cell.timeLineImage.hidden = YES;
-//            }
+            [cell.icon2 setHidden:YES];
+            [cell.icon3 setHidden:YES];
+            [cell.icon4 setHidden:YES];
+            [cell.icon5 setHidden:YES];
+            AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+            manager.responseSerializer = [AFJSONResponseSerializer serializer];
+            manager.requestSerializer = [AFJSONRequestSerializer serializer];
+            [manager.requestSerializer setValue:[NSUserDefaults userToken] forHTTPHeaderField:@"X-API-TOKEN"];
+            [manager.requestSerializer setValue:@"76eb29d3ca26fe805545812850e6d75af933214a" forHTTPHeaderField:@"X-API-KEY"];
+            [manager GET:[NSString stringWithFormat:@"http://api.iamchill.co/v2/messages/index/id_user/%@/id_contact/%ld",[NSUserDefaults userID], (long)_friendUserID] parameters:nil success:^(NSURLSessionTask *task, id responseObject) {
+                if ([[responseObject objectForKey:@"status"] isEqualToString:@"success"]) {
+                    json = [responseObject objectForKey:@"response"];
+                    
+                    [cell.icon1 setImage:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[json[0] valueForKey:@"size42"]]]] forState:UIControlStateNormal];
+                    cell.textLabel1.text = [NSString stringWithFormat:@"%@", [[json[0] valueForKey:@"text"] isEqualToString:@""] ? @"" : [NSString stringWithFormat:@"#%@",[json[0] valueForKey:@"text"]]];
+                    
+                    [cell.icon2 setImage:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[json[1] valueForKey:@"size42"]]]] forState:UIControlStateNormal];
+                    cell.textLabel2.text = [NSString stringWithFormat:@"%@", [[json[1] valueForKey:@"text"] isEqualToString:@""] ? @"" : [NSString stringWithFormat:@"#%@",[json[1] valueForKey:@"text"]]];
+                    
+                    [cell.icon3 setImage:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[json[2] valueForKey:@"size42"]]]] forState:UIControlStateNormal];
+                    cell.textLabel3.text = [NSString stringWithFormat:@"%@", [[json[2] valueForKey:@"text"] isEqualToString:@""] ? @"" : [NSString stringWithFormat:@"#%@",[json[2] valueForKey:@"text"]]];
+                    
+                    [cell.icon4 setImage:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[json[3] valueForKey:@"size42"]]]] forState:UIControlStateNormal];
+                    cell.textLabel4.text =[NSString stringWithFormat:@"%@", [[json[3] valueForKey:@"text"] isEqualToString:@""] ? @"" : [NSString stringWithFormat:@"#%@",[json[3] valueForKey:@"text"]]];
+                    
+                    [cell.icon5 setImage:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[json[4] valueForKey:@"size42"]]]] forState:UIControlStateNormal];
+                    cell.textLabel5.text = [NSString stringWithFormat:@"%@", [[json[4] valueForKey:@"text"] isEqualToString:@""] ? @"" : [NSString stringWithFormat:@"#%@",[json[4] valueForKey:@"text"]]];
+                    
+                    [cell.icon2 setHidden:NO];
+                    [cell.icon3 setHidden:NO];
+                    [cell.icon4 setHidden:NO];
+                    [cell.icon5 setHidden:NO];
+                    
+                }
+                NSLog(@"JSON FROM LOAD DATA: %@", json);
+            } failure:^(NSURLSessionTask *operation, NSError *error) {
+                [self dismissViewControllerAnimated:NO completion:nil];
+                NSLog(@"Error from load data: %@", error);
+            }];
+           
+        
             cell.friendUserID = self.friendUserID;
             cell.backgroundColor = [UIColor whiteColor];
             

@@ -22,7 +22,7 @@
                                     <constraint firstAttribute="height" constant="30" id="KCO-ak-PNt"/>
                                     <constraint firstAttribute="width" constant="66" id="i7h-se-nlC"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="23"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="23"/>
                                 <state key="normal" title="Reply">
                                     <color key="titleColor" red="0.10196078431372549" green="0.7803921568627451" blue="0.5607843137254902" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
@@ -30,7 +30,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MQ8-2k-Chz">
                                 <rect key="frame" x="37" y="48" width="246" height="411"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Click to open" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pHs-y3-ilT">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pHs-y3-ilT">
                                         <rect key="frame" x="66" y="329" width="174" height="40"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="NIG-g4-wP5"/>
@@ -40,7 +40,7 @@
                                         <color key="textColor" red="0.65098039220000004" green="0.65098039220000004" blue="0.65098039220000004" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Click to open" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yoZ-lP-00l">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yoZ-lP-00l">
                                         <rect key="frame" x="66" y="187" width="174" height="40"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="GZ9-7b-Ssu"/>
@@ -50,7 +50,7 @@
                                         <color key="textColor" red="0.65098039220000004" green="0.65098039220000004" blue="0.65098039220000004" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="#howAbout" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LRZ-tG-DWD">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LRZ-tG-DWD">
                                         <rect key="frame" x="66" y="257" width="174" height="40"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="xRQ-EU-I6K"/>
@@ -66,7 +66,6 @@
                                             <constraint firstAttribute="width" constant="36" id="EUZ-TF-p6F"/>
                                             <constraint firstAttribute="height" constant="35" id="ZLM-iw-VEE"/>
                                         </constraints>
-                                        <state key="normal" image="picios_right"/>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ozp-gY-KUQ">
                                         <rect key="frame" x="8" y="116" width="36" height="35"/>
@@ -92,7 +91,7 @@
                                         </constraints>
                                         <state key="normal" image="reaction_ball"/>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Click to open" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3iz-lX-A4I">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3iz-lX-A4I">
                                         <rect key="frame" x="66" y="43" width="174" height="40"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="Qge-XB-5g7"/>
@@ -140,7 +139,7 @@
                                     <constraint firstAttribute="height" constant="40" id="Jet-vI-0rb"/>
                                     <constraint firstAttribute="width" constant="174" id="Qor-Z2-ZZo"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="23"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="23"/>
                                 <color key="textColor" red="0.65098039220000004" green="0.65098039220000004" blue="0.65098039220000004" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -172,6 +171,18 @@
                     <exclude reference="KA9-Zl-0nB"/>
                 </mask>
             </variation>
+            <connections>
+                <outlet property="icon1" destination="wzq-wC-0dk" id="fZG-bT-fn0"/>
+                <outlet property="icon2" destination="Ozp-gY-KUQ" id="Dhj-WH-pzj"/>
+                <outlet property="icon3" destination="hDg-7N-Cu6" id="lkk-Xr-R4P"/>
+                <outlet property="icon4" destination="pu6-g2-KHR" id="Dp4-QB-r3p"/>
+                <outlet property="icon5" destination="Knn-yU-Odv" id="Qk9-br-Fh2"/>
+                <outlet property="textLabel1" destination="3iz-lX-A4I" id="uU2-Df-jur"/>
+                <outlet property="textLabel2" destination="hD5-EF-WFZ" id="6MW-k2-5Tl"/>
+                <outlet property="textLabel3" destination="yoZ-lP-00l" id="CTX-bx-Tt9"/>
+                <outlet property="textLabel4" destination="LRZ-tG-DWD" id="eIL-dt-hkN"/>
+                <outlet property="textLabel5" destination="pHs-y3-ilT" id="Zwd-8L-pI2"/>
+            </connections>
             <point key="canvasLocation" x="300" y="364"/>
         </collectionViewCell>
     </objects>

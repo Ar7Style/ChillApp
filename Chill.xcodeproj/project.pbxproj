@@ -102,6 +102,10 @@
 		064FD9E61C0F7F7800C045FD /* chill_edu2.png in Resources */ = {isa = PBXBuildFile; fileRef = 064FD9E51C0F7F7800C045FD /* chill_edu2.png */; };
 		064FD9EA1C0F9A0D00C045FD /* line2.png in Resources */ = {isa = PBXBuildFile; fileRef = 064FD9E91C0F9A0D00C045FD /* line2.png */; };
 		064FD9EC1C0FC0BF00C045FD /* x.png in Resources */ = {isa = PBXBuildFile; fileRef = 064FD9EB1C0FC0BE00C045FD /* x.png */; };
+		065C624F1C103FA1008A2921 /* x-2.png in Resources */ = {isa = PBXBuildFile; fileRef = 065C624E1C103FA1008A2921 /* x-2.png */; };
+		065C62511C10EA89008A2921 /* star.png in Resources */ = {isa = PBXBuildFile; fileRef = 065C62501C10EA89008A2921 /* star.png */; };
+		065C62531C10EB13008A2921 /* star66.png in Resources */ = {isa = PBXBuildFile; fileRef = 065C62521C10EB13008A2921 /* star66.png */; };
+		065C62561C10F427008A2921 /* CHLFavoriteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 065C62551C10F427008A2921 /* CHLFavoriteViewController.m */; };
 		0665FBE11ADDB2640075D400 /* Waitlist.png in Resources */ = {isa = PBXBuildFile; fileRef = 0665FBE01ADDB2640075D400 /* Waitlist.png */; };
 		0670540A1B04EEC300BBA3AA /* icon24@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 067054021B04EEC300BBA3AA /* icon24@2x.png */; };
 		0670540D1B04EEC300BBA3AA /* icon24@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 067054031B04EEC300BBA3AA /* icon24@3x.png */; };
@@ -427,6 +431,11 @@
 		064FD9E51C0F7F7800C045FD /* chill_edu2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = chill_edu2.png; sourceTree = "<group>"; };
 		064FD9E91C0F9A0D00C045FD /* line2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = line2.png; sourceTree = "<group>"; };
 		064FD9EB1C0FC0BE00C045FD /* x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = x.png; sourceTree = "<group>"; };
+		065C624E1C103FA1008A2921 /* x-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "x-2.png"; sourceTree = "<group>"; };
+		065C62501C10EA89008A2921 /* star.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = star.png; sourceTree = "<group>"; };
+		065C62521C10EB13008A2921 /* star66.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = star66.png; sourceTree = "<group>"; };
+		065C62541C10F427008A2921 /* CHLFavoriteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHLFavoriteViewController.h; sourceTree = "<group>"; };
+		065C62551C10F427008A2921 /* CHLFavoriteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHLFavoriteViewController.m; sourceTree = "<group>"; };
 		0665FBE01ADDB2640075D400 /* Waitlist.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Waitlist.png; sourceTree = "<group>"; };
 		067054021B04EEC300BBA3AA /* icon24@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon24@2x.png"; sourceTree = "<group>"; };
 		067054031B04EEC300BBA3AA /* icon24@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon24@3x.png"; sourceTree = "<group>"; };
@@ -770,6 +779,15 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		065C62571C10F42F008A2921 /* Favorite */ = {
+			isa = PBXGroup;
+			children = (
+				065C62541C10F427008A2921 /* CHLFavoriteViewController.h */,
+				065C62551C10F427008A2921 /* CHLFavoriteViewController.m */,
+			);
+			name = Favorite;
+			sourceTree = "<group>";
+		};
 		068445101B2CBB2A006D3826 /* NewIcons */ = {
 			isa = PBXGroup;
 			children = (
@@ -967,10 +985,13 @@
 		E6726E9E19570A8000DEADF9 /* Sharing */ = {
 			isa = PBXGroup;
 			children = (
+				065C62521C10EB13008A2921 /* star66.png */,
 				E6CF48B2193B78DC00CD48B6 /* CHLShareViewController.h */,
 				E6CF48B3193B78DC00CD48B6 /* CHLShareViewController.m */,
+				065C62501C10EA89008A2921 /* star.png */,
 				0686BC3F1B49CDF500515EA0 /* CHLAdditionalShareViewController.h */,
 				0686BC401B49CDF500515EA0 /* CHLAdditionalShareViewController.m */,
+				065C62571C10F42F008A2921 /* Favorite */,
 			);
 			name = Sharing;
 			sourceTree = "<group>";
@@ -1174,6 +1195,7 @@
 				062614F71BF780DC001D704A /* chill_edu1.png */,
 				064FD9E51C0F7F7800C045FD /* chill_edu2.png */,
 				060D0C071BF40028007A7146 /* close_card.png */,
+				065C624E1C103FA1008A2921 /* x-2.png */,
 				064FD9EB1C0FC0BE00C045FD /* x.png */,
 				06D7BED61BCFD119009AE04A /* NewAdditionalIcons */,
 				E6C7C1E8191A1B230071D83F /* Images.xcassets */,
@@ -1495,6 +1517,7 @@
 				06D7BF021BCFD4E1009AE04A /* received_ball.png in Resources */,
 				027A95D01A5CB7EC004E0914 /* icon_st@2x.png in Resources */,
 				06D7BEE41BCFD4A9009AE04A /* reaction_dollar.png in Resources */,
+				065C624F1C103FA1008A2921 /* x-2.png in Resources */,
 				064FD9EA1C0F9A0D00C045FD /* line2.png in Resources */,
 				06D7BEF51BCFD4BB009AE04A /* reaction_heart_forCell.png in Resources */,
 				0264219C1A59FB7700992AB3 /* logo_chill_5@2x.png in Resources */,
@@ -1506,6 +1529,7 @@
 				06EAB9591AA7AE6300149DF2 /* Chill_logo_hand.png in Resources */,
 				068445551B2CBB3C006D3826 /* reaction_waves.png in Resources */,
 				06499F151B03DC1D0005E422 /* 80.png in Resources */,
+				065C62511C10EA89008A2921 /* star.png in Resources */,
 				0684454F1B2CBB3C006D3826 /* reaction_telephone.png in Resources */,
 				06B22A5A1B67C8200056455D /* TwitterKitResources.bundle in Resources */,
 				06DA1B211AC4B1B9005472E4 /* reaction_drink_forCell.png in Resources */,
@@ -1530,6 +1554,7 @@
 				068C0B021AA36ED6005A0577 /* Portrait 1.png in Resources */,
 				064FD9DF1C0DDBBF00C045FD /* Main.storyboard in Resources */,
 				06D7BF081BCFD4E1009AE04A /* received_plus.png in Resources */,
+				065C62531C10EB13008A2921 /* star66.png in Resources */,
 				027A95C21A5B7B36004E0914 /* arrow@2x.png in Resources */,
 				028A85D21AFAAA3E0034069E /* locationios_right.png in Resources */,
 				06D7BF061BCFD4E1009AE04A /* received_minus.png in Resources */,
@@ -1697,6 +1722,7 @@
 				E6DB66B71956F49A00D30E85 /* MCSwipeTableViewCell.m in Sources */,
 				AD39F35E1B605C74003936C4 /* CHLTwitterVC.m in Sources */,
 				029ED8F41A54E43B0084D04B /* HAPaperCollectionViewController.m in Sources */,
+				065C62561C10F427008A2921 /* CHLFavoriteViewController.m in Sources */,
 				E6D972BF19A3ECEE00E7E4A3 /* PKImagePickerViewController.m in Sources */,
 				029ED8CD1A534A4C0084D04B /* SearchJSON.m in Sources */,
 				020B35731A1E402C00DC2F23 /* FriendsJSON.m in Sources */,

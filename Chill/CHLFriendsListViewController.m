@@ -161,7 +161,6 @@ NSMutableData *mutData;
  
             NSUserDefaults *userCache = [[NSUserDefaults standardUserDefaults] initWithSuiteName:@"group.co.getchill.chill"];
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
-                NSLog(@"http://api.iamchill.co/v2/contacts/index/id_user/%@", [userCache valueForKey:@"id_user"]);
                 NSArray *preLoad =[[[JSONLoader alloc] init] locationsFromJSONFile:[[NSURL alloc] initWithString:[NSString stringWithFormat:@"http://api.iamchill.co/v2/contacts/index/id_user/%@", [userCache valueForKey:@"id_user"]]] typeJSON:@"Friends"];
              
                 
@@ -408,7 +407,6 @@ NSMutableData *mutData;
         //NSString *postString = [NSString stringWithFormat:@"id_user/%@", [userCache valueForKey:@"id_user"]];
         
         
-        NSLog(@"Request to delete: %@", request.URL);
         
         NSString *postString = [NSString stringWithFormat:@"id_user=%@&id_contact=%@", [userCache valueForKey:@"id_user"], location.id_contact];
 
@@ -417,14 +415,10 @@ NSMutableData *mutData;
                               dataUsingEncoding:NSUTF8StringEncoding]];
         NSURLConnection *connection = [NSURLConnection connectionWithRequest:request delegate:self];
         
-        NSLog(@"%@", request.URL);
         if (connection) {
             mutData = [NSMutableData data];
-            NSLog(@"Request success");
         }
-        else {
-            NSLog(@"Request fail");
-        }
+       
         [self.tableView performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:YES];
 
     }

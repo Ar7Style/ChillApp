@@ -15,4 +15,19 @@
 @property (weak, nonatomic) IBOutlet UIImageView *timeLineImage;
 @property (readwrite) NSInteger friendUserID;
 
+@property (weak, nonatomic) IBOutlet UIButton *icon1;
+@property (weak, nonatomic) IBOutlet UILabel *textLabel1;
+
+@property (weak, nonatomic) IBOutlet UIButton *icon2;
+@property (weak, nonatomic) IBOutlet UILabel *textLabel2;
+
+@property (weak, nonatomic) IBOutlet UIButton *icon3;
+@property (weak, nonatomic) IBOutlet UILabel *textLabel3;
+
+@property (weak, nonatomic) IBOutlet UIButton *icon4;
+@property (weak, nonatomic) IBOutlet UILabel *textLabel4;
+
+@property (weak, nonatomic) IBOutlet UIButton *icon5;
+@property (weak, nonatomic) IBOutlet UILabel *textLabel5;
+
 @end
