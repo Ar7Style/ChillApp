@@ -22,7 +22,6 @@
 
 @interface AUTHViewController () <WCSessionDelegate>
 @property (strong, nonatomic) IBOutlet UIView *viewMain;
-- (IBAction)GO:(id)sender;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *constraintBottom;
 
 @end
@@ -35,14 +34,7 @@
  
 }
 -  (void)viewDidAppear:(BOOL)animated {
-   // self.navigationController.view.layer.cornerRadius=6;
     self.navigationController.view.clipsToBounds=YES;
-    NSUserDefaults *userCache = [[NSUserDefaults standardUserDefaults] initWithSuiteName:@"group.co.getchill.chill"];
-    BOOL isApproved = [userCache boolForKey:@"isApproved"];
-    BOOL isAuthComplete = [userCache boolForKey:@"isAuth"];
-    if (isAuthComplete && !isApproved){
-        [self performSegueWithIdentifier:@"AuthWaitingViewController" sender:self];
-    }
 }
 
 
@@ -60,18 +52,7 @@
 -(void)viewWillDisappear:(BOOL)animated {
     [self an_unsubscribeKeyboard];
 }
-- (void)willShowKeyboard{
-    if (!isKeyboardShow){
-        isKeyboardShow = true;
-    [UIView beginAnimations:nil context:NULL];
-    [UIView setAnimationDelegate:self];
-    [UIView setAnimationDuration:0.5];
-    [UIView setAnimationBeginsFromCurrentState:YES];
-    self.view.frame = CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y-216.0,
-                                 self.view.frame.size.width, self.view.frame.size.height);
-    [UIView commitAnimations];
-    }
-}
+
 - (void) conRefused {
     UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Connection refused"
                                                                    message:@"Check your Internet connection"
@@ -87,27 +68,13 @@
     [_loginField1 resignFirstResponder];
     [_passwordField1 resignFirstResponder];
 }
--(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
-    //Iterate through your subviews, or some other custom array of views
-    for (UIView *view in self.view.subviews)
-        [view resignFirstResponder];
-}
 
-- (void)willHideKeyboard{
-    isKeyboardShow = false;
-    [UIView beginAnimations:nil context:NULL];
-    [UIView setAnimationDelegate:self];
-    [UIView setAnimationDuration:0.5];
-    [UIView setAnimationBeginsFromCurrentState:YES];
-    self.view.frame = CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y+216.0,
-                                 self.view.frame.size.width, self.view.frame.size.height);
-    [UIView commitAnimations];
-    
-}
+
 -(void)didTapAnywhere: (UITapGestureRecognizer*) recognizer {
     [_loginField1 resignFirstResponder];
     [_passwordField1 resignFirstResponder];
 }
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -123,22 +90,6 @@
                                                        handler:^(UIAlertAction * action) {}];
     [alert addAction:okayAction];
     [self presentViewController:alert animated:YES completion:nil];
-}
-
-- (NSString*) getDateTime {
-    NSDate *currDate = [NSDate date];
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
-    long long milliseconds = (long long)([[NSDate date] timeIntervalSince1970] * 1000.0);
-    
-    [currDate timeIntervalSince1970];
-    // NSTimeZone* generalTimeZone1 = [NSTimeZone timeZoneWithName:@"CET"];
-    
-    //[dateFormatter setTimeZone: generalTimeZone1];
-    [dateFormatter setDateFormat:@"dd.MM.YY HH:mm:ss"];
-    NSString* dateString =[NSString stringWithFormat:@"%lld",milliseconds];
-    NSLog(@"%@", dateString);
-    
-    return dateString;
 }
 
 - (IBAction)nextBut:(id)sender {
@@ -203,6 +154,7 @@
                     NSLog(@"JSON: %@", responseObject2);
                 } failure:^(AFHTTPRequestOperation *operation2, NSError *error2) {
                     NSLog(@"Error: %@", error2);
+                    [self errorShow:@"Please, check Your internet connection"];
                 }];
             }
             NSLog(@"JSON: %@", responseObject);
@@ -229,8 +181,4 @@
                                                            value:nil] build]];
 }
 
-- (IBAction)GO:(id)sender {
-    [self dismissViewControllerAnimated:YES completion:nil];
-    [self.navigationController popViewControllerAnimated:YES];
-}
 @end

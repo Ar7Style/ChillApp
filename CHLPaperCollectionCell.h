@@ -12,6 +12,7 @@
 
 @property (weak, nonatomic) IBOutlet UIView *placeholderContentView;
 @property (weak, nonatomic) IBOutlet UILabel *cellLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *timeLineImage;
 @property (readwrite) NSInteger friendUserID;
 
 @end

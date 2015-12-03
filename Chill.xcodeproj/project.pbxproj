@@ -23,7 +23,6 @@
 		023B427A1C0230F300E124A8 /* libPods-Chill WatchOS 2 Extension-AFNetworking.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 023B42791C0230F300E124A8 /* libPods-Chill WatchOS 2 Extension-AFNetworking.a */; };
 		023B427D1C023E8500E124A8 /* ShareIC.m in Sources */ = {isa = PBXBuildFile; fileRef = 023B427C1C023E8500E124A8 /* ShareIC.m */; };
 		023B42801C024C1600E124A8 /* HelpIC.m in Sources */ = {isa = PBXBuildFile; fileRef = 023B427F1C024C1600E124A8 /* HelpIC.m */; };
-		024649BE1A60369400F7BF75 /* CompleteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 024649BD1A60369400F7BF75 /* CompleteViewController.m */; };
 		0254909D1A61C4FB00D9222B /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0254909C1A61C4FB00D9222B /* StoreKit.framework */; };
 		0254909F1A61C51400D9222B /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0254909E1A61C51400D9222B /* GameKit.framework */; };
 		0256F4981A3E31A2001D9A23 /* GoogleMaps.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0256F4971A3E31A2001D9A23 /* GoogleMaps.framework */; };
@@ -101,6 +100,8 @@
 		064FD9E11C0DDC1B00C045FD /* mail_settings_need.png in Resources */ = {isa = PBXBuildFile; fileRef = 064FD9E01C0DDC1B00C045FD /* mail_settings_need.png */; };
 		064FD9E31C0DDCA400C045FD /* CHLSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 064FD9E21C0DDCA400C045FD /* CHLSettingsViewController.m */; };
 		064FD9E61C0F7F7800C045FD /* chill_edu2.png in Resources */ = {isa = PBXBuildFile; fileRef = 064FD9E51C0F7F7800C045FD /* chill_edu2.png */; };
+		064FD9EA1C0F9A0D00C045FD /* line2.png in Resources */ = {isa = PBXBuildFile; fileRef = 064FD9E91C0F9A0D00C045FD /* line2.png */; };
+		064FD9EC1C0FC0BF00C045FD /* x.png in Resources */ = {isa = PBXBuildFile; fileRef = 064FD9EB1C0FC0BE00C045FD /* x.png */; };
 		0665FBE11ADDB2640075D400 /* Waitlist.png in Resources */ = {isa = PBXBuildFile; fileRef = 0665FBE01ADDB2640075D400 /* Waitlist.png */; };
 		0670540A1B04EEC300BBA3AA /* icon24@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 067054021B04EEC300BBA3AA /* icon24@2x.png */; };
 		0670540D1B04EEC300BBA3AA /* icon24@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 067054031B04EEC300BBA3AA /* icon24@3x.png */; };
@@ -324,8 +325,6 @@
 		023B427C1C023E8500E124A8 /* ShareIC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareIC.m; sourceTree = "<group>"; };
 		023B427E1C024C1600E124A8 /* HelpIC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelpIC.h; sourceTree = "<group>"; };
 		023B427F1C024C1600E124A8 /* HelpIC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelpIC.m; sourceTree = "<group>"; };
-		024649BC1A60369400F7BF75 /* CompleteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompleteViewController.h; sourceTree = "<group>"; };
-		024649BD1A60369400F7BF75 /* CompleteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompleteViewController.m; sourceTree = "<group>"; };
 		024FCF991C021A300008513C /* libAFNetworking.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libAFNetworking.a; path = "Pods/../build/Release-iphoneos/libAFNetworking.a"; sourceTree = "<group>"; };
 		024FCF9A1C021A300008513C /* libPods.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libPods.a; path = "Pods/../build/Release-iphoneos/libPods.a"; sourceTree = "<group>"; };
 		024FCF9D1C021B970008513C /* libAFNetworking.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libAFNetworking.a; path = "Pods/../build/Release-iphoneos/libAFNetworking.a"; sourceTree = "<group>"; };
@@ -426,6 +425,8 @@
 		064FD9E21C0DDCA400C045FD /* CHLSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHLSettingsViewController.m; sourceTree = "<group>"; };
 		064FD9E41C0DDCA800C045FD /* CHLSettingsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CHLSettingsViewController.h; sourceTree = "<group>"; };
 		064FD9E51C0F7F7800C045FD /* chill_edu2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = chill_edu2.png; sourceTree = "<group>"; };
+		064FD9E91C0F9A0D00C045FD /* line2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = line2.png; sourceTree = "<group>"; };
+		064FD9EB1C0FC0BE00C045FD /* x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = x.png; sourceTree = "<group>"; };
 		0665FBE01ADDB2640075D400 /* Waitlist.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Waitlist.png; sourceTree = "<group>"; };
 		067054021B04EEC300BBA3AA /* icon24@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon24@2x.png"; sourceTree = "<group>"; };
 		067054031B04EEC300BBA3AA /* icon24@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon24@3x.png"; sourceTree = "<group>"; };
@@ -989,8 +990,6 @@
 			children = (
 				025B2B471A18CC4F00857E83 /* AUTHViewController.h */,
 				025B2B481A18CC4F00857E83 /* AUTHViewController.m */,
-				024649BC1A60369400F7BF75 /* CompleteViewController.h */,
-				024649BD1A60369400F7BF75 /* CompleteViewController.m */,
 				025B2B551A1A677500857E83 /* APPROVEDViewController.h */,
 				025B2B561A1A677500857E83 /* APPROVEDViewController.m */,
 				02CF5EB51A5EE49100C71C8D /* PromoViewController.h */,
@@ -1026,6 +1025,7 @@
 				0614D4921B598A8600CFA8D5 /* oups.png */,
 				AD6325671ABB73EF00DD8F0D /* CHLPaperCollectionCell.m */,
 				AD6325681ABB73EF00DD8F0D /* CHLPaperCollectionCell.xib */,
+				064FD9E91C0F9A0D00C045FD /* line2.png */,
 				E6A67B05198EEC000067E34E /* Location */,
 			);
 			name = Messages;
@@ -1174,6 +1174,7 @@
 				062614F71BF780DC001D704A /* chill_edu1.png */,
 				064FD9E51C0F7F7800C045FD /* chill_edu2.png */,
 				060D0C071BF40028007A7146 /* close_card.png */,
+				064FD9EB1C0FC0BE00C045FD /* x.png */,
 				06D7BED61BCFD119009AE04A /* NewAdditionalIcons */,
 				E6C7C1E8191A1B230071D83F /* Images.xcassets */,
 				068445101B2CBB2A006D3826 /* NewIcons */,
@@ -1485,6 +1486,7 @@
 				067054161B04EEC300BBA3AA /* icon40@2x.png in Resources */,
 				06D7BEF21BCFD4BB009AE04A /* reaction_ball_forCell.png in Resources */,
 				026421981A59DE0400992AB3 /* Chill_logo1@2x.jpg in Resources */,
+				064FD9EC1C0FC0BF00C045FD /* x.png in Resources */,
 				E6D972CB19A3EE0600E7E4A3 /* PKImageBundle.bundle in Resources */,
 				06D7BF041BCFD4E1009AE04A /* received_dollar.png in Resources */,
 				060848E11AC0BF24003EBE90 /* Portrait 3 (0).png in Resources */,
@@ -1493,6 +1495,7 @@
 				06D7BF021BCFD4E1009AE04A /* received_ball.png in Resources */,
 				027A95D01A5CB7EC004E0914 /* icon_st@2x.png in Resources */,
 				06D7BEE41BCFD4A9009AE04A /* reaction_dollar.png in Resources */,
+				064FD9EA1C0F9A0D00C045FD /* line2.png in Resources */,
 				06D7BEF51BCFD4BB009AE04A /* reaction_heart_forCell.png in Resources */,
 				0264219C1A59FB7700992AB3 /* logo_chill_5@2x.png in Resources */,
 				06DA1B201AC4B1B9005472E4 /* reaction_clock_forCell.png in Resources */,
@@ -1701,7 +1704,6 @@
 				020B35781A1E402C00DC2F23 /* UIImageView+JMImageCache.m in Sources */,
 				E6A67B08198EEC400067E34E /* CHLLocationDisplayViewController.m in Sources */,
 				E6726EAB19570CBF00DEADF9 /* UIColor+ChillColors.m in Sources */,
-				024649BE1A60369400F7BF75 /* CompleteViewController.m in Sources */,
 				AD8417841A91203D0078F57A /* CHLTutorialPageContentViewController.m in Sources */,
 				064FD9E31C0DDCA400C045FD /* CHLSettingsViewController.m in Sources */,
 				020B35771A1E402C00DC2F23 /* Reachability.m in Sources */,

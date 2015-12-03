@@ -119,25 +119,18 @@ NSMutableData *mutData;
 
 
 - (void)viewDidAppear:(BOOL)animated{
-    //self.navigationController.view.layer.cornerRadius=6;
-    //[self.tableView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"Chilllogogrey"]]];
     self.navigationController.view.clipsToBounds=YES;
     NSUserDefaults *userCache = [[NSUserDefaults standardUserDefaults] initWithSuiteName:@"group.co.getchill.chill"];
-    BOOL isApproved = [userCache boolForKey:@"isApproved"];
     BOOL isAuthComplete = [userCache boolForKey:@"isAuth"];
     if (isAuthComplete){
-        if (!isApproved) {
-            APPROVEDViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"Chill.AuthViewController"];
-            [self presentViewController:vc animated:NO completion:nil];
-        }
-        else {
+        
             [self loadJSON];
             timer = [NSTimer scheduledTimerWithTimeInterval:10.0
                                                      target:self
                                                    selector:@selector(targetMethod:)
                                                    userInfo:nil
                                                     repeats:YES];
-        }
+        
     }
     else {
         AUTHViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"Chill.AuthViewController"];
@@ -610,39 +603,5 @@ NSMutableData *mutData;
     [CrashlyticsKit setUserName:[userCache valueForKey:@"login_user"]];
 }
 
-
-
-
-// - (IBAction)logout:(id)sender {
-//     UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Exit from Chill"
-//                                                                    message:@"Are You sure?"
-//                                                             preferredStyle:UIAlertControllerStyleAlert];
-//     
-//     UIAlertAction* declineAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel
-//                                                           handler:^(UIAlertAction * action) {}];
-//     
-//     UIAlertAction* logoutAction = [UIAlertAction actionWithTitle:@"Yes" style:UIAlertActionStyleDefault
-//                                                               handler:^(UIAlertAction * action) {
-//                                                                   [self userChoosesLogout];
-//                                                               }];
-//     
-//     [alert addAction:declineAction];
-//     [alert addAction:logoutAction];
-//     [self presentViewController:alert animated:YES completion:nil];
-//}
-//
-//- (void)userChoosesLogout {
-//    NSUserDefaults *userCache = [[NSUserDefaults standardUserDefaults] initWithSuiteName:@"group.co.getchill.chill"];
-//    _locations = nil;
-//    [self.tableView reloadData];
-//    [userCache setBool:false forKey:@"isAuth"];
-//    [userCache setBool:false forKey:@"isApproved"];
-//    [userCache synchronize];
-//    PFInstallation *currentInstallation = [PFInstallation currentInstallation];
-//    [currentInstallation removeObject:[NSString stringWithFormat:@"us%@",[userCache valueForKey:@"id_user"]] forKey:@"channels"];
-//    [currentInstallation saveInBackground];
-//    AUTHViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"Chill.AuthViewController"];
-//    [self presentViewController:vc animated:NO completion:nil];
-//}
 
 @end

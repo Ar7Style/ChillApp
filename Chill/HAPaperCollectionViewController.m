@@ -79,11 +79,12 @@
     
     if([[UIDevice currentDevice]userInterfaceIdiom]==UIUserInterfaceIdiomPhone)
     {
+       
         UIButton* closeButton = [[UIButton alloc]init];
         if ([[UIScreen mainScreen] bounds].size.height <= 568) // <= iphone 5
         {
             closeButton.frame = CGRectMake(232, 35, 100, 30);
-            [closeButton setImage:[UIImage imageNamed:@"close_card"] forState:UIControlStateNormal];
+            [closeButton setImage:[UIImage imageNamed:@"x"] forState:UIControlStateNormal];
             [closeButton addTarget:self action:@selector(dismissPaperCollection:) forControlEvents:UIControlEventTouchUpInside];
             [self.view addSubview:closeButton];
             NSLog(@"Iphone 4s or 5");
@@ -93,7 +94,7 @@
         else if ([UIScreen mainScreen].scale >= 2.9) // >= iphone 6plus
         {
             closeButton.frame = CGRectMake(337, 35, 100, 30);
-            [closeButton setImage:[UIImage imageNamed:@"close_card"] forState:UIControlStateNormal];
+            [closeButton setImage:[UIImage imageNamed:@"x"] forState:UIControlStateNormal];
             [closeButton addTarget:self action:@selector(dismissPaperCollection:) forControlEvents:UIControlEventTouchUpInside];
             [self.view addSubview:closeButton];
             NSLog(@"Iphone 6 plus");
@@ -102,7 +103,7 @@
         else { // iphone 6
             closeButton.frame = CGRectMake(289, 35, 100, 30);
             
-            [closeButton setImage:[UIImage imageNamed:@"close_card"] forState:UIControlStateNormal];
+            [closeButton setImage:[UIImage imageNamed:@"x"] forState:UIControlStateNormal];
             [closeButton addTarget:self action:@selector(dismissPaperCollection:) forControlEvents:UIControlEventTouchUpInside];
             [self.view addSubview:closeButton];
             NSLog(@"Iphone 6");
@@ -308,6 +309,10 @@
         if (emptyMessages==0){
             MessagesJSON *location = [_locations objectAtIndex:indexPath.row];
             CHLPaperCollectionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:CELL_ID forIndexPath:indexPath];
+            
+//            if ([[UIScreen mainScreen] bounds].size.height < 568) {
+//                   cell.timeLineImage.hidden = YES;
+//            }
             cell.friendUserID = self.friendUserID;
             cell.backgroundColor = [UIColor whiteColor];
             
@@ -508,9 +513,9 @@
     if(_friendUserID==1)
         return 2;
     else{
-        if (emptyMessages == 0)
-            return _locations.count;
-        else
+//        if (emptyMessages == 0)
+//            return _locations.count;
+//        else
             return 1;
     }
 }
