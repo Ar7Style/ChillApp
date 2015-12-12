@@ -193,6 +193,8 @@
 		532D46A71C0640C30070C105 /* ButtonIconID.m in Sources */ = {isa = PBXBuildFile; fileRef = 532D46A61C0640C30070C105 /* ButtonIconID.m */; };
 		53402F831C0A647C009E4FD9 /* location@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 53402F821C0A647C009E4FD9 /* location@2x.png */; };
 		53402F841C0A647C009E4FD9 /* location@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 53402F821C0A647C009E4FD9 /* location@2x.png */; };
+		53C33DB21C1A288B0071E189 /* CellTutorial.xib in Resources */ = {isa = PBXBuildFile; fileRef = 53C33DB11C1A288B0071E189 /* CellTutorial.xib */; };
+		53C33DB51C1A28A90071E189 /* CellTutorial.m in Sources */ = {isa = PBXBuildFile; fileRef = 53C33DB41C1A28A90071E189 /* CellTutorial.m */; };
 		53C8670A1C03796F00FD9014 /* IconsIC.m in Sources */ = {isa = PBXBuildFile; fileRef = 53C867091C03796F00FD9014 /* IconsIC.m */; };
 		53EA0C231C01328300E161C6 /* UserCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 53EA0C221C01328300E161C6 /* UserCache.m */; };
 		AD39F35B1B6052AF003936C4 /* CHLFriendsSourcesVC.m in Sources */ = {isa = PBXBuildFile; fileRef = AD39F35A1B6052AF003936C4 /* CHLFriendsSourcesVC.m */; };
@@ -526,6 +528,9 @@
 		532D46A51C0640C30070C105 /* ButtonIconID.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ButtonIconID.h; sourceTree = "<group>"; };
 		532D46A61C0640C30070C105 /* ButtonIconID.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ButtonIconID.m; sourceTree = "<group>"; };
 		53402F821C0A647C009E4FD9 /* location@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "location@2x.png"; sourceTree = "<group>"; };
+		53C33DB11C1A288B0071E189 /* CellTutorial.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CellTutorial.xib; sourceTree = "<group>"; };
+		53C33DB31C1A28A90071E189 /* CellTutorial.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CellTutorial.h; sourceTree = "<group>"; };
+		53C33DB41C1A28A90071E189 /* CellTutorial.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CellTutorial.m; sourceTree = "<group>"; };
 		53C867081C03796F00FD9014 /* IconsIC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IconsIC.h; sourceTree = "<group>"; };
 		53C867091C03796F00FD9014 /* IconsIC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IconsIC.m; sourceTree = "<group>"; };
 		53EA0C211C01328300E161C6 /* UserCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserCache.h; sourceTree = "<group>"; };
@@ -931,6 +936,9 @@
 			children = (
 				AD84177E1A911D820078F57A /* CHLTutorialViewController.h */,
 				AD84177F1A911D820078F57A /* CHLTutorialViewController.m */,
+				53C33DB11C1A288B0071E189 /* CellTutorial.xib */,
+				53C33DB31C1A28A90071E189 /* CellTutorial.h */,
+				53C33DB41C1A28A90071E189 /* CellTutorial.m */,
 				AD8417821A91203D0078F57A /* CHLTutorialPageContentViewController.h */,
 				AD8417831A91203D0078F57A /* CHLTutorialPageContentViewController.m */,
 				06EAB9581AA7AE6300149DF2 /* Portrait 4.png */,
@@ -1528,6 +1536,7 @@
 				021098F41A7E83FF00701878 /* Chill_logo_green@2x.png in Resources */,
 				06EAB9591AA7AE6300149DF2 /* Chill_logo_hand.png in Resources */,
 				068445551B2CBB3C006D3826 /* reaction_waves.png in Resources */,
+				53C33DB21C1A288B0071E189 /* CellTutorial.xib in Resources */,
 				06499F151B03DC1D0005E422 /* 80.png in Resources */,
 				065C62511C10EA89008A2921 /* star.png in Resources */,
 				0684454F1B2CBB3C006D3826 /* reaction_telephone.png in Resources */,
@@ -1714,6 +1723,7 @@
 				ADAE943D1AA280D200DBF97E /* LLACircularProgressView.m in Sources */,
 				E60427AA196F191C000F8F02 /* CHLAddressBookViewController.m in Sources */,
 				020B35761A1E402C00DC2F23 /* MBProgressHUD.m in Sources */,
+				53C33DB51C1A28A90071E189 /* CellTutorial.m in Sources */,
 				0686BC411B49CDF500515EA0 /* CHLAdditionalShareViewController.m in Sources */,
 				021F00CC1A3CD7D7000A83D2 /* CHLSearchViewController.m in Sources */,
 				020B35741A1E402C00DC2F23 /* JSONLoader.m in Sources */,

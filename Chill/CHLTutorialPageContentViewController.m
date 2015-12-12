@@ -24,10 +24,10 @@
     [super viewDidLoad];
     [self.view addSubview: self.contentViewToPresent];
     [self.view sendSubviewToBack: self.contentViewToPresent];
-    if (self.pageIndex == PAGE_AMOUNT - 1) {
-        self.goButton.hidden = NO;
-        [self.goButton setTitleColor:[UIColor chillMintColor] forState:UIControlStateNormal];
-    }
+//    if (self.pageIndex == PAGE_AMOUNT - 1) {
+//        self.goButton.hidden = NO;
+//        [self.goButton setTitleColor:[UIColor chillMintColor] forState:UIControlStateNormal];
+//    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -36,14 +36,14 @@
 
 - (IBAction)goButtonPressed:(UIButton *)sender {
     
-    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    
-    UIViewController *friendListViewController = (UIViewController *)[storyboard  instantiateViewControllerWithIdentifier:@"CHLFriendsListViewController"];
-
-    
-    [self dismissViewControllerAnimated:YES completion:nil];
-    [self.navigationController pushViewController:friendListViewController animated:YES];
-    NSLog(@"PEREWEL NA FL VC");
+//    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+//    
+//    UIViewController *friendListViewController = (UIViewController *)[storyboard  instantiateViewControllerWithIdentifier:@"CHLFriendsListViewController"];
+//
+//    
+//    [self dismissViewControllerAnimated:YES completion:nil];
+//    [self.navigationController pushViewController:friendListViewController animated:YES];
+//    NSLog(@"PEREWEL NA FL VC");
     
 //    [self dismissViewControllerAnimated:YES completion:nil];
 //    [self.navigationController popViewControllerAnimated:YES];

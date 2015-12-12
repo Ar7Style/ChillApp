@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "CHLTutorialPageContentViewController.h"
 
-@interface CHLTutorialViewController : UIViewController <UIPageViewControllerDataSource>
+@interface CHLTutorialViewController : UIViewController <UIPageViewControllerDataSource, UITableViewDataSource, UITableViewDelegate>
+@property (weak, nonatomic) IBOutlet UITableView *table;
 
 @end
