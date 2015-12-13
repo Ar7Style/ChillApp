@@ -54,6 +54,7 @@
                                              selector:@selector(didGetMyNotification1:)
                                                  name:@"ButtonDeselected"
                                                object:nil];
+
 }
 - (void)didGetMyNotification:(NSNotification*)notification {
     if (selectedButtons.count < 6) {
@@ -181,6 +182,23 @@
         [tableView1 registerNib:[UINib nibWithNibName:@"CellTutorial" bundle:nil] forCellReuseIdentifier:cellIdentifier];
         cell = [tableView1 dequeueReusableCellWithIdentifier:cellIdentifier];
     }
+    BOOL tapped = false;
+    for (int i = 0; i < selectedButtons.count; i++) {
+        if ([selectedButtons[i] isEqualToString:[NSString stringWithFormat:@"%li", (long)indexPath.row]]) {
+            tapped = true;
+        }
+    }
+    if (tapped) {
+        [cell.titleButton setTitleColor:[UIColor greenColor] forState:UIControlStateNormal];
+        
+    }
+    else {
+        [cell.titleButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+
+        
+    }
+
+
     [cell.titleButton setTitle:[json[indexPath.row] valueForKey:@"description"] forState:UIControlStateNormal];
     [cell setID:[NSString stringWithFormat:@"%li", (long)indexPath.row]];
     return cell;
