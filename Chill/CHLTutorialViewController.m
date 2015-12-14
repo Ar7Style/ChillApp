@@ -14,6 +14,7 @@
 #import "CellTutorial.h"
 #import "UserCache.h"
 #import <AFNetworking/AFNetworking.h>
+#import "UIColor+ChillColors.h"
 #define PAGE_AMOUNT 3
 
 @interface CHLTutorialViewController () {
@@ -23,6 +24,9 @@
 }
 
 @property (strong, nonatomic) UIPageViewController *pageViewController;
+
+@property(nonatomic, strong) UIView *invitationView;
+
 
 @end
 
@@ -40,8 +44,7 @@
     NSArray *viewControllers = @[startingViewController];
     [self.pageViewController setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:nil];
     self.pageViewController.view.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
-//
-    NSLog(@"2222");
+
     [self addChildViewController:_pageViewController];
     [self.view addSubview:_pageViewController.view];
     [self.pageViewController didMoveToParentViewController:self];
@@ -55,6 +58,7 @@
                                                  name:@"ButtonDeselected"
                                                object:nil];
 
+    
 }
 - (void)didGetMyNotification:(NSNotification*)notification {
     if (selectedButtons.count < 6) {
@@ -109,6 +113,20 @@
         NSLog(@"JSON123: %@", responseObject);
     } failure:^(NSURLSessionTask *operation, NSError *error) {
         NSLog(@"FAILLLLL");
+        UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Sorry"
+                                    
+                                                                       message:@"Can't upload Your phrases"
+                                    
+                                                                preferredStyle:UIAlertControllerStyleAlert];
+        
+        
+        UIAlertAction* okayAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
+                                     
+                                                           handler:^(UIAlertAction * action) {}];
+        
+        [alert addAction:okayAction];
+        
+        [self presentViewController:alert animated:YES completion:nil];
     }];
 
 }
@@ -137,14 +155,45 @@
     }
     if (index == 2) {
 
-        tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height-100) style:UITableViewStylePlain];
-        UIButton *go = [[UIButton alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height-100, self.view.frame.size.width, 50)];
-        [go setTitle:@"GO" forState:UIControlStateNormal];
-        [go setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 100, self.view.frame.size.width, self.view.frame.size.height-100) style:UITableViewStylePlain];
+        [tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
+        UIButton *go = [[UIButton alloc] init];
+      //  UILabel *title = [[UILabel alloc] initWithFrame:CGRectMake(0, 40, self.view.frame.size.width-20, 40)];
+        //title.text = @"What are you main communication cases?";
+        if([[UIDevice currentDevice]userInterfaceIdiom]==UIUserInterfaceIdiomPhone)
+        {
+            
+            if ([[UIScreen mainScreen] bounds].size.height <= 568) // <= iphone 5
+            {
+                go.frame = CGRectMake(232, 25, 100, 30);
+            }
+            
+            else if ([UIScreen mainScreen].scale >= 2.9) // >= iphone 6plus
+            {
+                go.frame = CGRectMake(337, 25, 100, 30);
+            }
+            
+            else { // iphone 6
+                go.frame = CGRectMake(289, 25, 100, 30);
+            }
+        }
+
+        [go setTitle:@"Done" forState:UIControlStateNormal];
+        [go setTitleColor:[UIColor chillMintColor] forState:UIControlStateNormal];
         [go addTarget:self
                    action:@selector(close)
          forControlEvents:UIControlEventTouchUpInside];
         [contentView addSubview:go];
+        
+        
+        UILabel *title = [[UILabel alloc] initWithFrame:CGRectMake(0, 35, self.view.frame.size.width, 70)];
+        title.text = [NSString stringWithFormat:@"What are your main \ncommunication cases?"];
+        title.numberOfLines = 2;
+        title.textAlignment = NSTextAlignmentCenter;
+        title.textColor = [UIColor chillDarkGrayColor];
+        title.font = [UIFont fontWithName:@"Helvetica-Light" size:21.0]; //setFont:[UIFont fontWithName:@"Helvetica-Bold" size:13.0]];
+        
+        [contentView addSubview:title];
         [self loadData];
 
         // must set delegate & dataSource, otherwise the the table will be empty and not responsive
@@ -182,27 +231,31 @@
         [tableView1 registerNib:[UINib nibWithNibName:@"CellTutorial" bundle:nil] forCellReuseIdentifier:cellIdentifier];
         cell = [tableView1 dequeueReusableCellWithIdentifier:cellIdentifier];
     }
+    
     BOOL tapped = false;
     for (int i = 0; i < selectedButtons.count; i++) {
         if ([selectedButtons[i] isEqualToString:[NSString stringWithFormat:@"%li", (long)indexPath.row]]) {
             tapped = true;
         }
     }
+    [cell.titleButton.titleLabel setFont:[UIFont fontWithName:@"Helvetica-Bold" size:20.0]];
     if (tapped) {
-        [cell.titleButton setTitleColor:[UIColor greenColor] forState:UIControlStateNormal];
+        [cell.titleButton setTitleColor:[UIColor chillMintColor] forState:UIControlStateNormal];
         
     }
     else {
-        [cell.titleButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-
-        
+        [cell.titleButton setTitleColor:[UIColor chillDarkGrayColor] forState:UIControlStateNormal];
     }
-
 
     [cell.titleButton setTitle:[json[indexPath.row] valueForKey:@"description"] forState:UIControlStateNormal];
     [cell setID:[NSString stringWithFormat:@"%li", (long)indexPath.row]];
     return cell;
 }
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 75;
+}
+
 #pragma mark - Page View Controller Data Source
 
 - (CHLTutorialPageContentViewController *)viewControllerAtIndex:(NSUInteger)index

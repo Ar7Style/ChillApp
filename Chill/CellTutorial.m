@@ -7,6 +7,7 @@
 //
 
 #import "CellTutorial.h"
+#import "UIColor+ChillColors.h"
 
 @implementation CellTutorial
 
@@ -31,18 +32,18 @@
     }
     else {
         tapped = false;
-        [_titleButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        [_titleButton setTitleColor:[UIColor chillDarkGrayColor] forState:UIControlStateNormal];
         [[NSNotificationCenter defaultCenter] postNotificationName:@"ButtonDeselected" object:buttonIDENT];
 
     }
 }
 - (void)didGetMyNotification:(NSNotification*)notification {
     if ([[notification object] isEqualToString:@"good"]) {
-        [_titleButton setTitleColor:[UIColor greenColor] forState:UIControlStateNormal];
+        [_titleButton setTitleColor:[UIColor chillMintColor] forState:UIControlStateNormal];
         tapped = true;
     }
     else {
-        [_titleButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        [_titleButton setTitleColor:[UIColor chillLightGrayColor] forState:UIControlStateNormal];
     }
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
