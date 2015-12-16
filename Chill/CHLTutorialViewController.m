@@ -26,12 +26,14 @@
 @property (strong, nonatomic) UIPageViewController *pageViewController;
 
 @property(nonatomic, strong) UIView *invitationView;
+@property (nonatomic, retain)  UIButton* go;
 
 
 @end
 
 
 @implementation CHLTutorialViewController
+@synthesize go;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -61,27 +63,41 @@
     
 }
 - (void)didGetMyNotification:(NSNotification*)notification {
-    if (selectedButtons.count < 6) {
-        [selectedButtons addObject:[notification object]];
+    if (selectedButtons.count < 6 ) {
+        [go setEnabled:NO];
+        [go setTitleColor:[UIColor chillDarkGrayColor] forState:UIControlStateNormal];
+        [selectedButtons addObject:[NSString stringWithFormat:@"%i", [[notification object] intValue]]];
         [[NSNotificationCenter defaultCenter] postNotificationName:@"Response" object:@"good"];
+        
+        if (selectedButtons.count == 6) {
+            [go setEnabled:YES];
+            [go setTitleColor:[UIColor chillMintColor] forState:UIControlStateNormal];
+        }
 
     }
     else {
+        
         [[NSNotificationCenter defaultCenter] postNotificationName:@"Response" object:@"bad"];
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Limit" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
         [alert show];
     }
     NSLog(@"%@", [notification object]);
+    NSLog(@"SELECTED BUTTON COUNT = %lu", (unsigned long)selectedButtons.count);
 }
 - (void)didGetMyNotification1:(NSNotification*)notification {
-    [selectedButtons removeObject:[notification object]];
+    [selectedButtons removeObject:[NSString stringWithFormat:@"%i", [[notification object] intValue]]];
+    if (selectedButtons.count < 6 ) {
+        [go setEnabled:NO];
+        [go setTitleColor:[UIColor chillDarkGrayColor] forState:UIControlStateNormal];
+    }
+   // [[notification object]
     NSLog(@"%@", [notification object]);
 }
 - (void) close {
-    NSString *str = @"";
-    for (int i = 0; i < selectedButtons.count; i++) {
-        str = [NSString stringWithFormat:@"%@%@-", str, selectedButtons[i]];
-    }
+    
+    NSString* str = [selectedButtons componentsJoinedByString:@"-"];
+
+    NSLog(@"STROKA: %@", str);
     NSDictionary *parametr = @{@"id_user":[NSUserDefaults userID], @"id_icons_user":str};
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.responseSerializer = [AFJSONResponseSerializer serializer];
@@ -157,7 +173,7 @@
 
         tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 100, self.view.frame.size.width, self.view.frame.size.height-100) style:UITableViewStylePlain];
         [tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
-        UIButton *go = [[UIButton alloc] init];
+        go = [[UIButton alloc] init];
       //  UILabel *title = [[UILabel alloc] initWithFrame:CGRectMake(0, 40, self.view.frame.size.width-20, 40)];
         //title.text = @"What are you main communication cases?";
         if([[UIDevice currentDevice]userInterfaceIdiom]==UIUserInterfaceIdiomPhone)
@@ -179,12 +195,13 @@
         }
 
         [go setTitle:@"Done" forState:UIControlStateNormal];
-        [go setTitleColor:[UIColor chillMintColor] forState:UIControlStateNormal];
+        [go setTitleColor:[UIColor chillDarkGrayColor] forState:UIControlStateNormal];
         [go addTarget:self
                    action:@selector(close)
          forControlEvents:UIControlEventTouchUpInside];
         [contentView addSubview:go];
         
+        [go setEnabled:NO];
         
         UILabel *title = [[UILabel alloc] initWithFrame:CGRectMake(0, 35, self.view.frame.size.width, 70)];
         title.text = [NSString stringWithFormat:@"What are your main \ncommunication cases?"];
@@ -202,23 +219,10 @@
         tableView.tableFooterView = [UIView new];
 
         tableView.backgroundColor = [UIColor whiteColor];
-        
-        
-        // add to canvas
-//        [self.view addSubview:tableView];
+
         [contentView addSubview:tableView];
-//        UITableView *tableView = [[UITableView alloc] initWithFrame:self.view.frame];
-//        [contentView addSubview:tableView];
-//        tableView.delegate = self;
-//        imageView = [[UIImageView alloc] initWithFrame:self.view.frame];
-//        [contentView addSubview:imageView];
-//        imageView.image = [UIImage imageNamed:@"go_edu"];
     }
-//    if (index == 3) {
-//        imageView = [[UIImageView alloc] initWithFrame:self.view.frame];
-//        [contentView addSubview:imageView];
-//        imageView.image = [UIImage imageNamed:@"Portrait 4"];
-//    }
+
     imageView.contentMode = UIViewContentModeScaleAspectFit;
     return contentView;
 }
@@ -234,7 +238,7 @@
     
     BOOL tapped = false;
     for (int i = 0; i < selectedButtons.count; i++) {
-        if ([selectedButtons[i] isEqualToString:[NSString stringWithFormat:@"%li", (long)indexPath.row]]) {
+        if ([selectedButtons[i] isEqualToString:[NSString stringWithFormat:@"%i", [[json[indexPath.row] valueForKey:@"id"] intValue ]]]) {
             tapped = true;
         }
     }
@@ -248,7 +252,9 @@
     }
 
     [cell.titleButton setTitle:[json[indexPath.row] valueForKey:@"description"] forState:UIControlStateNormal];
-    [cell setID:[NSString stringWithFormat:@"%li", (long)indexPath.row]];
+   // [cell setID:[NSString stringWithFormat:@"%li", (long)indexPath.row]];
+    [cell setID:[NSString stringWithFormat:@"%i",[[json[indexPath.row] valueForKey:@"id"] intValue ]]];
+    
     return cell;
 }
 

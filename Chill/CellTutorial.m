@@ -43,12 +43,12 @@
         tapped = true;
     }
     else {
-        [_titleButton setTitleColor:[UIColor chillLightGrayColor] forState:UIControlStateNormal];
+        [_titleButton setTitleColor:[UIColor chillDarkGrayColor] forState:UIControlStateNormal];
     }
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 - (void)setID:(NSString *)buttonID {
-    buttonIDENT = buttonID;
+    buttonIDENT = [NSString stringWithFormat:@"%i", [buttonID intValue]];
 }
 - (void)setTITLE:(NSString *)buttonNAME {
     buttonTITLE = buttonNAME;
