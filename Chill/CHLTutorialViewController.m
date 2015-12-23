@@ -42,6 +42,9 @@
     self.pageViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"TutorialPageViewController"];
     self.pageViewController.dataSource = self;
     
+    NSUserDefaults *userCache = [[NSUserDefaults standardUserDefaults] initWithSuiteName:@"group.co.getchill.chill"];
+    [userCache setValue:@"1" forKey:@"isEntry"];
+    
     CHLTutorialPageContentViewController *startingViewController = [self viewControllerAtIndex:0];
     NSArray *viewControllers = @[startingViewController];
     [self.pageViewController setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:nil];
@@ -76,7 +79,6 @@
 
     }
     else {
-        
         [[NSNotificationCenter defaultCenter] postNotificationName:@"Response" object:@"bad"];
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Limit" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
         [alert show];

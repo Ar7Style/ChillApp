@@ -85,7 +85,7 @@ NSMutableData *mutData;
     UIView *separatorLineView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 1)];
     separatorLineView.backgroundColor = [UIColor groupTableViewBackgroundColor];
     [self.tableView.tableFooterView addSubview:separatorLineView];
-    
+    self.tableView.backgroundColor = [UIColor chillMintColor];
     [self logUser];
     
     id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
@@ -444,6 +444,19 @@ NSMutableData *mutData;
     [mutData appendData:data];
 }
 
+-(void)shakeAnimation:(UITableViewCell*) cell
+{
+    CABasicAnimation *shake = [CABasicAnimation animationWithKeyPath:@"position"];
+    [shake setDuration:0.1];
+   // [shake setRepeatCount:5];
+    [shake setAutoreverses:YES];
+    [shake setFromValue:[NSValue valueWithCGPoint:
+                         CGPointMake(cell.center.x ,cell.center.y)]];
+    [shake setToValue:[NSValue valueWithCGPoint:
+                       CGPointMake(cell.center.x + 25, cell.center.y)]];
+    [cell.layer addAnimation:shake forKey:@"position"];
+}
+
 
 
 #pragma mark - Private methods
@@ -584,10 +597,16 @@ NSMutableData *mutData;
                                                            label:nil
                                                            value:nil] build]];
     
-    [self presentViewController:myNewVC animated:NO completion:nil];
+    UITableViewCell* cell = [self.tableView cellForRowAtIndexPath:indexPath];
+    //if (![location.email isEqualToString:@"chillteam@iamchill.co"] )
+      //  [self shakeAnimation:cell];
+    if (location.content == (id)[NSNull null] && ![location.email isEqualToString:@"chillteam@iamchill.co"])
+        [self shakeAnimation:cell];
+    else {
+        [self presentViewController:myNewVC animated:NO completion:nil];
+    }
     
 }
-
 - (void) logUser {
   
      NSUserDefaults *userCache = [[NSUserDefaults standardUserDefaults] initWithSuiteName:@"group.co.getchill.chill"];

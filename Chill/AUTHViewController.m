@@ -96,6 +96,9 @@
     
     [_loginField1.text stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     [_passwordField1.text stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    
+    NSUserDefaults *userCache = [[NSUserDefaults standardUserDefaults] initWithSuiteName:@"group.co.getchill.chill"];
+
 
     if (![_loginField1.text isEqualToString:@""] && ![_passwordField1.text isEqualToString:@""]){
         
@@ -148,7 +151,21 @@
                         NSError *error;
                         
                         [session updateApplicationContext:@{@"userID": [NSUserDefaults userID], @"token":[NSUserDefaults userToken], @"isAuth":@"true", @"isApproved": @"true"} error:&error];
+                        if ([[userCache valueForKey:@"isEntry"] isEqualToString:@"0"])
                             [self performSegueWithIdentifier:@"toTutorialViewController" sender:self];
+                        else
+                        {
+                            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+                            
+                            UIViewController *friendListViewController = (UIViewController *)[storyboard  instantiateViewControllerWithIdentifier:@"CHLFriendsListViewController"];
+                            
+                            
+                            [self dismissViewControllerAnimated:YES completion:nil];
+                            [self.navigationController pushViewController:friendListViewController animated:YES];
+                            
+//                            [self dismissViewControllerAnimated:YES completion:nil];
+//                            [self.navigationController popViewControllerAnimated:YES];
+                        }
                     }
 
                     NSLog(@"JSON: %@", responseObject2);

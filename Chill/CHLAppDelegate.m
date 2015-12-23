@@ -70,9 +70,10 @@ static NSString *const CHLIsOpenedBeforeKey = @"CHLIsOpenedBeforeKey";
     pageControl.backgroundColor = [UIColor whiteColor];
     
     NSUserDefaults *userCache = [[NSUserDefaults standardUserDefaults] initWithSuiteName:@"group.co.getchill.chill"];
+    [userCache setValue:@"0" forKey:@"isEntry"];
     
     //NSURLCache кэширование
-    NSURLCache *URLCache = [[NSURLCache alloc] initWithMemoryCapacity:4 * 1024 * 1024 // costilu ebanye
+    NSURLCache *URLCache = [[NSURLCache alloc] initWithMemoryCapacity:4 * 1024 * 1024
                                                          diskCapacity:100 * 1024 * 1024
                                                              diskPath:@"NSURLCache"];
     [NSURLCache setSharedURLCache:URLCache];

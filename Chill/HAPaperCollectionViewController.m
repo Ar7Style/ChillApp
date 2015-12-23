@@ -22,6 +22,7 @@
 #import "MPTransition.h"
 #import "UserCache.h"
 #import <AFNetworking/AFNetworking.h>
+#import "UIButton+AFNetworking.h"
 #import "GAI.h"
 #import "GAIFields.h"
 #import "GAIDictionaryBuilder.h"
@@ -316,10 +317,15 @@
                 if ([[responseObject objectForKey:@"status"] isEqualToString:@"success"]) {
                     json = [responseObject objectForKey:@"response"];
                     
-                    [cell.icon1 setImage:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[json[0] valueForKey:@"size42"]]]] forState:UIControlStateNormal];
+                    [cell.icon1 setImageForState:UIControlStateNormal withURL:[NSURL URLWithString:[json[0] valueForKey:@"size66"]]];
+                     
+                     //setImage:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[json[0] valueForKey:@"size42"]]]] forState:UIControlStateNormal];
                     cell.textLabel1.text = [NSString stringWithFormat:@"%@", [[json[0] valueForKey:@"text"] isEqualToString:@""] ? @"" : [NSString stringWithFormat:@"#%@",[json[0] valueForKey:@"text"]]];
                     
-                    [cell.icon2 setImage:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[json[1] valueForKey:@"size42"]]]] forState:UIControlStateNormal];
+                    
+                    [cell.icon2 setImageForState:UIControlStateNormal withURL:[NSURL URLWithString:[json[1] valueForKey:@"size66"]]];
+
+                    //[cell.icon2 setImage:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[json[1] valueForKey:@"size42"]]]] forState:UIControlStateNormal];
                     cell.textLabel2.text = [NSString stringWithFormat:@"%@", [[json[1] valueForKey:@"text"] isEqualToString:@""] ? @"" : [NSString stringWithFormat:@"#%@",[json[1] valueForKey:@"text"]]];
                     
                     [cell.icon3 setImage:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[json[2] valueForKey:@"size42"]]]] forState:UIControlStateNormal];
