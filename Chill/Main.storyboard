@@ -580,6 +580,7 @@ communication experience</string>
                                         <constraint firstAttribute="centerY" secondItem="yjR-74-qrk" secondAttribute="centerY" id="z4m-QI-997"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
                                     <outlet property="secondLineOnCell" destination="SK1-Fu-9Zh" id="SGn-rp-vEb"/>
                                     <outlet property="senderLabel" destination="yjR-74-qrk" id="OVv-zF-ibZ"/>
@@ -956,7 +957,7 @@ communication experience</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aji-6Q-Ez6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-586" y="1326"/>
+            <point key="canvasLocation" x="-870" y="1357"/>
         </scene>
         <!--Additional Share View Controller-->
         <scene sceneID="JAH-cP-FRY">
@@ -1137,7 +1138,7 @@ communication experience</string>
                                                         </connections>
                                                     </textField>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="10" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zPa-0k-jdT">
-                                                        <rect key="frame" x="167" y="4" width="27" height="21"/>
+                                                        <rect key="frame" x="167" y="4" width="41" height="21"/>
                                                         <color key="tintColor" red="0.73333333329999995" green="0.72941176470000002" blue="0.75686274509999996" alpha="0.0" colorSpace="calibratedRGB"/>
                                                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="21"/>
                                                         <color key="textColor" red="0.73333333329999995" green="0.72941176470000002" blue="0.75686274509999996" alpha="1" colorSpace="calibratedRGB"/>

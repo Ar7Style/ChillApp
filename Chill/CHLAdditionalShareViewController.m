@@ -44,6 +44,7 @@ NSInteger defaultValueForAdditionalScreen = 10;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    _counterForAdditionalScreen.textColor = [UIColor chillMintColor];
     // Do any additional setup after loading the view.
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self
                                                                           action:@selector(dismissKeyboard)];
@@ -271,10 +272,12 @@ NSInteger defaultValueForAdditionalScreen = 10;
 
 - (IBAction)textInAddScreenDidEditing:(id)sender {
     _counterForAdditionalScreen.text = [NSString stringWithFormat:@"%ld", (long)(defaultValueForAdditionalScreen - _shareTextForAdditionalScreen.text.length)];
-    
-//    if ((long)(defaultValueForAdditionalScreen - _shareTextForAdditionalScreen.text.length) <=0) {
-//        _shareTextForAdditionalScreen.userInteractionEnabled = false;
-//    }
+    if ((long)(defaultValueForAdditionalScreen - _shareTextForAdditionalScreen.text.length) <= 0) {
+        _counterForAdditionalScreen.textColor = [UIColor redColor];
+    }
+    else {
+        _counterForAdditionalScreen.textColor = [UIColor chillMintColor];
+    }
 }
 
 - (void)connection:(NSURLConnection *)connection
@@ -305,52 +308,6 @@ totalBytesExpectedToWrite:(NSInteger)totalBytesExpectedToWrite {
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-
-
-- (IBAction)showEmail:(id)sender {
-    // Email Subject
-    NSString *emailTitle = @"One more thing in Chill";
-    // Email Content
-    NSString *messageBody = @"";
-    // To address
-    NSArray *toRecipents = [NSArray arrayWithObject:@"kirill.chekanov2@gmail.com"];
-    
-    MFMailComposeViewController *mc = [[MFMailComposeViewController alloc] init];
-    mc.mailComposeDelegate = self;
-    [mc setSubject:emailTitle];
-    [mc setMessageBody:messageBody isHTML:NO];
-    [mc setToRecipients:toRecipents];
-    
-    // Present mail view controller on screen
-    if (mc != nil)
-    {
-        [self presentViewController:mc animated:YES completion:NULL];
-    }
-}
-
-- (void) mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error
-{
-    switch (result)
-    {
-        case MFMailComposeResultCancelled:
-            NSLog(@"Mail cancelled");
-            break;
-        case MFMailComposeResultSaved:
-            NSLog(@"Mail saved");
-            break;
-        case MFMailComposeResultSent:
-            NSLog(@"Mail sent");
-            break;
-        case MFMailComposeResultFailed:
-            NSLog(@"Mail sent failure: %@", [error localizedDescription]);
-            break;
-        default:
-            break;
-    }
-    
-    // Close the Mail Interface
-    [self dismissViewControllerAnimated:YES completion:NULL];
 }
 
 

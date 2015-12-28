@@ -51,6 +51,7 @@ alpha:1.0]
 @end
 NSMutableData *mutData;
 
+
 @implementation CHLFriendsListViewController{
     NSArray *_locations;
 }
@@ -436,7 +437,6 @@ NSMutableData *mutData;
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
 {
     [mutData setLength:0];
-    
 }
 
 -(void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
@@ -448,7 +448,7 @@ NSMutableData *mutData;
 {
     CABasicAnimation *shake = [CABasicAnimation animationWithKeyPath:@"position"];
     [shake setDuration:0.1];
-   // [shake setRepeatCount:5];
+    //[shake setRepeatCount:2];
     [shake setAutoreverses:YES];
     [shake setFromValue:[NSValue valueWithCGPoint:
                          CGPointMake(cell.center.x ,cell.center.y)]];
@@ -456,7 +456,6 @@ NSMutableData *mutData;
                        CGPointMake(cell.center.x + 25, cell.center.y)]];
     [cell.layer addAnimation:shake forKey:@"position"];
 }
-
 
 
 #pragma mark - Private methods
