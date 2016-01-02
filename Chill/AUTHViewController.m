@@ -145,8 +145,7 @@
                         [NSUserDefaults setValue:[[[responseObject2 valueForKey:@"response"] valueForKey:@"token"] componentsJoinedByString:@""] forKey:@"token1"];
                         
                             [NSUserDefaults changeAprooved:true];
-//                        NSDictionary *applicationDict = @{@"userID":[NSUserDefaults userID]};// Create a dict of application data
-//                        [[WCSession defaultSession] transferUserInfo:applicationDict];
+                        
                         WCSession *session = [WCSession defaultSession];
                         NSError *error;
                         

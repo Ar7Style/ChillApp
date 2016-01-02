@@ -20,6 +20,4 @@
 @property (weak, nonatomic) IBOutlet UITextField *shareTextForAdditionalScreen;
 @property (weak, nonatomic) IBOutlet UILabel *counterForAdditionalScreen;
 
-- (IBAction)showEmail:(id)sender;
-
 @end

@@ -86,7 +86,10 @@ NSMutableData *mutData;
     UIView *separatorLineView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 1)];
     separatorLineView.backgroundColor = [UIColor groupTableViewBackgroundColor];
     [self.tableView.tableFooterView addSubview:separatorLineView];
-    self.tableView.backgroundColor = [UIColor chillMintColor];
+    
+    self.tableView.backgroundColor = [UIColor clearColor];
+    self.parentViewController.view.backgroundColor = [UIColor chillMintColor];
+    //self.tableView.backgroundColor = [UIColor chillMintColor];
     [self logUser];
     
     id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
@@ -215,6 +218,7 @@ NSMutableData *mutData;
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
         CHLFriendCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
+    
         FriendsJSON *location = [_locations objectAtIndex:indexPath.row];
             cell.senderLabel.text = location.name;
     UILabel* twitter_name = (UILabel*) [cell viewWithTag:10];

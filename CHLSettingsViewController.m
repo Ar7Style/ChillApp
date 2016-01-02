@@ -18,6 +18,8 @@
 #import "GAITracker.h"
 #import "CHLFriendsListViewController.h"
 #import "UIViewController+KeyboardAnimation.h"
+#import <AFNetworking/AFNetworking.h>
+#import "UserCache.h"
 
 @interface CHLSettingsViewController () {
     NSMutableArray *json;
@@ -173,52 +175,84 @@
     [_emailField.text stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     [_passwordField.text stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     
+        AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+        manager.responseSerializer = [AFJSONResponseSerializer serializer];
+        manager.requestSerializer = [AFJSONRequestSerializer serializer];
+      [manager.requestSerializer setValue:[[NSUserDefaults standardUserDefaults] valueForKey:@"token"] forHTTPHeaderField:@"X-API-TOKEN"];
+        [manager.requestSerializer setValue:@"76eb29d3ca26fe805545812850e6d75af933214a" forHTTPHeaderField:@"X-API-KEY"];
+        NSDictionary *parameters = @{@"id_user": [[NSUserDefaults standardUserDefaults] valueForKey:@"id_user"], @"email": _emailField.text, @"password":_passwordField.text};
+    
+        [manager POST:@"http://api.iamchill.co/v2/users/update" parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+            
+            if ([[responseObject valueForKey:@"status"] isEqualToString:@"failed"]){
+                [self errorShow:@"It seems that the entered email or password is incorrect"];
+            }
+            else if ([[responseObject valueForKey:@"status"] isEqualToString:@"success"]) {
+                        NSUserDefaults *userCache = [[NSUserDefaults standardUserDefaults] initWithSuiteName:@"group.co.getchill.chill"];
+                                [userCache setValue:[[responseObject valueForKey:@"response"] valueForKey:@"email"] forKey:@"email"];
+                                [userCache setValue:[[responseObject valueForKey:@"response"] valueForKey:@"password"] forKey:@"password"];
+                                [userCache synchronize];
 
-    NSMutableURLRequest *request = [[NSMutableURLRequest alloc]initWithURL:[NSURL URLWithString: [NSString stringWithFormat:@"http://api.iamchill.co/v2/users/update/"]]];
-    [request setValue:[[NSUserDefaults standardUserDefaults] valueForKey:@"token"] forHTTPHeaderField:@"X-API-TOKEN"]; [request setValue:@"76eb29d3ca26fe805545812850e6d75af933214a" forHTTPHeaderField:@"X-API-KEY"];
-
-    [request setValue:@"76eb29d3ca26fe805545812850e6d75af933214a" forHTTPHeaderField:@"X-API-KEY"];
-    
-    [request setHTTPMethod:@"POST"];
-    
-    NSURLResponse *response = nil;
-    NSError *error = nil;
-    NSString *postString = [NSString stringWithFormat:@"id_user=%@&email=%@&password=%@",[[NSUserDefaults standardUserDefaults] valueForKey:@"id_user"],  _emailField.text, _passwordField.text];
-    
-   
-    [request setHTTPBody:[postString
-                          dataUsingEncoding:NSUTF8StringEncoding]];
-    json = [NSJSONSerialization JSONObjectWithData:[NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error] options:NSJSONReadingMutableContainers error:&error];
-    
-    
-    NSLog(@"REQUEST's STATUS: %@", json);
-    
-    if ([[json valueForKey:@"status"] isEqualToString:@"failed"]){
-        [self errorShow:@"It seems that the entered email or password is incorrect"];
-    }
-    else if ([[json valueForKey:@"status"] isEqualToString:@"success"]) {
-        
-        NSUserDefaults *userCache = [[NSUserDefaults standardUserDefaults] initWithSuiteName:@"group.co.getchill.chill"];
-        [userCache setValue:[[json valueForKey:@"response"] valueForKey:@"email"] forKey:@"email"];
-        [userCache setValue:[[json valueForKey:@"response"] valueForKey:@"password"] forKey:@"password"];
-        
-        
-        [userCache synchronize];
-        
-        PFInstallation *currentInstallation = [PFInstallation currentInstallation];
-        [currentInstallation addUniqueObject:[NSString stringWithFormat:@"us%@",[userCache valueForKey:@"id_user"]] forKey:@"channels"];
-        [currentInstallation saveInBackground];
-        
-        [self setupGAUserID: [userCache valueForKey:@"id_user"]];
-        userCache = [[NSUserDefaults standardUserDefaults] initWithSuiteName:@"group.co.getchill.chill"];
-        
-    }
-
+                                PFInstallation *currentInstallation = [PFInstallation currentInstallation];
+                                [currentInstallation addUniqueObject:[NSString stringWithFormat:@"us%@",[userCache valueForKey:@"id_user"]] forKey:@"channels"];
+                                [currentInstallation saveInBackground];
+                                
+                                [self setupGAUserID: [userCache valueForKey:@"id_user"]];
+                                userCache = [[NSUserDefaults standardUserDefaults] initWithSuiteName:@"group.co.getchill.chill"];
+                
+                }
+        }
+        failure:^(AFHTTPRequestOperation *operation2, NSError *error2) {
+                    [self errorShow:@"Please, check Your internet connection"];
+                }];
 }
+
+
+//    NSMutableURLRequest *request = [[NSMutableURLRequest alloc]initWithURL:[NSURL URLWithString: [NSString stringWithFormat:@"http://api.iamchill.co/v2/users/update/"]]];
+//    [request setValue:[[NSUserDefaults standardUserDefaults] valueForKey:@"token"] forHTTPHeaderField:@"X-API-TOKEN"]; [request setValue:@"76eb29d3ca26fe805545812850e6d75af933214a" forHTTPHeaderField:@"X-API-KEY"];
+//
+//    [request setValue:@"76eb29d3ca26fe805545812850e6d75af933214a" forHTTPHeaderField:@"X-API-KEY"];
+//    
+//    [request setHTTPMethod:@"POST"];
+//    
+//    NSURLResponse *response = nil;
+//    NSError *error = nil;
+//    NSString *postString = [NSString stringWithFormat:@"id_user=%@&email=%@&password=%@",[[NSUserDefaults standardUserDefaults] valueForKey:@"id_user"],  _emailField.text, _passwordField.text];
+//    
+//   
+//    [request setHTTPBody:[postString
+//                          dataUsingEncoding:NSUTF8StringEncoding]];
+//    json = [NSJSONSerialization JSONObjectWithData:[NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error] options:NSJSONReadingMutableContainers error:&error];
+//    
+//    
+//    NSLog(@"REQUEST's STATUS: %@", json);
+//    
+//    if ([[json valueForKey:@"status"] isEqualToString:@"failed"]){
+//        [self errorShow:@"It seems that the entered email or password is incorrect"];
+//    }
+//    else if ([[json valueForKey:@"status"] isEqualToString:@"success"]) {
+//        
+//        NSUserDefaults *userCache = [[NSUserDefaults standardUserDefaults] initWithSuiteName:@"group.co.getchill.chill"];
+//        [userCache setValue:[[json valueForKey:@"response"] valueForKey:@"email"] forKey:@"email"];
+//        [userCache setValue:[[json valueForKey:@"response"] valueForKey:@"password"] forKey:@"password"];
+//        
+//        
+//        [userCache synchronize];
+//        
+//        PFInstallation *currentInstallation = [PFInstallation currentInstallation];
+//        [currentInstallation addUniqueObject:[NSString stringWithFormat:@"us%@",[userCache valueForKey:@"id_user"]] forKey:@"channels"];
+//        [currentInstallation saveInBackground];
+//        
+//        [self setupGAUserID: [userCache valueForKey:@"id_user"]];
+//        userCache = [[NSUserDefaults standardUserDefaults] initWithSuiteName:@"group.co.getchill.chill"];
+//        
+//    }
+//
+
 
 -(void)loadSettings {
     
-    NSUserDefaults *userCache = [[NSUserDefaults standardUserDefaults] initWithSuiteName:@"group.co.getchill.chill"];
+    NSUserDefaults *userCache = [NSUserDefaults standardUserDefaults];
     _nickNameLabel.text = [userCache valueForKey:@"login_user"];
 
     
