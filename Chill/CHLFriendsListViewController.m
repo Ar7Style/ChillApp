@@ -11,14 +11,12 @@
 #import "CHLFriendCell.h"
 #import "CHLFriendsListViewController.h"
 #import "UIColor+ChillColors.h"
-#import "JSONLoader.h"
 #import "SVPullToRefresh.h"
 #import "MBProgressHUD.h"
-#import "Reachability.h"
+#import <AFNetworking/AFNetworking.h>
 #import <Parse/Parse.h>
 #import "APPROVEDViewController.h"
 #import "AUTHViewController.h"
-#import "FriendsJSON.h"
 #import "HAPaperCollectionViewController.h"
 #import "HACollectionViewLargeLayout.h"
 #import "GAI.h"
@@ -39,7 +37,7 @@ blue:((float)(rgbValue & 0xFF))/255.0 \
 alpha:1.0]
 @interface CHLFriendsListViewController () <MBProgressHUDDelegate, UIScrollViewDelegate, WCSessionDelegate> {
     MBProgressHUD *HUD;
-    Reachability *internetReachableFoo;
+    NSArray *json;
     long long expectedLength;
     long long currentLength;
     int numPost;
@@ -52,16 +50,7 @@ alpha:1.0]
 NSMutableData *mutData;
 
 
-@implementation CHLFriendsListViewController{
-    NSArray *_locations;
-}
-
-
-- (BOOL)connected
-{
-    return [[Reachability reachabilityForInternetConnection] currentReachabilityStatus] != NotReachable;
-}
-
+@implementation CHLFriendsListViewController
 
 #pragma mark - View controller lifecycle
 
@@ -162,19 +151,23 @@ NSMutableData *mutData;
     [self loadJSON];
 }
 - (void) loadJSON {
- 
-            NSUserDefaults *userCache = [[NSUserDefaults standardUserDefaults] initWithSuiteName:@"group.co.getchill.chill"];
-            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
-                NSArray *preLoad =[[[JSONLoader alloc] init] locationsFromJSONFile:[[NSURL alloc] initWithString:[NSString stringWithFormat:@"http://api.iamchill.co/v2/contacts/index/id_user/%@", [userCache valueForKey:@"id_user"]]] typeJSON:@"Friends"];
-             
-                
-                if (![preLoad isEqualToArray:_locations])
-                {
-                    _locations = preLoad;
-                    [self.tableView performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:YES];
-                }
-            });
-    
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.responseSerializer = [AFJSONResponseSerializer serializer];
+    manager.requestSerializer = [AFJSONRequestSerializer serializer];
+    [manager.requestSerializer setValue:[NSUserDefaults userToken] forHTTPHeaderField:@"X-API-TOKEN"];
+    [manager.requestSerializer setValue:@"76eb29d3ca26fe805545812850e6d75af933214a" forHTTPHeaderField:@"X-API-KEY"];
+    [manager GET:[NSString stringWithFormat:@"http://api.iamchill.co/v2/contacts/index/id_user/%@", [NSUserDefaults userID]] parameters:nil success:^(NSURLSessionTask *task, id responseObject) {
+        if ([[responseObject objectForKey:@"status"] isEqualToString:@"success"]) {
+            if (![[responseObject objectForKey:@"response"] isEqualToArray:json]) {
+                json = [responseObject objectForKey:@"response"];
+                [self.tableView performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:YES];
+            }
+        }
+        NSLog(@"JSON: %@", responseObject);
+    } failure:^(NSURLSessionTask *operation, NSError *error) {
+        [self conRefused];
+        NSLog(@"Error: %@", error);
+    }];
 }
 #pragma mark - Table view delegate
 
@@ -211,7 +204,7 @@ NSMutableData *mutData;
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
-        return _locations.count;
+        return json.count;
     
 }
 
@@ -222,119 +215,119 @@ NSMutableData *mutData;
         FriendsJSON *location = [_locations objectAtIndex:indexPath.row];
             cell.senderLabel.text = location.name;
     UILabel* twitter_name = (UILabel*) [cell viewWithTag:10];
-    if (![location.twitter_name isEqualToString:@"empty"])
-        twitter_name.text = [NSString stringWithFormat:@"@%@", location.twitter_name];
+    if (![[jsonData valueForKey:@"twitter_name"] isEqualToString:@"empty"])
+        twitter_name.text = [NSString stringWithFormat:@"@%@", [jsonData valueForKey:@"twitter_name"]];
     else
         twitter_name.text = nil;
                                     
-        LLACircularProgressView *oldProgressView = (LLACircularProgressView *)[self.progressViewsDictionary objectForKey:[NSNumber numberWithInteger:[location.id_contact integerValue]]];
+        LLACircularProgressView *oldProgressView = (LLACircularProgressView *)[self.progressViewsDictionary objectForKey:[NSNumber numberWithInteger:[[jsonData valueForKey:@"id_contact"] integerValue]]];
         if (cell.type.subviews.firstObject && oldProgressView && cell.type.subviews.firstObject != oldProgressView) {
             [cell.type.subviews.firstObject removeFromSuperview];
         }
         else if (oldProgressView) {
             if (!cell.type.subviews.firstObject || [(LLACircularProgressView *)cell.type.subviews.firstObject currentlyContainsFilledProgressCircle]) {
                 if (oldProgressView.progress == 1.0) {
-                    [self.progressViewsDictionary removeObjectForKey:[NSNumber numberWithInteger:[location.id_contact integerValue]]];
+                    [self.progressViewsDictionary removeObjectForKey:[NSNumber numberWithInteger:[[jsonData valueForKey:@"id_contact"] integerValue]]];
                     [oldProgressView showCheckMark];
                     [cell.type addSubview:oldProgressView];
                 }
                 else if (oldProgressView.progress != 1.0) {
                     LLACircularProgressView *newProgressView = [[LLACircularProgressView alloc] initProgressViewWithDummyProgress:0.0 cellStatusView:cell.type];
                     [newProgressView setProgress:oldProgressView.progress];
-                    [self.progressViewsDictionary setObject:newProgressView forKey:[NSNumber numberWithInteger:[location.id_contact integerValue]]];
+                    [self.progressViewsDictionary setObject:newProgressView forKey:[NSNumber numberWithInteger:[[jsonData valueForKey:@"id_contact"] integerValue]]];
                 }
             }
         }
     
     
-        if (![location.email isEqualToString:@"chillteam@iamchill.co"]){
+        if (![[jsonData valueForKey:@"email"] isEqualToString:@"chillteam@iamchill.co"]){
             cell.shieldik.hidden  = NO;
             cell.shieldik2.hidden = NO;
-            if (![location.read isKindOfClass:[NSNull class]]) {
-                if ([location.read isEqualToString:@"0"] && !cell.type.subviews.firstObject) {
-                    if ([location.type isEqualToString:@"location"]){
+            if (![[jsonData valueForKey:@"read"] isKindOfClass:[NSNull class]]) {
+                if ([[jsonData valueForKey:@"read"] isEqualToString:@"0"] && !cell.type.subviews.firstObject) {
+                    if ([[jsonData valueForKey:@"type"] isEqualToString:@"location"]){
                         UIImage *image = [UIImage imageNamed: @"location.png"];
                         [cell.type setImage:image];
                     }
-                    else if ([location.type isEqualToString:@"photo"]){
+                    else if ([[jsonData valueForKey:@"type"] isEqualToString:@"photo"]){
                         UIImage *image = [UIImage imageNamed: @"pic.png"];
                         [cell.type setImage:image];
                     }
-                    else if ([location.type isEqualToString:@"parse"]){
+                    else if ([[jsonData valueForKey:@"type"] isEqualToString:@"parse"]){
                         UIImage *image = [UIImage imageNamed: @"pic.png"];
                         [cell.type setImage:image];
                      }
                     
                     // еще немного говнокода
                     
-                    else if ([location.type isEqualToString:@"icon"]) //some hardcode
+                    else if ([[jsonData valueForKey:@"type"] isEqualToString:@"icon"]) //some hardcode
                    {
-                       if ([location.content isEqualToString:@"clock"])
+                       if ([[jsonData valueForKey:@"content"] isEqualToString:@"clock"])
                            [cell.type setImage:[UIImage imageNamed: @"reaction_clock_forCell.png"]];
                        
-                       if ([location.content isEqualToString:@"beer"])
+                       if ([[jsonData valueForKey:@"content"] isEqualToString:@"beer"])
                            [cell.type setImage:[UIImage imageNamed: @"reaction_drink_forCell.png"]];
                        
-                       if ([location.content isEqualToString:@"coffee"])
+                       if ([[jsonData valueForKey:@"content"] isEqualToString:@"coffee"])
                            [cell.type setImage:[UIImage imageNamed: @"reaction_soda_forCell.png"]];
                        
-                       if ([location.content isEqualToString:@"logo"])
+                       if ([[jsonData valueForKey:@"content"] isEqualToString:@"logo"])
                            [cell.type setImage:[UIImage imageNamed: @"reaction_chill_forCell.png"]];
                        
-                       if ([location.content isEqualToString:@"question"])
+                       if ([[jsonData valueForKey:@"content"] isEqualToString:@"question"])
                            [cell.type setImage:[UIImage imageNamed: @"reaction_question_forCell.png"]];
                        
-                       if ([location.content isEqualToString:@"rocket"])
+                       if ([[jsonData valueForKey:@"content"] isEqualToString:@"rocket"])
                            [cell.type setImage:[UIImage imageNamed: @"reaction_rocket_forCell.png"]];
                        
-                       if ([location.content isEqualToString:@"stamp"])
+                       if ([[jsonData valueForKey:@"content"] isEqualToString:@"stamp"])
                            [cell.type setImage:[UIImage imageNamed: @"reaction_blank_forCell.png"]];
 
                        
                        
                        //additional icons
-                       if ([location.content isEqualToString:@"trophy"])
+                       if ([[jsonData valueForKey:@"content"] isEqualToString:@"trophy"])
                            [cell.type setImage:[UIImage imageNamed: @"reaction_trophy_forCell.png"]];
                        
-                       if ([location.content isEqualToString:@"flag"])
+                       if ([[jsonData valueForKey:@"content"] isEqualToString:@"flag"])
                            [cell.type setImage:[UIImage imageNamed: @"reaction_flag_forCell.png"]];
                        
-                       if ([location.content isEqualToString:@"telephone"])
+                       if ([[jsonData valueForKey:@"content"] isEqualToString:@"telephone"])
                            [cell.type setImage:[UIImage imageNamed: @"reaction_telephone_forCell.png"]];
                        
-                       if ([location.content isEqualToString:@"book"])
+                       if ([[jsonData valueForKey:@"content"] isEqualToString:@"book"])
                            [cell.type setImage:[UIImage imageNamed: @"reaction_book_forCell.png"]];
                        
-                       if ([location.content isEqualToString:@"gym"])
+                       if ([[jsonData valueForKey:@"content"] isEqualToString:@"gym"])
                            [cell.type setImage:[UIImage imageNamed: @"reaction_gym_forCell.png"]];
                        
-                       if ([location.content isEqualToString:@"waves"])
+                       if ([[jsonData valueForKey:@"content"] isEqualToString:@"waves"])
                            [cell.type setImage:[UIImage imageNamed: @"reaction_waves_forCell.png"]];
                        
                        
                        //new additional icons
-                       if ([location.content isEqualToString:@"plus"])
+                       if ([[jsonData valueForKey:@"content"] isEqualToString:@"plus"])
                            [cell.type setImage:[UIImage imageNamed: @"reaction_plus_forCell.png"]];
                        
-                       if ([location.content isEqualToString:@"controller"])
+                       if ([[jsonData valueForKey:@"content"] isEqualToString:@"controller"])
                            [cell.type setImage:[UIImage imageNamed: @"reaction_controller_forCell.png"]];
                        
-                       if ([location.content isEqualToString:@"minus"])
+                       if ([[jsonData valueForKey:@"content"] isEqualToString:@"minus"])
                            [cell.type setImage:[UIImage imageNamed: @"reaction_minus_forCell.png"]];
                        
-                       if ([location.content isEqualToString:@"ball"])
+                       if ([[jsonData valueForKey:@"content"] isEqualToString:@"ball"])
                            [cell.type setImage:[UIImage imageNamed: @"reaction_ball_forCell.png"]];
                        
-                       if ([location.content isEqualToString:@"heart"])
+                       if ([[jsonData valueForKey:@"content"] isEqualToString:@"heart"])
                            [cell.type setImage:[UIImage imageNamed: @"reaction_heart_forCell.png"]];
                        
-                       if ([location.content isEqualToString:@"sleep"])
+                       if ([[jsonData valueForKey:@"content"] isEqualToString:@"sleep"])
                            [cell.type setImage:[UIImage imageNamed: @"reaction_sleep_forCell.png"]];
                        
-                       if ([location.content isEqualToString:@"dollar"])
+                       if ([[jsonData valueForKey:@"content"] isEqualToString:@"dollar"])
                            [cell.type setImage:[UIImage imageNamed: @"reaction_dollar_forCell.png"]];
                        
-                       if ([location.content isEqualToString:@"pizza"])
+                       if ([[jsonData valueForKey:@"content"] isEqualToString:@"pizza"])
                            [cell.type setImage:[UIImage imageNamed: @"reaction_pizza_forCell.png"]];
 
                     }
@@ -381,9 +374,9 @@ NSMutableData *mutData;
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    FriendsJSON *location = [_locations objectAtIndex:indexPath.row];
+    NSArray *jsonData = json[indexPath.row];
 
-    if ([location.email isEqualToString:@"chillteam@iamchill.co"]) {
+    if ([[jsonData valueForKey:@"email"] isEqualToString:@"chillteam@iamchill.co"]) {
         return NO;
     }
     else {
@@ -398,7 +391,7 @@ NSMutableData *mutData;
     
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         // Delete object from database
-        FriendsJSON *location = [_locations objectAtIndex:indexPath.row];
+        NSArray *jsonData = json[indexPath.row];
 
         NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
         NSUserDefaults *userCache = [[NSUserDefaults standardUserDefaults] initWithSuiteName:@"group.co.getchill.chill"]; //@"group.Chill"
@@ -413,7 +406,7 @@ NSMutableData *mutData;
         
         
         
-        NSString *postString = [NSString stringWithFormat:@"id_user=%@&id_contact=%@", [userCache valueForKey:@"id_user"], location.id_contact];
+        NSString *postString = [NSString stringWithFormat:@"id_user=%@&id_contact=%@", [userCache valueForKey:@"id_user"], [jsonData valueForKey:@"id_contact"]];
 
         [request setHTTPMethod:@"POST"];
         [request setHTTPBody:[postString
@@ -562,12 +555,12 @@ NSMutableData *mutData;
         [timer invalidate];
         timer = nil;
         NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
-        FriendsJSON *location = [_locations objectAtIndex:indexPath.row];
+        NSArray *jsonData = json[indexPath.row];
 
         CHLShareViewController *shareViewController = segue.destinationViewController;
         
-        shareViewController.userIdTo = [location.id_contact integerValue];
-        shareViewController.nameUser = location.name;
+        shareViewController.userIdTo = [[jsonData valueForKey:@"id_contact"] integerValue];
+        shareViewController.nameUser = [jsonData valueForKey:@"name"];
         shareViewController.cellStatusView = [(CHLFriendCell *)sender type];
         shareViewController.progressViewsDictionary = self.progressViewsDictionary;
     }
@@ -583,15 +576,15 @@ NSMutableData *mutData;
     timer = nil;
     HAPaperCollectionViewController *myNewVC = [[HAPaperCollectionViewController alloc] init];
     HACollectionViewLargeLayout *aFlowLayout = [[HACollectionViewLargeLayout alloc] init];
-    FriendsJSON *location = [_locations objectAtIndex:indexPath.row];
+    NSArray *jsonData = json[indexPath.row];
     myNewVC = [[HAPaperCollectionViewController alloc]initWithCollectionViewLayout:aFlowLayout];
-    myNewVC.friendUserID = [location.id_contact integerValue];
+    myNewVC.friendUserID = [[jsonData valueForKey:@"id_contact"] integerValue];
     myNewVC.cellStatusView = [(CHLFriendCell *)[tableView cellForRowAtIndexPath:indexPath] type];
     myNewVC.progressViewsDictionary = self.progressViewsDictionary;
-    if (![location.name isKindOfClass:[NSNull class]]){
-        myNewVC.nickName = location.name;
+    if (![[jsonData valueForKey:@"name"] isKindOfClass:[NSNull class]]){
+        myNewVC.nickName = [jsonData valueForKey:@"name"];
     }
-    else     myNewVC.nickName = location.login;
+    else     myNewVC.nickName = [jsonData valueForKey:@"login"];
 
     id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
     [tracker set:kGAIScreenName value:@"Friends list screen"];
@@ -603,7 +596,7 @@ NSMutableData *mutData;
     UITableViewCell* cell = [self.tableView cellForRowAtIndexPath:indexPath];
     //if (![location.email isEqualToString:@"chillteam@iamchill.co"] )
       //  [self shakeAnimation:cell];
-    if (location.content == (id)[NSNull null] && ![location.email isEqualToString:@"chillteam@iamchill.co"])
+    if ([jsonData valueForKey:@"content"] == (id)[NSNull null] && ![[jsonData valueForKey:@"email"] isEqualToString:@"chillteam@iamchill.co"])
         [self shakeAnimation:cell];
     else {
         [self presentViewController:myNewVC animated:NO completion:nil];
