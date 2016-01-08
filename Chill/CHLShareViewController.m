@@ -73,31 +73,6 @@ NSInteger defaultValue = 10;
     [_shareText resignFirstResponder];
 }
 
-//- (void)viewDidAppear:(BOOL)animated {
-//    
-//    
-//    if (CLLocationManager.authorizationStatus == kCLAuthorizationStatusNotDetermined) {
-//        [_locationManager requestWhenInUseAuthorization];
-//    }
-
-//    if([[UIDevice currentDevice]userInterfaceIdiom]==UIUserInterfaceIdiomPhone)
-//    {
-//        if ([[UIScreen mainScreen] bounds].size.height <= 568) // <= iphone 5
-//        {
-//            NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
-//            [center addObserver:self selector:@selector(willShowKeyboard) name:UIKeyboardDidShowNotification object:nil];
-//            [center addObserver:self selector:@selector(willHideKeyboard) name:UIKeyboardWillHideNotification object:nil];
-//        }
-//        
-//    }
-    
-//    [super viewDidAppear:animated];
-//    
-//    id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
-//    [tracker set:kGAIScreenName value:@"Share screen"];
-//    [tracker send:[[GAIDictionaryBuilder createAppView] build]];
-//}
-
 -(void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self an_subscribeKeyboardWithAnimations:^(CGRect keyboardRect, NSTimeInterval duration, BOOL isShowing) {
@@ -129,42 +104,7 @@ NSInteger defaultValue = 10;
         [view resignFirstResponder];
 }
 
-#pragma mark - Keyboard Notification
-
-- (void)willShowKeyboard{
-    if (!isKeyboardShow){
-        isKeyboardShow = true;
-        [UIView beginAnimations:nil context:NULL];
-        [UIView setAnimationDelegate:self];
-        [UIView setAnimationDuration:0.5];
-        [UIView setAnimationBeginsFromCurrentState:YES];
-        self.view.frame = CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y-216.0,
-                                     self.view.frame.size.width, self.view.frame.size.height);
-        [UIView commitAnimations];
-    }
-}
-- (void)backgroundTouchedHideKeyboard:(id)sender
-{
-    [self.shareText resignFirstResponder];
-    
-}
-
-- (void)willHideKeyboard{
-    isKeyboardShow = false;
-    [UIView beginAnimations:nil context:NULL];
-    [UIView setAnimationDelegate:self];
-    [UIView setAnimationDuration:0.5];
-    [UIView setAnimationBeginsFromCurrentState:YES];
-    self.view.frame = CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y+216.0,
-                                 self.view.frame.size.width, self.view.frame.size.height);
-    [UIView commitAnimations];
-}
--(void)didTapAnywhere: (UITapGestureRecognizer*) recognizer {
-    //[self.emailField resignFirstResponder];
-    [self.shareText resignFirstResponder];
-}
-
-#pragma textField methods 
+#pragma mark - textField methods
 
 - (IBAction)textDidEditing:(id)sender {
     _counter.text = [NSString stringWithFormat:@"%ld", (long)(defaultValue - _shareText.text.length)];

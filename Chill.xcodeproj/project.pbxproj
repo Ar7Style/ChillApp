@@ -11,7 +11,6 @@
 		020B35741A1E402C00DC2F23 /* JSONLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 020B35671A1E402C00DC2F23 /* JSONLoader.m */; };
 		020B35751A1E402C00DC2F23 /* JMImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 020B35691A1E402C00DC2F23 /* JMImageCache.m */; };
 		020B35761A1E402C00DC2F23 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 020B356B1A1E402C00DC2F23 /* MBProgressHUD.m */; };
-		020B35771A1E402C00DC2F23 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 020B356D1A1E402C00DC2F23 /* Reachability.m */; };
 		020B35781A1E402C00DC2F23 /* UIImageView+JMImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 020B356F1A1E402C00DC2F23 /* UIImageView+JMImageCache.m */; };
 		020B35791A1E402C00DC2F23 /* UIScrollView+SVInfiniteScrolling.m in Sources */ = {isa = PBXBuildFile; fileRef = 020B35721A1E402C00DC2F23 /* UIScrollView+SVInfiniteScrolling.m */; };
 		020FD6721A76DFEF00F079A5 /* Oval_43_Oval_44_Line@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 020FD6711A76DFEF00F079A5 /* Oval_43_Oval_44_Line@2x.png */; };
@@ -75,11 +74,13 @@
 		02CC30D81A57343E006C1294 /* avatar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 02CC30D71A57343E006C1294 /* avatar@2x.png */; };
 		02CF5EB71A5EE49100C71C8D /* PromoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 02CF5EB61A5EE49100C71C8D /* PromoViewController.m */; };
 		02E0A7A01A62FE2600BFEF5F /* Chilllogogrey.png in Resources */ = {isa = PBXBuildFile; fileRef = 02E0A79F1A62FE2600BFEF5F /* Chilllogogrey.png */; };
+		052DB4F69CE6B7328203E850 /* Pods_Chill.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2DB6BCAC092F80987825172 /* Pods_Chill.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		060848DF1AC0BF1F003EBE90 /* Portrait 2.png in Resources */ = {isa = PBXBuildFile; fileRef = 060848DE1AC0BF1F003EBE90 /* Portrait 2.png */; };
 		060848E11AC0BF24003EBE90 /* Portrait 3 (0).png in Resources */ = {isa = PBXBuildFile; fileRef = 060848E01AC0BF24003EBE90 /* Portrait 3 (0).png */; };
 		060D0C081BF40028007A7146 /* close_card.png in Resources */ = {isa = PBXBuildFile; fileRef = 060D0C071BF40028007A7146 /* close_card.png */; };
 		060F06951BFB9E750030B11B /* UIViewController+KeyboardAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 060F06941BFB9E750030B11B /* UIViewController+KeyboardAnimation.m */; };
 		0614D4931B598A8600CFA8D5 /* oups.png in Resources */ = {isa = PBXBuildFile; fileRef = 0614D4921B598A8600CFA8D5 /* oups.png */; };
+		061612C61C3FFC9500E2F47E /* AFNetworking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 061612C31C3FFC9500E2F47E /* AFNetworking.framework */; };
 		061B5D551B57DD9200A3B9FB /* update_for_new_icons.png in Resources */ = {isa = PBXBuildFile; fileRef = 061B5D541B57DD9200A3B9FB /* update_for_new_icons.png */; };
 		062614F81BF780DC001D704A /* chill_edu1.png in Resources */ = {isa = PBXBuildFile; fileRef = 062614F71BF780DC001D704A /* chill_edu1.png */; };
 		0633D5FE1B6FC1C300255BA5 /* PebbleVendor.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0633D5FD1B6FC1C300255BA5 /* PebbleVendor.framework */; };
@@ -116,6 +117,11 @@
 		0670541C1B04EEC300BBA3AA /* icon86@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 067054081B04EEC300BBA3AA /* icon86@2x.png */; };
 		0670541F1B04EEC300BBA3AA /* icon98@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 067054091B04EEC300BBA3AA /* icon98@2x.png */; };
 		067054231B05095900BBA3AA /* 27@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 067054221B05095900BBA3AA /* 27@3x.png */; };
+		067E1A431C3FD7F6005D5E9C /* ASImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 067E1A3A1C3FD7F6005D5E9C /* ASImageCell.m */; };
+		067E1A441C3FD7F6005D5E9C /* ASServerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 067E1A3C1C3FD7F6005D5E9C /* ASServerManager.m */; };
+		067E1A451C3FD7F6005D5E9C /* ASImageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 067E1A3E1C3FD7F6005D5E9C /* ASImageModel.m */; };
+		067E1A471C3FD7F6005D5E9C /* UIImage+imageWithColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 067E1A421C3FD7F6005D5E9C /* UIImage+imageWithColor.m */; };
+		067E1A4A1C3FE542005D5E9C /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 067E1A491C3FE542005D5E9C /* Reachability.m */; };
 		068445371B2CBB3C006D3826 /* reaction_book_forCell.png in Resources */ = {isa = PBXBuildFile; fileRef = 0684452A1B2CBB3C006D3826 /* reaction_book_forCell.png */; };
 		0684453A1B2CBB3C006D3826 /* reaction_flag_forCell.png in Resources */ = {isa = PBXBuildFile; fileRef = 0684452B1B2CBB3C006D3826 /* reaction_flag_forCell.png */; };
 		0684453D1B2CBB3C006D3826 /* reaction_telephone_forCell.png in Resources */ = {isa = PBXBuildFile; fileRef = 0684452C1B2CBB3C006D3826 /* reaction_telephone_forCell.png */; };
@@ -211,6 +217,7 @@
 		ADE222C41A94ECEB007777A4 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = ADE222C31A94ECEB007777A4 /* libsqlite3.dylib */; };
 		ADE222C71A94FE4F007777A4 /* libGoogleAnalyticsServices.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ADE222C51A94FE4F007777A4 /* libGoogleAnalyticsServices.a */; };
 		ADE222C81A94FE4F007777A4 /* libAdIdAccess.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ADE222C61A94FE4F007777A4 /* libAdIdAccess.a */; };
+		D9595CC36A8CA72CA5C9D816 /* Pods_Chill_WatchOS_2_Extension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4035912F32DC46F92D2B1A72 /* Pods_Chill_WatchOS_2_Extension.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		E60427AA196F191C000F8F02 /* CHLAddressBookViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E60427A9196F191C000F8F02 /* CHLAddressBookViewController.m */; };
 		E604427419C5D40200D9ECB9 /* GoogleMaps.bundle in Resources */ = {isa = PBXBuildFile; fileRef = E604427319C5D40200D9ECB9 /* GoogleMaps.bundle */; };
 		E63A0F1E19A1193500C0522A /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E63A0F1D19A1193500C0522A /* AddressBook.framework */; };
@@ -244,6 +251,7 @@
 		E6D972CB19A3EE0600E7E4A3 /* PKImageBundle.bundle in Resources */ = {isa = PBXBuildFile; fileRef = E6D972CA19A3EE0600E7E4A3 /* PKImageBundle.bundle */; };
 		E6DB66B71956F49A00D30E85 /* MCSwipeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E6DB66B61956F49A00D30E85 /* MCSwipeTableViewCell.m */; };
 		E6DB66C41956FC3900D30E85 /* CHLFriendCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E6DB66C31956FC3900D30E85 /* CHLFriendCell.m */; };
+		FDE13C3383C201A907AC90FC /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C8D8AB3ECBC05507B66E78E /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -411,6 +419,9 @@
 		060F06931BFB9E750030B11B /* UIViewController+KeyboardAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+KeyboardAnimation.h"; sourceTree = "<group>"; };
 		060F06941BFB9E750030B11B /* UIViewController+KeyboardAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+KeyboardAnimation.m"; sourceTree = "<group>"; };
 		0614D4921B598A8600CFA8D5 /* oups.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = oups.png; sourceTree = "<group>"; };
+		061612C31C3FFC9500E2F47E /* AFNetworking.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AFNetworking.framework; path = "Pods/../build/Debug-iphoneos/Pods-Chill/AFNetworking.framework"; sourceTree = "<group>"; };
+		061612C41C3FFC9500E2F47E /* AFNetworking.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AFNetworking.framework; path = "Pods/../build/Debug-watchos/Pods-Chill WatchOS 2 Extension/AFNetworking.framework"; sourceTree = "<group>"; };
+		061612C51C3FFC9500E2F47E /* AFNetworking.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AFNetworking.framework; path = "Pods/../build/Debug-iphoneos/Pods/AFNetworking.framework"; sourceTree = "<group>"; };
 		061B5D541B57DD9200A3B9FB /* update_for_new_icons.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = update_for_new_icons.png; sourceTree = "<group>"; };
 		062614F71BF780DC001D704A /* chill_edu1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = chill_edu1.png; sourceTree = "<group>"; };
 		0633D5FD1B6FC1C300255BA5 /* PebbleVendor.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PebbleVendor.framework; sourceTree = "<group>"; };
@@ -448,6 +459,17 @@
 		067054081B04EEC300BBA3AA /* icon86@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon86@2x.png"; sourceTree = "<group>"; };
 		067054091B04EEC300BBA3AA /* icon98@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon98@2x.png"; sourceTree = "<group>"; };
 		067054221B05095900BBA3AA /* 27@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "27@3x.png"; sourceTree = "<group>"; };
+		067E1A391C3FD7F6005D5E9C /* ASImageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASImageCell.h; sourceTree = "<group>"; };
+		067E1A3A1C3FD7F6005D5E9C /* ASImageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASImageCell.m; sourceTree = "<group>"; };
+		067E1A3B1C3FD7F6005D5E9C /* ASServerManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASServerManager.h; sourceTree = "<group>"; };
+		067E1A3C1C3FD7F6005D5E9C /* ASServerManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASServerManager.m; sourceTree = "<group>"; };
+		067E1A3D1C3FD7F6005D5E9C /* ASImageModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASImageModel.h; sourceTree = "<group>"; };
+		067E1A3E1C3FD7F6005D5E9C /* ASImageModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASImageModel.m; sourceTree = "<group>"; };
+		067E1A411C3FD7F6005D5E9C /* UIImage+imageWithColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+imageWithColor.h"; sourceTree = "<group>"; };
+		067E1A421C3FD7F6005D5E9C /* UIImage+imageWithColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+imageWithColor.m"; sourceTree = "<group>"; };
+		067E1A481C3FE538005D5E9C /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
+		067E1A491C3FE542005D5E9C /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
+		067E1A4C1C3FEA6E005D5E9C /* AFNetworking.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AFNetworking.framework; path = "Pods/../build/Release-watchos/Pods-Chill WatchOS 2 Extension/AFNetworking.framework"; sourceTree = "<group>"; };
 		0684452A1B2CBB3C006D3826 /* reaction_book_forCell.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = reaction_book_forCell.png; sourceTree = "<group>"; };
 		0684452B1B2CBB3C006D3826 /* reaction_flag_forCell.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = reaction_flag_forCell.png; sourceTree = "<group>"; };
 		0684452C1B2CBB3C006D3826 /* reaction_telephone_forCell.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = reaction_telephone_forCell.png; sourceTree = "<group>"; };
@@ -509,6 +531,7 @@
 		06D7BF001BCFD4E1009AE04A /* received_plus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = received_plus.png; sourceTree = "<group>"; };
 		06D7BF011BCFD4E1009AE04A /* received_sleep.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = received_sleep.png; sourceTree = "<group>"; };
 		06D869E21B932C44001AA540 /* Portrait 3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Portrait 3.png"; sourceTree = "<group>"; };
+		06D9A68A1C3FEE38009F34E1 /* Pods_Chill_WatchOS_2_Extension.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods_Chill_WatchOS_2_Extension.framework; path = "Pods/../build/Debug-watchos/Pods_Chill_WatchOS_2_Extension.framework"; sourceTree = "<group>"; };
 		06DA1B181AC4B1B9005472E4 /* reaction_blank_forCell.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = reaction_blank_forCell.png; sourceTree = "<group>"; };
 		06DA1B191AC4B1B9005472E4 /* reaction_chill_forCell.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = reaction_chill_forCell.png; sourceTree = "<group>"; };
 		06DA1B1A1AC4B1B9005472E4 /* reaction_clock_forCell.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = reaction_clock_forCell.png; sourceTree = "<group>"; };
@@ -520,6 +543,7 @@
 		06EAB9581AA7AE6300149DF2 /* Portrait 4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Portrait 4.png"; sourceTree = SOURCE_ROOT; };
 		06F3318B1B721A710064BD1C /* CHLInviteFromAddressBookViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHLInviteFromAddressBookViewController.h; sourceTree = "<group>"; };
 		06F3318C1B721A710064BD1C /* CHLInviteFromAddressBookViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHLInviteFromAddressBookViewController.m; sourceTree = "<group>"; };
+		4035912F32DC46F92D2B1A72 /* Pods_Chill_WatchOS_2_Extension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Chill_WatchOS_2_Extension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		531836E51C077D47001AE40D /* Checkmark-100@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Checkmark-100@2x.png"; sourceTree = "<group>"; };
 		531836E81C079550001AE40D /* confirm@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "confirm@2x.png"; sourceTree = "<group>"; };
 		531836EB1C079556001AE40D /* decline@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "decline@2x.png"; sourceTree = "<group>"; };
@@ -535,8 +559,7 @@
 		53C867091C03796F00FD9014 /* IconsIC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IconsIC.m; sourceTree = "<group>"; };
 		53EA0C211C01328300E161C6 /* UserCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserCache.h; sourceTree = "<group>"; };
 		53EA0C221C01328300E161C6 /* UserCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserCache.m; sourceTree = "<group>"; };
-		8ECBB04CB52865DAA92D4949 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		A48D409AB9BFBB4BB06F0BF6 /* libPods-Chill WatchOS 2 Extension.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Chill WatchOS 2 Extension.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		7C8D8AB3ECBC05507B66E78E /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AD39F3591B6052AF003936C4 /* CHLFriendsSourcesVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHLFriendsSourcesVC.h; sourceTree = "<group>"; };
 		AD39F35A1B6052AF003936C4 /* CHLFriendsSourcesVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHLFriendsSourcesVC.m; sourceTree = "<group>"; };
 		AD39F35C1B605C74003936C4 /* CHLTwitterVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHLTwitterVC.h; sourceTree = "<group>"; };
@@ -571,6 +594,7 @@
 		D072A7F170CFB919C2955BAA /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		D0EC27E31B17285400F857FD /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		D0EC27E71B17287300F857FD /* libz.1.1.3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.1.3.dylib; path = usr/lib/libz.1.1.3.dylib; sourceTree = SDKROOT; };
+		E2DB6BCAC092F80987825172 /* Pods_Chill.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Chill.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E60427A8196F191C000F8F02 /* CHLAddressBookViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHLAddressBookViewController.h; sourceTree = "<group>"; };
 		E60427A9196F191C000F8F02 /* CHLAddressBookViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHLAddressBookViewController.m; sourceTree = "<group>"; };
 		E604427319C5D40200D9ECB9 /* GoogleMaps.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = GoogleMaps.bundle; path = GoogleMaps.framework/Versions/A/Resources/GoogleMaps.bundle; sourceTree = "<group>"; };
@@ -625,8 +649,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				061612C61C3FFC9500E2F47E /* AFNetworking.framework in Frameworks */,
 				023B427A1C0230F300E124A8 /* libPods-Chill WatchOS 2 Extension-AFNetworking.a in Frameworks */,
 				023B42781C0230E900E124A8 /* libPods-Chill WatchOS 2 Extension.a in Frameworks */,
+				D9595CC36A8CA72CA5C9D816 /* Pods_Chill_WatchOS_2_Extension.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -680,6 +706,8 @@
 				E6C7C1D5191A1B220071D83F /* UIKit.framework in Frameworks */,
 				E6C7C1D1191A1B220071D83F /* Foundation.framework in Frameworks */,
 				06B22A561B67C8200056455D /* Fabric.framework in Frameworks */,
+				FDE13C3383C201A907AC90FC /* Pods.framework in Frameworks */,
+				052DB4F69CE6B7328203E850 /* Pods_Chill.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -789,6 +817,14 @@
 			children = (
 				065C62541C10F427008A2921 /* CHLFavoriteViewController.h */,
 				065C62551C10F427008A2921 /* CHLFavoriteViewController.m */,
+				067E1A391C3FD7F6005D5E9C /* ASImageCell.h */,
+				067E1A3A1C3FD7F6005D5E9C /* ASImageCell.m */,
+				067E1A3B1C3FD7F6005D5E9C /* ASServerManager.h */,
+				067E1A3C1C3FD7F6005D5E9C /* ASServerManager.m */,
+				067E1A3D1C3FD7F6005D5E9C /* ASImageModel.h */,
+				067E1A3E1C3FD7F6005D5E9C /* ASImageModel.m */,
+				067E1A411C3FD7F6005D5E9C /* UIImage+imageWithColor.h */,
+				067E1A421C3FD7F6005D5E9C /* UIImage+imageWithColor.m */,
 			);
 			name = Favorite;
 			sourceTree = "<group>";
@@ -1106,6 +1142,11 @@
 		E6C7C1CF191A1B220071D83F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				061612C31C3FFC9500E2F47E /* AFNetworking.framework */,
+				061612C41C3FFC9500E2F47E /* AFNetworking.framework */,
+				061612C51C3FFC9500E2F47E /* AFNetworking.framework */,
+				06D9A68A1C3FEE38009F34E1 /* Pods_Chill_WatchOS_2_Extension.framework */,
+				067E1A4C1C3FEA6E005D5E9C /* AFNetworking.framework */,
 				023B42791C0230F300E124A8 /* libPods-Chill WatchOS 2 Extension-AFNetworking.a */,
 				023B42771C0230E900E124A8 /* libPods-Chill WatchOS 2 Extension.a */,
 				023B42751C0230D900E124A8 /* libPods.a */,
@@ -1157,8 +1198,9 @@
 				E6C7C1D4191A1B220071D83F /* UIKit.framework */,
 				021111CD1A434D7F001690DA /* NotificationCenter.framework */,
 				E6C7C1EF191A1B230071D83F /* XCTest.framework */,
-				8ECBB04CB52865DAA92D4949 /* libPods.a */,
-				A48D409AB9BFBB4BB06F0BF6 /* libPods-Chill WatchOS 2 Extension.a */,
+				7C8D8AB3ECBC05507B66E78E /* Pods.framework */,
+				4035912F32DC46F92D2B1A72 /* Pods_Chill_WatchOS_2_Extension.framework */,
+				E2DB6BCAC092F80987825172 /* Pods_Chill.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -1166,6 +1208,8 @@
 		E6C7C1D6191A1B230071D83F /* Chill */ = {
 			isa = PBXGroup;
 			children = (
+				067E1A481C3FE538005D5E9C /* Reachability.h */,
+				067E1A491C3FE542005D5E9C /* Reachability.m */,
 				060F06931BFB9E750030B11B /* UIViewController+KeyboardAnimation.h */,
 				060F06941BFB9E750030B11B /* UIViewController+KeyboardAnimation.m */,
 				06499F0B1B03C7F20005E422 /* 1024.png */,
@@ -1322,7 +1366,6 @@
 				029F1B9E1C01E56300368AD4 /* Sources */,
 				029F1B9F1C01E56300368AD4 /* Frameworks */,
 				029F1BA01C01E56300368AD4 /* Resources */,
-				1E32853BA3BCF09A4F6C6562 /* Embed Pods Frameworks */,
 				D5B7629EC7CB9B599FC32B98 /* Copy Pods Resources */,
 			);
 			buildRules = (
@@ -1346,7 +1389,7 @@
 				AD39F35F1B606CA8003936C4 /* Run Script */,
 				16DEE299753D0F15AA3A60DB /* Copy Pods Resources */,
 				029F1BBD1C01E56300368AD4 /* Embed Watch Content */,
-				6C5AB5699B373AEEC5C42647 /* Embed Pods Frameworks */,
+				2AE646CBF9CB29E2304E2274 /* Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1365,7 +1408,7 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = CHL;
-				LastUpgradeCheck = 0640;
+				LastUpgradeCheck = 0710;
 				ORGANIZATIONNAME = Chlil;
 				TargetAttributes = {
 					029F1B951C01E56300368AD4 = {
@@ -1585,10 +1628,10 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Chill/Pods-Chill-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		1E32853BA3BCF09A4F6C6562 /* Embed Pods Frameworks */ = {
+		2AE646CBF9CB29E2304E2274 /* Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1600,7 +1643,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Chill WatchOS 2 Extension/Pods-Chill WatchOS 2 Extension-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Chill/Pods-Chill-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		5A6B0A57C9EC7A247069511F /* Check Pods Manifest.lock */ = {
@@ -1616,21 +1659,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		6C5AB5699B373AEEC5C42647 /* Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		AD39F35F1B606CA8003936C4 /* Run Script */ = {
@@ -1706,12 +1734,15 @@
 				020B35751A1E402C00DC2F23 /* JMImageCache.m in Sources */,
 				0222F36C1A52FF6400830448 /* MessagesJSON.m in Sources */,
 				E6C7C207191A1B740071D83F /* CHLFriendsListViewController.m in Sources */,
+				067E1A431C3FD7F6005D5E9C /* ASImageCell.m in Sources */,
 				E6C7C1E1191A1B230071D83F /* CHLAppDelegate.m in Sources */,
 				060F06951BFB9E750030B11B /* UIViewController+KeyboardAnimation.m in Sources */,
 				02B8F8621A62BEDC0068F3D5 /* MPTransition.m in Sources */,
 				E6C7C1DD191A1B230071D83F /* main.m in Sources */,
 				025B2B571A1A677600857E83 /* APPROVEDViewController.m in Sources */,
+				067E1A4A1C3FE542005D5E9C /* Reachability.m in Sources */,
 				02CF5EB71A5EE49100C71C8D /* PromoViewController.m in Sources */,
+				067E1A441C3FD7F6005D5E9C /* ASServerManager.m in Sources */,
 				53EA0C231C01328300E161C6 /* UserCache.m in Sources */,
 				06A5BF3F1AAE0AFC00D34CFF /* CHLConnectionRefusedController.m in Sources */,
 				E6CF48B4193B78DC00CD48B6 /* CHLShareViewController.m in Sources */,
@@ -1738,11 +1769,12 @@
 				020B35731A1E402C00DC2F23 /* FriendsJSON.m in Sources */,
 				ADCFBFC21B78185E0013763E /* CHLFacebookVC.m in Sources */,
 				020B35781A1E402C00DC2F23 /* UIImageView+JMImageCache.m in Sources */,
+				067E1A451C3FD7F6005D5E9C /* ASImageModel.m in Sources */,
 				E6A67B08198EEC400067E34E /* CHLLocationDisplayViewController.m in Sources */,
 				E6726EAB19570CBF00DEADF9 /* UIColor+ChillColors.m in Sources */,
 				AD8417841A91203D0078F57A /* CHLTutorialPageContentViewController.m in Sources */,
+				067E1A471C3FD7F6005D5E9C /* UIImage+imageWithColor.m in Sources */,
 				064FD9E31C0DDCA400C045FD /* CHLSettingsViewController.m in Sources */,
-				020B35771A1E402C00DC2F23 /* Reachability.m in Sources */,
 				E6DB66C41956FC3900D30E85 /* CHLFriendCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1813,6 +1845,15 @@
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/build/Debug-iphoneos/Pods-Chill",
+					"$(PROJECT_DIR)/build/Debug-watchos/Pods-Chill",
+					WatchOS,
+					2,
+					Extension,
+					"$(PROJECT_DIR)/build/Debug-iphoneos/Pods",
+				);
 				GCC_NO_COMMON_BLOCKS = YES;
 				INFOPLIST_FILE = "Chill WatchOS 2 Extension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
@@ -1824,6 +1865,7 @@
 				);
 				MTL_ENABLE_DEBUG_INFO = NO;
 				OTHER_LDFLAGS = "";
+				"OTHER_LDFLAGS[arch=*]" = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = co.getchill.chill.watchkitapp.watchkitextension;
 				PRODUCT_NAME = "${TARGET_NAME}";
 				SDKROOT = watchos;
@@ -1860,7 +1902,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -1881,6 +1923,11 @@
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/TwitterKit.framework/Versions/A/Resources/TwitterKitResources.bundle",
 					/Users/IvanGrachev/Documents/FacebookSDK,
+					"$(PROJECT_DIR)/build/Release-watchos/Pods-Chill",
+					WatchOS,
+					2,
+					Extension,
+					"$(PROJECT_DIR)/build/Debug-watchos",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Chill/Chill-Prefix.pch";
@@ -1901,6 +1948,7 @@
 					"$(PROJECT_DIR)/build/Release-iphoneos",
 					"$(PROJECT_DIR)/build/Debug-iphoneos",
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = co.getchill.chill;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Chill/Chill-Bridging-Header.h";

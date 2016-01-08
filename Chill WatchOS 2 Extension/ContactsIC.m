@@ -10,6 +10,7 @@
 #import "ContactRow.h"
 #import "UserCache.h"
 #import <AFNetworking/AFNetworking.h>
+
 @interface ContactsIC () {
     NSArray *json;
 }
