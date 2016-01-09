@@ -1,18 +1,24 @@
 PODS:
-  - AFNetworking (3.0.4):
-    - AFNetworking/NSURLSession (= 3.0.4)
-    - AFNetworking/Reachability (= 3.0.4)
-    - AFNetworking/Security (= 3.0.4)
-    - AFNetworking/Serialization (= 3.0.4)
-    - AFNetworking/UIKit (= 3.0.4)
-  - AFNetworking/NSURLSession (3.0.4):
+  - AFNetworking (2.6.3):
+    - AFNetworking/NSURLConnection (= 2.6.3)
+    - AFNetworking/NSURLSession (= 2.6.3)
+    - AFNetworking/Reachability (= 2.6.3)
+    - AFNetworking/Security (= 2.6.3)
+    - AFNetworking/Serialization (= 2.6.3)
+    - AFNetworking/UIKit (= 2.6.3)
+  - AFNetworking/NSURLConnection (2.6.3):
     - AFNetworking/Reachability
     - AFNetworking/Security
     - AFNetworking/Serialization
-  - AFNetworking/Reachability (3.0.4)
-  - AFNetworking/Security (3.0.4)
-  - AFNetworking/Serialization (3.0.4)
-  - AFNetworking/UIKit (3.0.4):
+  - AFNetworking/NSURLSession (2.6.3):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/Reachability (2.6.3)
+  - AFNetworking/Security (2.6.3)
+  - AFNetworking/Serialization (2.6.3)
+  - AFNetworking/UIKit (2.6.3):
+    - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
   - ANHelperFunctions (1.0.3)
   - FastEasyMapping (1.0.1)
@@ -20,15 +26,15 @@ PODS:
 
 DEPENDENCIES:
   - AFNetworking
-  - AFNetworking (~> 3.0.0)
+  - AFNetworking (~> 2.6.3)
   - ANHelperFunctions
   - FastEasyMapping (~> 1.0.1)
   - SCLAlertView-Objective-C
 
 SPEC CHECKSUMS:
-  AFNetworking: a0075feb321559dc78d9d85b55d11caa19eabb93
+  AFNetworking: cb8d14a848e831097108418f5d49217339d4eb60
   ANHelperFunctions: 39cbb913f8af9b52fc8921ba4051583a7bfc13ab
   FastEasyMapping: 8f0e89e1e26107370534e526c0d5f1fc9889912b
   SCLAlertView-Objective-C: bf3590d5c8cf0fcf49f63f82fb3e4a78b545f7bb
 
-COCOAPODS: 0.38.2
+COCOAPODS: 0.39.0

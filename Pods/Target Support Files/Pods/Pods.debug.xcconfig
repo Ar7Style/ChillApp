@@ -1,7 +1,5 @@
-FRAMEWORK_SEARCH_PATHS = $(inherited) "$PODS_FRAMEWORK_BUILD_PATH"
 GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
-LD_RUNPATH_SEARCH_PATHS = $(inherited) '@executable_path/Frameworks' '@loader_path/Frameworks'
-OTHER_CFLAGS = $(inherited) -iquote "$PODS_FRAMEWORK_BUILD_PATH/AFNetworking.framework/Headers"
-OTHER_LDFLAGS = $(inherited) -framework "AFNetworking"
-PODS_FRAMEWORK_BUILD_PATH = $(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/Pods
+HEADER_SEARCH_PATHS = $(inherited) "${PODS_ROOT}/Headers/Public" "${PODS_ROOT}/Headers/Public/AFNetworking" "${PODS_ROOT}/Headers/Public/ANHelperFunctions" "${PODS_ROOT}/Headers/Public/FastEasyMapping" "${PODS_ROOT}/Headers/Public/SCLAlertView-Objective-C"
+OTHER_CFLAGS = $(inherited) -isystem "${PODS_ROOT}/Headers/Public" -isystem "${PODS_ROOT}/Headers/Public/AFNetworking" -isystem "${PODS_ROOT}/Headers/Public/ANHelperFunctions" -isystem "${PODS_ROOT}/Headers/Public/FastEasyMapping" -isystem "${PODS_ROOT}/Headers/Public/SCLAlertView-Objective-C"
+OTHER_LDFLAGS = $(inherited) -ObjC -l"ANHelperFunctions" -l"FastEasyMapping" -l"Pods-AFNetworking" -l"SCLAlertView-Objective-C" -framework "CoreData" -framework "CoreGraphics" -framework "Foundation" -framework "MobileCoreServices" -framework "Security" -framework "SystemConfiguration" -framework "UIKit"
 PODS_ROOT = ${SRCROOT}/Pods
