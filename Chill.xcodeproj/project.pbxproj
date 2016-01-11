@@ -122,6 +122,7 @@
 		0670541C1B04EEC300BBA3AA /* icon86@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 067054081B04EEC300BBA3AA /* icon86@2x.png */; };
 		0670541F1B04EEC300BBA3AA /* icon98@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 067054091B04EEC300BBA3AA /* icon98@2x.png */; };
 		067054231B05095900BBA3AA /* 27@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 067054221B05095900BBA3AA /* 27@3x.png */; };
+		067689C11C43E45B00A89735 /* CHLDisplayPhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 067689C01C43E45B00A89735 /* CHLDisplayPhotoViewController.m */; };
 		068445371B2CBB3C006D3826 /* reaction_book_forCell.png in Resources */ = {isa = PBXBuildFile; fileRef = 0684452A1B2CBB3C006D3826 /* reaction_book_forCell.png */; };
 		0684453A1B2CBB3C006D3826 /* reaction_flag_forCell.png in Resources */ = {isa = PBXBuildFile; fileRef = 0684452B1B2CBB3C006D3826 /* reaction_flag_forCell.png */; };
 		0684453D1B2CBB3C006D3826 /* reaction_telephone_forCell.png in Resources */ = {isa = PBXBuildFile; fileRef = 0684452C1B2CBB3C006D3826 /* reaction_telephone_forCell.png */; };
@@ -468,6 +469,8 @@
 		067054081B04EEC300BBA3AA /* icon86@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon86@2x.png"; sourceTree = "<group>"; };
 		067054091B04EEC300BBA3AA /* icon98@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon98@2x.png"; sourceTree = "<group>"; };
 		067054221B05095900BBA3AA /* 27@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "27@3x.png"; sourceTree = "<group>"; };
+		067689BF1C43E45B00A89735 /* CHLDisplayPhotoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHLDisplayPhotoViewController.h; sourceTree = "<group>"; };
+		067689C01C43E45B00A89735 /* CHLDisplayPhotoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHLDisplayPhotoViewController.m; sourceTree = "<group>"; };
 		0684452A1B2CBB3C006D3826 /* reaction_book_forCell.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = reaction_book_forCell.png; sourceTree = "<group>"; };
 		0684452B1B2CBB3C006D3826 /* reaction_flag_forCell.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = reaction_flag_forCell.png; sourceTree = "<group>"; };
 		0684452C1B2CBB3C006D3826 /* reaction_telephone_forCell.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = reaction_telephone_forCell.png; sourceTree = "<group>"; };
@@ -830,6 +833,15 @@
 			name = Favorite;
 			sourceTree = "<group>";
 		};
+		067689C21C43E46600A89735 /* Photo */ = {
+			isa = PBXGroup;
+			children = (
+				067689BF1C43E45B00A89735 /* CHLDisplayPhotoViewController.h */,
+				067689C01C43E45B00A89735 /* CHLDisplayPhotoViewController.m */,
+			);
+			name = Photo;
+			sourceTree = "<group>";
+		};
 		068445101B2CBB2A006D3826 /* NewIcons */ = {
 			isa = PBXGroup;
 			children = (
@@ -1093,6 +1105,7 @@
 				AD6325681ABB73EF00DD8F0D /* CHLPaperCollectionCell.xib */,
 				064FD9E91C0F9A0D00C045FD /* line2.png */,
 				E6A67B05198EEC000067E34E /* Location */,
+				067689C21C43E46600A89735 /* Photo */,
 			);
 			name = Messages;
 			sourceTree = "<group>";
@@ -1754,6 +1767,7 @@
 				E6C7C1DD191A1B230071D83F /* main.m in Sources */,
 				025B2B571A1A677600857E83 /* APPROVEDViewController.m in Sources */,
 				02CF5EB71A5EE49100C71C8D /* PromoViewController.m in Sources */,
+				067689C11C43E45B00A89735 /* CHLDisplayPhotoViewController.m in Sources */,
 				0629B2D91C41591C0038F2D0 /* ASServerManager.m in Sources */,
 				53EA0C231C01328300E161C6 /* UserCache.m in Sources */,
 				06A5BF3F1AAE0AFC00D34CFF /* CHLConnectionRefusedController.m in Sources */,

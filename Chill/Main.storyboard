@@ -616,6 +616,40 @@ communication experience</string>
             </objects>
             <point key="canvasLocation" x="-1674" y="580"/>
         </scene>
+        <!--Display Photo View Controller-->
+        <scene sceneID="aog-qH-HVF">
+            <objects>
+                <viewController storyboardIdentifier="CHLDisplayPhotoViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="yCR-2s-C5E" customClass="CHLDisplayPhotoViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="j5a-8T-BcM"/>
+                        <viewControllerLayoutGuide type="bottom" id="1gW-wR-0C7"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="IeQ-pb-iD9">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="CSi-A1-fLK">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="568" id="6ZR-sH-0fS"/>
+                                    <constraint firstAttribute="width" constant="320" id="xDE-DB-uJM"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="CSi-A1-fLK" firstAttribute="centerX" secondItem="IeQ-pb-iD9" secondAttribute="centerX" id="Hj4-dA-Eat"/>
+                            <constraint firstItem="CSi-A1-fLK" firstAttribute="centerY" secondItem="IeQ-pb-iD9" secondAttribute="centerY" id="UvL-Tc-da9"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="photoSpace" destination="CSi-A1-fLK" id="pPX-PU-aks"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Rpb-v2-koc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1718" y="1342"/>
+        </scene>
         <!--Search Users-->
         <scene sceneID="gyb-lJ-5Nt">
             <objects>

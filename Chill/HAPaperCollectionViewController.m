@@ -23,6 +23,7 @@
 #import "UserCache.h"
 #import <AFNetworking/AFNetworking.h>
 #import "UIButton+AFNetworking.h"
+#import "CHLDisplayPhotoViewController.h"
 #import "GAI.h"
 #import "GAIFields.h"
 #import "GAIDictionaryBuilder.h"
@@ -33,8 +34,9 @@
     MBProgressHUD *HUD;
     UIPanGestureRecognizer *pan;
     MPTransition *transitionManager;
-    
 }
+
+@property (weak, nonatomic) IBOutlet UIImageView *photoSpace;
 
 @end
 
@@ -251,15 +253,37 @@
                     json = [responseObject objectForKey:@"response"];
                     
                     for (int i=0; i<json.count; ++i) {
+                        UILabel* textLabel = (UILabel *)[cell viewWithTag:i+1];
                         [buttons[i] setImageForState:UIControlStateNormal withURL:[NSURL URLWithString:[json[i] valueForKey:@"size66"]]];
                         [buttons[i] setHidden:NO];
                         if ([[json[i] valueForKey:@"type"] isEqualToString:@"location"]) {
                             [buttons[i] addTarget:self action:@selector(displayMap:) forControlEvents:UIControlEventTouchUpInside];
-                           // [self performSelector:@selector(displayMap:) withObject:[NSNumber numberWithInt:i ] afterDelay:0];
+                            
+                            NSString *aString = [json[i] valueForKey:@"content"];
+                            NSArray *arrayLOC = [aString componentsSeparatedByCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+                            arrayLOC = [arrayLOC filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"SELF != ''"]];
+
+                            CLLocationCoordinate2D coord;
+                            coord.latitude =[arrayLOC[0] doubleValue];
+                            coord.longitude = [arrayLOC[1] doubleValue];
+                            GMSReverseGeocodeCallback handler = ^(GMSReverseGeocodeResponse *response, NSError *error) {
+                                GMSAddress *addressGMS = response.firstResult;
+                                if ( (addressGMS) || ([addressGMS valueForKey:@"thoroughfare"] != nil) ) {
+                                    textLabel.text = [NSString stringWithFormat:@"%@",[addressGMS valueForKey:@"thoroughfare"]];
+                                } else {
+                                    textLabel.text = @"In the middle of nowhere";
+                                }
+                            };
+                            [geocoder_ reverseGeocodeCoordinate:coord completionHandler:handler];
+                            [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
                         }
-                        //[buttons[i] addTarget:nil action:<#(nonnull SEL)#> forControlEvents:<#(UIControlEvents)#>];
-                        UILabel* textLabel = (UILabel *)[cell viewWithTag:i+1];
+                        else if ([[json[i] valueForKey:@"type"] isEqualToString:@"parse"]) {
+                            [buttons[i] addTarget:self action:@selector(displayPhoto:) forControlEvents:UIControlEventTouchUpInside];
+                            textLabel.text = [NSString stringWithFormat:@"Press the icon"];
+                        }
+                        else {
                         textLabel.text = [NSString stringWithFormat:@"%@", [[json[i] valueForKey:@"text"] isEqualToString:@""] ? @"" :[NSString stringWithFormat:@"#%@",[json[i] valueForKey:@"text"]]];
+                        }
                     }
                 }
                 NSLog(@"JSON FROM LOAD DATA: %@", json);
@@ -276,65 +300,40 @@
             cell.cellLabel.minimumScaleFactor = 0.3;
             cell.cellLabel.hidden = true;
             cell.cellLabel.adjustsFontSizeToFitWidth = YES;
-            
-            if ([location.type isEqualToString:@"location"]) {
-                NSString *aString = location.content;
-                NSArray *arrayLOC = [aString componentsSeparatedByCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
-                arrayLOC = [arrayLOC filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"SELF != ''"]];
-                
-                NSURL *staticMapImageURL = [self urlOfStaticMapFromLatitude:[arrayLOC[0] doubleValue] longitude:[arrayLOC[1] doubleValue]];
-                UIImageView *map = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.width)];
-                [map setImageWithURL:staticMapImageURL key:nil placeholder:[UIImage imageNamed:@""] completionBlock:nil failureBlock:nil];
-                [cell.placeholderContentView addSubview:map];
-                
-                CLLocationCoordinate2D coord;
-                coord.latitude =[arrayLOC[0] doubleValue];
-                coord.longitude = [arrayLOC[1] doubleValue];
-                GMSReverseGeocodeCallback handler = ^(GMSReverseGeocodeResponse *response, NSError *error) {
-                    GMSAddress *addressGMS = response.firstResult;
-                    if ( (addressGMS) || ([addressGMS valueForKey:@"thoroughfare"] != nil) ) {
-                        cell.cellLabel.text = [NSString stringWithFormat:@"%@",[addressGMS valueForKey:@"thoroughfare"]];
-                    } else {
-                        cell.cellLabel.text = @"In the middle of nowhere";
-                    }
-                    cell.cellLabel.hidden = false;
-                };
-                [geocoder_ reverseGeocodeCoordinate:coord completionHandler:handler];
-                [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
-
-
-            } else if ([location.type isEqualToString:@"photo"]) {
-                NSString *urlEncodedString = [location.content stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding];
-                NSData *imageData = [NSData dataWithContentsOfURL:[NSURL URLWithString:urlEncodedString]];
-                
-                if([location.content isEqualToString:@""]){
-                    UIImageView *imageView = [[UIImageView alloc]initWithImage:[UIImage imageWithData:imageData]];
-                    [cell.placeholderContentView addSubview:imageView];
-                    cell.cellLabel.text = [self dateStringForUserFromInternalString:location.date_created];
-                    cell.cellLabel.hidden = NO;
-                }
-                else {
-                    UIImageView *imageView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"2"]];
-                    [cell.placeholderContentView addSubview:imageView];
-                }
-            }
-            else if ([location.type isEqualToString:@"parse"]) {
-                if(![location.content isEqualToString:@""]){
-                    UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.width)];
-                    [self.view addSubview:imageView];
-                  //  imageView.contentMode = UIViewContentModeScaleAspectFit; //Fill
-                    imageView.contentMode = UIViewContentModeScaleAspectFill;
-                    imageView.clipsToBounds = YES;
-                    [imageView setImageWithURL:[NSURL URLWithString:location.content] key:nil placeholder:[UIImage imageNamed:@""] completionBlock:nil failureBlock:nil];
-                    cell.cellLabel.text = [self dateStringForUserFromInternalString:location.date_created];
-                    cell.cellLabel.hidden = YES;
-                }
-                else {
-                    UIImageView *imageView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"2"]];
-                    [cell.placeholderContentView addSubview:imageView];
-                }
+    
+    
+//      if ([location.type isEqualToString:@"photo"]) {
+//                NSString *urlEncodedString = [location.content stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding];
+//                NSData *imageData = [NSData dataWithContentsOfURL:[NSURL URLWithString:urlEncodedString]];
+//                
+//                if([location.content isEqualToString:@""]){
+//                    UIImageView *imageView = [[UIImageView alloc]initWithImage:[UIImage imageWithData:imageData]];
+//                    [cell.placeholderContentView addSubview:imageView];
+//                    cell.cellLabel.text = [self dateStringForUserFromInternalString:location.date_created];
+//                    cell.cellLabel.hidden = NO;
+//                }
+//                else {
+//                    UIImageView *imageView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"2"]];
+//                    [cell.placeholderContentView addSubview:imageView];
+//                }
+//            }
+//            else if ([location.type isEqualToString:@"parse"]) {
+//                if(![location.content isEqualToString:@""]){
+//                    UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.width)];
+//                    [self.view addSubview:imageView];
+//                  //  imageView.contentMode = UIViewContentModeScaleAspectFit; //Fill
+//                    imageView.contentMode = UIViewContentModeScaleAspectFill;
+//                    imageView.clipsToBounds = YES;
+//                    [imageView setImageWithURL:[NSURL URLWithString:location.content] key:nil placeholder:[UIImage imageNamed:@""] completionBlock:nil failureBlock:nil];
+//                    cell.cellLabel.text = [self dateStringForUserFromInternalString:location.date_created];
+//                    cell.cellLabel.hidden = YES;
+//                }
+//                else {
+//                    UIImageView *imageView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"2"]];
+//                    [cell.placeholderContentView addSubview:imageView];
+//                }
                 cell.backgroundColor = [UIColor whiteColor];
-            }
+        
             return cell;
         }
 }
@@ -344,28 +343,41 @@
 }
 
 -(void) displayMap:(int)number {
-    NSString *aString = [json[0] valueForKey:@"content"];
-    NSArray *arrayLOC = [aString componentsSeparatedByCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
-    arrayLOC = [arrayLOC filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"SELF != ''"]];
-    
-    NSURL *staticMapImageURL = [self urlOfStaticMapFromLatitude:[arrayLOC[0] doubleValue] longitude:[arrayLOC[1] doubleValue]];
-    UIImageView *map = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.width)];
-    [map setImageWithURL:staticMapImageURL key:nil placeholder:[UIImage imageNamed:@""] completionBlock:nil failureBlock:nil];
-    
-    CLLocationCoordinate2D coord;
-    longitude = [arrayLOC[1] doubleValue];
-                latitiude =[arrayLOC[0] doubleValue];
-                //[self performSegueWithIdentifier:@"CHLLocationDisplayViewController"
-                //                          sender:cellSender];
-                CLLocation *location = [[CLLocation alloc] initWithLatitude:latitiude
-                                                                  longitude:longitude];
-    
-                UIStoryboard *storybord = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-                CHLLocationDisplayViewController *vc = [storybord instantiateViewControllerWithIdentifier:@"CHLLocationDisplayViewController"];
-                vc.location = location;
-                [self presentViewController:vc animated:NO completion:nil];
-    
+    for (int i=0; i<json.count; ++i) {
+        if ([[json[i] valueForKey:@"type"] isEqualToString:@"location"]) {
+            NSString *aString = [json[i] valueForKey:@"content"];
+            NSArray *arrayLOC = [aString componentsSeparatedByCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+            arrayLOC = [arrayLOC filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"SELF != ''"]];
+            
+            NSURL *staticMapImageURL = [self urlOfStaticMapFromLatitude:[arrayLOC[0] doubleValue] longitude:[arrayLOC[1] doubleValue]];
+            UIImageView *map = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.width)];
+            [map setImageWithURL:staticMapImageURL key:nil placeholder:[UIImage imageNamed:@""] completionBlock:nil failureBlock:nil];
+            
+            longitude = [arrayLOC[1] doubleValue];
+            latitiude = [arrayLOC[0] doubleValue];
+            CLLocation *location = [[CLLocation alloc] initWithLatitude:latitiude
+                                                              longitude:longitude];
+            
+            UIStoryboard *storybord = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+            CHLLocationDisplayViewController *vc = [storybord instantiateViewControllerWithIdentifier:@"CHLLocationDisplayViewController"];
+            vc.location = location;
+            [self presentViewController:vc animated:NO completion:nil];
 
+        }
+    }
+}
+
+-(void) displayPhoto:(id)sender {
+    for (int i = 0; i<json.count; ++i) {
+        if ([[json[i] valueForKey:@"type"] isEqualToString:@"parse"]) {
+    
+            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+            CHLDisplayPhotoViewController *dpvc = [storyboard instantiateViewControllerWithIdentifier:@"CHLDisplayPhotoViewController"];
+            [dpvc.photoSpace setImageWithURL:[NSURL URLWithString:[json[i] valueForKey:@"content"]]];
+            dpvc.photoSpace.contentMode = UIViewContentModeScaleAspectFill;
+            [self presentViewController:dpvc animated:NO completion:nil];
+        }
+    }
 }
 
 //wow, such aMethod
@@ -423,31 +435,6 @@
     return 1;
 }
 
-//-(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
-//    if (_friendUserID !=1 ){
-//        MessagesJSON *location = [_locations objectAtIndex:indexPath.row];
-//        
-//        if ([location.type isEqualToString:@"location"]) {
-//            NSString *aString = location.content;
-//            NSArray *arrayLOC = [aString componentsSeparatedByCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
-//            arrayLOC = [arrayLOC filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"SELF != ''"]];
-//            longitude = [arrayLOC[1] doubleValue];
-//            latitiude =[arrayLOC[0] doubleValue];
-//            //[self performSegueWithIdentifier:@"CHLLocationDisplayViewController"
-//            //                          sender:cellSender];
-//            CLLocation *location = [[CLLocation alloc] initWithLatitude:latitiude
-//                                                              longitude:longitude];
-//
-//            UIStoryboard *storybord = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-//            CHLLocationDisplayViewController *vc = [storybord instantiateViewControllerWithIdentifier:@"CHLLocationDisplayViewController"];
-//            vc.location = location;
-//            [self presentViewController:vc animated:NO completion:nil];
-//            
-//        }
-//        
-//        [collectionView deselectItemAtIndexPath:indexPath animated:YES];
-//    }
-//}
 -(UICollectionViewController*)nextViewControllerAtPoint:(CGPoint)point
 {
     return nil;
