@@ -941,13 +941,7 @@ communication experience</string>
                             <constraint firstItem="7Em-hB-1ul" firstAttribute="top" secondItem="Qnv-0D-et9" secondAttribute="bottom" constant="-36" id="zfA-5z-c78"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="tGi-KZ-QKl">
-                        <barButtonItem key="rightBarButtonItem" title="More" style="plain" id="02K-9A-dPD">
-                            <connections>
-                                <segue destination="JP3-rM-pBa" kind="push" identifier="additionalShare" id="tpW-1p-dJe"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" id="tGi-KZ-QKl"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="320" height="568"/>
                     <connections>

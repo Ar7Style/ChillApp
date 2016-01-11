@@ -33,6 +33,7 @@
     MBProgressHUD *HUD;
     UIPanGestureRecognizer *pan;
     MPTransition *transitionManager;
+    
 }
 
 @end
@@ -207,6 +208,7 @@
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
+    
     if (_friendUserID==1){ //How to Chill
         UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"Empty cell" forIndexPath:indexPath];
         cell.backgroundColor = [UIColor whiteColor];
@@ -230,11 +232,15 @@
     else {
             MessagesJSON *location = [_locations objectAtIndex:indexPath.row];
             CHLPaperCollectionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:CELL_ID forIndexPath:indexPath];
-            [cell.icon1 setHidden:YES];
-            [cell.icon2 setHidden:YES];
-            [cell.icon3 setHidden:YES];
-            [cell.icon4 setHidden:YES];
-            [cell.icon5 setHidden:YES];
+            NSArray *buttons = [[NSArray alloc] initWithObjects:cell.icon1, cell.icon2, cell.icon3, cell.icon4, cell.icon5, nil];
+            cell.textLabel1.tag = 1;
+            cell.textLabel2.tag = 2;
+            cell.textLabel3.tag = 3;
+            cell.textLabel4.tag = 4;
+            cell.textLabel5.tag = 5;
+            for (UIButton* button in buttons)
+                [button setHidden:YES];
+        
             AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
             manager.responseSerializer = [AFJSONResponseSerializer serializer];
             manager.requestSerializer = [AFJSONRequestSerializer serializer];
@@ -244,27 +250,17 @@
                 if ([[responseObject objectForKey:@"status"] isEqualToString:@"success"]) {
                     json = [responseObject objectForKey:@"response"];
                     
-                    [cell.icon1 setImageForState:UIControlStateNormal withURL:[NSURL URLWithString:[json[0] valueForKey:@"size66"]]];
-                    cell.textLabel1.text =[NSString stringWithFormat:@"%@", [[json[0] valueForKey:@"text"] isEqualToString:@""] ? @"" :[NSString stringWithFormat:@"#%@",[json[0] valueForKey:@"text"]]];
-                    
-                    [cell.icon2 setImageForState:UIControlStateNormal withURL:[NSURL URLWithString:[json[1] valueForKey:@"size66"]]];
-                    cell.textLabel2.text = [NSString stringWithFormat:@"%@", [[json[1] valueForKey:@"text"] isEqualToString:@""] ? @"" :[NSString stringWithFormat:@"#%@",[json[1] valueForKey:@"text"]]];
-
-                    [cell.icon3 setImageForState:UIControlStateNormal withURL:[NSURL URLWithString:[json[2] valueForKey:@"size66"]]];
-                    cell.textLabel3.text = [NSString stringWithFormat:@"%@", [[json[2] valueForKey:@"text"] isEqualToString:@""] ? @"" :[NSString stringWithFormat:@"#%@",[json[2] valueForKey:@"text"]]];
-                    
-                    [cell.icon4 setImageForState:UIControlStateNormal withURL:[NSURL URLWithString:[json[3] valueForKey:@"size66"]]];
-                    cell.textLabel4.text = [NSString stringWithFormat:@"%@", [[json[3] valueForKey:@"text"] isEqualToString:@""] ? @"" :[NSString stringWithFormat:@"#%@",[json[3] valueForKey:@"text"]]];
-                    
-                    [cell.icon5 setImageForState:UIControlStateNormal withURL:[NSURL URLWithString:[json[4] valueForKey:@"size66"]]];
-                    cell.textLabel5.text = [NSString stringWithFormat:@"%@", [[json[4] valueForKey:@"text"] isEqualToString:@""] ? @"" :[NSString stringWithFormat:@"#%@",[json[4] valueForKey:@"text"]]];
-                    
-                    [cell.icon1 setHidden:NO];
-                    [cell.icon2 setHidden:NO];
-                    [cell.icon3 setHidden:NO];
-                    [cell.icon4 setHidden:NO];
-                    [cell.icon5 setHidden:NO];
-                    
+                    for (int i=0; i<json.count; ++i) {
+                        [buttons[i] setImageForState:UIControlStateNormal withURL:[NSURL URLWithString:[json[i] valueForKey:@"size66"]]];
+                        [buttons[i] setHidden:NO];
+                        if ([[json[i] valueForKey:@"type"] isEqualToString:@"location"]) {
+                            [buttons[i] addTarget:self action:@selector(displayMap:) forControlEvents:UIControlEventTouchUpInside];
+                           // [self performSelector:@selector(displayMap:) withObject:[NSNumber numberWithInt:i ] afterDelay:0];
+                        }
+                        //[buttons[i] addTarget:nil action:<#(nonnull SEL)#> forControlEvents:<#(UIControlEvents)#>];
+                        UILabel* textLabel = (UILabel *)[cell viewWithTag:i+1];
+                        textLabel.text = [NSString stringWithFormat:@"%@", [[json[i] valueForKey:@"text"] isEqualToString:@""] ? @"" :[NSString stringWithFormat:@"#%@",[json[i] valueForKey:@"text"]]];
+                    }
                 }
                 NSLog(@"JSON FROM LOAD DATA: %@", json);
             } failure:^(NSURLSessionTask *operation, NSError *error) {
@@ -343,7 +339,34 @@
         }
 }
 
+-(IBAction)reply:(id)sender {
+    
+}
 
+-(void) displayMap:(int)number {
+    NSString *aString = [json[0] valueForKey:@"content"];
+    NSArray *arrayLOC = [aString componentsSeparatedByCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+    arrayLOC = [arrayLOC filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"SELF != ''"]];
+    
+    NSURL *staticMapImageURL = [self urlOfStaticMapFromLatitude:[arrayLOC[0] doubleValue] longitude:[arrayLOC[1] doubleValue]];
+    UIImageView *map = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.width)];
+    [map setImageWithURL:staticMapImageURL key:nil placeholder:[UIImage imageNamed:@""] completionBlock:nil failureBlock:nil];
+    
+    CLLocationCoordinate2D coord;
+    longitude = [arrayLOC[1] doubleValue];
+                latitiude =[arrayLOC[0] doubleValue];
+                //[self performSegueWithIdentifier:@"CHLLocationDisplayViewController"
+                //                          sender:cellSender];
+                CLLocation *location = [[CLLocation alloc] initWithLatitude:latitiude
+                                                                  longitude:longitude];
+    
+                UIStoryboard *storybord = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+                CHLLocationDisplayViewController *vc = [storybord instantiateViewControllerWithIdentifier:@"CHLLocationDisplayViewController"];
+                vc.location = location;
+                [self presentViewController:vc animated:NO completion:nil];
+    
+
+}
 
 //wow, such aMethod
 //- (void)aMethod:(id)sender{

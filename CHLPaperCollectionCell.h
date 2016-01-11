@@ -29,5 +29,7 @@
 
 @property (weak, nonatomic) IBOutlet UIButton *icon5;
 @property (weak, nonatomic) IBOutlet UILabel *textLabel5;
+- (IBAction)reply:(id)sender;
 
+@property (weak, nonatomic) IBOutlet UIButton *replyButton;
 @end
