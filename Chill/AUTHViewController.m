@@ -19,14 +19,20 @@
 #import <AFNetworking/AFNetworking.h>
 #import "UserCache.h"
 #import <WatchConnectivity/WatchConnectivity.h>
+#import "SCLAlertView.h"
+#import "UIColor+ChillColors.h"
+
 
 @interface AUTHViewController () <WCSessionDelegate>
 @property (strong, nonatomic) IBOutlet UIView *viewMain;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *constraintBottom;
 
+@property (weak, nonatomic) IBOutlet UIButton *promocodeButton;
 @end
 
 @implementation AUTHViewController
+
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -37,6 +43,37 @@
     self.navigationController.view.clipsToBounds=YES;
 }
 
+- (IBAction)promocodeButtonTapped:(id)sender {
+    SCLAlertView *alert = [[SCLAlertView alloc] init];
+    alert.customViewColor = [UIColor chillMintColor];
+    UITextField *textField = [alert addTextField:@"Enter promocode"];
+    
+    [alert addButton:@"Submit" actionBlock:^(void) {
+        NSLog(@"Text value: %@", textField.text);
+                    
+            AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+            manager.responseSerializer = [AFJSONResponseSerializer serializer];
+            manager.requestSerializer = [AFJSONRequestSerializer serializer];
+            [manager.requestSerializer setValue:@"76eb29d3ca26fe805545812850e6d75af933214a" forHTTPHeaderField:@"X-API-KEY"];
+            NSDictionary *parameters = @{@"id_user": _loginField1.text, @"password":_passwordField1.text};
+        
+            [manager GET:@"http://api.iamchill.co/v2/users/index" parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+            
+            if ([[responseObject valueForKey:@"status"] isEqualToString:@"failed"]){
+                [self errorShow:@"It seems that the entered username or password is incorrect"];
+            }
+            else if ([[responseObject valueForKey:@"status"] isEqualToString:@"success"]) {
+                
+            }
+            
+        }  failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+            [self conRefused];
+            NSLog(@"Error: %@", error);
+        }];
+    }];
+        
+    [alert showEdit:self title:@"Get features" subTitle:@"Enter the promocode" closeButtonTitle:@"Close" duration:0.0f];
+}
 
 -(void)viewWillAppear:(BOOL)animated {
     __weak __typeof(self) weakSelf = self;

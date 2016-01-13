@@ -15,6 +15,27 @@
 #import <CoreLocation/CoreLocation.h>
 #import "FriendsJSON.h"
 #import "JSONLoader.h"
+#import "UserCache.h"
+
+#import "ASFirstCVC.h"
+
+#import "ASImageCell.h"
+#import "ASImageModel.h"
+
+#import "ANHelperFunctions.h"
+#import "ASServerManager.h"
+#import "SCLAlertView.h"
+#import "UIImage+imageWithColor.h"
+
+#import <SystemConfiguration/SystemConfiguration.h>
+#import <SystemConfiguration/SCNetworkReachability.h>
+#import "Reachability.h"
+
+#import "AFNetworking.h"
+#import "UIImageView+AFNetworking.h"
+#import "UIButton+AFNetworking.h"
+
+
 #import "GAI.h"
 #import "GAIFields.h"
 #import "GAIDictionaryBuilder.h"
@@ -24,9 +45,22 @@
 #import "UIViewController+KeyboardAnimation.h"
 
 
+@interface ButtonToShare1 : UIButton
+@property (weak, nonatomic) NSArray *jsonArray;
+@property (nonatomic, strong) NSString *typeOfIcon;
+@end
+
 @interface CHLShareViewController () <UIActionSheetDelegate, PKImagePickerViewControllerDelegate, CLLocationManagerDelegate, MBProgressHUDDelegate> {
+    NSArray *json;
     MBProgressHUD *HUD;
 }
+
+@property (weak, nonatomic) IBOutlet ButtonToShare1 *button1;
+@property (weak, nonatomic) IBOutlet ButtonToShare1 *button2;
+@property (weak, nonatomic) IBOutlet ButtonToShare1 *button3;
+@property (weak, nonatomic) IBOutlet ButtonToShare1 *button4;
+@property (weak, nonatomic) IBOutlet ButtonToShare1 *button5;
+@property (weak, nonatomic) IBOutlet ButtonToShare1 *button6;
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *constraintBottom;
 @property(nonatomic, strong) NSString *sendedContentType;
@@ -48,7 +82,6 @@ NSInteger defaultValue = 10;
 - (void)viewDidLoad
 
 {
-    
     _locationManager = [[CLLocationManager alloc] init];
     self.title = _nameUser;
     _counter.textColor = [UIColor chillMintColor];
@@ -64,9 +97,58 @@ NSInteger defaultValue = 10;
                                                                           action:@selector(dismissKeyboard)];
     
     [self.view addGestureRecognizer:tap];
-    
-    
+
        
+}
+
+-(BOOL) isInternetConnection {
+    
+    Reachability *networkReachability = [Reachability reachabilityForInternetConnection];
+    NetworkStatus networkStatus = [networkReachability currentReachabilityStatus];
+    if (networkStatus == NotReachable) {
+        NSLog(@"There IS NO internet connection");
+        
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            SCLAlertView* alert = [[SCLAlertView alloc] init];
+            [alert showError:self.parentViewController title:@"Ошибка" subTitle:@"Отсутствует соедиение с интернетом" closeButtonTitle:@"OK" duration:0.0f];
+        });
+        return NO;
+    }
+    return YES;
+}
+
+-(void) getUserIconsFromServer {
+    NSMutableArray* buttons = [[NSMutableArray alloc] initWithObjects: self.button1, self.button2, self.button3, self.button4, self.button5, self.button6, nil];
+    
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.responseSerializer = [AFJSONResponseSerializer serializer];
+    manager.requestSerializer = [AFJSONRequestSerializer serializer];
+    [manager.requestSerializer setValue:[NSUserDefaults userToken] forHTTPHeaderField:@"X-API-TOKEN"];
+    [manager.requestSerializer setValue:@"76eb29d3ca26fe805545812850e6d75af933214a" forHTTPHeaderField:@"X-API-KEY"];
+    [manager GET:[NSString stringWithFormat:@"http://api.iamchill.co/v2/icons/user/id_user/%@",[NSUserDefaults userID]] parameters:nil success:^(NSURLSessionTask *task, id responseObject) {
+        if ([[responseObject objectForKey:@"status"] isEqualToString:@"success"]) {
+            json = [responseObject objectForKey:@"response"];
+            
+            for (int i=0; i<json.count; ++i) {
+                [(ButtonToShare1 *)buttons[i] setImageForState:UIControlStateNormal withURL:[NSURL URLWithString:[json[i] valueForKey:@"size66"]]];
+                //buttons[i] = (ButtonToShare *)buttons[i];
+                ButtonToShare1 *buttonToShare;//= [[ButtonToShare1 alloc] init];
+                buttonToShare = buttons[i];
+                buttonToShare.typeOfIcon = [json[i] valueForKey:@"name"];
+                buttons[i] = buttonToShare;
+                [buttons[i] addTarget:self action:@selector(sendIcon:) forControlEvents:UIControlEventTouchUpInside];
+            }
+            NSLog(@"JSON FROM LOAD DATA: %@", json);
+        }
+        } failure:^(NSURLSessionTask *operation, NSError *error) {
+            SCLAlertView* alert = [[SCLAlertView alloc] init];
+            [alert showError:self.parentViewController title:@"Ошибка" subTitle:@"Отсутствует соедиение с интернетом" closeButtonTitle:@"OK" duration:0.0f];
+            NSLog(@"Error from load data: %@", error);
+        }];
+}
+
+-(void) sendIcon:(ButtonToShare1 *)sender {
+    [self shareIconOfType:[NSString stringWithFormat:@"%@", sender.typeOfIcon]];
 }
 
 -(void)dismissKeyboard {
@@ -100,6 +182,13 @@ NSInteger defaultValue = 10;
 
 -(void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    
+    if ([self isInternetConnection]) {
+        ANDispatchBlockToBackgroundQueue(^{
+            [self getUserIconsFromServer];
+        });
+    }
+    
     [self an_subscribeKeyboardWithAnimations:^(CGRect keyboardRect, NSTimeInterval duration, BOOL isShowing) {
         if([[UIDevice currentDevice]userInterfaceIdiom]==UIUserInterfaceIdiomPhone)
         {
@@ -235,7 +324,6 @@ NSInteger defaultValue = 10;
         [self.navigationController.view addSubview:HUD];
         HUD.dimBackground = NO;
         HUD.delegate = self;
-        //    [HUD show:YES];
         
         _locationManager.delegate = self;
         _locationManager.distanceFilter = kCLDistanceFilterNone;
@@ -243,6 +331,7 @@ NSInteger defaultValue = 10;
         
         [_locationManager startUpdatingLocation];
         self.sendedContentType = @"location";
+        [_locationManager stopUpdatingLocation];
         
         id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
         [tracker set:kGAIScreenName value:@"Share screen"];
@@ -321,22 +410,22 @@ NSInteger defaultValue = 10;
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
-    NSUserDefaults *userCache = [[NSUserDefaults standardUserDefaults] initWithSuiteName:@"group.co.getchill.chill"];
-    NSString *message;
-    message = [self.sendedContentType isEqualToString:@"location"] ? [NSString stringWithFormat:@"📍 from %@",[userCache valueForKey:@"name"]] : [NSString stringWithFormat:@"%@: %@%@",[userCache valueForKey:@"name"], self.sendedContentType, [self.text isEqualToString:@""] ? @"" : [NSString stringWithFormat:@"#%@", self.text]];
-    
-    NSDictionary *data = @{
-                           @"alert": message,
-                           @"type": @"Location",
-                           @"sound": @"default",
-                           @"badge" : @1,
-                           @"fromUserId": [userCache valueForKey:@"id_user"]
-                           };
-    PFPush *push = [[PFPush alloc] init];
-    [push setChannel:[NSString stringWithFormat:@"us%li",(long)_userIdTo]];
-   
-    [push setData:data];
-    [push sendPushInBackground];
+//    NSUserDefaults *userCache = [[NSUserDefaults standardUserDefaults] initWithSuiteName:@"group.co.getchill.chill"];
+//    NSString *message;
+//    message = [self.sendedContentType isEqualToString:@"location"] ? [NSString stringWithFormat:@"📍 from %@",[userCache valueForKey:@"name"]] : [NSString stringWithFormat:@"%@: %@%@",[userCache valueForKey:@"name"], self.sendedContentType, [self.text isEqualToString:@""] ? @"" : [NSString stringWithFormat:@"#%@", self.text]];
+//    
+//    NSDictionary *data = @{
+//                           @"alert": message,
+//                           @"type": @"Location",
+//                           @"sound": @"default",
+//                           @"badge" : @1,
+//                           @"fromUserId": [userCache valueForKey:@"id_user"]
+//                           };
+//    PFPush *push = [[PFPush alloc] init];
+//    [push setChannel:[NSString stringWithFormat:@"us%li",(long)_userIdTo]];
+//   
+//    [push setData:data];
+//    [push sendPushInBackground];
 }
 
 - (void)shareIconOfType:(NSString *)iconType {
@@ -347,8 +436,6 @@ NSInteger defaultValue = 10;
                                                                        message:@"You can only send 10 symbols"
                                     
                                                                 preferredStyle:UIAlertControllerStyleAlert];
-        
-        
         
         UIAlertAction* okayAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
                                      
@@ -364,7 +451,7 @@ NSInteger defaultValue = 10;
         
     }
     else {
-    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:@"http://api.iamchill.co/v2/messages/index/"]];
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:@"http://api.iamchill.co/v2/notifications/messages/index/"]];
     [request setValue:[[NSUserDefaults standardUserDefaults] valueForKey:@"token"] forHTTPHeaderField:@"X-API-TOKEN"];
     [request setValue:@"76eb29d3ca26fe805545812850e6d75af933214a" forHTTPHeaderField:@"X-API-KEY"];
 

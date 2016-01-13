@@ -301,38 +301,7 @@
             cell.cellLabel.hidden = true;
             cell.cellLabel.adjustsFontSizeToFitWidth = YES;
     
-    
-//      if ([location.type isEqualToString:@"photo"]) {
-//                NSString *urlEncodedString = [location.content stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding];
-//                NSData *imageData = [NSData dataWithContentsOfURL:[NSURL URLWithString:urlEncodedString]];
-//                
-//                if([location.content isEqualToString:@""]){
-//                    UIImageView *imageView = [[UIImageView alloc]initWithImage:[UIImage imageWithData:imageData]];
-//                    [cell.placeholderContentView addSubview:imageView];
-//                    cell.cellLabel.text = [self dateStringForUserFromInternalString:location.date_created];
-//                    cell.cellLabel.hidden = NO;
-//                }
-//                else {
-//                    UIImageView *imageView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"2"]];
-//                    [cell.placeholderContentView addSubview:imageView];
-//                }
-//            }
-//            else if ([location.type isEqualToString:@"parse"]) {
-//                if(![location.content isEqualToString:@""]){
-//                    UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.width)];
-//                    [self.view addSubview:imageView];
-//                  //  imageView.contentMode = UIViewContentModeScaleAspectFit; //Fill
-//                    imageView.contentMode = UIViewContentModeScaleAspectFill;
-//                    imageView.clipsToBounds = YES;
-//                    [imageView setImageWithURL:[NSURL URLWithString:location.content] key:nil placeholder:[UIImage imageNamed:@""] completionBlock:nil failureBlock:nil];
-//                    cell.cellLabel.text = [self dateStringForUserFromInternalString:location.date_created];
-//                    cell.cellLabel.hidden = YES;
-//                }
-//                else {
-//                    UIImageView *imageView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"2"]];
-//                    [cell.placeholderContentView addSubview:imageView];
-//                }
-                cell.backgroundColor = [UIColor whiteColor];
+            cell.backgroundColor = [UIColor whiteColor];
         
             return cell;
         }
@@ -373,8 +342,10 @@
     
             UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
             CHLDisplayPhotoViewController *dpvc = [storyboard instantiateViewControllerWithIdentifier:@"CHLDisplayPhotoViewController"];
+            dpvc.json = json;
+            dpvc.i  = i;
             [dpvc.photoSpace setImageWithURL:[NSURL URLWithString:[json[i] valueForKey:@"content"]]];
-            dpvc.photoSpace.contentMode = UIViewContentModeScaleAspectFill;
+            //dpvc.photoSpace.contentMode = UIViewContentModeScaleAspectFill;
             [self presentViewController:dpvc animated:NO completion:nil];
         }
     }

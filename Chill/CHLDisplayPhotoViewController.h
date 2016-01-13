@@ -8,8 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CHLDisplayPhotoViewController : UIViewController
+@interface CHLDisplayPhotoViewController : UIViewController {
+   // NSArray* json;
+    //int i;
+}
 
 @property (weak, nonatomic) IBOutlet UIImageView *photoSpace;
+//@property (weak, nonatomic) IBOutlet UIImageView *photoSpace;
+@property (weak, nonatomic) NSArray *json;
+@property int i;
 
 @end

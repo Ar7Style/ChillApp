@@ -214,7 +214,7 @@ NSMutableData *mutData;
 - (void)addFriendFromIndex:(NSInteger)index {
     NSMutableURLRequest *request =
     [[NSMutableURLRequest alloc] initWithURL:
-     [NSURL URLWithString:@"http://api.iamchill.co/v2/contacts/index/"]];
+     [NSURL URLWithString:@"http://api.iamchill.co/v2/notifications/contact"]];
     
     [request setHTTPMethod:@"POST"];
     [request setValue:[[NSUserDefaults standardUserDefaults] valueForKey:@"token"] forHTTPHeaderField:@"X-API-TOKEN"]; [request setValue:@"76eb29d3ca26fe805545812850e6d75af933214a" forHTTPHeaderField:@"X-API-KEY"];
@@ -246,18 +246,18 @@ NSMutableData *mutData;
 {
     NSString *str = [[NSString alloc] initWithData:mutData encoding:NSUTF8StringEncoding];
     if (![str isEqualToString:@"{\"status\":\"failed\",\"error\":\"User exists.\"}"]){ //Условие
-        NSUserDefaults *userCache = [[NSUserDefaults standardUserDefaults] initWithSuiteName:@"group.co.getchill.chill"];
-        NSString *message = [NSString stringWithFormat:@"%@ wants to Chill with You!",[userCache valueForKey:@"name"]];
-        NSDictionary *data = @{
-                               @"alert": message,
-                               @"sound": @"default",
-                               @"badge" : @1,
-                               @"type": @"NewUser"
-                               };
-        PFPush *push = [[PFPush alloc] init];
-        [push setChannel:[NSString stringWithFormat:@"us%li",(long)friendUserId]]; //Set channel by user friend id
-        [push setData:data];
-        [push sendPushInBackground];
+//        NSUserDefaults *userCache = [[NSUserDefaults standardUserDefaults] initWithSuiteName:@"group.co.getchill.chill"];
+//        NSString *message = [NSString stringWithFormat:@"%@ wants to Chill with You!",[userCache valueForKey:@"name"]];
+//        NSDictionary *data = @{
+//                               @"alert": message,
+//                               @"sound": @"default",
+//                               @"badge" : @1,
+//                               @"type": @"NewUser"
+//                               };
+//        PFPush *push = [[PFPush alloc] init];
+//        [push setChannel:[NSString stringWithFormat:@"us%li",(long)friendUserId]]; //Set channel by user friend id
+//        [push setData:data];
+//        [push sendPushInBackground];
         HUD = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
         [self.navigationController.view addSubview:HUD];
         HUD.customView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"37x-Checkmark.png"]];

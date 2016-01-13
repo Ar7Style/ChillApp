@@ -298,7 +298,7 @@ NSMutableData *mutData;
                     
                     [newPhotoObject saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
                         if (!error) {
-                            NSMutableURLRequest *request = [[NSMutableURLRequest alloc]initWithURL:[NSURL URLWithString: [NSString stringWithFormat:@"http://api.iamchill.co/v2/messages/index/"]]];
+                            NSMutableURLRequest *request = [[NSMutableURLRequest alloc]initWithURL:[NSURL URLWithString: [NSString stringWithFormat:@"http://api.iamchill.co/v2/notifications/message"]]];
                             [request setValue:[[NSUserDefaults standardUserDefaults] valueForKey:@"token"] forHTTPHeaderField:@"X-API-TOKEN"]; [request setValue:@"76eb29d3ca26fe805545812850e6d75af933214a" forHTTPHeaderField:@"X-API-KEY"];
 
 
@@ -317,22 +317,25 @@ NSMutableData *mutData;
                             json = [NSJSONSerialization JSONObjectWithData:[NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error] options:NSJSONReadingMutableContainers error:&error];
                             NSUserDefaults *userCache = [[NSUserDefaults standardUserDefaults] initWithSuiteName:@"group.co.getchill.chill"];
                             
-                            PFPush *push = [[PFPush alloc] init];
-                            NSString *message = [NSString stringWithFormat:@"📷 from %@",[userCache valueForKey:@"name"]];
-                            NSDictionary *data = @{
-                                                   @"alert": message,
-                                                   @"type": @"Photo",
-                                                   @"sound": @"default",
-                                                   @"badge" : @1,
-                                                   @"fromUserId": [userCache valueForKey:@"id_user"]
-                                                   };
-
+//                            PFPush *push = [[PFPush alloc] init];
+//                            NSString *message = [NSString stringWithFormat:@"📷 from %@",[userCache valueForKey:@"name"]];
+//                            NSDictionary *data = @{
+//                                                   @"alert": message,
+//                                                   @"type": @"Photo",
+//                                                   @"sound": @"default",
+//                                                   @"badge" : @1,
+//                                                   @"fromUserId": [userCache valueForKey:@"id_user"]
+//                                                   };
+//
+//                            
+//                            
+//                            [push setChannel:[NSString stringWithFormat:@"us%li",(long)_userIdTo]];
+//                            [push setData:data];
+//                            //[push setMessage:[NSString stringWithFormat:@"%@: Send location",[userCache valueForKey:@"name"]]];
+//                            [push sendPushInBackground];
+  
                             
                             
-                            [push setChannel:[NSString stringWithFormat:@"us%li",(long)_userIdTo]];
-                            [push setData:data];
-                            //[push setMessage:[NSString stringWithFormat:@"%@: Send location",[userCache valueForKey:@"name"]]];
-                            [push sendPushInBackground];
                             
 //                            [HUD hide:YES];
 //                            HUD = [[MBProgressHUD alloc] initWithView:self.view];

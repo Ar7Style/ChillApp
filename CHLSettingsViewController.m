@@ -24,7 +24,6 @@
 @interface CHLSettingsViewController () {
     NSMutableArray *json;
     
-    
 }
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *constraintBottom;
