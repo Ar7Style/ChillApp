@@ -50,17 +50,20 @@
 @property (nonatomic, strong) NSString *typeOfIcon;
 @end
 
+@implementation ButtonToShare1
+
+
+
+@end
+
 @interface CHLShareViewController () <UIActionSheetDelegate, PKImagePickerViewControllerDelegate, CLLocationManagerDelegate, MBProgressHUDDelegate> {
     NSArray *json;
     MBProgressHUD *HUD;
 }
 
-@property (weak, nonatomic) IBOutlet ButtonToShare1 *button1;
-@property (weak, nonatomic) IBOutlet ButtonToShare1 *button2;
-@property (weak, nonatomic) IBOutlet ButtonToShare1 *button3;
-@property (weak, nonatomic) IBOutlet ButtonToShare1 *button4;
-@property (weak, nonatomic) IBOutlet ButtonToShare1 *button5;
-@property (weak, nonatomic) IBOutlet ButtonToShare1 *button6;
+
+
+@property (strong, nonatomic) IBOutletCollection(ButtonToShare1) NSArray *buttonsToShare;
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *constraintBottom;
 @property(nonatomic, strong) NSString *sendedContentType;
@@ -118,7 +121,8 @@ NSInteger defaultValue = 10;
 }
 
 -(void) getUserIconsFromServer {
-    NSMutableArray* buttons = [[NSMutableArray alloc] initWithObjects: self.button1, self.button2, self.button3, self.button4, self.button5, self.button6, nil];
+    //_buttonsToShare = [[NSArray alloc] initWithObjects:self.button1, self.button2, self.button3, self.button4, self.button5, self.button6, nil];
+//    NSMutableArray* buttons = [[NSMutableArray alloc] initWithObjects: self.button1, self.button2, self.button3, self.button4, self.button5, self.button6, nil];
     
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.responseSerializer = [AFJSONResponseSerializer serializer];
@@ -129,15 +133,23 @@ NSInteger defaultValue = 10;
         if ([[responseObject objectForKey:@"status"] isEqualToString:@"success"]) {
             json = [responseObject objectForKey:@"response"];
             
+            
             for (int i=0; i<json.count; ++i) {
+                [_buttonsToShare[i] setImageForState:UIControlStateNormal withURL:[NSURL URLWithString:[json[i] valueForKey:@"size66"]]];
+                ButtonToShare1 *buttonToShare = _buttonsToShare[i];
+                buttonToShare.typeOfIcon = [NSString stringWithFormat:@"%@",[json[i] valueForKey:@"name"]];
+                [_buttonsToShare[i] addTarget:self action:@selector(sendIcon:) forControlEvents:UIControlEventTouchUpInside];
+            }
+            
+                /*
                 [(ButtonToShare1 *)buttons[i] setImageForState:UIControlStateNormal withURL:[NSURL URLWithString:[json[i] valueForKey:@"size66"]]];
                 //buttons[i] = (ButtonToShare *)buttons[i];
                 ButtonToShare1 *buttonToShare;//= [[ButtonToShare1 alloc] init];
                 buttonToShare = buttons[i];
                 buttonToShare.typeOfIcon = [json[i] valueForKey:@"name"];
-                buttons[i] = buttonToShare;
                 [buttons[i] addTarget:self action:@selector(sendIcon:) forControlEvents:UIControlEventTouchUpInside];
-            }
+                 */
+            
             NSLog(@"JSON FROM LOAD DATA: %@", json);
         }
         } failure:^(NSURLSessionTask *operation, NSError *error) {
@@ -149,18 +161,20 @@ NSInteger defaultValue = 10;
 
 -(void) sendIcon:(ButtonToShare1 *)sender {
     [self shareIconOfType:[NSString stringWithFormat:@"%@", sender.typeOfIcon]];
+    NSLog(@"%@ was send!", sender.typeOfIcon);
 }
+
 
 -(void)dismissKeyboard {
     [_shareText resignFirstResponder];
 }
 
-//- (void)viewDidAppear:(BOOL)animated {
-//    
-//    
-//    if (CLLocationManager.authorizationStatus == kCLAuthorizationStatusNotDetermined) {
-//        [_locationManager requestWhenInUseAuthorization];
-//    }
+- (void)viewDidAppear:(BOOL)animated {
+    
+    
+    if (CLLocationManager.authorizationStatus == kCLAuthorizationStatusNotDetermined) {
+        [_locationManager requestWhenInUseAuthorization];
+    }
 
 //    if([[UIDevice currentDevice]userInterfaceIdiom]==UIUserInterfaceIdiomPhone)
 //    {
@@ -173,12 +187,12 @@ NSInteger defaultValue = 10;
 //        
 //    }
     
-//    [super viewDidAppear:animated];
-//    
-//    id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
-//    [tracker set:kGAIScreenName value:@"Share screen"];
-//    [tracker send:[[GAIDictionaryBuilder createAppView] build]];
-//}
+    [super viewDidAppear:animated];
+    
+    id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+    [tracker set:kGAIScreenName value:@"Share screen"];
+    [tracker send:[[GAIDictionaryBuilder createAppView] build]];
+}
 
 -(void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
@@ -212,42 +226,15 @@ NSInteger defaultValue = 10;
 }
 
 
--(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
-    //Iterate through your subviews, or some other custom array of views
-    for (UIView *view in self.view.subviews)
-        [view resignFirstResponder];
-}
-
 #pragma mark - Keyboard Notification
 
-- (void)willShowKeyboard{
-    if (!isKeyboardShow){
-        isKeyboardShow = true;
-        [UIView beginAnimations:nil context:NULL];
-        [UIView setAnimationDelegate:self];
-        [UIView setAnimationDuration:0.5];
-        [UIView setAnimationBeginsFromCurrentState:YES];
-        self.view.frame = CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y-216.0,
-                                     self.view.frame.size.width, self.view.frame.size.height);
-        [UIView commitAnimations];
-    }
-}
+
 - (void)backgroundTouchedHideKeyboard:(id)sender
 {
     [self.shareText resignFirstResponder];
     
 }
 
-- (void)willHideKeyboard{
-    isKeyboardShow = false;
-    [UIView beginAnimations:nil context:NULL];
-    [UIView setAnimationDelegate:self];
-    [UIView setAnimationDuration:0.5];
-    [UIView setAnimationBeginsFromCurrentState:YES];
-    self.view.frame = CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y+216.0,
-                                 self.view.frame.size.width, self.view.frame.size.height);
-    [UIView commitAnimations];
-}
 -(void)didTapAnywhere: (UITapGestureRecognizer*) recognizer {
     //[self.emailField resignFirstResponder];
     [self.shareText resignFirstResponder];
@@ -451,18 +438,34 @@ NSInteger defaultValue = 10;
         
     }
     else {
-    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:@"http://api.iamchill.co/v2/notifications/messages/index/"]];
+    NSMutableURLRequest *requestForNotifications = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:@"http://api.iamchill.co/v2/notifications/message"]];
+        
+        [requestForNotifications setValue:[[NSUserDefaults standardUserDefaults] valueForKey:@"token"] forHTTPHeaderField:@"X-API-TOKEN"];
+        [requestForNotifications setValue:@"76eb29d3ca26fe805545812850e6d75af933214a" forHTTPHeaderField:@"X-API-KEY"];
+        [requestForNotifications setHTTPMethod:@"POST"];
+        
+        NSUserDefaults *userCache = [[NSUserDefaults standardUserDefaults] initWithSuiteName:@"group.co.getchill.chill"];
+
+        [_shareText.text stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+        self.text = _shareText.text;
+        NSString *postStringForNotifications = [NSString stringWithFormat:@"id_contact=%ld&id_user=%@&content=%@&type=icon&text=%@", (long)_userIdTo, [userCache valueForKey:@"id_user"], iconType, _shareText.text];
+        
+        [requestForNotifications setHTTPBody:[postStringForNotifications dataUsingEncoding:NSUTF8StringEncoding]];
+        NSURLConnection *connectionForNotifications = [[NSURLConnection alloc] initWithRequest:requestForNotifications delegate:self];
+        
+
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:@"http://api.iamchill.co/v2/messages/index"]];
     [request setValue:[[NSUserDefaults standardUserDefaults] valueForKey:@"token"] forHTTPHeaderField:@"X-API-TOKEN"];
     [request setValue:@"76eb29d3ca26fe805545812850e6d75af933214a" forHTTPHeaderField:@"X-API-KEY"];
 
     [request setHTTPMethod:@"POST"];
     
-    NSUserDefaults *userCache = [[NSUserDefaults standardUserDefaults] initWithSuiteName:@"group.co.getchill.chill"];
         
     [_shareText.text stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     self.text = _shareText.text;
     NSString *postString = [NSString stringWithFormat:@"id_contact=%ld&id_user=%@&content=%@&type=icon&text=%@", (long)_userIdTo, [userCache valueForKey:@"id_user"], iconType, _shareText.text];
     NSLog(@"POST STRING: %@", postString);
+        
     [request setHTTPBody:[postString dataUsingEncoding:NSUTF8StringEncoding]];
     NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
     if (connection) {

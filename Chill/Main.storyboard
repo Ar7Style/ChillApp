@@ -167,9 +167,6 @@ communication experience</string>
                                         </fragment>
                                     </attributedString>
                                 </state>
-                                <connections>
-                                    <action selector="promocodeButtonTapped:" destination="ZIh-XF-2sk" eventType="touchUpInside" id="deR-bP-yOY"/>
-                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -951,15 +948,15 @@ communication experience</string>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="320" height="568"/>
                     <connections>
-                        <outlet property="button1" destination="HmH-bp-PGN" id="ZkH-YT-6oO"/>
-                        <outlet property="button2" destination="sXw-Tf-trs" id="f0C-wx-N2w"/>
-                        <outlet property="button3" destination="fZv-6r-FQg" id="0FV-94-H9d"/>
-                        <outlet property="button4" destination="H1B-Zs-gvf" id="0d6-ej-8op"/>
-                        <outlet property="button5" destination="2vt-s4-lBR" id="Z9s-eI-1mO"/>
-                        <outlet property="button6" destination="tY8-HO-fVN" id="Os8-qo-soN"/>
                         <outlet property="constraintBottom" destination="xmA-bW-lYi" id="nGN-F7-OLZ"/>
                         <outlet property="counter" destination="tMj-Fj-4Co" id="pLM-Bt-7Z0"/>
                         <outlet property="shareText" destination="160-Ra-5Z8" id="n79-3l-gRs"/>
+                        <outletCollection property="buttonsToShare" destination="tY8-HO-fVN" id="Qwm-UV-BD0"/>
+                        <outletCollection property="buttonsToShare" destination="2vt-s4-lBR" id="axa-ze-e2v"/>
+                        <outletCollection property="buttonsToShare" destination="H1B-Zs-gvf" id="PnE-pY-mah"/>
+                        <outletCollection property="buttonsToShare" destination="fZv-6r-FQg" id="OYR-tr-sfh"/>
+                        <outletCollection property="buttonsToShare" destination="sXw-Tf-trs" id="p5Y-KN-adU"/>
+                        <outletCollection property="buttonsToShare" destination="HmH-bp-PGN" id="VSt-pP-IRo"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aji-6Q-Ez6" userLabel="First Responder" sceneMemberID="firstResponder"/>

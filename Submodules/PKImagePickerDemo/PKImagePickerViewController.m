@@ -17,6 +17,7 @@
     NSMutableData * receivedData;
     MBProgressHUD *HUD;
     NSMutableArray *json;
+    NSMutableArray *jsonForNotifications;
 }
 
 @property(nonatomic,strong) AVCaptureSession *captureSession;
@@ -296,10 +297,26 @@ NSMutableData *mutData;
                     PFObject* newPhotoObject = [PFObject objectWithClassName:@"PhotoObject"];
                     [newPhotoObject setObject:imageFile forKey:@"image"];
                     
+                    //📷
                     [newPhotoObject saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
                         if (!error) {
-                            NSMutableURLRequest *request = [[NSMutableURLRequest alloc]initWithURL:[NSURL URLWithString: [NSString stringWithFormat:@"http://api.iamchill.co/v2/notifications/message"]]];
-                            [request setValue:[[NSUserDefaults standardUserDefaults] valueForKey:@"token"] forHTTPHeaderField:@"X-API-TOKEN"]; [request setValue:@"76eb29d3ca26fe805545812850e6d75af933214a" forHTTPHeaderField:@"X-API-KEY"];
+                            NSMutableURLRequest *requestForNotification = [[NSMutableURLRequest alloc]initWithURL:[NSURL URLWithString: [NSString stringWithFormat:@"http://api.iamchill.co/v2/notifications/message"]]];
+                             [requestForNotification setValue:[[NSUserDefaults standardUserDefaults] valueForKey:@"token"] forHTTPHeaderField:@"X-API-TOKEN"];
+                            [requestForNotification setValue:@"76eb29d3ca26fe805545812850e6d75af933214a" forHTTPHeaderField:@"X-API-KEY"];
+                            [requestForNotification setHTTPMethod:@"POST"];
+                            
+                            NSURLResponse *responseForNotifications = nil;
+                            NSError *errorForNotifications = nil;
+                            NSString *postStringForNotifications = [NSString stringWithFormat:@"id_contact=%ld&id_user=%@&content=%@&type=parse&date=%@",(long)_userIdTo,[[NSUserDefaults standardUserDefaults] valueForKey:@"id_user"],imageFile.url,[self getDateTime]];
+                            [requestForNotification setHTTPBody:[postStringForNotifications
+                                                  dataUsingEncoding:NSUTF8StringEncoding]];
+                            NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:requestForNotification delegate:self];
+
+                            
+
+                            
+                            NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:@"http://api.iamchill.co/v2/messages/index"]];
+                            [request setValue:[[NSUserDefaults standardUserDefaults] valueForKey:@"token"] forHTTPHeaderField:@"X-API-TOKEN"];[request setValue:@"76eb29d3ca26fe805545812850e6d75af933214a" forHTTPHeaderField:@"X-API-KEY"];
 
 
                             [request setHTTPMethod:@"POST"];

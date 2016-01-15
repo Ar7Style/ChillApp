@@ -83,23 +83,6 @@ NSMutableData *mutData;
     }
 }
 
-- (void) conRefused {
-    
-    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    
-    UIViewController *CHLConnectionRefusedViewController = (UIViewController *)[storyboard  instantiateViewControllerWithIdentifier:@"CHLConnectionRefusedViewController"];
-    
-    UIViewController *CHLFriendListViewController = (UIViewController *)[storyboard  instantiateViewControllerWithIdentifier:@"CHLFriendListViewController"];
-    
-//    if ( self.parentViewController != CHLFriendListViewController)
-//    {
-        [self.navigationController pushViewController:CHLConnectionRefusedViewController animated:YES];
-        [self dismissViewControllerAnimated:YES completion:nil];
-   // }
-    
-}
-
-
 - (void)viewDidAppear:(BOOL)animated{
     self.navigationController.view.clipsToBounds=YES;
     NSUserDefaults *userCache = [[NSUserDefaults standardUserDefaults] initWithSuiteName:@"group.co.getchill.chill"];

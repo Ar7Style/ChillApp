@@ -43,7 +43,7 @@
     self.navigationController.view.clipsToBounds=YES;
 }
 
-- (IBAction)promocodeButtonTapped:(id)sender {
+- (void)showPromocodeAlert {
     SCLAlertView *alert = [[SCLAlertView alloc] init];
     alert.customViewColor = [UIColor chillMintColor];
     UITextField *textField = [alert addTextField:@"Enter promocode"];
@@ -55,19 +55,19 @@
             manager.responseSerializer = [AFJSONResponseSerializer serializer];
             manager.requestSerializer = [AFJSONRequestSerializer serializer];
             [manager.requestSerializer setValue:@"76eb29d3ca26fe805545812850e6d75af933214a" forHTTPHeaderField:@"X-API-KEY"];
-            NSDictionary *parameters = @{@"id_user": _loginField1.text, @"password":_passwordField1.text};
+            NSDictionary *parameters = @{@"id_user": [[NSUserDefaults standardUserDefaults] valueForKey:@"id_user"], @"promocode":textField.text};
         
-            [manager GET:@"http://api.iamchill.co/v2/users/index" parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+            [manager GET:@"http://api.iamchill.co/v2/promocodes/index/" parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
             
             if ([[responseObject valueForKey:@"status"] isEqualToString:@"failed"]){
-                [self errorShow:@"It seems that the entered username or password is incorrect"];
+                [self errorShow:@"It seems that the promocode is incorrect"];
             }
             else if ([[responseObject valueForKey:@"status"] isEqualToString:@"success"]) {
-                
+                return ;
             }
             
         }  failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-            [self conRefused];
+            [self errorShow:@"Please, check Your internet connection"];
             NSLog(@"Error: %@", error);
         }];
     }];
@@ -90,16 +90,6 @@
     [self an_unsubscribeKeyboard];
 }
 
-- (void) conRefused {
-    UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Connection refused"
-                                                                   message:@"Check your Internet connection"
-                                                            preferredStyle:UIAlertControllerStyleAlert];
-    
-    UIAlertAction* okayAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
-                                                       handler:^(UIAlertAction * action) {}];
-    [alert addAction:okayAction];
-    [self presentViewController:alert animated:YES completion:nil];
-}
 - (void)backgroundTouchedHideKeyboard:(id)sender
 {
     [_loginField1 resignFirstResponder];
@@ -154,6 +144,7 @@
                 [NSUserDefaults setValue:[[responseObject valueForKey:@"response"] valueForKey:@"id_user"] forKey:@"id_user"];
                 [NSUserDefaults setValue:_loginField1.text forKey:@"login_user"];
                 [NSUserDefaults setValue:[[responseObject valueForKey:@"response"] valueForKey:@"token"] forKey:@"token"];
+               // [self showPromocodeAlert];
                 
                 PFInstallation *currentInstallation = [PFInstallation currentInstallation];
                 [currentInstallation addUniqueObject:[NSString stringWithFormat:@"us%@",[NSUserDefaults userID]] forKey:@"channels"];
@@ -199,8 +190,6 @@
                             [self dismissViewControllerAnimated:YES completion:nil];
                             [self.navigationController pushViewController:friendListViewController animated:YES];
                             
-//                            [self dismissViewControllerAnimated:YES completion:nil];
-//                            [self.navigationController popViewControllerAnimated:YES];
                         }
                     }
 
@@ -212,7 +201,7 @@
             }
             NSLog(@"JSON: %@", responseObject);
         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-            [self conRefused];
+            [self errorShow:@"Please, check Your internet connection"];
             NSLog(@"Error: %@", error);
         }];
     }
