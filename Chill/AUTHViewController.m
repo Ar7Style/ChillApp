@@ -44,11 +44,13 @@
 }
 
 - (void)showPromocodeAlert {
+    NSUserDefaults *userCache = [[NSUserDefaults standardUserDefaults] initWithSuiteName:@"group.co.getchill.chill"];
+
     SCLAlertView *alert = [[SCLAlertView alloc] init];
     alert.customViewColor = [UIColor chillMintColor];
-    UITextField *textField = [alert addTextField:@"Enter promocode"];
+    UITextField *textField = [alert addTextField:@"Enter promocode (optional)..."];
     
-    [alert addButton:@"Submit" actionBlock:^(void) {
+    [alert addButton:@"Go" actionBlock:^(void) {
         NSLog(@"Text value: %@", textField.text);
                     
             AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
@@ -60,10 +62,124 @@
             [manager GET:@"http://api.iamchill.co/v2/promocodes/index/" parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
             
             if ([[responseObject valueForKey:@"status"] isEqualToString:@"failed"]){
-                [self errorShow:@"It seems that the promocode is incorrect"];
+                //[self errorShow:@"It seems that the promocode is incorrect"];
+                
+                PFInstallation *currentInstallation = [PFInstallation currentInstallation];
+                [currentInstallation addUniqueObject:[NSString stringWithFormat:@"us%@",[NSUserDefaults userID]] forKey:@"channels"];
+                [currentInstallation saveInBackground];
+                
+                [self setupGAUserID: [NSUserDefaults userID]];
+                
+                AFHTTPRequestOperationManager *manager2 = [AFHTTPRequestOperationManager manager];
+                manager2.responseSerializer = [AFJSONResponseSerializer serializer];
+                manager2.requestSerializer = [AFJSONRequestSerializer serializer];
+                [manager2.requestSerializer setValue:[NSUserDefaults userToken] forHTTPHeaderField:@"X-API-TOKEN"];
+                [manager2.requestSerializer setValue:@"76eb29d3ca26fe805545812850e6d75af933214a" forHTTPHeaderField:@"X-API-KEY"];
+                [manager2 GET:[NSString stringWithFormat:@"http://api.iamchill.co/v2/users/index/id_user/%@",[NSUserDefaults userID]] parameters:nil success:^(AFHTTPRequestOperation *operation2, id responseObject2) {
+                    if ([[responseObject2 valueForKey:@"status"] isEqualToString:@"success"])
+                    {
+                        
+                        [NSUserDefaults setValue:[[[responseObject2 valueForKey:@"response"] valueForKey:@"name"]componentsJoinedByString:@""] forKey:@"name"];
+                        [NSUserDefaults setValue:[[[responseObject2 valueForKey:@"response"] valueForKey:@"email"]componentsJoinedByString:@""] forKey:@"email"];
+                        CHLSettingsViewController *settingsVC = [[CHLSettingsViewController alloc]init];
+                        
+                        settingsVC.email = [responseObject2 valueForKey:@"email"];
+                        [NSUserDefaults setValue:[[[responseObject2 valueForKey:@"response"] valueForKey:@"hash"]componentsJoinedByString:@""] forKey:@"hash"];
+                        [NSUserDefaults setValue:[[[responseObject2 valueForKey:@"response"] valueForKey:@"key"]componentsJoinedByString:@""] forKey:@"key"];
+                        [NSUserDefaults setValue:[[[responseObject2 valueForKey:@"response"] valueForKey:@"date_reg"]componentsJoinedByString:@""] forKey:@"date_reg"];
+                        [NSUserDefaults setValue:[[[responseObject2 valueForKey:@"response"] valueForKey:@"approved"] componentsJoinedByString:@""] forKey:@"approved"];
+                        [NSUserDefaults setValue:[[[responseObject2 valueForKey:@"response"] valueForKey:@"token"] componentsJoinedByString:@""] forKey:@"token1"];
+                        
+                        [NSUserDefaults changeAprooved:true];
+                        
+                        WCSession *session = [WCSession defaultSession];
+                        NSError *error;
+                        
+                        [session updateApplicationContext:@{@"userID": [NSUserDefaults userID], @"token":[NSUserDefaults userToken], @"isAuth":@"true", @"isApproved": @"true"} error:&error];
+                        if ([[userCache valueForKey:@"isEntry"] isEqualToString:@"0"])
+                            [self performSegueWithIdentifier:@"toTutorialViewController" sender:self];
+                        else
+                        {
+                            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+                            
+                            UIViewController *friendListViewController = (UIViewController *)[storyboard  instantiateViewControllerWithIdentifier:@"CHLFriendsListViewController"];
+                            
+                            
+                            [self dismissViewControllerAnimated:YES completion:nil];
+                            [self.navigationController pushViewController:friendListViewController animated:YES];
+                            
+                        }
+                    }
+                    
+                    
+                    
+                    NSLog(@"JSON: %@", responseObject2);
+                    
+                } failure:^(AFHTTPRequestOperation *operation2, NSError *error2) {
+                    NSLog(@"Error: %@", error2);
+                    [self errorShow:@"Please, check Your internet connection"];
+                }];
+
             }
             else if ([[responseObject valueForKey:@"status"] isEqualToString:@"success"]) {
-                return ;
+                ///////////////////////
+                
+                    PFInstallation *currentInstallation = [PFInstallation currentInstallation];
+                    [currentInstallation addUniqueObject:[NSString stringWithFormat:@"us%@",[NSUserDefaults userID]] forKey:@"channels"];
+                    [currentInstallation saveInBackground];
+                    
+                    [self setupGAUserID: [NSUserDefaults userID]];
+                    
+                    AFHTTPRequestOperationManager *manager2 = [AFHTTPRequestOperationManager manager];
+                    manager2.responseSerializer = [AFJSONResponseSerializer serializer];
+                    manager2.requestSerializer = [AFJSONRequestSerializer serializer];
+                    [manager2.requestSerializer setValue:[NSUserDefaults userToken] forHTTPHeaderField:@"X-API-TOKEN"];
+                    [manager2.requestSerializer setValue:@"76eb29d3ca26fe805545812850e6d75af933214a" forHTTPHeaderField:@"X-API-KEY"];
+                    [manager2 GET:[NSString stringWithFormat:@"http://api.iamchill.co/v2/users/index/id_user/%@",[NSUserDefaults userID]] parameters:nil success:^(AFHTTPRequestOperation *operation2, id responseObject2) {
+                        if ([[responseObject2 valueForKey:@"status"] isEqualToString:@"success"])
+                        {
+                            
+                            [NSUserDefaults setValue:[[[responseObject2 valueForKey:@"response"] valueForKey:@"name"]componentsJoinedByString:@""] forKey:@"name"];
+                            [NSUserDefaults setValue:[[[responseObject2 valueForKey:@"response"] valueForKey:@"email"]componentsJoinedByString:@""] forKey:@"email"];
+                            CHLSettingsViewController *settingsVC = [[CHLSettingsViewController alloc]init];
+                            
+                            settingsVC.email = [responseObject2 valueForKey:@"email"];
+                            [NSUserDefaults setValue:[[[responseObject2 valueForKey:@"response"] valueForKey:@"hash"]componentsJoinedByString:@""] forKey:@"hash"];
+                            [NSUserDefaults setValue:[[[responseObject2 valueForKey:@"response"] valueForKey:@"key"]componentsJoinedByString:@""] forKey:@"key"];
+                            [NSUserDefaults setValue:[[[responseObject2 valueForKey:@"response"] valueForKey:@"date_reg"]componentsJoinedByString:@""] forKey:@"date_reg"];
+                            [NSUserDefaults setValue:[[[responseObject2 valueForKey:@"response"] valueForKey:@"approved"] componentsJoinedByString:@""] forKey:@"approved"];
+                            [NSUserDefaults setValue:[[[responseObject2 valueForKey:@"response"] valueForKey:@"token"] componentsJoinedByString:@""] forKey:@"token1"];
+                            
+                            [NSUserDefaults changeAprooved:true];
+                            
+                            WCSession *session = [WCSession defaultSession];
+                            NSError *error;
+                            
+                            [session updateApplicationContext:@{@"userID": [NSUserDefaults userID], @"token":[NSUserDefaults userToken], @"isAuth":@"true", @"isApproved": @"true"} error:&error];
+                            if ([[userCache valueForKey:@"isEntry"] isEqualToString:@"0"])
+                                [self performSegueWithIdentifier:@"toTutorialViewController" sender:self];
+                            else
+                            {
+                                UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+                                
+                                UIViewController *friendListViewController = (UIViewController *)[storyboard  instantiateViewControllerWithIdentifier:@"CHLFriendsListViewController"];
+                                
+                                
+                                [self dismissViewControllerAnimated:YES completion:nil];
+                                [self.navigationController pushViewController:friendListViewController animated:YES];
+                                
+                            }
+                        }
+                        
+                        
+                        
+                        NSLog(@"JSON: %@", responseObject2);
+                        
+                    } failure:^(AFHTTPRequestOperation *operation2, NSError *error2) {
+                        NSLog(@"Error: %@", error2);
+                        [self errorShow:@"Please, check Your internet connection"];
+                    }];
+
             }
             
         }  failure:^(AFHTTPRequestOperation *operation, NSError *error) {
@@ -72,7 +188,7 @@
         }];
     }];
         
-    [alert showEdit:self title:@"Get features" subTitle:@"Enter the promocode" closeButtonTitle:@"Close" duration:0.0f];
+    [alert showEdit:self title:@"Get features" subTitle:@"Enter the promocode" closeButtonTitle:@"Back" duration:0.0f];
 }
 
 -(void)viewWillAppear:(BOOL)animated {
@@ -144,8 +260,11 @@
                 [NSUserDefaults setValue:[[responseObject valueForKey:@"response"] valueForKey:@"id_user"] forKey:@"id_user"];
                 [NSUserDefaults setValue:_loginField1.text forKey:@"login_user"];
                 [NSUserDefaults setValue:[[responseObject valueForKey:@"response"] valueForKey:@"token"] forKey:@"token"];
-               // [self showPromocodeAlert];
+                NSLog(@"PROMOCODE: %@", [[responseObject valueForKey:@"response"] valueForKey:@"promocode"]);
+                if ([[[responseObject valueForKey:@"response"] valueForKey:@"promocode"] isEqualToNumber:@1])
+                    [self showPromocodeAlert];
                 
+                else {
                 PFInstallation *currentInstallation = [PFInstallation currentInstallation];
                 [currentInstallation addUniqueObject:[NSString stringWithFormat:@"us%@",[NSUserDefaults userID]] forKey:@"channels"];
                 [currentInstallation saveInBackground];
@@ -192,19 +311,25 @@
                             
                         }
                     }
+                
+                
 
                     NSLog(@"JSON: %@", responseObject2);
+                
                 } failure:^(AFHTTPRequestOperation *operation2, NSError *error2) {
                     NSLog(@"Error: %@", error2);
                     [self errorShow:@"Please, check Your internet connection"];
                 }];
             }
+        }
             NSLog(@"JSON: %@", responseObject);
         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
             [self errorShow:@"Please, check Your internet connection"];
             NSLog(@"Error: %@", error);
         }];
+        
     }
+         
     else
     {
         [self errorShow:@"Fill in all fields"];

@@ -111,7 +111,6 @@
 		065C624F1C103FA1008A2921 /* x-2.png in Resources */ = {isa = PBXBuildFile; fileRef = 065C624E1C103FA1008A2921 /* x-2.png */; };
 		065C62511C10EA89008A2921 /* star.png in Resources */ = {isa = PBXBuildFile; fileRef = 065C62501C10EA89008A2921 /* star.png */; };
 		065C62531C10EB13008A2921 /* star66.png in Resources */ = {isa = PBXBuildFile; fileRef = 065C62521C10EB13008A2921 /* star66.png */; };
-		065C62561C10F427008A2921 /* CHLFavoriteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 065C62551C10F427008A2921 /* CHLFavoriteViewController.m */; };
 		0665FBE11ADDB2640075D400 /* Waitlist.png in Resources */ = {isa = PBXBuildFile; fileRef = 0665FBE01ADDB2640075D400 /* Waitlist.png */; };
 		0670540A1B04EEC300BBA3AA /* icon24@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 067054021B04EEC300BBA3AA /* icon24@2x.png */; };
 		0670540D1B04EEC300BBA3AA /* icon24@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 067054031B04EEC300BBA3AA /* icon24@3x.png */; };
@@ -457,8 +456,6 @@
 		065C624E1C103FA1008A2921 /* x-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "x-2.png"; sourceTree = "<group>"; };
 		065C62501C10EA89008A2921 /* star.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = star.png; sourceTree = "<group>"; };
 		065C62521C10EB13008A2921 /* star66.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = star66.png; sourceTree = "<group>"; };
-		065C62541C10F427008A2921 /* CHLFavoriteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHLFavoriteViewController.h; sourceTree = "<group>"; };
-		065C62551C10F427008A2921 /* CHLFavoriteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHLFavoriteViewController.m; sourceTree = "<group>"; };
 		0665FBE01ADDB2640075D400 /* Waitlist.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Waitlist.png; sourceTree = "<group>"; };
 		067054021B04EEC300BBA3AA /* icon24@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon24@2x.png"; sourceTree = "<group>"; };
 		067054031B04EEC300BBA3AA /* icon24@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon24@3x.png"; sourceTree = "<group>"; };
@@ -817,8 +814,6 @@
 			isa = PBXGroup;
 			children = (
 				0629B2DD1C415B5A0038F2D0 /* fav_header.png */,
-				065C62541C10F427008A2921 /* CHLFavoriteViewController.h */,
-				065C62551C10F427008A2921 /* CHLFavoriteViewController.m */,
 				0629B2CE1C41591C0038F2D0 /* ASImageCell.h */,
 				0629B2CF1C41591C0038F2D0 /* ASImageCell.m */,
 				0629B2D01C41591C0038F2D0 /* ASServerManager.h */,
@@ -1789,7 +1784,6 @@
 				E6DB66B71956F49A00D30E85 /* MCSwipeTableViewCell.m in Sources */,
 				AD39F35E1B605C74003936C4 /* CHLTwitterVC.m in Sources */,
 				029ED8F41A54E43B0084D04B /* HAPaperCollectionViewController.m in Sources */,
-				065C62561C10F427008A2921 /* CHLFavoriteViewController.m in Sources */,
 				E6D972BF19A3ECEE00E7E4A3 /* PKImagePickerViewController.m in Sources */,
 				029ED8CD1A534A4C0084D04B /* SearchJSON.m in Sources */,
 				020B35731A1E402C00DC2F23 /* FriendsJSON.m in Sources */,

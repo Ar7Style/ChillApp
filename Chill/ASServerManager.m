@@ -53,7 +53,7 @@
     
     NSDictionary *parametr = @{@"id_user":@4, @"id_icons_user":@""};
 
-   // X-API-KEY: 76eb29d3ca26fe805545812850e6d75af933214a - один звголовок
+   // X-API-KEY: 76eb29d3ca26fe805545812850e6d75af933214a
    // X-API-TOKEN: 2eea2a10324f35fe022f02   
    
    // @"http://api.iamchill.co/v2/icons/index/id_user/4/name_.."
@@ -61,9 +61,10 @@
     
     [self.requestOperationManager.requestSerializer setValue:@"2eea2a10324f35fe022f02" forHTTPHeaderField:@"X-API-TOKEN"];
     [self.requestOperationManager.requestSerializer setValue:@"76eb29d3ca26fe805545812850e6d75af933214a" forHTTPHeaderField:@"X-API-KEY"];
-   
+    NSUserDefaults *userCache = [[NSUserDefaults standardUserDefaults] initWithSuiteName:@"group.co.getchill.chill"];
 
-    [self.requestOperationManager GET:@"http://api.iamchill.co/v2/icons/index/id_user/4/name_.."
+    NSString* url = [ NSString stringWithFormat:@"http://api.iamchill.co/v2/icons/index/id_user/%@/name_pack/main", [userCache valueForKey:@"id_user"]];
+    [self.requestOperationManager GET:url //@"http://api.iamchill.co/v2/icons/index/id_user/4/name_pack/main"
                            parameters:nil //parametr
                               success:^(AFHTTPRequestOperation *operation, NSDictionary* responseObject) {
                                   
