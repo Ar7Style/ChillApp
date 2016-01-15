@@ -1422,6 +1422,7 @@
 					};
 					029F1BA11C01E56300368AD4 = {
 						CreatedOnToolsVersion = 7.1.1;
+						DevelopmentTeam = 66S8MTL2NN;
 					};
 					E6C7C1CC191A1B220071D83F = {
 						DevelopmentTeam = 66S8MTL2NN;
@@ -1864,6 +1865,7 @@
 			baseConfigurationReference = D072A7F170CFB919C2955BAA /* Pods.release.xcconfig */;
 			buildSettings = {
 				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -1930,6 +1932,7 @@
 				CODE_SIGN_ENTITLEMENTS = Chill/Chill.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
