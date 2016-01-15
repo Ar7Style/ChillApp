@@ -6,6 +6,7 @@
 #import "SVPullToRefresh.h"
 #import "MBProgressHUD.h"
 #import <AFNetworking/AFNetworking.h>
+#import "UIImageView+AFNetworking.h"
 #import <Parse/Parse.h>
 #import "APPROVEDViewController.h"
 #import "AUTHViewController.h"
@@ -227,92 +228,9 @@ NSMutableData *mutData;
         cell.shieldik2.hidden = NO;
         if (![[jsonData valueForKey:@"read"] isKindOfClass:[NSNull class]]) {
             if ([[jsonData valueForKey:@"read"] isEqualToString:@"0"] && !cell.type.subviews.firstObject) {
-                if ([[jsonData valueForKey:@"type"] isEqualToString:@"location"]){
-                    UIImage *image = [UIImage imageNamed: @"location.png"];
-                    [cell.type setImage:image];
-                }
-                else if ([[jsonData valueForKey:@"type"] isEqualToString:@"photo"]){
-                    UIImage *image = [UIImage imageNamed: @"pic.png"];
-                    [cell.type setImage:image];
-                }
-                else if ([[jsonData valueForKey:@"type"] isEqualToString:@"parse"]){
-                    UIImage *image = [UIImage imageNamed: @"pic.png"];
-                    [cell.type setImage:image];
-                }
                 
-                // еще немного говнокода
-                
-                else if ([[jsonData valueForKey:@"type"] isEqualToString:@"icon"]) //some hardcode
-                {
-                    if ([[jsonData valueForKey:@"content"] isEqualToString:@"clock"])
-                        [cell.type setImage:[UIImage imageNamed: @"reaction_clock_forCell.png"]];
-                    
-                    if ([[jsonData valueForKey:@"content"] isEqualToString:@"beer"])
-                        [cell.type setImage:[UIImage imageNamed: @"reaction_drink_forCell.png"]];
-                    
-                    if ([[jsonData valueForKey:@"content"] isEqualToString:@"coffee"])
-                        [cell.type setImage:[UIImage imageNamed: @"reaction_soda_forCell.png"]];
-                    
-                    if ([[jsonData valueForKey:@"content"] isEqualToString:@"logo"])
-                        [cell.type setImage:[UIImage imageNamed: @"reaction_chill_forCell.png"]];
-                    
-                    if ([[jsonData valueForKey:@"content"] isEqualToString:@"question"])
-                        [cell.type setImage:[UIImage imageNamed: @"reaction_question_forCell.png"]];
-                    
-                    if ([[jsonData valueForKey:@"content"] isEqualToString:@"rocket"])
-                        [cell.type setImage:[UIImage imageNamed: @"reaction_rocket_forCell.png"]];
-                    
-                    if ([[jsonData valueForKey:@"content"] isEqualToString:@"stamp"])
-                        [cell.type setImage:[UIImage imageNamed: @"reaction_blank_forCell.png"]];
-                    
-                    
-                    
-                    //additional icons
-                    if ([[jsonData valueForKey:@"content"] isEqualToString:@"trophy"])
-                        [cell.type setImage:[UIImage imageNamed: @"reaction_trophy_forCell.png"]];
-                    
-                    if ([[jsonData valueForKey:@"content"] isEqualToString:@"flag"])
-                        [cell.type setImage:[UIImage imageNamed: @"reaction_flag_forCell.png"]];
-                    
-                    if ([[jsonData valueForKey:@"content"] isEqualToString:@"telephone"])
-                        [cell.type setImage:[UIImage imageNamed: @"reaction_telephone_forCell.png"]];
-                    
-                    if ([[jsonData valueForKey:@"content"] isEqualToString:@"book"])
-                        [cell.type setImage:[UIImage imageNamed: @"reaction_book_forCell.png"]];
-                    
-                    if ([[jsonData valueForKey:@"content"] isEqualToString:@"gym"])
-                        [cell.type setImage:[UIImage imageNamed: @"reaction_gym_forCell.png"]];
-                    
-                    if ([[jsonData valueForKey:@"content"] isEqualToString:@"waves"])
-                        [cell.type setImage:[UIImage imageNamed: @"reaction_waves_forCell.png"]];
-                    
-                    
-                    //new additional icons
-                    if ([[jsonData valueForKey:@"content"] isEqualToString:@"plus"])
-                        [cell.type setImage:[UIImage imageNamed: @"reaction_plus_forCell.png"]];
-                    
-                    if ([[jsonData valueForKey:@"content"] isEqualToString:@"controller"])
-                        [cell.type setImage:[UIImage imageNamed: @"reaction_controller_forCell.png"]];
-                    
-                    if ([[jsonData valueForKey:@"content"] isEqualToString:@"minus"])
-                        [cell.type setImage:[UIImage imageNamed: @"reaction_minus_forCell.png"]];
-                    
-                    if ([[jsonData valueForKey:@"content"] isEqualToString:@"ball"])
-                        [cell.type setImage:[UIImage imageNamed: @"reaction_ball_forCell.png"]];
-                    
-                    if ([[jsonData valueForKey:@"content"] isEqualToString:@"heart"])
-                        [cell.type setImage:[UIImage imageNamed: @"reaction_heart_forCell.png"]];
-                    
-                    if ([[jsonData valueForKey:@"content"] isEqualToString:@"sleep"])
-                        [cell.type setImage:[UIImage imageNamed: @"reaction_sleep_forCell.png"]];
-                    
-                    if ([[jsonData valueForKey:@"content"] isEqualToString:@"dollar"])
-                        [cell.type setImage:[UIImage imageNamed: @"reaction_dollar_forCell.png"]];
-                    
-                    if ([[jsonData valueForKey:@"content"] isEqualToString:@"pizza"])
-                        [cell.type setImage:[UIImage imageNamed: @"reaction_pizza_forCell.png"]];
-                    
-                }
+                [cell.type setImageWithURL:[NSURL URLWithString:[json[indexPath.row] valueForKey:@"size42"]]]; 
+
             }
             
             else {
@@ -482,42 +400,7 @@ NSMutableData *mutData;
     UIGraphicsEndImageContext();
     return img;
 }
-//- (UIImage *) changeColorForImage:(UIImage *)image toColor:(UIColor*)color {
-//    UIGraphicsBeginImageContext(image.size);
-//
-//    CGRect contextRect;
-//    contextRect.origin.x = 0.0f;
-//    contextRect.origin.y = 0.0f;
-//    contextRect.size = [image size];
-//    // Retrieve source image and begin image context
-//    CGSize itemImageSize = [image size];
-//    CGPoint itemImagePosition;
-//    itemImagePosition.x = ceilf((contextRect.size.width - itemImageSize.width) / 2);
-//    itemImagePosition.y = ceilf((contextRect.size.height - itemImageSize.height) );
-//
-//    UIGraphicsBeginImageContext(contextRect.size);
-//
-//    CGContextRef c = UIGraphicsGetCurrentContext();
-//    // Setup shadow
-//    // Setup transparency layer and clip to mask
-//    CGContextBeginTransparencyLayer(c, NULL);
-//    CGContextScaleCTM(c, 1.0, -1.0);
-//    CGContextClipToMask(c, CGRectMake(itemImagePosition.x, -itemImagePosition.y, itemImageSize.width, -itemImageSize.height), [image CGImage]);
-//    // Fill and end the transparency layer
-//
-//
-//    //const float* colors = CGColorGetComponents( color.CGColor );
-//    //CGContextSetRGBFillColor(c, colors[0], colors[1], colors[2], .75);
-//
-//    contextRect.size.height = -contextRect.size.height;
-//    contextRect.size.height -= 15;
-//    CGContextFillRect(c, contextRect);
-//    CGContextEndTransparencyLayer(c);
-//
-//    UIImage *img = UIGraphicsGetImageFromCurrentImageContext();
-//    UIGraphicsEndImageContext();
-//    return img;
-//}
+
 
 - (void)showError:(NSError *)error {
     UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Error"

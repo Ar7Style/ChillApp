@@ -307,10 +307,6 @@
         }
 }
 
--(IBAction)reply:(id)sender {
-    
-}
-
 -(void) displayMap:(int)number {
     for (int i=0; i<json.count; ++i) {
         if ([[json[i] valueForKey:@"type"] isEqualToString:@"location"]) {

@@ -1488,21 +1488,30 @@ communication experience</string>
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="From address book" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4GS-56-ZLa">
-                                                    <rect key="frame" x="78.5" y="10" width="164" height="23"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Share" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4GS-56-ZLa">
+                                                    <rect key="frame" x="135.5" y="10" width="49.5" height="23"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="19"/>
                                                     <color key="textColor" red="0.63137254899999995" green="0.63137254899999995" blue="0.63137254899999995" alpha="1" colorSpace="deviceRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9yf-Sv-der">
+                                                    <rect key="frame" x="18" y="7" width="285" height="30"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="285" id="Ffm-Mh-tmf"/>
+                                                        <constraint firstAttribute="height" constant="30" id="siN-bC-ZdU"/>
+                                                    </constraints>
+                                                    <connections>
+                                                        <action selector="shareButtonPressed:" destination="apb-R1-WFE" eventType="touchUpInside" id="KEg-yg-hGM"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="centerY" secondItem="4GS-56-ZLa" secondAttribute="centerY" id="D8z-1B-K7d"/>
+                                                <constraint firstItem="9yf-Sv-der" firstAttribute="centerY" secondItem="TrT-D6-WRZ" secondAttribute="centerY" id="Fci-Ie-KWp"/>
+                                                <constraint firstItem="9yf-Sv-der" firstAttribute="centerX" secondItem="TrT-D6-WRZ" secondAttribute="centerX" id="Q1Y-Jb-XcW"/>
                                                 <constraint firstAttribute="centerX" secondItem="4GS-56-ZLa" secondAttribute="centerX" id="hK1-Ow-78W"/>
                                             </constraints>
                                         </tableViewCellContentView>
-                                        <connections>
-                                            <segue destination="MSz-Sl-KhQ" kind="push" id="PBW-yJ-JkX"/>
-                                        </connections>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
