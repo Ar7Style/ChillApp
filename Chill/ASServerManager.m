@@ -10,6 +10,7 @@
 #import "ASImageModel.h"
 #import "FEMMapping.h"
 #import "FEMDeserializer.h"
+#import "userCache.h"
 
 #import "UIImageView+AFNetworking.h"
 
@@ -50,8 +51,10 @@
                          count:(NSInteger) count
                      onSuccess:(void(^)(NSArray* modelArrayImage)) success
                      onFailure:(void(^)(NSError* error, NSInteger statusCode)) failure {
+    NSUserDefaults *userCache = [[NSUserDefaults standardUserDefaults] initWithSuiteName:@"group.co.getchill.chill"];
+
     
-    NSDictionary *parametr = @{@"id_user":@4, @"id_icons_user":@""};
+    NSDictionary *parametr = @{@"id_user":[userCache valueForKey:@"id_user"]};
 
    // X-API-KEY: 76eb29d3ca26fe805545812850e6d75af933214a
    // X-API-TOKEN: 2eea2a10324f35fe022f02   
@@ -59,9 +62,8 @@
    // @"http://api.iamchill.co/v2/icons/index/id_user/4/name_.."
    // @"http://api.iamchill.co/v2/icons/user/id_user/4"
     
-    [self.requestOperationManager.requestSerializer setValue:@"2eea2a10324f35fe022f02" forHTTPHeaderField:@"X-API-TOKEN"];
+    [self.requestOperationManager.requestSerializer setValue:[[NSUserDefaults standardUserDefaults] valueForKey:@"token"] forHTTPHeaderField:@"X-API-TOKEN"];
     [self.requestOperationManager.requestSerializer setValue:@"76eb29d3ca26fe805545812850e6d75af933214a" forHTTPHeaderField:@"X-API-KEY"];
-    NSUserDefaults *userCache = [[NSUserDefaults standardUserDefaults] initWithSuiteName:@"group.co.getchill.chill"];
 
     NSString* url = [ NSString stringWithFormat:@"http://api.iamchill.co/v2/icons/index/id_user/%@/name_pack/main", [userCache valueForKey:@"id_user"]];
     [self.requestOperationManager GET:url //@"http://api.iamchill.co/v2/icons/index/id_user/4/name_pack/main"
@@ -102,10 +104,12 @@
 -(void) postSendSelectedIconId:(NSString*) selectedIconsID
                      onSuccess:(void(^)(NSString* status)) success
                      onFailure:(void(^)(NSError* error, NSInteger statusCode)) failure {
+    NSUserDefaults *userCache = [[NSUserDefaults standardUserDefaults] initWithSuiteName:@"group.co.getchill.chill"];
+
     
-    NSDictionary *parametr = @{@"id_user":@4, @"id_icons_user": selectedIconsID};
+    NSDictionary *parametr = @{@"id_user":[userCache valueForKey:@"id_user"], @"id_icons_user": selectedIconsID};
     
-    [self.requestOperationManager.requestSerializer setValue:@"2eea2a10324f35fe022f02" forHTTPHeaderField:@"X-API-TOKEN"];
+    [self.requestOperationManager.requestSerializer setValue:[[NSUserDefaults standardUserDefaults] valueForKey:@"token"] forHTTPHeaderField:@"X-API-TOKEN"];
     [self.requestOperationManager.requestSerializer setValue:@"76eb29d3ca26fe805545812850e6d75af933214a" forHTTPHeaderField:@"X-API-KEY"];
 
     

@@ -68,7 +68,6 @@ NSMutableData *mutData;
     UIView *separatorLineView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 1)];
     separatorLineView.backgroundColor = [UIColor groupTableViewBackgroundColor];
     [self.tableView.tableFooterView addSubview:separatorLineView];
-    self.tableView.backgroundColor = [UIColor chillMintColor];
     [self logUser];
     
     id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];

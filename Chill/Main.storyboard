@@ -772,19 +772,19 @@ communication experience</string>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="H1B-Zs-gvf" customClass="ButtonToShare1">
                                         <rect key="frame" x="8" y="9" width="38" height="41"/>
-                                        <state key="normal" image="reaction_question">
+                                        <state key="normal">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2vt-s4-lBR" customClass="ButtonToShare1">
                                         <rect key="frame" x="91" y="6" width="37" height="41"/>
-                                        <state key="normal" image="reaction_chill">
+                                        <state key="normal">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tY8-HO-fVN" customClass="ButtonToShare1">
                                         <rect key="frame" x="167" y="8" width="43" height="42"/>
-                                        <state key="normal" image="reaction_rocket">
+                                        <state key="normal">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                     </button>
@@ -808,8 +808,8 @@ communication experience</string>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qJv-ER-0f3">
-                                        <rect key="frame" x="134" y="8" width="34" height="28"/>
-                                        <state key="normal" image="star66"/>
+                                        <rect key="frame" x="134" y="4" width="34" height="36"/>
+                                        <state key="normal" image="star66.png"/>
                                         <connections>
                                             <segue destination="n3S-mg-siN" kind="modal" id="2N9-CI-wJ2">
                                                 <segue key="commit" inheritsFrom="parent" id="eCU-6y-eaM"/>
@@ -869,19 +869,19 @@ communication experience</string>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HmH-bp-PGN" customClass="ButtonToShare1">
                                         <rect key="frame" x="8" y="8" width="38" height="44"/>
-                                        <state key="normal" image="reaction_clock">
+                                        <state key="normal">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fZv-6r-FQg" customClass="ButtonToShare1">
                                         <rect key="frame" x="167" y="10" width="43" height="42"/>
-                                        <state key="normal" image="reaction_soda">
+                                        <state key="normal">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sXw-Tf-trs" customClass="ButtonToShare1">
                                         <rect key="frame" x="88" y="8" width="42" height="40"/>
-                                        <state key="normal" image="reaction_drink">
+                                        <state key="normal">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                     </button>
@@ -2346,24 +2346,18 @@ communication experience</string>
         <image name="picios_right" width="107" height="107"/>
         <image name="reaction_ball" width="33" height="33"/>
         <image name="reaction_book" width="33" height="31"/>
-        <image name="reaction_chill" width="33" height="38"/>
-        <image name="reaction_clock" width="33" height="33"/>
         <image name="reaction_controller" width="33" height="25"/>
         <image name="reaction_dollar" width="33" height="33"/>
-        <image name="reaction_drink" width="29" height="33"/>
         <image name="reaction_heart" width="33" height="29"/>
         <image name="reaction_minus" width="33" height="6"/>
         <image name="reaction_pizza" width="32" height="33"/>
         <image name="reaction_plus" width="33" height="33"/>
-        <image name="reaction_question" width="20" height="39"/>
-        <image name="reaction_rocket" width="33" height="33"/>
         <image name="reaction_sleep" width="32" height="33"/>
-        <image name="reaction_soda" width="22" height="33"/>
         <image name="reaction_telephone" width="33" height="33"/>
         <image name="reaction_trophy" width="33" height="33"/>
         <image name="reaction_waves" width="32" height="33"/>
         <image name="settings" width="26" height="5"/>
-        <image name="star66" width="33" height="33"/>
+        <image name="star66.png" width="66" height="66"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="oIG-5Z-NB0"/>
