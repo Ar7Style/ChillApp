@@ -10,16 +10,28 @@
 #import "HAPaperCollectionViewController.h"
 #import "LLACircularProgressView.h"
 #import <Parse/Parse.h>
+
 #import "GAI.h"
 #import "GAIFields.h"
 #import "GAIDictionaryBuilder.h"
 #import "GAITracker.h"
 
-@interface CHLPaperCollectionCell()
+#import <AFNetworking/AFNetworking.h>
+#import "UIButton+AFNetworking.h"
+
+#import "UserCache.h"
+
+
+
+@interface CHLPaperCollectionCell() {
+    NSArray* json;
+}
 @property(nonatomic, strong) NSMutableData *mutData;
 @property(nonatomic, weak) HAPaperCollectionViewController *viewController;
 @property(nonatomic, strong) NSMutableDictionary *progressViewsDictionary;
 @property(nonatomic, strong) NSString *sendedContentType;
+
+
 @end
 
 @implementation CHLPaperCollectionCell
@@ -44,6 +56,10 @@
         }
     }
     return _viewController;
+}
+
+- (IBAction)showIcon:(ButtonToShow *)sender {
+    
 }
 
 - (NSString*) getDateTime {
@@ -135,33 +151,31 @@ totalBytesExpectedToWrite:(NSInteger)totalBytesExpectedToWrite {
     [self.mutData appendData:data];
 }
 
-- (IBAction)clockButtonTapped:(id)sender {
-    [self shareIconOfType:@"clock"];
-    self.sendedContentType = @"🕒";
-}
-- (IBAction)drinkButtonTapped:(id)sender {
-    [self shareIconOfType:@"beer"];
-    self.sendedContentType = @"🍺";
-}
-- (IBAction)sodaButtonTapped:(id)sender {
-    [self shareIconOfType:@"coffee"];
-    self.sendedContentType = @"☕️";
-}
-- (IBAction)questionButtonTapped:(id)sender {
-    [self shareIconOfType:@"question"];
-    self.sendedContentType = @"❔";
-}
-- (IBAction)chillButtonTapped:(id)sender {
-    [self shareIconOfType:@"logo"];
-    self.sendedContentType = @"✌️";
-}
-- (IBAction)rocketButtonTapped:(id)sender {
-    [self shareIconOfType:@"rocket"];
-    self.sendedContentType = @"🚀";
-}
 
 - (void)awakeFromNib {
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.responseSerializer = [AFJSONResponseSerializer serializer];
+    manager.requestSerializer = [AFJSONRequestSerializer serializer];
+    [manager.requestSerializer setValue:[NSUserDefaults userToken] forHTTPHeaderField:@"X-API-TOKEN"];
+    [manager.requestSerializer setValue:@"76eb29d3ca26fe805545812850e6d75af933214a" forHTTPHeaderField:@"X-API-KEY"];
+    [manager GET:[NSString stringWithFormat:@"http://api.iamchill.co/v2/messages/index/id_user/%@/id_contact/%ld",[NSUserDefaults userID], (long)_friendUserID] parameters:nil success:^(NSURLSessionTask *task, id responseObject) {
+        if ([[responseObject objectForKey:@"status"] isEqualToString:@"success"]) {
+            json = [responseObject objectForKey:@"response"];
+            NSLog(@"ya zagruzilsya");
+
+          
+            }
+        else {
+            NSLog(@"awakeFromNim json fail. id_user: %@, id_contact: %ld, token: %@", [NSUserDefaults userID], (long)_friendUserID, [NSUserDefaults userToken]);
+        }
+        NSLog(@"JSON FROM LOAD DATA: %@", json);
+
+    } failure:^(NSURLSessionTask *operation, NSError *error) {
+        NSLog(@"Error from load data: %@", error);
+    }];
+
 }
+
 
 - (IBAction)reply:(id)sender {
     

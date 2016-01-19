@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CHLFriendsSourcesVC : UITableViewController
+@interface CHLFriendsSourcesVC : UIViewController
 
 @end

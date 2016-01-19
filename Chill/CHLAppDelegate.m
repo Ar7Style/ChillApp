@@ -37,7 +37,7 @@ static NSString *const CHLIsOpenedBeforeKey = @"CHLIsOpenedBeforeKey";
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    NSLog(@"\n\n\n*******************************************\nWELCOME TO CHILL APP\nDevelopers: Tareyev Gregory & Loutskiy Mikhail\n2015 (с) Copyright Chill. All rights reserved.");
+    
     [[UIApplication sharedApplication] cancelAllLocalNotifications];
     [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
     [GMSServices provideAPIKey:@"AIzaSyB0lfyrXe3bodtQ6cAUtCeXR5twEJlolZQ"];
@@ -134,6 +134,9 @@ static NSString *const CHLIsOpenedBeforeKey = @"CHLIsOpenedBeforeKey";
         currentInstallation.badge = 0;
         [currentInstallation saveEventually];
     }
+//    NSUserDefaults *userCache = [[NSUserDefaults standardUserDefaults] initWithSuiteName:@"group.co.getchill.chill"];
+//    [userCache synchronize];
+    
     // ...
 }
 - (void)application:(UIApplication *)application

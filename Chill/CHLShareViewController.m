@@ -2,8 +2,8 @@
 //  CHLShareViewController.m
 //  Chill
 //
-//  Created by Виктор Шаманов on 6/1/14.
-//  Copyright (c) 2014 Chill. All rights reserved.
+//  Created by Gregory Tareyev on 6/1/14.
+//  Copyright (c) 2016 Chill. All rights reserved.
 //
 
 #import "CHLShareViewController.h"
@@ -121,8 +121,6 @@ NSInteger defaultValue = 10;
 }
 
 -(void) getUserIconsFromServer {
-    //_buttonsToShare = [[NSArray alloc] initWithObjects:self.button1, self.button2, self.button3, self.button4, self.button5, self.button6, nil];
-//    NSMutableArray* buttons = [[NSMutableArray alloc] initWithObjects: self.button1, self.button2, self.button3, self.button4, self.button5, self.button6, nil];
     
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.responseSerializer = [AFJSONResponseSerializer serializer];
@@ -140,15 +138,6 @@ NSInteger defaultValue = 10;
                 buttonToShare.typeOfIcon = [NSString stringWithFormat:@"%@",[json[i] valueForKey:@"name"]];
                 [_buttonsToShare[i] addTarget:self action:@selector(sendIcon:) forControlEvents:UIControlEventTouchUpInside];
             }
-            
-                /*
-                [(ButtonToShare1 *)buttons[i] setImageForState:UIControlStateNormal withURL:[NSURL URLWithString:[json[i] valueForKey:@"size66"]]];
-                //buttons[i] = (ButtonToShare *)buttons[i];
-                ButtonToShare1 *buttonToShare;//= [[ButtonToShare1 alloc] init];
-                buttonToShare = buttons[i];
-                buttonToShare.typeOfIcon = [json[i] valueForKey:@"name"];
-                [buttons[i] addTarget:self action:@selector(sendIcon:) forControlEvents:UIControlEventTouchUpInside];
-                 */
             
             NSLog(@"JSON FROM LOAD DATA: %@", json);
         }
@@ -318,7 +307,7 @@ NSInteger defaultValue = 10;
         
         [_locationManager startUpdatingLocation];
         self.sendedContentType = @"location";
-        [_locationManager stopUpdatingLocation];
+        //[_locationManager stopUpdatingLocation];
         
         id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
         [tracker set:kGAIScreenName value:@"Share screen"];
@@ -332,6 +321,7 @@ NSInteger defaultValue = 10;
         [self.progressViewsDictionary setObject:progressView forKey:[NSNumber numberWithInteger:self.userIdTo]];
         
         [(UINavigationController *)self.parentViewController popToRootViewControllerAnimated:YES];
+        [_locationManager stopUpdatingLocation];
     }
 }
 

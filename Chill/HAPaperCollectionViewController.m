@@ -21,13 +21,21 @@
 #import <Parse/Parse.h>
 #import "MPTransition.h"
 #import "UserCache.h"
+
 #import <AFNetworking/AFNetworking.h>
 #import "UIButton+AFNetworking.h"
+
 #import "CHLDisplayPhotoViewController.h"
+
 #import "GAI.h"
 #import "GAIFields.h"
 #import "GAIDictionaryBuilder.h"
 #import "GAITracker.h"
+
+
+@implementation ButtonToShow
+
+@end
 
 @interface HAPaperCollectionViewController () <MBProgressHUDDelegate>{
     NSArray *json;
@@ -77,13 +85,13 @@
     geocoder_ = [[GMSGeocoder alloc] init];
     transitionManager=[[MPTransition alloc] init];
     self.transitioningDelegate=transitionManager;
+    
     pan=[[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(pan:)];
     [self.view addGestureRecognizer:pan];
     self.navigationController.view.layer.cornerRadius=6;
     self.navigationController.view.clipsToBounds=YES;
     
     UIButton* closeButton = [[UIButton alloc]init];
-
     if([[UIDevice currentDevice]userInterfaceIdiom]==UIUserInterfaceIdiomPhone)
     {
         if ([[UIScreen mainScreen] bounds].size.height <= 568) // <= iphone 5
@@ -232,16 +240,14 @@
     }
     
     else {
-            MessagesJSON *location = [_locations objectAtIndex:indexPath.row];
             CHLPaperCollectionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:CELL_ID forIndexPath:indexPath];
-            NSArray *buttons = [[NSArray alloc] initWithObjects:cell.icon1, cell.icon2, cell.icon3, cell.icon4, cell.icon5, nil];
             cell.textLabel1.tag = 1;
             cell.textLabel2.tag = 2;
             cell.textLabel3.tag = 3;
             cell.textLabel4.tag = 4;
             cell.textLabel5.tag = 5;
-            for (UIButton* button in buttons)
-                [button setHidden:YES];
+        for (ButtonToShow* button in cell.buttonsToShow)
+            [button setHidden:YES];
         
             AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
             manager.responseSerializer = [AFJSONResponseSerializer serializer];
@@ -252,12 +258,15 @@
                 if ([[responseObject objectForKey:@"status"] isEqualToString:@"success"]) {
                     json = [responseObject objectForKey:@"response"];
                     
+                    
                     for (int i=0; i<json.count; ++i) {
                         UILabel* textLabel = (UILabel *)[cell viewWithTag:i+1];
-                        [buttons[i] setImageForState:UIControlStateNormal withURL:[NSURL URLWithString:[json[i] valueForKey:@"size66"]]];
-                        [buttons[i] setHidden:NO];
+                        [cell.buttonsToShow[i] setImageForState:UIControlStateNormal withURL:[NSURL URLWithString:[json[i] valueForKey:@"size66"]]];
+                        [cell.buttonsToShow[i] setHidden:NO];
                         if ([[json[i] valueForKey:@"type"] isEqualToString:@"location"]) {
-                            [buttons[i] addTarget:self action:@selector(displayMap:) forControlEvents:UIControlEventTouchUpInside];
+                            ButtonToShow* myButton = cell.buttonsToShow[i];
+                            myButton.locationData = [json[i] valueForKey:@"content"];
+                            [cell.buttonsToShow[i] addTarget:self action:@selector(displayMap:) forControlEvents:UIControlEventTouchUpInside];
                             
                             NSString *aString = [json[i] valueForKey:@"content"];
                             NSArray *arrayLOC = [aString componentsSeparatedByCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
@@ -278,7 +287,9 @@
                             [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
                         }
                         else if ([[json[i] valueForKey:@"type"] isEqualToString:@"parse"]) {
-                            [buttons[i] addTarget:self action:@selector(displayPhoto:) forControlEvents:UIControlEventTouchUpInside];
+                            ButtonToShow *myButton = cell.buttonsToShow[i];
+                            myButton.linkToIconImage = [json[i] valueForKey:@"content"];
+                            [cell.buttonsToShow[i] addTarget:self action:@selector(displayPhoto:) forControlEvents:UIControlEventTouchUpInside];
                             textLabel.text = [NSString stringWithFormat:@"Press the icon"];
                         }
                         else {
@@ -307,10 +318,9 @@
         }
 }
 
--(void) displayMap:(int)number {
-    for (int i=0; i<json.count; ++i) {
-        if ([[json[i] valueForKey:@"type"] isEqualToString:@"location"]) {
-            NSString *aString = [json[i] valueForKey:@"content"];
+-(void) displayMap:(ButtonToShow *)sender {
+    
+            NSString *aString = sender.locationData;
             NSArray *arrayLOC = [aString componentsSeparatedByCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
             arrayLOC = [arrayLOC filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"SELF != ''"]];
             
@@ -328,23 +338,18 @@
             vc.location = location;
             [self presentViewController:vc animated:NO completion:nil];
 
-        }
-    }
+    
+    
 }
 
--(void) displayPhoto:(id)sender {
-    for (int i = 0; i<json.count; ++i) {
-        if ([[json[i] valueForKey:@"type"] isEqualToString:@"parse"]) {
+-(void) displayPhoto:(ButtonToShow *)sender {
     
             UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
             CHLDisplayPhotoViewController *dpvc = [storyboard instantiateViewControllerWithIdentifier:@"CHLDisplayPhotoViewController"];
-            dpvc.json = json;
-            dpvc.i  = i;
-            [dpvc.photoSpace setImageWithURL:[NSURL URLWithString:[json[i] valueForKey:@"content"]]];
-            //dpvc.photoSpace.contentMode = UIViewContentModeScaleAspectFill;
+            dpvc.urlOfImage = sender.linkToIconImage;
+    
             [self presentViewController:dpvc animated:NO completion:nil];
-        }
-    }
+    
 }
 
 //wow, such aMethod

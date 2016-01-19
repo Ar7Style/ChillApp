@@ -44,6 +44,7 @@
     
     NSUserDefaults *userCache = [[NSUserDefaults standardUserDefaults] initWithSuiteName:@"group.co.getchill.chill"];
     [userCache setValue:@"1" forKey:@"isEntry"];
+    [userCache synchronize];
     
     CHLTutorialPageContentViewController *startingViewController = [self viewControllerAtIndex:0];
     NSArray *viewControllers = @[startingViewController];

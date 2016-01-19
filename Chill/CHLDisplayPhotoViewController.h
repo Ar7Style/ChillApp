@@ -14,6 +14,7 @@
 }
 
 @property (weak, nonatomic) IBOutlet UIImageView *photoSpace;
+@property (strong, nonatomic) NSString* urlOfImage;
 //@property (weak, nonatomic) IBOutlet UIImageView *photoSpace;
 @property (weak, nonatomic) NSArray *json;
 @property int i;

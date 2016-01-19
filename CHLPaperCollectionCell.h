@@ -8,11 +8,23 @@
 
 #import <UIKit/UIKit.h>
 
+
+
+@interface ButtonToShow : UIButton
+@property (weak, nonatomic) NSArray *jsonArray;
+@property (nonatomic, strong) NSString *linkToIconImage;
+@property (nonatomic, strong) NSString *locationData;
+@end
+
+
 @interface CHLPaperCollectionCell : UICollectionViewCell
 
 @property (weak, nonatomic) IBOutlet UIView *placeholderContentView;
 @property (weak, nonatomic) IBOutlet UILabel *cellLabel;
-@property (weak, nonatomic) IBOutlet UIImageView *timeLineImage;
+@property (strong, nonatomic) IBOutletCollection(ButtonToShow) NSArray *buttonsToShow;
+
+
+
 @property (readwrite) NSInteger friendUserID;
 
 @property (weak, nonatomic) IBOutlet UIButton *icon1;

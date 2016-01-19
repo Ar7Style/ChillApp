@@ -73,7 +73,6 @@
 		02CC30D21A572600006C1294 /* add_people@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 02CC30D11A572600006C1294 /* add_people@2x.png */; };
 		02CC30D51A5728A9006C1294 /* back@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 02CC30D41A5728A9006C1294 /* back@2x.png */; };
 		02CC30D81A57343E006C1294 /* avatar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 02CC30D71A57343E006C1294 /* avatar@2x.png */; };
-		02CF5EB71A5EE49100C71C8D /* PromoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 02CF5EB61A5EE49100C71C8D /* PromoViewController.m */; };
 		02E0A7A01A62FE2600BFEF5F /* Chilllogogrey.png in Resources */ = {isa = PBXBuildFile; fileRef = 02E0A79F1A62FE2600BFEF5F /* Chilllogogrey.png */; };
 		060848DF1AC0BF1F003EBE90 /* Portrait 2.png in Resources */ = {isa = PBXBuildFile; fileRef = 060848DE1AC0BF1F003EBE90 /* Portrait 2.png */; };
 		060848E11AC0BF24003EBE90 /* Portrait 3 (0).png in Resources */ = {isa = PBXBuildFile; fileRef = 060848E01AC0BF24003EBE90 /* Portrait 3 (0).png */; };
@@ -411,8 +410,6 @@
 		02CC30D11A572600006C1294 /* add_people@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "add_people@2x.png"; sourceTree = "<group>"; };
 		02CC30D41A5728A9006C1294 /* back@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "back@2x.png"; sourceTree = "<group>"; };
 		02CC30D71A57343E006C1294 /* avatar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "avatar@2x.png"; sourceTree = "<group>"; };
-		02CF5EB51A5EE49100C71C8D /* PromoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PromoViewController.h; sourceTree = "<group>"; };
-		02CF5EB61A5EE49100C71C8D /* PromoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PromoViewController.m; sourceTree = "<group>"; };
 		02E0A79F1A62FE2600BFEF5F /* Chilllogogrey.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Chilllogogrey.png; sourceTree = "<group>"; };
 		060848DE1AC0BF1F003EBE90 /* Portrait 2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Portrait 2.png"; sourceTree = "<group>"; };
 		060848E01AC0BF24003EBE90 /* Portrait 3 (0).png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Portrait 3 (0).png"; sourceTree = "<group>"; };
@@ -1065,8 +1062,6 @@
 				025B2B481A18CC4F00857E83 /* AUTHViewController.m */,
 				025B2B551A1A677500857E83 /* APPROVEDViewController.h */,
 				025B2B561A1A677500857E83 /* APPROVEDViewController.m */,
-				02CF5EB51A5EE49100C71C8D /* PromoViewController.h */,
-				02CF5EB61A5EE49100C71C8D /* PromoViewController.m */,
 			);
 			name = Auth;
 			sourceTree = "<group>";
@@ -1762,7 +1757,6 @@
 				02B8F8621A62BEDC0068F3D5 /* MPTransition.m in Sources */,
 				E6C7C1DD191A1B230071D83F /* main.m in Sources */,
 				025B2B571A1A677600857E83 /* APPROVEDViewController.m in Sources */,
-				02CF5EB71A5EE49100C71C8D /* PromoViewController.m in Sources */,
 				067689C11C43E45B00A89735 /* CHLDisplayPhotoViewController.m in Sources */,
 				0629B2D91C41591C0038F2D0 /* ASServerManager.m in Sources */,
 				53EA0C231C01328300E161C6 /* UserCache.m in Sources */,

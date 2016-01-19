@@ -15,6 +15,7 @@
 +(NSString *) userLogin;
 +(NSString *) userPicture;
 +(NSString *) userType;
++(NSString *) isEntry;
 +(BOOL) isAuth;
 +(BOOL) showGuide;
 +(BOOL) isAprooved;

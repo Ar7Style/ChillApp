@@ -44,11 +44,11 @@ NSMutableData *mutData;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName: [UIColor whiteColor]};
+    //self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName: [UIColor whiteColor]};
     self.navigationController.view.clipsToBounds=YES;
     self.tableView.tableFooterView = [UIView new];
-    self.navigationController.navigationBar.barTintColor = [UIColor chillMintColor];
-    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+    //self.navigationController.navigationBar.barTintColor = [UIColor chillMintColor];
+    //[[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     _searchBar.delegate = self;
 }
 

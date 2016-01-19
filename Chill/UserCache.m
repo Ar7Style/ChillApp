@@ -30,6 +30,9 @@
 +(NSString *)userType {
     return [self NSUserDefaultsString:@"Type"];
 }
++(NSString *)isEntry {
+    return [self NSUserDefaultsString:@"isEntry"];
+}
 +(BOOL)isAuth {
     return [self NSUserDefaultsBool:@"isAuth"];
 }

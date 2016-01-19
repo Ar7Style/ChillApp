@@ -31,8 +31,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.navigationController.navigationBar.barTintColor = [UIColor chillMintColor];
-    self.tableView.backgroundColor = [UIColor whiteColor];
+    //[self.navigationController.title
+    [self.navigationController.navigationBar
+     setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor colorWithRed:166.0/255.0 green:166.0/255.0 blue:166.0/255.0 alpha:1.0]}];
+    self.navigationController.navigationBar.barTintColor = [UIColor whiteColor];
+    
     NSUserDefaults *userCache = [[NSUserDefaults standardUserDefaults] initWithSuiteName:@"group.co.getchill.chill"];
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.responseSerializer = [AFJSONResponseSerializer serializer];
@@ -63,8 +66,8 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    [self.tableView setBackgroundView:nil];
-    [self addInvitationView];
+    //[self.tableView setBackgroundView:nil];
+    //[self addInvitationView];
 }
 - (void) errorShow: (NSString*)message {
     UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Error"
@@ -108,30 +111,30 @@
     
 }
 
-- (void)addInvitationView {
-        self.invitationView = [[UIView alloc] initWithFrame:self.tableView.bounds];
-        self.invitationView.userInteractionEnabled = NO;
-        
-        UILabel *mainLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0.55 * self.invitationView.frame.size.height, self.invitationView.frame.size.width, 70)];
-        mainLabel.text = [NSString stringWithFormat:@"Search for friends"];
-        mainLabel.textAlignment = NSTextAlignmentCenter;
-        mainLabel.textColor = [UIColor chillMintColor];
-        mainLabel.font = [UIFont boldSystemFontOfSize:26];
-        
-       // mainLabel.numberOfLines = 1;
-        [self.invitationView addSubview:mainLabel];
-        
-        UILabel *subLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0.55 * self.invitationView.frame.size.height + 50, self.invitationView.frame.size.width, 70)];
-        subLabel.text = @"or invite from\nTwitter / Facebook";
-        subLabel.textAlignment = NSTextAlignmentCenter;
-        subLabel.textColor = [UIColor grayColor];
-        subLabel.font = [UIFont systemFontOfSize:20];
-        subLabel.numberOfLines = 2;
-        [self.invitationView addSubview:subLabel];
-        
-        [self.tableView setBackgroundView:self.invitationView];
-   
-}
+//- (void)addInvitationView {
+//        self.invitationView = [[UIView alloc] initWithFrame:self.tableView.bounds];
+//        self.invitationView.userInteractionEnabled = NO;
+//        
+//        UILabel *mainLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0.55 * self.invitationView.frame.size.height, self.invitationView.frame.size.width, 70)];
+//        mainLabel.text = [NSString stringWithFormat:@"Search for friends"];
+//        mainLabel.textAlignment = NSTextAlignmentCenter;
+//        mainLabel.textColor = [UIColor chillMintColor];
+//        mainLabel.font = [UIFont boldSystemFontOfSize:26];
+//        
+//       // mainLabel.numberOfLines = 1;
+//        [self.invitationView addSubview:mainLabel];
+//        
+//        UILabel *subLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0.55 * self.invitationView.frame.size.height + 50, self.invitationView.frame.size.width, 70)];
+//        subLabel.text = @"or invite from\nTwitter / Facebook";
+//        subLabel.textAlignment = NSTextAlignmentCenter;
+//        subLabel.textColor = [UIColor grayColor];
+//        subLabel.font = [UIFont systemFontOfSize:20];
+//        subLabel.numberOfLines = 2;
+//        [self.invitationView addSubview:subLabel];
+//        
+//        [self.tableView setBackgroundView:self.invitationView];
+//   
+//}
 
 
 @end

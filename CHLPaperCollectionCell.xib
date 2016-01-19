@@ -34,7 +34,7 @@
                                 <rect key="frame" x="37" y="48" width="246" height="411"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pHs-y3-ilT">
-                                        <rect key="frame" x="66" y="331" width="174" height="40"/>
+                                        <rect key="frame" x="66" y="326" width="174" height="40"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="NIG-g4-wP5"/>
                                             <constraint firstAttribute="width" constant="174" id="p33-rb-BbH"/>
@@ -44,7 +44,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yoZ-lP-00l">
-                                        <rect key="frame" x="66" y="189" width="174" height="40"/>
+                                        <rect key="frame" x="66" y="184" width="174" height="40"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="GZ9-7b-Ssu"/>
                                             <constraint firstAttribute="width" constant="174" id="afJ-ef-f0k"/>
@@ -54,7 +54,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LRZ-tG-DWD">
-                                        <rect key="frame" x="66" y="259" width="174" height="40"/>
+                                        <rect key="frame" x="66" y="254" width="174" height="40"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="xRQ-EU-I6K"/>
                                             <constraint firstAttribute="width" constant="174" id="yF2-7S-ipa"/>
@@ -63,14 +63,14 @@
                                         <color key="textColor" red="0.65098039220000004" green="0.65098039220000004" blue="0.65098039220000004" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wzq-wC-0dk">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wzq-wC-0dk" customClass="ButtonToShow">
                                         <rect key="frame" x="8" y="45" width="36" height="35"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="36" id="EUZ-TF-p6F"/>
                                             <constraint firstAttribute="height" constant="35" id="ZLM-iw-VEE"/>
                                         </constraints>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ozp-gY-KUQ">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ozp-gY-KUQ" customClass="ButtonToShow">
                                         <rect key="frame" x="8" y="116" width="36" height="35"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="36" id="OCD-i9-ekm"/>
@@ -78,7 +78,7 @@
                                         </constraints>
                                         <state key="normal" image="reaction_book"/>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hDg-7N-Cu6">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hDg-7N-Cu6" customClass="ButtonToShow">
                                         <rect key="frame" x="8" y="187" width="36" height="35"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="36" id="HZl-0B-z3c"/>
@@ -86,7 +86,7 @@
                                         </constraints>
                                         <state key="normal" image="picios_right"/>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pu6-g2-KHR">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pu6-g2-KHR" customClass="ButtonToShow">
                                         <rect key="frame" x="8" y="258" width="36" height="35"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="36" id="Men-o6-K79"/>
@@ -95,7 +95,7 @@
                                         <state key="normal" image="reaction_ball"/>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3iz-lX-A4I">
-                                        <rect key="frame" x="66" y="45" width="174" height="40"/>
+                                        <rect key="frame" x="66" y="40" width="174" height="40"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="Qge-XB-5g7"/>
                                             <constraint firstAttribute="width" constant="174" id="nWE-z1-dRN"/>
@@ -104,7 +104,7 @@
                                         <color key="textColor" red="0.65098039220000004" green="0.65098039220000004" blue="0.65098039220000004" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Knn-yU-Odv">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Knn-yU-Odv" customClass="ButtonToShow">
                                         <rect key="frame" x="8" y="329" width="36" height="35"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="36" id="Grk-jd-W92"/>
@@ -129,7 +129,7 @@
                                     <constraint firstItem="wzq-wC-0dk" firstAttribute="top" secondItem="MQ8-2k-Chz" secondAttribute="top" constant="45" id="ciY-IU-T7w"/>
                                     <constraint firstItem="pu6-g2-KHR" firstAttribute="leading" secondItem="MQ8-2k-Chz" secondAttribute="leading" constant="8" id="dEH-wS-Sie"/>
                                     <constraint firstItem="Ozp-gY-KUQ" firstAttribute="top" secondItem="wzq-wC-0dk" secondAttribute="bottom" constant="36" id="fa0-yK-keo"/>
-                                    <constraint firstItem="3iz-lX-A4I" firstAttribute="top" secondItem="MQ8-2k-Chz" secondAttribute="top" constant="45" id="lk1-gS-87J"/>
+                                    <constraint firstItem="3iz-lX-A4I" firstAttribute="top" secondItem="MQ8-2k-Chz" secondAttribute="top" constant="40" id="lk1-gS-87J"/>
                                     <constraint firstItem="3iz-lX-A4I" firstAttribute="leading" secondItem="wzq-wC-0dk" secondAttribute="trailing" constant="22" id="oQW-Yo-Z95"/>
                                     <constraint firstItem="yoZ-lP-00l" firstAttribute="leading" secondItem="hDg-7N-Cu6" secondAttribute="trailing" constant="22" id="pMw-va-itI"/>
                                     <constraint firstAttribute="height" constant="411" id="pUa-Qz-QwU"/>
@@ -137,7 +137,7 @@
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hD5-EF-WFZ">
-                                <rect key="frame" x="103" y="169" width="174" height="40"/>
+                                <rect key="frame" x="103" y="164" width="174" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="Jet-vI-0rb"/>
                                     <constraint firstAttribute="width" constant="174" id="Qor-Z2-ZZo"/>
@@ -175,17 +175,17 @@
                 </mask>
             </variation>
             <connections>
-                <outlet property="icon1" destination="wzq-wC-0dk" id="fZG-bT-fn0"/>
-                <outlet property="icon2" destination="Ozp-gY-KUQ" id="Dhj-WH-pzj"/>
-                <outlet property="icon3" destination="hDg-7N-Cu6" id="lkk-Xr-R4P"/>
-                <outlet property="icon4" destination="pu6-g2-KHR" id="Dp4-QB-r3p"/>
-                <outlet property="icon5" destination="Knn-yU-Odv" id="Qk9-br-Fh2"/>
                 <outlet property="replyButton" destination="yqj-fr-4Hh" id="d2s-gx-5CU"/>
                 <outlet property="textLabel1" destination="3iz-lX-A4I" id="uU2-Df-jur"/>
                 <outlet property="textLabel2" destination="hD5-EF-WFZ" id="6MW-k2-5Tl"/>
                 <outlet property="textLabel3" destination="yoZ-lP-00l" id="CTX-bx-Tt9"/>
                 <outlet property="textLabel4" destination="LRZ-tG-DWD" id="eIL-dt-hkN"/>
                 <outlet property="textLabel5" destination="pHs-y3-ilT" id="Zwd-8L-pI2"/>
+                <outletCollection property="buttonsToShow" destination="wzq-wC-0dk" id="lHv-9F-2Y4"/>
+                <outletCollection property="buttonsToShow" destination="Ozp-gY-KUQ" id="1qO-3H-boA"/>
+                <outletCollection property="buttonsToShow" destination="hDg-7N-Cu6" id="RH8-Wh-Z4j"/>
+                <outletCollection property="buttonsToShow" destination="pu6-g2-KHR" id="7i1-hI-ynI"/>
+                <outletCollection property="buttonsToShow" destination="Knn-yU-Odv" id="keb-Bo-TYs"/>
             </connections>
             <point key="canvasLocation" x="300" y="364"/>
         </collectionViewCell>
