@@ -212,21 +212,39 @@ NSMutableData *mutData;
 }
 
 - (void)addFriendFromIndex:(NSInteger)index {
+    NSUserDefaults *userCache = [[NSUserDefaults standardUserDefaults] initWithSuiteName:@"group.co.getchill.chill"];
+    
+    NSMutableURLRequest *requestToNotify =
+    [[NSMutableURLRequest alloc] initWithURL:
+     [NSURL URLWithString:@"http://api.iamchill.co/v2/notifications/contact"]]; //contacts/index
     NSMutableURLRequest *request =
     [[NSMutableURLRequest alloc] initWithURL:
-     [NSURL URLWithString:@"http://api.iamchill.co/v2/notifications/contact"]];
+     [NSURL URLWithString:@"http://api.iamchill.co/v2/contacts/index"]];
     
     [request setHTTPMethod:@"POST"];
-    [request setValue:[[NSUserDefaults standardUserDefaults] valueForKey:@"token"] forHTTPHeaderField:@"X-API-TOKEN"]; [request setValue:@"76eb29d3ca26fe805545812850e6d75af933214a" forHTTPHeaderField:@"X-API-KEY"];
-
-    NSUserDefaults *userCache = [[NSUserDefaults standardUserDefaults] initWithSuiteName:@"group.co.getchill.chill"];
+    [request setValue:[[NSUserDefaults standardUserDefaults] valueForKey:@"token"] forHTTPHeaderField:@"X-API-TOKEN"];
+    [request setValue:@"76eb29d3ca26fe805545812850e6d75af933214a" forHTTPHeaderField:@"X-API-KEY"];
+    
     SearchJSON *location = [_locations objectAtIndex:index];
     friendUserId = [location.id_user integerValue];
     NSString *postString = [NSString stringWithFormat:@"id_user=%@&id_contact=%ld",[userCache valueForKey:@"id_user"],(long)friendUserId];
     
     [request setHTTPBody:[postString
+                                  dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    [requestToNotify setHTTPMethod:@"POST"];
+    [requestToNotify setValue:[[NSUserDefaults standardUserDefaults] valueForKey:@"token"] forHTTPHeaderField:@"X-API-TOKEN"];
+    [requestToNotify setValue:@"76eb29d3ca26fe805545812850e6d75af933214a" forHTTPHeaderField:@"X-API-KEY"];
+
+    
+    SearchJSON *locationTN = [_locations objectAtIndex:index];
+    friendUserId = [locationTN.id_user integerValue];
+    NSString *postStringTN = [NSString stringWithFormat:@"id_user=%@&id_contact=%ld",[userCache valueForKey:@"id_user"],(long)friendUserId];
+    
+    [requestToNotify setHTTPBody:[postStringTN
                           dataUsingEncoding:NSUTF8StringEncoding]];
     
+    NSURLConnection *connectionTN = [[NSURLConnection alloc] initWithRequest:requestToNotify delegate:self];
     NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
     if (connection)
     {

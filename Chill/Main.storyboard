@@ -190,6 +190,7 @@ communication experience</string>
                         <outlet property="passwordField1" destination="sfB-5p-KfX" id="y6g-F4-eQe"/>
                         <outlet property="viewMain" destination="dtY-Ij-djv" id="srd-qn-wBO"/>
                         <segue destination="HBm-Pa-dSi" kind="push" identifier="toTutorialViewController" id="jnP-xo-jaE"/>
+                        <segue destination="6Br-Ah-G4d" kind="push" identifier="toPromocodeViewController" id="1DC-Bm-2u0"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KOO-uE-FjK" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1537,7 +1538,7 @@ communication experience</string>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pCc-Kc-QFw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="224" y="-175"/>
+            <point key="canvasLocation" x="546" y="-127"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="TQr-Tt-rya">
@@ -2344,6 +2345,7 @@ communication experience</string>
                     </navigationItem>
                     <connections>
                         <outlet property="collectionView" destination="DLK-Xr-pvQ" id="8PI-jM-SRG"/>
+                        <outlet property="doneButton" destination="lgX-h1-2da" id="A3C-E4-tt6"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9RW-ly-w29" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -2427,10 +2429,10 @@ communication experience</string>
             </objects>
             <point key="canvasLocation" x="700" y="1326"/>
         </scene>
-        <!--View Controller-->
+        <!--Promo View Controller-->
         <scene sceneID="Tfc-Al-KsZ">
             <objects>
-                <viewController storyboardIdentifier="PromoVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="6Br-Ah-G4d" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PromoVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="6Br-Ah-G4d" customClass="CHLPromoViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="enz-oV-Zzx"/>
                         <viewControllerLayoutGuide type="bottom" id="kQQ-6P-lOA"/>
@@ -2502,6 +2504,9 @@ Enter to get perks from Chill</string>
                                 <state key="normal" title="Go!">
                                     <color key="titleColor" red="0.10196078431372549" green="0.7803921568627451" blue="0.5607843137254902" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="goButtonPressed:" destination="6Br-Ah-G4d" eventType="touchUpInside" id="bzs-AE-mV1"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PMF-Fl-bm3">
                                 <rect key="frame" x="227" y="518" width="43" height="30"/>
@@ -2513,6 +2518,9 @@ Enter to get perks from Chill</string>
                                 <state key="normal" title="Skip">
                                     <color key="titleColor" red="0.10196078431372549" green="0.7803921568627451" blue="0.5607843137254902" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="skipButtonPressed:" destination="6Br-Ah-G4d" eventType="touchUpInside" id="vDI-vA-mvV"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -2540,10 +2548,16 @@ Enter to get perks from Chill</string>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="gys-KU-RUO"/>
+                    <connections>
+                        <outlet property="goButton" destination="Yly-79-Phh" id="tWi-gr-DrM"/>
+                        <outlet property="promocodeTextField" destination="w2Q-KX-xxp" id="RbX-9X-oIC"/>
+                        <outlet property="skipButton" destination="PMF-Fl-bm3" id="4fm-bN-m4s"/>
+                        <segue destination="HBm-Pa-dSi" kind="push" identifier="toTutorialFromPromoVC" id="7n3-ts-55s"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6Mf-TY-wuK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="929" y="-340"/>
+            <point key="canvasLocation" x="-1307" y="-12"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="s3Q-T0-JZu">
@@ -2591,9 +2605,10 @@ Enter to get perks from Chill</string>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="oIG-5Z-NB0"/>
-        <segue reference="trd-p3-6se"/>
-        <segue reference="5k2-BS-7Gc"/>
-        <segue reference="3UD-BD-gem"/>
         <segue reference="2N9-CI-wJ2"/>
+        <segue reference="7n3-ts-55s"/>
+        <segue reference="PCg-wO-fl3"/>
+        <segue reference="uRT-eD-pGx"/>
+        <segue reference="6oC-Wi-vI9"/>
     </inferredMetricsTieBreakers>
 </document>

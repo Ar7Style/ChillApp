@@ -110,6 +110,7 @@
 		065C624F1C103FA1008A2921 /* x-2.png in Resources */ = {isa = PBXBuildFile; fileRef = 065C624E1C103FA1008A2921 /* x-2.png */; };
 		065C62511C10EA89008A2921 /* star.png in Resources */ = {isa = PBXBuildFile; fileRef = 065C62501C10EA89008A2921 /* star.png */; };
 		065C62531C10EB13008A2921 /* star66.png in Resources */ = {isa = PBXBuildFile; fileRef = 065C62521C10EB13008A2921 /* star66.png */; };
+		065C6CB61C4EF10900CB0E68 /* CHLPromoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 065C6CB51C4EF10900CB0E68 /* CHLPromoViewController.m */; };
 		0665FBE11ADDB2640075D400 /* Waitlist.png in Resources */ = {isa = PBXBuildFile; fileRef = 0665FBE01ADDB2640075D400 /* Waitlist.png */; };
 		0670540A1B04EEC300BBA3AA /* icon24@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 067054021B04EEC300BBA3AA /* icon24@2x.png */; };
 		0670540D1B04EEC300BBA3AA /* icon24@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 067054031B04EEC300BBA3AA /* icon24@3x.png */; };
@@ -453,6 +454,8 @@
 		065C624E1C103FA1008A2921 /* x-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "x-2.png"; sourceTree = "<group>"; };
 		065C62501C10EA89008A2921 /* star.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = star.png; sourceTree = "<group>"; };
 		065C62521C10EB13008A2921 /* star66.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = star66.png; sourceTree = "<group>"; };
+		065C6CB41C4EF10900CB0E68 /* CHLPromoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHLPromoViewController.h; sourceTree = "<group>"; };
+		065C6CB51C4EF10900CB0E68 /* CHLPromoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHLPromoViewController.m; sourceTree = "<group>"; };
 		0665FBE01ADDB2640075D400 /* Waitlist.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Waitlist.png; sourceTree = "<group>"; };
 		067054021B04EEC300BBA3AA /* icon24@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon24@2x.png"; sourceTree = "<group>"; };
 		067054031B04EEC300BBA3AA /* icon24@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon24@3x.png"; sourceTree = "<group>"; };
@@ -1062,6 +1065,8 @@
 				025B2B481A18CC4F00857E83 /* AUTHViewController.m */,
 				025B2B551A1A677500857E83 /* APPROVEDViewController.h */,
 				025B2B561A1A677500857E83 /* APPROVEDViewController.m */,
+				065C6CB41C4EF10900CB0E68 /* CHLPromoViewController.h */,
+				065C6CB51C4EF10900CB0E68 /* CHLPromoViewController.m */,
 			);
 			name = Auth;
 			sourceTree = "<group>";
@@ -1766,6 +1771,7 @@
 				029ED8F21A54E43B0084D04B /* HACollectionViewLargeLayout.m in Sources */,
 				025B2B491A18CC4F00857E83 /* AUTHViewController.m in Sources */,
 				AD39F35B1B6052AF003936C4 /* CHLFriendsSourcesVC.m in Sources */,
+				065C6CB61C4EF10900CB0E68 /* CHLPromoViewController.m in Sources */,
 				06F3318D1B721A710064BD1C /* CHLInviteFromAddressBookViewController.m in Sources */,
 				ADAE943D1AA280D200DBF97E /* LLACircularProgressView.m in Sources */,
 				E60427AA196F191C000F8F02 /* CHLAddressBookViewController.m in Sources */,

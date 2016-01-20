@@ -99,7 +99,8 @@
     
     NSUserDefaults *userCache = [[NSUserDefaults standardUserDefaults] initWithSuiteName:@"group.co.getchill.chill"];
     
-    
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+
     if (![_loginField1.text isEqualToString:@""] && ![_passwordField1.text isEqualToString:@""]){
         
         AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
@@ -117,6 +118,7 @@
                 [NSUserDefaults setValue:[[responseObject valueForKey:@"response"] valueForKey:@"id_user"] forKey:@"id_user"];
                 [NSUserDefaults setValue:_loginField1.text forKey:@"login_user"];
                 [NSUserDefaults setValue:[[responseObject valueForKey:@"response"] valueForKey:@"token"] forKey:@"token"];
+                [NSUserDefaults setValue:[[responseObject valueForKey:@"response"] valueForKey:@"auth"] forKey:@"isEntry"];
                 
                 PFInstallation *currentInstallation = [PFInstallation currentInstallation];
                 [currentInstallation addUniqueObject:[NSString stringWithFormat:@"us%@",[NSUserDefaults userID]] forKey:@"channels"];
@@ -150,11 +152,10 @@
                         NSError *error;
                         
                         [session updateApplicationContext:@{@"userID": [NSUserDefaults userID], @"token":[NSUserDefaults userToken], @"isAuth":@"true", @"isApproved": @"true"} error:&error];
-                        if ([[userCache valueForKey:@"isEntry"] isEqualToString:@"0"])
-                            [self performSegueWithIdentifier:@"toTutorialViewController" sender:self];
+                        if ([[[responseObject valueForKey:@"response"] valueForKey:@"auth"] isEqualToString:@"1"])
+                            [self performSegueWithIdentifier:@"toPromocodeViewController" sender:self];
                         else
                         {
-                            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
                             
                             UIViewController *friendListViewController = (UIViewController *)[storyboard  instantiateViewControllerWithIdentifier:@"CHLFriendsListViewController"];
                             
@@ -162,8 +163,6 @@
                             [self dismissViewControllerAnimated:YES completion:nil];
                             [self.navigationController pushViewController:friendListViewController animated:YES];
                             
-                            //                            [self dismissViewControllerAnimated:YES completion:nil];
-                            //                            [self.navigationController popViewControllerAnimated:YES];
                         }
                     }
                     
