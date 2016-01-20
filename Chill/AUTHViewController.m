@@ -152,7 +152,9 @@
                         NSError *error;
                         
                         [session updateApplicationContext:@{@"userID": [NSUserDefaults userID], @"token":[NSUserDefaults userToken], @"isAuth":@"true", @"isApproved": @"true"} error:&error];
-                        if ([[[responseObject valueForKey:@"response"] valueForKey:@"auth"] isEqualToString:@"1"])
+                        NSLog(@"auth: %@", [[responseObject valueForKey:@"response"] valueForKey:@"auth"]);
+                        NSString* auth =[NSString stringWithFormat:@"%@", [[responseObject valueForKey:@"response"] valueForKey:@"auth"]];
+                        if ([[[responseObject valueForKey:@"response"] valueForKey:@"auth"] isEqualToString:@"0"])
                             [self performSegueWithIdentifier:@"toPromocodeViewController" sender:self];
                         else
                         {

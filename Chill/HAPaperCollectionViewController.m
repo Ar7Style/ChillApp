@@ -290,7 +290,7 @@
                             ButtonToShow *myButton = cell.buttonsToShow[i];
                             myButton.linkToIconImage = [json[i] valueForKey:@"content"];
                             [cell.buttonsToShow[i] addTarget:self action:@selector(displayPhoto:) forControlEvents:UIControlEventTouchUpInside];
-                            textLabel.text = [NSString stringWithFormat:@"Press the icon"];
+                            textLabel.text = [NSString stringWithFormat:@"Press to open"];
                         }
                         else {
                         textLabel.text = [NSString stringWithFormat:@"%@", [[json[i] valueForKey:@"text"] isEqualToString:@""] ? @"" :[NSString stringWithFormat:@"#%@",[json[i] valueForKey:@"text"]]];

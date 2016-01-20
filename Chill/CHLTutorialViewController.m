@@ -81,7 +81,7 @@
     }
     else {
         [[NSNotificationCenter defaultCenter] postNotificationName:@"Response" object:@"bad"];
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Limit" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Sorry!" message:@"You can't choose more than 6 phrases" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
         [alert show];
     }
     NSLog(@"%@", [notification object]);
