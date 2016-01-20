@@ -11,9 +11,12 @@
 #import <AFNetworking/AFNetworking.h>
 #import "SCLAlertView.h"
 
+#import "UIViewController+KeyboardAnimation.h"
+
 #import "UserCache.h"
 
 @interface CHLPromoViewController ()
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *constrBottom;
 
 @end
 
@@ -21,8 +24,31 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self
+                                                                          action:@selector(dismissKeyboard)];
+    
+    [self.view addGestureRecognizer:tap];
 }
+
+-(void)dismissKeyboard {
+    [_promocodeTextField resignFirstResponder];
+}
+
+
+-(void)viewWillAppear:(BOOL)animated {
+    __weak __typeof(self) weakSelf = self;
+        [self an_subscribeKeyboardWithAnimations:^(CGRect keyboardRect, NSTimeInterval duration, BOOL isShowing) {
+        __typeof__(self) strongSelf = weakSelf;
+        self.constrBottom.constant = isShowing ?  CGRectGetHeight(keyboardRect) : 170;
+        [self.view layoutIfNeeded];
+    } completion:nil];
+    [self.view layoutIfNeeded];
+}
+
+-(void)viewWillDisappear:(BOOL)animated {
+    [self an_unsubscribeKeyboard];
+}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

@@ -2531,10 +2531,10 @@ Enter to get perks from Chill</string>
                             <constraint firstItem="taA-Kf-sjp" firstAttribute="leading" secondItem="gfA-Gv-yQZ" secondAttribute="leadingMargin" id="Czd-KM-fOu"/>
                             <constraint firstItem="w2Q-KX-xxp" firstAttribute="top" secondItem="rfD-Yd-gMZ" secondAttribute="bottom" constant="14" id="HG0-2j-0pP"/>
                             <constraint firstAttribute="centerX" secondItem="kpd-Os-0ix" secondAttribute="centerX" id="Mbe-03-ObM"/>
+                            <constraint firstItem="kQQ-6P-lOA" firstAttribute="top" secondItem="SoL-mD-OlY" secondAttribute="bottom" constant="170" id="Sgq-aU-rha"/>
                             <constraint firstItem="w2Q-KX-xxp" firstAttribute="leading" secondItem="taA-Kf-sjp" secondAttribute="trailing" constant="22" id="XRe-ZO-cX9"/>
                             <constraint firstAttribute="trailingMargin" secondItem="w2Q-KX-xxp" secondAttribute="trailing" id="YmM-y6-dlT"/>
                             <constraint firstAttribute="trailingMargin" secondItem="rfD-Yd-gMZ" secondAttribute="trailing" constant="-16" id="Z9I-Ph-0KD"/>
-                            <constraint firstItem="RFd-3z-w2o" firstAttribute="top" secondItem="enz-oV-Zzx" secondAttribute="bottom" constant="84" id="bXh-3B-dh8"/>
                             <constraint firstAttribute="trailingMargin" secondItem="PMF-Fl-bm3" secondAttribute="trailing" constant="34" id="erM-rA-2g1"/>
                             <constraint firstItem="rfD-Yd-gMZ" firstAttribute="leading" secondItem="gfA-Gv-yQZ" secondAttribute="leadingMargin" constant="-16" id="fuY-2l-u6w"/>
                             <constraint firstItem="kpd-Os-0ix" firstAttribute="top" secondItem="RFd-3z-w2o" secondAttribute="bottom" constant="15" id="hYw-Wj-xKx"/>
@@ -2549,6 +2549,7 @@ Enter to get perks from Chill</string>
                     </view>
                     <navigationItem key="navigationItem" id="gys-KU-RUO"/>
                     <connections>
+                        <outlet property="constrBottom" destination="Sgq-aU-rha" id="hDb-r4-A77"/>
                         <outlet property="goButton" destination="Yly-79-Phh" id="tWi-gr-DrM"/>
                         <outlet property="promocodeTextField" destination="w2Q-KX-xxp" id="RbX-9X-oIC"/>
                         <outlet property="skipButton" destination="PMF-Fl-bm3" id="4fm-bN-m4s"/>
@@ -2604,11 +2605,11 @@ Enter to get perks from Chill</string>
         <image name="star66.png" width="66" height="66"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="oIG-5Z-NB0"/>
         <segue reference="2N9-CI-wJ2"/>
+        <segue reference="oIG-5Z-NB0"/>
         <segue reference="7n3-ts-55s"/>
-        <segue reference="PCg-wO-fl3"/>
         <segue reference="uRT-eD-pGx"/>
+        <segue reference="PCg-wO-fl3"/>
         <segue reference="6oC-Wi-vI9"/>
     </inferredMetricsTieBreakers>
 </document>
