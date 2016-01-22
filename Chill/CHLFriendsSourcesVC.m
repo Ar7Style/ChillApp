@@ -32,8 +32,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     //[self.navigationController.title
-    [self.navigationController.navigationBar
-     setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor colorWithRed:166.0/255.0 green:166.0/255.0 blue:166.0/255.0 alpha:1.0]}];
+    //[self.navigationController.navigationBar
+    // setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor colorWithRed:166.0/255.0 green:166.0/255.0 blue:166.0/255.0 alpha:1.0]}];
     self.navigationController.navigationBar.barTintColor = [UIColor whiteColor];
     
     NSUserDefaults *userCache = [[NSUserDefaults standardUserDefaults] initWithSuiteName:@"group.co.getchill.chill"];

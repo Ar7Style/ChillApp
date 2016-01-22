@@ -695,7 +695,7 @@ communication experience</string>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ILU-uf-2Rr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-116" y="553"/>
+            <point key="canvasLocation" x="12" y="479"/>
         </scene>
         <!--Location Display View Controller-->
         <scene sceneID="xwU-bJ-e3G">
@@ -1928,7 +1928,7 @@ communication experience</string>
                     </view>
                     <navigationItem key="navigationItem" title="Add friends" id="KHH-1G-q7D">
                         <barButtonItem key="rightBarButtonItem" image="close.png" id="Vly-Rl-VDK">
-                            <color key="tintColor" red="0.65098039215686276" green="0.65098039215686276" blue="0.65098039215686276" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="tintColor" red="0.14509803921568629" green="0.73725490196078436" blue="0.5490196078431373" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <action selector="closeButtonTapped:" destination="Zx8-mF-xy3" id="Q7i-uM-LoS"/>
                             </connections>
@@ -2568,6 +2568,10 @@ Enter to get perks from Chill</string>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Y4u-vl-FKf">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" red="0.14509803921568629" green="0.73725490196078436" blue="0.5490196078431373" alpha="1" colorSpace="calibratedRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="20"/>
+                        </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -2605,11 +2609,11 @@ Enter to get perks from Chill</string>
         <image name="star66.png" width="66" height="66"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="2N9-CI-wJ2"/>
         <segue reference="oIG-5Z-NB0"/>
         <segue reference="7n3-ts-55s"/>
-        <segue reference="uRT-eD-pGx"/>
-        <segue reference="PCg-wO-fl3"/>
-        <segue reference="6oC-Wi-vI9"/>
+        <segue reference="trd-p3-6se"/>
+        <segue reference="5k2-BS-7Gc"/>
+        <segue reference="3UD-BD-gem"/>
+        <segue reference="2N9-CI-wJ2"/>
     </inferredMetricsTieBreakers>
 </document>
