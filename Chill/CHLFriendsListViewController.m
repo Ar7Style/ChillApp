@@ -22,6 +22,9 @@
 #import <Crashlytics/Crashlytics.h>
 #import <WatchConnectivity/WatchConnectivity.h>
 #import "UserCache.h"
+
+#import "SCLAlertView.h"
+
 #define UIColorFromRGBA(rgbValue,a) [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:a]
 #define UIColorFromRGB(rgbValue) \
 [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 \
@@ -124,14 +127,8 @@ NSMutableData *mutData;
 }
 
 - (void) errorShow: (NSString*)message {
-    UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Error"
-                                                                   message:message
-                                                            preferredStyle:UIAlertControllerStyleAlert];
-    
-    UIAlertAction* okayAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
-                                                       handler:^(UIAlertAction * action) {}];
-    [alert addAction:okayAction];
-    [self presentViewController:alert animated:YES completion:nil];
+    SCLAlertView* alert = [[SCLAlertView alloc] init];
+    [alert showError:self.parentViewController title:@"Failed" subTitle:message closeButtonTitle:@"OK" duration:0.0f];
 }
 
 - (void) loadJSON {
@@ -195,7 +192,7 @@ NSMutableData *mutData;
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     CHLFriendCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
     NSArray *jsonData = json[indexPath.row];
-    cell.senderLabel.text = [jsonData valueForKey:@"name"];
+    cell.senderLabel.text = [jsonData valueForKey:@"login"];
     UILabel* twitter_name = (UILabel*) [cell viewWithTag:10];
     if (![[jsonData valueForKey:@"twitter_name"] isEqualToString:@"empty"])
         twitter_name.text = [NSString stringWithFormat:@"@%@", [jsonData valueForKey:@"twitter_name"]];
@@ -422,6 +419,8 @@ NSMutableData *mutData;
         NSArray *jsonData = json[indexPath.row];
         
         CHLShareViewController *shareViewController = segue.destinationViewController;
+        HAPaperCollectionViewController* hapcvc = [[HAPaperCollectionViewController alloc] init];
+        hapcvc.nickName = [jsonData valueForKey:@"name"];
         
         shareViewController.userIdTo = [[jsonData valueForKey:@"id_contact"] integerValue];
         shareViewController.nameUser = [jsonData valueForKey:@"name"];

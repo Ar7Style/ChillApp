@@ -10,6 +10,8 @@
 #import "UIColor+ChillColors.h"
 #import <AFNetworking/AFNetworking.h>
 
+#import "SCLAlertView.h"
+
 
 
 @interface CHLFriendsSourcesVC () {
@@ -70,14 +72,9 @@
     //[self addInvitationView];
 }
 - (void) errorShow: (NSString*)message {
-    UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Error"
-                                                                   message:message
-                                                            preferredStyle:UIAlertControllerStyleAlert];
-    
-    UIAlertAction* okayAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
-                                                       handler:^(UIAlertAction * action) {}];
-    [alert addAction:okayAction];
-    [self presentViewController:alert animated:YES completion:nil];
+    SCLAlertView* alert = [[SCLAlertView alloc] init];
+    [alert showError:self.parentViewController title:@"Failed" subTitle:message closeButtonTitle:@"OK" duration:0.0f];
+
 }
 - (IBAction)shareButtonPressed:(id)sender {
     

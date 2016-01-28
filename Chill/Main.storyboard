@@ -759,7 +759,7 @@ communication experience</string>
         <!--Share View Controller-->
         <scene sceneID="C2I-cd-Naq">
             <objects>
-                <viewController id="HRO-xJ-dbg" customClass="CHLShareViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="shareViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="HRO-xJ-dbg" customClass="CHLShareViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="nSx-07-gdQ"/>
                         <viewControllerLayoutGuide type="bottom" id="YbB-6V-woM"/>
@@ -2609,11 +2609,11 @@ Enter to get perks from Chill</string>
         <image name="star66.png" width="66" height="66"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="oIG-5Z-NB0"/>
-        <segue reference="7n3-ts-55s"/>
-        <segue reference="trd-p3-6se"/>
-        <segue reference="5k2-BS-7Gc"/>
         <segue reference="3UD-BD-gem"/>
+        <segue reference="5k2-BS-7Gc"/>
+        <segue reference="trd-p3-6se"/>
+        <segue reference="oIG-5Z-NB0"/>
+        <segue reference="jnP-xo-jaE"/>
         <segue reference="2N9-CI-wJ2"/>
     </inferredMetricsTieBreakers>
 </document>

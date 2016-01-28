@@ -72,7 +72,9 @@
         }
     }
         failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        [self errorShow:@"Please, check Your internet connection"];
+            SCLAlertView* alert = [[SCLAlertView alloc] init];
+            [alert showError:self.parentViewController title:@"Failed" subTitle:@"Please, check Your internet connection" closeButtonTitle:@"OK" duration:0.0f];
+        
     }];
     
 }
@@ -81,14 +83,8 @@
 }
      
 - (void) errorShow: (NSString*)message {
-         UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Error"
-                                                                        message:message
-                                                                 preferredStyle:UIAlertControllerStyleAlert];
-         
-         UIAlertAction* okayAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
-                                                            handler:^(UIAlertAction * action) {}];
-         [alert addAction:okayAction];
-         [self presentViewController:alert animated:YES completion:nil];
+    SCLAlertView* alert = [[SCLAlertView alloc] init];
+    [alert showError:self.parentViewController title:@"Failed" subTitle:message closeButtonTitle:@"OK" duration:0.0f];
 }
 
 @end

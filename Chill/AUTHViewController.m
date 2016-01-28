@@ -20,6 +20,8 @@
 #import "UserCache.h"
 #import <WatchConnectivity/WatchConnectivity.h>
 
+#import "SCLAlertView.h"
+
 @interface AUTHViewController () <WCSessionDelegate>
 @property (strong, nonatomic) IBOutlet UIView *viewMain;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *constraintBottom;
@@ -82,14 +84,9 @@
 
 
 - (void) errorShow: (NSString*)message {
-    UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Error"
-                                                                   message:message
-                                                            preferredStyle:UIAlertControllerStyleAlert];
-    
-    UIAlertAction* okayAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
-                                                       handler:^(UIAlertAction * action) {}];
-    [alert addAction:okayAction];
-    [self presentViewController:alert animated:YES completion:nil];
+    SCLAlertView* alert = [[SCLAlertView alloc] init];
+    [alert showError:self.parentViewController title:@"Failed" subTitle:message closeButtonTitle:@"OK" duration:0.0f];
+
 }
 
 - (IBAction)nextBut:(id)sender {
@@ -153,7 +150,6 @@
                         
                         [session updateApplicationContext:@{@"userID": [NSUserDefaults userID], @"token":[NSUserDefaults userToken], @"isAuth":@"true", @"isApproved": @"true"} error:&error];
                         NSLog(@"auth: %@", [[responseObject valueForKey:@"response"] valueForKey:@"auth"]);
-                        NSString* auth =[NSString stringWithFormat:@"%@", [[responseObject valueForKey:@"response"] valueForKey:@"auth"]];
                         if ([[[responseObject valueForKey:@"response"] valueForKey:@"auth"] isEqualToString:@"0"])
                             [self performSegueWithIdentifier:@"toPromocodeViewController" sender:self];
                         else
@@ -176,7 +172,9 @@
             }
             NSLog(@"JSON: %@", responseObject);
         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-            [self conRefused];
+            SCLAlertView* alert = [[SCLAlertView alloc] init];
+            [alert showError:self.parentViewController title:@"Failed" subTitle:@"Please, check your internet connection" closeButtonTitle:@"OK" duration:0.0f];
+
             NSLog(@"Error: %@", error);
         }];
     }

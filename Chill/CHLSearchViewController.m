@@ -13,10 +13,16 @@
 #import "JSONLoader.h"
 #import "SearchJSON.h"
 #import "MBProgressHUD.h"
+
+#import "SCLAlertView.h"
+#import <AFNetworking/AFNetworking.h>
+
 #import "GAI.h"
 #import "GAIFields.h"
 #import "GAIDictionaryBuilder.h"
 #import "GAITracker.h"
+
+#import "UserCache.h"
 
 
 #define NUMBER_OF_STATIC_CELLS 3
@@ -92,7 +98,9 @@ NSMutableData *mutData;
 {
     if (![self connected])
     {
-        [self conRefused];
+        SCLAlertView* alert = [[SCLAlertView alloc] init];
+        [alert showError:self.parentViewController title:@"Failed" subTitle:@"Please, check your internet connection" closeButtonTitle:@"OK" duration:0.0f];
+
     }
     else
     {
@@ -158,7 +166,7 @@ NSMutableData *mutData;
         nameLabel.text = location.name;
         if (![location.twitter_name isEqualToString:@"empty"])
         {
-            twitterName.text =[NSString stringWithFormat:@"@%@", location.twitter_name];
+            twitterName.text =[NSString stringWithFormat:@"%@", location.twitter_name];
         }
         else
             twitterName.text = nil;
@@ -208,7 +216,83 @@ NSMutableData *mutData;
     
     else {
         [self addFriendFromIndex:indexPath.row];
+        [self sendWelcomeMessageToUser:location.id_user];
+       // [self sendWelcomeMessageToUserWhoInviteFriend:location.id_user];
+        [self sendPushNotificationToUser:location.id_user];
     }
+}
+
+-(void)sendWelcomeMessageToUser:(NSString *)userID {
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.responseSerializer = [AFJSONResponseSerializer serializer];
+    manager.requestSerializer = [AFJSONRequestSerializer serializer];
+    [manager.requestSerializer setValue:[NSUserDefaults userToken] forHTTPHeaderField:@"X-API-TOKEN"];
+    [manager.requestSerializer setValue:@"76eb29d3ca26fe805545812850e6d75af933214a" forHTTPHeaderField:@"X-API-KEY"];
+    NSDictionary *parametrs = @{@"id_contact":userID, @"id_user": [NSUserDefaults userID], @"type":@"icon",@"content":@"logo",@"text":@"Hi!"};
+    [manager POST:[NSString stringWithFormat:@"http://api.iamchill.co/v2/messages/index"] parameters:parametrs success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        if ([[responseObject valueForKey:@"status"] isEqualToString:@"success"])
+        {
+            NSLog(@"Hi message was successfully dilivered");
+        }
+        else if ([[responseObject valueForKey:@"status"] isEqualToString:@"failed"]) {
+            SCLAlertView* alert = [[SCLAlertView alloc] init];
+            [alert showError:self.parentViewController title:@"Failed" subTitle:@"Sorry, can't add this friend" closeButtonTitle:@"OK" duration:0.0f];
+        }
+    }
+         failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+             SCLAlertView* alert = [[SCLAlertView alloc] init];
+             [alert showError:self.parentViewController title:@"Failed" subTitle:@"Please, check Your internet connection" closeButtonTitle:@"OK" duration:0.0f];
+             
+         }];
+}
+
+-(void)sendWelcomeMessageToUserWhoInviteFriend:(NSString *)userID {
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.responseSerializer = [AFJSONResponseSerializer serializer];
+    manager.requestSerializer = [AFJSONRequestSerializer serializer];
+    [manager.requestSerializer setValue:[NSUserDefaults userToken] forHTTPHeaderField:@"X-API-TOKEN"];
+    [manager.requestSerializer setValue:@"76eb29d3ca26fe805545812850e6d75af933214a" forHTTPHeaderField:@"X-API-KEY"];
+    NSDictionary *parametrs = @{@"id_contact":[NSUserDefaults userID], @"id_user":userID , @"type":@"icon",@"content":@"logo",@"text":@"Hi!"};
+    [manager POST:[NSString stringWithFormat:@"http://api.iamchill.co/v2/messages/index"] parameters:parametrs success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        if ([[responseObject valueForKey:@"status"] isEqualToString:@"success"])
+        {
+            NSLog(@"Hi message was successfully dilivered to userself");
+        }
+        else if ([[responseObject valueForKey:@"status"] isEqualToString:@"failed"]) {
+            SCLAlertView* alert = [[SCLAlertView alloc] init];
+            [alert showError:self.parentViewController title:@"Failed" subTitle:@"Sorry, can't add this friend" closeButtonTitle:@"OK" duration:0.0f];
+        }
+    }
+          failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+              SCLAlertView* alert = [[SCLAlertView alloc] init];
+              [alert showError:self.parentViewController title:@"Failed" subTitle:@"Please, check Your internet connection" closeButtonTitle:@"OK" duration:0.0f];
+              
+          }];
+}
+
+-(void)sendPushNotificationToUser:(NSString *)userID {
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.responseSerializer = [AFJSONResponseSerializer serializer];
+    manager.requestSerializer = [AFJSONRequestSerializer serializer];
+    [manager.requestSerializer setValue:[NSUserDefaults userToken] forHTTPHeaderField:@"X-API-TOKEN"];
+    [manager.requestSerializer setValue:@"76eb29d3ca26fe805545812850e6d75af933214a" forHTTPHeaderField:@"X-API-KEY"];
+    NSDictionary *parametrs = @{@"id_contact":userID, @"id_user": [NSUserDefaults userID], @"type":@"icon",@"content":@"logo",@"text":@"Hi!"};
+    [manager POST:[NSString stringWithFormat:@"http://api.iamchill.co/v2/notifications/message"] parameters:parametrs success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        if ([[responseObject valueForKey:@"status"] isEqualToString:@"success"])
+        {
+            NSLog(@"Push notification was successfully dilivered");
+        }
+        else if ([[responseObject valueForKey:@"status"] isEqualToString:@"failed"]) {
+            SCLAlertView* alert = [[SCLAlertView alloc] init];
+            [alert showError:self.parentViewController title:@"Failed" subTitle:@"Sorry, can't add this friend" closeButtonTitle:@"OK" duration:0.0f];
+        }
+    }
+          failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+              SCLAlertView* alert = [[SCLAlertView alloc] init];
+              [alert showError:self.parentViewController title:@"Failed" subTitle:@"Please, check Your internet connection" closeButtonTitle:@"OK" duration:0.0f];
+              
+          }];
+
 }
 
 - (void)addFriendFromIndex:(NSInteger)index {
@@ -244,7 +328,7 @@ NSMutableData *mutData;
     [requestToNotify setHTTPBody:[postStringTN
                           dataUsingEncoding:NSUTF8StringEncoding]];
     
-    NSURLConnection *connectionTN = [[NSURLConnection alloc] initWithRequest:requestToNotify delegate:self];
+//    NSURLConnection *connectionTN = [[NSURLConnection alloc] initWithRequest:requestToNotify delegate:self];
     NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
     if (connection)
     {

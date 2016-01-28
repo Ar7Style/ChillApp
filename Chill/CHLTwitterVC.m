@@ -16,6 +16,8 @@
     NSMutableDictionary *jsonResponse;
     NSMutableData *receivedData;
     MBProgressHUD *HUD;
+    NSArray* json;
+    NSString *displayName;
 }
 
 @property(nonatomic, strong) TWTRSession *twitterSession;
@@ -66,6 +68,7 @@
         self.twitterSession = [[Twitter sharedInstance] session];
         [self startSearchingTwitterFriends];
     }
+    //NSLog(@"Display Twitter name: %@", _toInviteDisplayNames[0]);
 }
 
 - (void)showLoadingState {
@@ -92,11 +95,11 @@
         [[[Twitter sharedInstance] APIClient] sendTwitterRequest:request completion:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
             if (data) {
                 NSError *jsonError;
-                NSArray *json = [NSJSONSerialization JSONObjectWithData:data options:0 error:&jsonError][@"users"];
+                json = [NSJSONSerialization JSONObjectWithData:data options:0 error:&jsonError][@"users"];
                 for (NSDictionary *subJSON in json) {
                     NSString *idString = subJSON[@"id_str"];
                     NSString *nickname = subJSON[@"screen_name"];
-                    NSString *displayName = subJSON[@"name"];
+                    displayName = subJSON[@"name"];
                     if (idString != nil && nickname != nil && displayName != nil) {
                         [weakSelf.toInviteDisplayNames addObject:displayName];
                         [weakSelf.toInviteIDs addObject:idString];
@@ -204,6 +207,28 @@
         cell.senderLabel.text = self.chillUsernames[indexPath.row];
         NSUInteger twitterIndex = [self.toInviteIDs indexOfObject:self.chillRegisteredTwitterIDs[indexPath.row]];
         cell.lastChilTitleLabel.text = [NSString stringWithFormat:@"%@", self.toInviteDisplayNames[twitterIndex]];
+        
+        NSMutableURLRequest *request = [[NSMutableURLRequest alloc]initWithURL:[NSURL URLWithString: [NSString stringWithFormat:@"http://api.iamchill.co/v2/users/update/"]]];
+        [request setValue:[[NSUserDefaults standardUserDefaults] valueForKey:@"token"] forHTTPHeaderField:@"X-API-TOKEN"];
+        
+        [request setValue:@"76eb29d3ca26fe805545812850e6d75af933214a" forHTTPHeaderField:@"X-API-KEY"];
+        
+        [request setHTTPMethod:@"POST"];
+        
+        NSHTTPURLResponse *response = nil;
+        NSError *error = nil;
+        NSString *postString = [NSString stringWithFormat:@"id_user=%@&twitter_name=%@",[[NSUserDefaults standardUserDefaults] valueForKey:@"id_user"], self.toInviteDisplayNames[twitterIndex]];
+        
+        [request setHTTPBody:[postString dataUsingEncoding:NSUTF8StringEncoding]];
+        NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
+        if (data != nil) {
+            jsonResponse = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&error];
+        }
+        if([response statusCode] != 200){
+            NSLog(@"Error getting, HTTP status code %li", (long)[response statusCode]);
+        }
+
+        
         return cell;
     }
     else {
@@ -211,6 +236,27 @@
         CHLFriendCell *cell = [tableView dequeueReusableCellWithIdentifier:@"InviteCell"];
         cell.senderLabel.text = self.toInviteDisplayNames[twitterIndex];
         cell.lastChilTitleLabel.text = [NSString stringWithFormat:@"@%@", self.toInviteNicknames[twitterIndex]];
+        
+        NSMutableURLRequest *request = [[NSMutableURLRequest alloc]initWithURL:[NSURL URLWithString: [NSString stringWithFormat:@"http://api.iamchill.co/v2/users/update/"]]];
+        [request setValue:[[NSUserDefaults standardUserDefaults] valueForKey:@"token"] forHTTPHeaderField:@"X-API-TOKEN"];
+        
+        [request setValue:@"76eb29d3ca26fe805545812850e6d75af933214a" forHTTPHeaderField:@"X-API-KEY"];
+        
+        [request setHTTPMethod:@"POST"];
+        
+        NSHTTPURLResponse *response = nil;
+        NSError *error = nil;
+        NSString *postString = [NSString stringWithFormat:@"id_user=%@&twitter_name=%@",[[NSUserDefaults standardUserDefaults] valueForKey:@"id_user"], self.toInviteDisplayNames[twitterIndex]];
+        
+        [request setHTTPBody:[postString dataUsingEncoding:NSUTF8StringEncoding]];
+        NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
+        if (data != nil) {
+            jsonResponse = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&error];
+        }
+        if([response statusCode] != 200){
+            NSLog(@"Error getting, HTTP status code %li", (long)[response statusCode]);
+        }
+        
         return cell;
     }
 }

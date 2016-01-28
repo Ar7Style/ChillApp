@@ -24,6 +24,7 @@
 
 #import <AFNetworking/AFNetworking.h>
 #import "UIButton+AFNetworking.h"
+#import "SCLAlertView.h"
 
 #import "CHLDisplayPhotoViewController.h"
 
@@ -173,7 +174,9 @@
 }
 -(void)viewDidAppear:(BOOL)animated{
     if (![self connected]) {
-        [self conRefused];
+        SCLAlertView* alert = [[SCLAlertView alloc] init];
+        [alert showError:self.parentViewController title:@"Failed" subTitle:@"Please, check your internet connection" closeButtonTitle:@"OK" duration:0.0f];
+
     }
     else {
         self.collectionView.backgroundColor = [UIColor clearColor];
@@ -314,8 +317,24 @@
     
             cell.backgroundColor = [UIColor whiteColor];
         
+        
+        [cell.replyButton addTarget:self action:@selector(goToShareVC:) forControlEvents:UIControlEventTouchUpInside];
+         
+        
             return cell;
         }
+}
+
+-(void)goToShareVC:(id)sender {
+    NSLog(@"gotoshareVC");
+    CHLShareViewController* svc = [[CHLShareViewController alloc] init];
+    svc.userIdTo = (long)_friendUserID;
+    svc.nameUser = self.nickName;
+    NSLog(@"LOGIN: %@ IDUSER: %ld", svc.nameUser, (long)svc.userIdTo);
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+
+    UIViewController *shareViewController = (UIViewController *)[storyboard  instantiateViewControllerWithIdentifier:@"shareViewController"];
+    [self presentViewController:shareViewController animated:YES completion:nil];
 }
 
 -(void) displayMap:(ButtonToShow *)sender {
@@ -351,37 +370,6 @@
             [self presentViewController:dpvc animated:NO completion:nil];
     
 }
-
-//wow, such aMethod
-//- (void)aMethod:(id)sender{
-//    MessagesJSON *location;
-//    UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
-//   // UIButton *clicked = (UIButton *) sender;
-////    if (clicked.tag==1){
-////        location= [_locations objectAtIndex:0];
-////        pasteboard.string = location.code;
-////    }
-////    else if (clicked.tag ==2) {
-////        location= [_locations objectAtIndex:1];
-////        pasteboard.string = location.code;
-////    }
-////    else if (clicked.tag==3){
-////        location= [_locations objectAtIndex:2];
-////        pasteboard.string = location.code;
-////    }
-//    HUD = [[MBProgressHUD alloc] initWithView:self.collectionView];
-//    [self.collectionView addSubview:HUD];
-//    HUD.customView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"37x-Checkmark.png"]];
-//    
-//    // Set custom view mode
-//    HUD.mode = MBProgressHUDModeCustomView;
-//    
-//    HUD.delegate = self;
-//    HUD.labelText = @"Completed";
-//    HUD.color = [UIColor chillMintColor];
-//    [HUD show:YES];
-//    [HUD hide:YES afterDelay:2];
-//}
 
 - (void)collectionView:(UICollectionView *)collectionView didEndDisplayingCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath;
 {
