@@ -99,7 +99,7 @@ NSMutableData *mutData;
     if (![self connected])
     {
         SCLAlertView* alert = [[SCLAlertView alloc] init];
-        [alert showError:self.parentViewController title:@"Failed" subTitle:@"Please, check your internet connection" closeButtonTitle:@"OK" duration:0.0f];
+        [alert showError:self.parentViewController title:@"Oups" subTitle:@"Please, check your internet connection" closeButtonTitle:@"OK" duration:0.0f];
 
     }
     else
@@ -161,9 +161,9 @@ NSMutableData *mutData;
     UILabel *nameLabel = (UILabel*) [cell viewWithTag:100];
     UILabel *twitterName = (UILabel*) [cell viewWithTag:1000];
     //nameLabel.text = location.name;
-    if (![location.name isKindOfClass:[NSNull class]])
+    if (![location.login isKindOfClass:[NSNull class]])
     {
-        nameLabel.text = location.name;
+        nameLabel.text = location.login;
         if (![location.twitter_name isEqualToString:@"empty"])
         {
             twitterName.text =[NSString stringWithFormat:@"%@", location.twitter_name];
@@ -184,7 +184,7 @@ NSMutableData *mutData;
         NSInteger currentInvitesNumber = [userCache integerForKey:@"Available invites number"];
         
         if (currentInvitesNumber != 0) {
-            NSString *alertMessage = [NSString stringWithFormat:@"Do you really want to spend one of your invites to approve %@ in Chill?", location.name];
+            NSString *alertMessage = [NSString stringWithFormat:@"Do you really want to spend one of your invites to approve %@ in Chill?", location.login];
             UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Hey"
                                                                            message:alertMessage
                                                                     preferredStyle:UIAlertControllerStyleAlert];
@@ -216,9 +216,9 @@ NSMutableData *mutData;
     
     else {
         [self addFriendFromIndex:indexPath.row];
-        [self sendWelcomeMessageToUser:location.id_user];
+       // [self sendWelcomeMessageToUser:location.id_user];
        // [self sendWelcomeMessageToUserWhoInviteFriend:location.id_user];
-        [self sendPushNotificationToUser:location.id_user];
+        //[self sendPushNotificationToUser:location.id_user];
     }
 }
 
@@ -236,12 +236,12 @@ NSMutableData *mutData;
         }
         else if ([[responseObject valueForKey:@"status"] isEqualToString:@"failed"]) {
             SCLAlertView* alert = [[SCLAlertView alloc] init];
-            [alert showError:self.parentViewController title:@"Failed" subTitle:@"Sorry, can't add this friend" closeButtonTitle:@"OK" duration:0.0f];
+            [alert showError:self.parentViewController title:@"Oups" subTitle:@"Sorry, can't add this friend" closeButtonTitle:@"OK" duration:0.0f];
         }
     }
          failure:^(AFHTTPRequestOperation *operation, NSError *error) {
              SCLAlertView* alert = [[SCLAlertView alloc] init];
-             [alert showError:self.parentViewController title:@"Failed" subTitle:@"Please, check Your internet connection" closeButtonTitle:@"OK" duration:0.0f];
+             [alert showError:self.parentViewController title:@"Oups" subTitle:@"Please, check Your internet connection" closeButtonTitle:@"OK" duration:0.0f];
              
          }];
 }
@@ -260,12 +260,12 @@ NSMutableData *mutData;
         }
         else if ([[responseObject valueForKey:@"status"] isEqualToString:@"failed"]) {
             SCLAlertView* alert = [[SCLAlertView alloc] init];
-            [alert showError:self.parentViewController title:@"Failed" subTitle:@"Sorry, can't add this friend" closeButtonTitle:@"OK" duration:0.0f];
+            [alert showError:self.parentViewController title:@"Oups" subTitle:@"Sorry, can't add this friend" closeButtonTitle:@"OK" duration:0.0f];
         }
     }
           failure:^(AFHTTPRequestOperation *operation, NSError *error) {
               SCLAlertView* alert = [[SCLAlertView alloc] init];
-              [alert showError:self.parentViewController title:@"Failed" subTitle:@"Please, check Your internet connection" closeButtonTitle:@"OK" duration:0.0f];
+              [alert showError:self.parentViewController title:@"Oups" subTitle:@"Please, check Your internet connection" closeButtonTitle:@"OK" duration:0.0f];
               
           }];
 }
@@ -284,12 +284,12 @@ NSMutableData *mutData;
         }
         else if ([[responseObject valueForKey:@"status"] isEqualToString:@"failed"]) {
             SCLAlertView* alert = [[SCLAlertView alloc] init];
-            [alert showError:self.parentViewController title:@"Failed" subTitle:@"Sorry, can't add this friend" closeButtonTitle:@"OK" duration:0.0f];
+            [alert showError:self.parentViewController title:@"Oups" subTitle:@"Sorry, can't add this friend" closeButtonTitle:@"OK" duration:0.0f];
         }
     }
           failure:^(AFHTTPRequestOperation *operation, NSError *error) {
               SCLAlertView* alert = [[SCLAlertView alloc] init];
-              [alert showError:self.parentViewController title:@"Failed" subTitle:@"Please, check Your internet connection" closeButtonTitle:@"OK" duration:0.0f];
+              [alert showError:self.parentViewController title:@"Oups" subTitle:@"Please, check Your internet connection" closeButtonTitle:@"OK" duration:0.0f];
               
           }];
 

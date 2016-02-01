@@ -85,7 +85,7 @@
 
 - (void) errorShow: (NSString*)message {
     SCLAlertView* alert = [[SCLAlertView alloc] init];
-    [alert showError:self.parentViewController title:@"Failed" subTitle:message closeButtonTitle:@"OK" duration:0.0f];
+    [alert showError:self.parentViewController title:@"Oups" subTitle:message closeButtonTitle:@"OK" duration:0.0f];
 
 }
 
@@ -173,7 +173,7 @@
             NSLog(@"JSON: %@", responseObject);
         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
             SCLAlertView* alert = [[SCLAlertView alloc] init];
-            [alert showError:self.parentViewController title:@"Failed" subTitle:@"Please, check your internet connection" closeButtonTitle:@"OK" duration:0.0f];
+            [alert showError:self.parentViewController title:@"Oups" subTitle:@"Please, check your internet connection" closeButtonTitle:@"OK" duration:0.0f];
 
             NSLog(@"Error: %@", error);
         }];

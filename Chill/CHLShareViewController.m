@@ -113,7 +113,7 @@ NSInteger defaultValue = 10;
         
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             SCLAlertView* alert = [[SCLAlertView alloc] init];
-            [alert showError:self.parentViewController title:@"Failed" subTitle:@"Please, check your internet connection" closeButtonTitle:@"OK" duration:0.0f];
+            [alert showError:self.parentViewController title:@"Oups" subTitle:@"Please, check your internet connection" closeButtonTitle:@"OK" duration:0.0f];
         });
         return NO;
     }
@@ -143,7 +143,7 @@ NSInteger defaultValue = 10;
         }
         } failure:^(NSURLSessionTask *operation, NSError *error) {
             SCLAlertView* alert = [[SCLAlertView alloc] init];
-            [alert showError:self.parentViewController title:@"Failed" subTitle:@"Please, check your internet connection" closeButtonTitle:@"OK" duration:0.0f];
+            [alert showError:self.parentViewController title:@"Oups" subTitle:@"Please, check your internet connection" closeButtonTitle:@"OK" duration:0.0f];
             NSLog(@"Error from load data: %@", error);
         }];
 }

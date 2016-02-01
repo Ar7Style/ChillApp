@@ -34,7 +34,6 @@
 
 @property (strong, nonatomic) NSMutableArray*  arrayFavoriteIcon;
 @property (strong, nonatomic) NSMutableArray*  arraySelectedIcon;
-@property (strong, nonatomic) NSMutableArray*  arraySelectedIconID;
 @property (weak, nonatomic) IBOutlet UIButton *doneButton;
 
 @property (assign, nonatomic) BOOL loadingData;
@@ -47,11 +46,10 @@
     [super viewDidLoad];
     
     [self setupCollectionView];
-   // arrayOfSelectedIcons =[[[NSUserDefaults standardUserDefaults] valueForKey:@"selectedIcons"] componentsSeparatedByString:@"-"];
-    //selectedIconsNumber=arrayOfSelectedIcons.count;
+
     NSLog(@"arrayOfSelectedIcons count: %lu", (unsigned long)arrayOfSelectedIcons.count);
     NSLog(@"%@", [[NSUserDefaults standardUserDefaults] valueForKey:@"selectedIcons"]);
-    if( selectedIconsNumber == 6 ) _doneButton.userInteractionEnabled = YES;
+   // if( selectedIconsNumber == 6 ) _doneButton.userInteractionEnabled = YES;
     
     self.navigationController.navigationBar.barTintColor = [UIColor yellowColor];
 
@@ -122,7 +120,17 @@
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-    return CGSizeMake(80, 80);
+    if([[UIDevice currentDevice]userInterfaceIdiom]==UIUserInterfaceIdiomPhone)
+    {
+        if ([UIScreen mainScreen].scale >= 2.9) // >= iphone 6 plus
+        {
+            return CGSizeMake(100, 100);
+        }
+        else {
+            return CGSizeMake(70, 70);
+        }
+    }
+    return CGSizeMake(70, 70);
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
@@ -239,7 +247,7 @@
         
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             SCLAlertView* alert = [[SCLAlertView alloc] init];
-            [alert showError:self.parentViewController title:@"Ошибка" subTitle:@"Соедиения с интернетом" closeButtonTitle:@"OK" duration:0.0f];
+            [alert showError:self.parentViewController title:@"Oups" subTitle:@"Please, check your internet connection" closeButtonTitle:@"OK" duration:0.0f];
         });
         return NO;
     }
@@ -266,14 +274,21 @@
     
 }
 
+-(void)showError:(NSString *)message {
+    SCLAlertView* alert = [[SCLAlertView alloc] init];
+    
+    [alert showError:self title:@"Error" subTitle:message closeButtonTitle:@"OK" duration:0.0f];
+}
+
 #pragma mark - Action
 
 
 - (IBAction)doneAction:(id)sender {
-   
     if ([self.arraySelectedIconID count]<6) {
-        SCLAlertView* alert = [[SCLAlertView alloc] init];
-        [alert showError:self.parentViewController title:@"Error" subTitle:@"Selected 6 icons!" closeButtonTitle:@"OK" duration:0.0f];
+        [self showError:@"Select 6 icons"];
+        
+        NSLog(@"arraySelected icon's id < 6");
+        
         return;
     }
     
@@ -290,7 +305,7 @@
         if ([status isEqualToString:@"success"]) {
             [self dismissViewControllerAnimated:YES completion:nil];
         } else {
-            [alert showError:self.parentViewController title:@"Error" subTitle:@"Icons not sending" closeButtonTitle:@"OK" duration:0.0f];
+            [alert showError:self.parentViewController title:@"Error" subTitle:@"Icons was not send" closeButtonTitle:@"OK" duration:0.0f];
         }
     } onFailure:^(NSError *error, NSInteger statusCode) {
         

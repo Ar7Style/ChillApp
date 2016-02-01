@@ -144,8 +144,13 @@
 		0686BC871B4A924D00515EA0 /* received_waves.png in Resources */ = {isa = PBXBuildFile; fileRef = 0686BC811B4A924D00515EA0 /* received_waves.png */; };
 		0686BC881B4A924D00515EA0 /* received_gym.png in Resources */ = {isa = PBXBuildFile; fileRef = 0686BC821B4A924D00515EA0 /* received_gym.png */; };
 		068C0B021AA36ED6005A0577 /* Portrait 1.png in Resources */ = {isa = PBXBuildFile; fileRef = 068C0AFE1AA36ED6005A0577 /* Portrait 1.png */; };
+		069A059E1C5EADB50023C504 /* NSString+MD5.m in Sources */ = {isa = PBXBuildFile; fileRef = 069A059D1C5EADB50023C504 /* NSString+MD5.m */; };
+		069A059F1C5EADB50023C504 /* NSString+MD5.m in Sources */ = {isa = PBXBuildFile; fileRef = 069A059D1C5EADB50023C504 /* NSString+MD5.m */; };
+		069A05A11C5EADC60023C504 /* FTWCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 069A05A01C5EADC60023C504 /* FTWCache.m */; };
+		069A05A21C5EADC60023C504 /* FTWCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 069A05A01C5EADC60023C504 /* FTWCache.m */; };
 		06A5BF3F1AAE0AFC00D34CFF /* CHLConnectionRefusedController.m in Sources */ = {isa = PBXBuildFile; fileRef = 06A5BF3E1AAE0AFC00D34CFF /* CHLConnectionRefusedController.m */; };
 		06A5BF411AAE179000D34CFF /* No_internet.png in Resources */ = {isa = PBXBuildFile; fileRef = 06A5BF401AAE179000D34CFF /* No_internet.png */; };
+		06B0E1C41C5FF72F007FCA89 /* headernew.png in Resources */ = {isa = PBXBuildFile; fileRef = 06B0E1C31C5FF72F007FCA89 /* headernew.png */; };
 		06B22A561B67C8200056455D /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 06B22A521B67C8200056455D /* Fabric.framework */; };
 		06B22A581B67C8200056455D /* TwitterKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 06B22A531B67C8200056455D /* TwitterKit.framework */; };
 		06B22A5A1B67C8200056455D /* TwitterKitResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 06B22A541B67C8200056455D /* TwitterKitResources.bundle */; };
@@ -492,9 +497,14 @@
 		0686BC811B4A924D00515EA0 /* received_waves.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = received_waves.png; sourceTree = "<group>"; };
 		0686BC821B4A924D00515EA0 /* received_gym.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = received_gym.png; sourceTree = "<group>"; };
 		068C0AFE1AA36ED6005A0577 /* Portrait 1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Portrait 1.png"; path = "../Portrait 1.png"; sourceTree = "<group>"; };
+		069A059C1C5EADAA0023C504 /* NSString+MD5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+MD5.h"; sourceTree = "<group>"; };
+		069A059D1C5EADB50023C504 /* NSString+MD5.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+MD5.m"; sourceTree = "<group>"; };
+		069A05A01C5EADC60023C504 /* FTWCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FTWCache.m; sourceTree = "<group>"; };
+		069A05A31C5EADDA0023C504 /* FTWCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FTWCache.h; sourceTree = "<group>"; };
 		06A5BF3D1AAE0AFC00D34CFF /* CHLConnectionRefusedController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHLConnectionRefusedController.h; sourceTree = "<group>"; };
 		06A5BF3E1AAE0AFC00D34CFF /* CHLConnectionRefusedController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHLConnectionRefusedController.m; sourceTree = "<group>"; };
 		06A5BF401AAE179000D34CFF /* No_internet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = No_internet.png; sourceTree = "<group>"; };
+		06B0E1C31C5FF72F007FCA89 /* headernew.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = headernew.png; sourceTree = "<group>"; };
 		06B22A521B67C8200056455D /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
 		06B22A531B67C8200056455D /* TwitterKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TwitterKit.framework; sourceTree = "<group>"; };
 		06B22A541B67C8200056455D /* TwitterKitResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = TwitterKitResources.bundle; path = TwitterKit.framework/Versions/A/Resources/TwitterKitResources.bundle; sourceTree = "<group>"; };
@@ -767,6 +777,7 @@
 				531836EB1C079556001AE40D /* decline@2x.png */,
 				029F1B9B1C01E56300368AD4 /* Assets.xcassets */,
 				029F1B9D1C01E56300368AD4 /* Info.plist */,
+				029F1BA61C01E56300368AD4 /* Chill WatchOS 2 Extension */,
 			);
 			path = "Chill WatchOS 2";
 			sourceTree = "<group>";
@@ -775,6 +786,10 @@
 			isa = PBXGroup;
 			children = (
 				53402F821C0A647C009E4FD9 /* location@2x.png */,
+				069A059C1C5EADAA0023C504 /* NSString+MD5.h */,
+				069A059D1C5EADB50023C504 /* NSString+MD5.m */,
+				069A05A31C5EADDA0023C504 /* FTWCache.h */,
+				069A05A01C5EADC60023C504 /* FTWCache.m */,
 				532D46A51C0640C30070C105 /* ButtonIconID.h */,
 				532D46A61C0640C30070C105 /* ButtonIconID.m */,
 				029F1BA91C01E56300368AD4 /* InterfaceController.h */,
@@ -800,7 +815,7 @@
 				023B427F1C024C1600E124A8 /* HelpIC.m */,
 			);
 			path = "Chill WatchOS 2 Extension";
-			sourceTree = "<group>";
+			sourceTree = SOURCE_ROOT;
 		};
 		029F1BA71C01E56300368AD4 /* Supporting Files */ = {
 			isa = PBXGroup;
@@ -814,6 +829,7 @@
 			isa = PBXGroup;
 			children = (
 				0629B2DD1C415B5A0038F2D0 /* fav_header.png */,
+				06B0E1C31C5FF72F007FCA89 /* headernew.png */,
 				0629B2CE1C41591C0038F2D0 /* ASImageCell.h */,
 				0629B2CF1C41591C0038F2D0 /* ASImageCell.m */,
 				0629B2D01C41591C0038F2D0 /* ASServerManager.h */,
@@ -1131,7 +1147,6 @@
 				0272A1B61B17C23200E04D83 /* Parse.framework */,
 				E6C7C1D6191A1B230071D83F /* Chill */,
 				029F1B971C01E56300368AD4 /* Chill WatchOS 2 */,
-				029F1BA61C01E56300368AD4 /* Chill WatchOS 2 Extension */,
 				E6C7C1CF191A1B220071D83F /* Frameworks */,
 				E6C7C1CE191A1B220071D83F /* Products */,
 				E2B9041887BCC105519745FF /* Pods */,
@@ -1547,6 +1562,7 @@
 				0686781C1BFBE8240053F545 /* go_edu.png in Resources */,
 				06E5E7DC1B5BD09A00BBA563 /* settings.png in Resources */,
 				0670541F1B04EEC300BBA3AA /* icon98@2x.png in Resources */,
+				06B0E1C41C5FF72F007FCA89 /* headernew.png in Resources */,
 				06499F161B03DC1D0005E422 /* 88.png in Resources */,
 				02CC30D51A5728A9006C1294 /* back@2x.png in Resources */,
 				02CC30D81A57343E006C1294 /* avatar@2x.png in Resources */,
@@ -1740,7 +1756,9 @@
 				029F1BC21C02073500368AD4 /* ContactsIC.m in Sources */,
 				532D46A41C062E440070C105 /* IconRow.m in Sources */,
 				023B427D1C023E8500E124A8 /* ShareIC.m in Sources */,
+				069A05A21C5EADC60023C504 /* FTWCache.m in Sources */,
 				029F1BAE1C01E56300368AD4 /* ExtensionDelegate.m in Sources */,
+				069A059F1C5EADB50023C504 /* NSString+MD5.m in Sources */,
 				532D46A71C0640C30070C105 /* ButtonIconID.m in Sources */,
 				023B42801C024C1600E124A8 /* HelpIC.m in Sources */,
 				029F1BAB1C01E56300368AD4 /* InterfaceController.m in Sources */,
@@ -1779,6 +1797,7 @@
 				53C33DB51C1A28A90071E189 /* CellTutorial.m in Sources */,
 				0686BC411B49CDF500515EA0 /* CHLAdditionalShareViewController.m in Sources */,
 				021F00CC1A3CD7D7000A83D2 /* CHLSearchViewController.m in Sources */,
+				069A05A11C5EADC60023C504 /* FTWCache.m in Sources */,
 				020B35741A1E402C00DC2F23 /* JSONLoader.m in Sources */,
 				020B35791A1E402C00DC2F23 /* UIScrollView+SVInfiniteScrolling.m in Sources */,
 				AD8417801A911D820078F57A /* CHLTutorialViewController.m in Sources */,
@@ -1791,6 +1810,7 @@
 				ADCFBFC21B78185E0013763E /* CHLFacebookVC.m in Sources */,
 				020B35781A1E402C00DC2F23 /* UIImageView+JMImageCache.m in Sources */,
 				0629B2DA1C41591C0038F2D0 /* ASImageModel.m in Sources */,
+				069A059E1C5EADB50023C504 /* NSString+MD5.m in Sources */,
 				E6A67B08198EEC400067E34E /* CHLLocationDisplayViewController.m in Sources */,
 				E6726EAB19570CBF00DEADF9 /* UIColor+ChillColors.m in Sources */,
 				AD8417841A91203D0078F57A /* CHLTutorialPageContentViewController.m in Sources */,

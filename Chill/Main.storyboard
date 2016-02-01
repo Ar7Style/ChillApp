@@ -2236,12 +2236,12 @@ communication experience</string>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gvh-Dc-uCz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="388" y="1763"/>
+            <point key="canvasLocation" x="394" y="2133"/>
         </scene>
         <!--FirstCVC-->
         <scene sceneID="g8Q-H9-8hE">
             <objects>
-                <viewController id="n3S-mg-siN" customClass="ASFirstCVC" sceneMemberID="viewController">
+                <viewController wantsFullScreenLayout="YES" id="n3S-mg-siN" customClass="ASFirstCVC" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="TeU-qn-xyv"/>
                         <viewControllerLayoutGuide type="bottom" id="sSu-JQ-dA5"/>
@@ -2250,21 +2250,21 @@ communication experience</string>
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="enJ-B0-r2x">
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="enJ-B0-r2x">
                                 <rect key="frame" x="0.0" y="-10" width="320" height="177"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="fav_header.png" translatesAutoresizingMaskIntoConstraints="NO" id="rjB-Tk-etz">
-                                        <rect key="frame" x="0.0" y="-7" width="320" height="180"/>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="headernew.png" translatesAutoresizingMaskIntoConstraints="NO" id="rjB-Tk-etz">
+                                        <rect key="frame" x="0.0" y="3.5" width="320" height="180"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="320" id="3f9-EU-L4q"/>
                                             <constraint firstAttribute="height" constant="179.5" id="tYc-hh-QrM"/>
                                         </constraints>
                                     </imageView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lgX-h1-2da">
-                                        <rect key="frame" x="267" y="15" width="46" height="30"/>
+                                        <rect key="frame" x="262" y="25.5" width="46" height="30"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="30" id="jJb-TU-EXW"/>
-                                            <constraint firstAttribute="width" constant="46" id="kU7-c1-2kH"/>
+                                            <constraint firstAttribute="height" constant="30" id="R5e-Qr-EIA"/>
+                                            <constraint firstAttribute="width" constant="46" id="bqp-Q2-MdV"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="18"/>
                                         <state key="normal" title="Done">
@@ -2277,9 +2277,12 @@ communication experience</string>
                                 </subviews>
                                 <color key="backgroundColor" red="1" green="1" blue="0.0" alpha="0.0" colorSpace="calibratedRGB"/>
                                 <constraints>
+                                    <constraint firstItem="lgX-h1-2da" firstAttribute="leading" secondItem="rjB-Tk-etz" secondAttribute="trailing" constant="-58" id="0zR-dI-Elm"/>
                                     <constraint firstItem="rjB-Tk-etz" firstAttribute="centerX" secondItem="enJ-B0-r2x" secondAttribute="centerX" id="6yy-gc-pyq"/>
-                                    <constraint firstItem="rjB-Tk-etz" firstAttribute="top" secondItem="lgX-h1-2da" secondAttribute="bottom" constant="-52" id="XTD-R6-2C4"/>
+                                    <constraint firstItem="rjB-Tk-etz" firstAttribute="top" secondItem="lgX-h1-2da" secondAttribute="bottom" constant="-52" id="85d-EN-rfh"/>
+                                    <constraint firstAttribute="trailing" secondItem="rjB-Tk-etz" secondAttribute="trailing" id="LFj-tw-Mau"/>
                                     <constraint firstItem="rjB-Tk-etz" firstAttribute="centerY" secondItem="enJ-B0-r2x" secondAttribute="centerY" constant="-5" id="qLA-Lf-rwb"/>
+                                    <constraint firstItem="rjB-Tk-etz" firstAttribute="leading" secondItem="enJ-B0-r2x" secondAttribute="leading" id="z9G-bE-2k9"/>
                                 </constraints>
                             </view>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="DLK-Xr-pvQ">
@@ -2329,7 +2332,6 @@ communication experience</string>
                             <constraint firstItem="sSu-JQ-dA5" firstAttribute="top" secondItem="DLK-Xr-pvQ" secondAttribute="bottom" constant="-19" id="41w-lT-Uy1"/>
                             <constraint firstItem="enJ-B0-r2x" firstAttribute="leading" secondItem="ujF-Hq-PDU" secondAttribute="leading" id="Bp5-bh-g6B"/>
                             <constraint firstItem="enJ-B0-r2x" firstAttribute="top" secondItem="TeU-qn-xyv" secondAttribute="bottom" constant="-30" id="Bqt-4R-naw"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="lgX-h1-2da" secondAttribute="trailing" constant="-9" id="VGi-Qu-OL4"/>
                             <constraint firstAttribute="trailing" secondItem="DLK-Xr-pvQ" secondAttribute="trailing" constant="50" id="d8T-uB-1sj"/>
                             <constraint firstItem="DLK-Xr-pvQ" firstAttribute="height" secondItem="ujF-Hq-PDU" secondAttribute="height" multiplier="0.7383" id="mmo-J9-pXl"/>
                             <constraint firstItem="DLK-Xr-pvQ" firstAttribute="top" secondItem="enJ-B0-r2x" secondAttribute="bottom" id="z2h-fA-LDR"/>
@@ -2343,9 +2345,10 @@ communication experience</string>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <nil key="simulatedTopBarMetrics"/>
                     <connections>
                         <outlet property="collectionView" destination="DLK-Xr-pvQ" id="8PI-jM-SRG"/>
-                        <outlet property="doneButton" destination="lgX-h1-2da" id="A3C-E4-tt6"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9RW-ly-w29" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -2368,7 +2371,7 @@ communication experience</string>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="te2-7R-3Ry" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-367" y="1763"/>
+            <point key="canvasLocation" x="-107" y="2047"/>
         </scene>
         <!--Display Photo View Controller-->
         <scene sceneID="FeX-4x-Ood">
@@ -2589,7 +2592,7 @@ Enter to get perks from Chill</string>
         <image name="add_people.png" width="25" height="26"/>
         <image name="chill_logo" width="192" height="74"/>
         <image name="close.png" width="12" height="12"/>
-        <image name="fav_header.png" width="640" height="303"/>
+        <image name="headernew.png" width="640" height="303"/>
         <image name="locationios_right" width="107" height="107"/>
         <image name="mail_settings_need" width="21" height="16"/>
         <image name="picios_right" width="107" height="107"/>
@@ -2609,11 +2612,11 @@ Enter to get perks from Chill</string>
         <image name="star66.png" width="66" height="66"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="3UD-BD-gem"/>
-        <segue reference="5k2-BS-7Gc"/>
-        <segue reference="trd-p3-6se"/>
-        <segue reference="oIG-5Z-NB0"/>
-        <segue reference="jnP-xo-jaE"/>
         <segue reference="2N9-CI-wJ2"/>
+        <segue reference="oIG-5Z-NB0"/>
+        <segue reference="7n3-ts-55s"/>
+        <segue reference="5k2-BS-7Gc"/>
+        <segue reference="3UD-BD-gem"/>
+        <segue reference="trd-p3-6se"/>
     </inferredMetricsTieBreakers>
 </document>

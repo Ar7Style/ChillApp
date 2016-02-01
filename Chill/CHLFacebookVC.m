@@ -211,17 +211,17 @@
         NSString *str = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
         if (![str isEqualToString:@"{\"status\":\"failed\",\"error\":\"User exists.\"}"]){ //Условие
             NSUserDefaults *userCache = [[NSUserDefaults standardUserDefaults] initWithSuiteName:@"group.co.getchill.chill"];
-            NSString *message = [NSString stringWithFormat:@"%@ wants to Chill with You!",[userCache valueForKey:@"name"]];
-            NSDictionary *pushData = @{
-                                       @"alert": message,
-                                       @"sound": @"default",
-                                       @"badge" : @1,
-                                       @"type": @"NewUser"
-                                       };
-            PFPush *push = [[PFPush alloc] init];
-            [push setChannel:[NSString stringWithFormat:@"us%@",friend]]; //Set channel by user friend id
-            [push setData:pushData];
-            [push sendPushInBackground];
+//            NSString *message = [NSString stringWithFormat:@"%@ wants to Chill with You!",[userCache valueForKey:@"name"]];
+//            NSDictionary *pushData = @{
+//                                       @"alert": message,
+//                                       @"sound": @"default",
+//                                       @"badge" : @1,
+//                                       @"type": @"NewUser"
+//                                       };
+//            PFPush *push = [[PFPush alloc] init];
+//            [push setChannel:[NSString stringWithFormat:@"us%@",friend]]; //Set channel by user friend id
+//            [push setData:pushData];
+//            [push sendPushInBackground];
             HUD = [[MBProgressHUD alloc] initWithView:weakSelf.navigationController.view];
             [weakSelf.navigationController.view addSubview:HUD];
             HUD.customView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"37x-Checkmark.png"]];

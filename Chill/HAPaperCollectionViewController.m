@@ -175,7 +175,7 @@
 -(void)viewDidAppear:(BOOL)animated{
     if (![self connected]) {
         SCLAlertView* alert = [[SCLAlertView alloc] init];
-        [alert showError:self.parentViewController title:@"Failed" subTitle:@"Please, check your internet connection" closeButtonTitle:@"OK" duration:0.0f];
+        [alert showError:self.parentViewController title:@"Oups" subTitle:@"Please, check your internet connection" closeButtonTitle:@"OK" duration:0.0f];
 
     }
     else {

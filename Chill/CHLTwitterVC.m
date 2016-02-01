@@ -18,6 +18,7 @@
     MBProgressHUD *HUD;
     NSArray* json;
     NSString *displayName;
+    NSString *name;
 }
 
 @property(nonatomic, strong) TWTRSession *twitterSession;
@@ -68,7 +69,8 @@
         self.twitterSession = [[Twitter sharedInstance] session];
         [self startSearchingTwitterFriends];
     }
-    //NSLog(@"Display Twitter name: %@", _toInviteDisplayNames[0]);
+    [self sendTwitterFullNameToBackend];
+
 }
 
 - (void)showLoadingState {
@@ -202,63 +204,42 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.section == 0) {
+   // if (indexPath.section == 0) {
         CHLFriendCell *cell = [tableView dequeueReusableCellWithIdentifier:@"AddCell"];
         cell.senderLabel.text = self.chillUsernames[indexPath.row];
         NSUInteger twitterIndex = [self.toInviteIDs indexOfObject:self.chillRegisteredTwitterIDs[indexPath.row]];
         cell.lastChilTitleLabel.text = [NSString stringWithFormat:@"%@", self.toInviteDisplayNames[twitterIndex]];
         
-        NSMutableURLRequest *request = [[NSMutableURLRequest alloc]initWithURL:[NSURL URLWithString: [NSString stringWithFormat:@"http://api.iamchill.co/v2/users/update/"]]];
-        [request setValue:[[NSUserDefaults standardUserDefaults] valueForKey:@"token"] forHTTPHeaderField:@"X-API-TOKEN"];
-        
-        [request setValue:@"76eb29d3ca26fe805545812850e6d75af933214a" forHTTPHeaderField:@"X-API-KEY"];
-        
-        [request setHTTPMethod:@"POST"];
-        
-        NSHTTPURLResponse *response = nil;
-        NSError *error = nil;
-        NSString *postString = [NSString stringWithFormat:@"id_user=%@&twitter_name=%@",[[NSUserDefaults standardUserDefaults] valueForKey:@"id_user"], self.toInviteDisplayNames[twitterIndex]];
-        
-        [request setHTTPBody:[postString dataUsingEncoding:NSUTF8StringEncoding]];
-        NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
-        if (data != nil) {
-            jsonResponse = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&error];
-        }
-        if([response statusCode] != 200){
-            NSLog(@"Error getting, HTTP status code %li", (long)[response statusCode]);
-        }
-
-        
+       // [self sendTwitterFullNameToBackend];
         return cell;
-    }
-    else {
-        NSUInteger twitterIndex = [self.toInviteIDs indexOfObject:self.returnedFromChillToInviteTwitterIDs[indexPath.row]];
-        CHLFriendCell *cell = [tableView dequeueReusableCellWithIdentifier:@"InviteCell"];
-        cell.senderLabel.text = self.toInviteDisplayNames[twitterIndex];
-        cell.lastChilTitleLabel.text = [NSString stringWithFormat:@"@%@", self.toInviteNicknames[twitterIndex]];
-        
-        NSMutableURLRequest *request = [[NSMutableURLRequest alloc]initWithURL:[NSURL URLWithString: [NSString stringWithFormat:@"http://api.iamchill.co/v2/users/update/"]]];
-        [request setValue:[[NSUserDefaults standardUserDefaults] valueForKey:@"token"] forHTTPHeaderField:@"X-API-TOKEN"];
-        
-        [request setValue:@"76eb29d3ca26fe805545812850e6d75af933214a" forHTTPHeaderField:@"X-API-KEY"];
-        
-        [request setHTTPMethod:@"POST"];
-        
-        NSHTTPURLResponse *response = nil;
-        NSError *error = nil;
-        NSString *postString = [NSString stringWithFormat:@"id_user=%@&twitter_name=%@",[[NSUserDefaults standardUserDefaults] valueForKey:@"id_user"], self.toInviteDisplayNames[twitterIndex]];
-        
-        [request setHTTPBody:[postString dataUsingEncoding:NSUTF8StringEncoding]];
-        NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
-        if (data != nil) {
-            jsonResponse = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&error];
-        }
-        if([response statusCode] != 200){
-            NSLog(@"Error getting, HTTP status code %li", (long)[response statusCode]);
-        }
-        
-        return cell;
-    }
+    //}
+//    else { //pohui
+//        NSUInteger twitterIndex = [self.toInviteIDs indexOfObject:self.returnedFromChillToInviteTwitterIDs[indexPath.row]];
+//        CHLFriendCell *cell = [tableView dequeueReusableCellWithIdentifier:@"InviteCell"];
+//        cell.senderLabel.text = self.toInviteDisplayNames[twitterIndex];
+//        cell.lastChilTitleLabel.text = [NSString stringWithFormat:@"%@", self.toInviteNicknames[twitterIndex]];
+//        NSMutableURLRequest *request = [[NSMutableURLRequest alloc]initWithURL:[NSURL URLWithString: [NSString stringWithFormat:@"http://api.iamchill.co/v2/users/update/"]]];
+//        [request setValue:[[NSUserDefaults standardUserDefaults] valueForKey:@"token"] forHTTPHeaderField:@"X-API-TOKEN"];
+//        
+//        [request setValue:@"76eb29d3ca26fe805545812850e6d75af933214a" forHTTPHeaderField:@"X-API-KEY"];
+//        
+//        [request setHTTPMethod:@"POST"];
+//        
+//        NSHTTPURLResponse *response = nil;
+//        NSError *error = nil;
+//        NSString *postString = [NSString stringWithFormat:@"id_user=%@&twitter_name=%@",[[NSUserDefaults standardUserDefaults] valueForKey:@"id_user"], name];
+//        
+//        [request setHTTPBody:[postString dataUsingEncoding:NSUTF8StringEncoding]];
+//        NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
+//        if (data != nil) {
+//            jsonResponse = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&error];
+//        }
+//        if([response statusCode] != 200){
+//            NSLog(@"Error getting, HTTP status code %li", (long)[response statusCode]);
+//        }
+//        
+//        return cell;
+//    }
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -342,6 +323,44 @@
             [weakSelf presentViewController:alert animated:YES completion:nil];
         }
     });
+}
+
+
+-(void)sendTwitterFullNameToBackend {
+    ACAccountStore *accountStore = [[ACAccountStore alloc] init];
+    ACAccountType *accountType = [accountStore accountTypeWithAccountTypeIdentifier:ACAccountTypeIdentifierTwitter];
+    
+    [accountStore requestAccessToAccountsWithType:accountType options:nil completion:^(BOOL granted, NSError *error) {
+        if(granted) {
+            NSArray *accountsArray = [accountStore accountsWithAccountType:accountType];
+        
+        if ([accountsArray count] > 0) {
+            ACAccount *twitterAccount = [accountsArray objectAtIndex:0];
+            name = twitterAccount.userFullName;
+            NSLog(@"full name: %@", twitterAccount.userFullName);
+            NSMutableURLRequest *request = [[NSMutableURLRequest alloc]initWithURL:[NSURL URLWithString: [NSString stringWithFormat:@"http://api.iamchill.co/v2/users/update/"]]];
+            [request setValue:[[NSUserDefaults standardUserDefaults] valueForKey:@"token"] forHTTPHeaderField:@"X-API-TOKEN"];
+            
+            [request setValue:@"76eb29d3ca26fe805545812850e6d75af933214a" forHTTPHeaderField:@"X-API-KEY"];
+            
+            [request setHTTPMethod:@"POST"];
+            
+            NSHTTPURLResponse *response = nil;
+            NSError *error = nil;
+            NSString *postString = [NSString stringWithFormat:@"id_user=%@&twitter_name=%@",[[NSUserDefaults standardUserDefaults] valueForKey:@"id_user"], twitterAccount.userFullName];
+            [request setHTTPBody:[postString dataUsingEncoding:NSUTF8StringEncoding]];
+            NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
+            if (data != nil) {
+                jsonResponse = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&error];
+            }
+            if([response statusCode] != 200){
+                NSLog(@"Error getting, HTTP status code %li", (long)[response statusCode]);
+            }
+
+            
+        }
+    }
+    }];
 }
 
 @end

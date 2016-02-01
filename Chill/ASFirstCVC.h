@@ -12,5 +12,6 @@
 
 
 - (IBAction)doneAction:(id)sender;
+@property (strong, nonatomic) NSMutableArray*  arraySelectedIconID;
 
 @end

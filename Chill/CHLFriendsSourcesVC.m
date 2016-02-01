@@ -44,7 +44,7 @@
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
     [manager.requestSerializer setValue:[[NSUserDefaults standardUserDefaults] valueForKey:@"token"] forHTTPHeaderField:@"X-API-TOKEN"];
     [manager.requestSerializer setValue:@"76eb29d3ca26fe805545812850e6d75af933214a" forHTTPHeaderField:@"X-API-KEY"];
-    NSDictionary *parameters = @{@"id_user": [[NSUserDefaults standardUserDefaults] valueForKey:@"id_user"]};
+    NSDictionary *parameters = @{@"id_user": [userCache valueForKey:@"id_user"]};
     
     [manager POST:@"http://api.iamchill.co/v2/promocodes/index" parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
@@ -54,7 +54,7 @@
         }
         else if ([[responseObject valueForKey:@"status"] isEqualToString:@"success"]) {
             [userCache setValue:[[responseObject valueForKey:@"response"] valueForKey:@"code"] forKey:@"promocode"];
-            promocodeLink = [[responseObject valueForKey:@"response"] valueForKey:@"link"];
+            [userCache setValue:[[responseObject valueForKey:@"response"] valueForKey:@"link"] forKey:@"link"];
             [userCache synchronize];
             NSLog(@"Promo success: %@", [userCache valueForKey:@"promocode"]);
             
@@ -73,15 +73,15 @@
 }
 - (void) errorShow: (NSString*)message {
     SCLAlertView* alert = [[SCLAlertView alloc] init];
-    [alert showError:self.parentViewController title:@"Failed" subTitle:message closeButtonTitle:@"OK" duration:0.0f];
+    [alert showError:self.parentViewController title:@"Oups" subTitle:message closeButtonTitle:@"OK" duration:0.0f];
 
 }
 - (IBAction)shareButtonPressed:(id)sender {
+    NSUserDefaults *userCache = [[NSUserDefaults standardUserDefaults] initWithSuiteName:@"group.co.getchill.chill"];
     
     
-    
-        NSString *textToShare = [NSString stringWithFormat:@"Add me on contextual messenger I love using promocode: %@", promocodeLink];
-        NSURL *myWebsite = [NSURL URLWithString:[NSString stringWithFormat:@"%@", promocodeLink]];
+    NSString *textToShare = [NSString stringWithFormat:@"Hey, add me on Chill! It's a fun way to communicate with no text or voice.\nGrab a promocode here: %@", [userCache valueForKey:@"promocode"]];
+    NSURL *myWebsite = nil;//[NSURL URLWithString:[NSString stringWithFormat:@"%@", [userCache valueForKey:@"link"]]];
     
         NSArray *objectsToShare = @[textToShare, myWebsite];
         
@@ -89,12 +89,10 @@
         
     NSArray *excludedActivities = @[
                                     UIActivityTypePostToWeibo,
-                                    UIActivityTypeMessage,
-                                    
-                                    
                                     UIActivityTypeAssignToContact,
-                                     UIActivityTypePostToFlickr,
-                                    UIActivityTypePostToVimeo, UIActivityTypePostToTencentWeibo];
+                                    UIActivityTypePostToFlickr,
+                                    UIActivityTypePostToVimeo,
+                                    UIActivityTypePostToTencentWeibo];
     activityVC.excludedActivityTypes = excludedActivities;
     
     

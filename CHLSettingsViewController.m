@@ -102,7 +102,7 @@
 
 - (void) errorShow: (NSString*)message {
     SCLAlertView* alert = [[SCLAlertView alloc] init];
-    [alert showError:self.parentViewController title:@"Failed" subTitle:message closeButtonTitle:@"OK" duration:0.0f];
+    [alert showError:self.parentViewController title:@"Oups" subTitle:message closeButtonTitle:@"OK" duration:0.0f];
 
 }
 

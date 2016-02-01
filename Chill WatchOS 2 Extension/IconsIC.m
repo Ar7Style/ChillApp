@@ -11,6 +11,8 @@
 #import "UserCache.h"
 #import "ButtonIconID.h"
 #import <AFNetworking/AFNetworking.h>
+#import "FTWCache.h"
+#import "NSString+MD5.h"
 
 @interface IconsIC () {
     NSArray *json;
@@ -166,16 +168,68 @@
     for (int i= 0; i<json.count;i++) {
         IconRow* theRow = [self.table rowControllerAtIndex:j];
         if (n == 0 ) {
-            [theRow.button1 setBackgroundImageData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[json[i] valueForKey:@"size80"]]]];
+            NSURL *imageURL = [NSURL URLWithString:[json[i] valueForKey:@"size80"]];
+            NSString *key = [[json[i] valueForKey:@"size80"] MD5Hash];
+            NSData *data = [FTWCache objectForKey:key];
+            if (data) {
+                [theRow.button1 setBackgroundImageData:data];
+            }
+            else {
+                dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0ul);
+                dispatch_async(queue, ^{
+                    NSData *data = [NSData dataWithContentsOfURL:imageURL];
+                    [FTWCache setObject:data forKey:key];
+                    dispatch_sync(dispatch_get_main_queue(), ^{
+                        [theRow.button1 setBackgroundImageData:data];
+                    });
+                });
+                
+            }
+            
+//            [theRow.button1 setBackgroundImageData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[json[i] valueForKey:@"size80"]]]];
             [buttonIDs setObject:[json[i] valueForKey:@"name"] forKey:[NSString stringWithFormat:@"%@", theRow.button1]];
             
         }
         else if (n == 1) {
-            [theRow.button2 setBackgroundImageData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[json[i] valueForKey:@"size80"]]]];
+            NSURL *imageURL = [NSURL URLWithString:[json[i] valueForKey:@"size80"]];
+            NSString *key = [[json[i] valueForKey:@"size80"] MD5Hash];
+            NSData *data = [FTWCache objectForKey:key];
+            if (data) {
+                [theRow.button2 setBackgroundImageData:data];
+            }
+            else {
+                dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0ul);
+                dispatch_async(queue, ^{
+                    NSData *data = [NSData dataWithContentsOfURL:imageURL];
+                    [FTWCache setObject:data forKey:key];
+                    dispatch_sync(dispatch_get_main_queue(), ^{
+                        [theRow.button2 setBackgroundImageData:data];
+                    });
+                });
+                
+            }
+            
             [buttonIDs setObject:[json[i] valueForKey:@"name"] forKey:[NSString stringWithFormat:@"%@", theRow.button2]];
         }
         else if (n == 2) {
-            [theRow.button3 setBackgroundImageData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[json[i] valueForKey:@"size80"]]]];
+            NSURL *imageURL = [NSURL URLWithString:[json[i] valueForKey:@"size80"]];
+            NSString *key = [[json[i] valueForKey:@"size80"] MD5Hash];
+            NSData *data = [FTWCache objectForKey:key];
+            if (data) {
+                [theRow.button3 setBackgroundImageData:data];
+            }
+            else {
+                dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0ul);
+                dispatch_async(queue, ^{
+                    NSData *data = [NSData dataWithContentsOfURL:imageURL];
+                    [FTWCache setObject:data forKey:key];
+                    dispatch_sync(dispatch_get_main_queue(), ^{
+                        [theRow.button3 setBackgroundImageData:data];
+                    });
+                });
+                
+            }
+            
             [buttonIDs setObject:[json[i] valueForKey:@"name"] forKey:[NSString stringWithFormat:@"%@", theRow.button3]];
         }
         n++;

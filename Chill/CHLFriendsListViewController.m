@@ -128,7 +128,7 @@ NSMutableData *mutData;
 
 - (void) errorShow: (NSString*)message {
     SCLAlertView* alert = [[SCLAlertView alloc] init];
-    [alert showError:self.parentViewController title:@"Failed" subTitle:message closeButtonTitle:@"OK" duration:0.0f];
+    [alert showError:self.parentViewController title:@"Oups" subTitle:message closeButtonTitle:@"OK" duration:0.0f];
 }
 
 - (void) loadJSON {
@@ -194,8 +194,8 @@ NSMutableData *mutData;
     NSArray *jsonData = json[indexPath.row];
     cell.senderLabel.text = [jsonData valueForKey:@"login"];
     UILabel* twitter_name = (UILabel*) [cell viewWithTag:10];
-    if (![[jsonData valueForKey:@"twitter_name"] isEqualToString:@"empty"])
-        twitter_name.text = [NSString stringWithFormat:@"@%@", [jsonData valueForKey:@"twitter_name"]];
+    if (![[jsonData valueForKey:@"twitter_name"] isEqualToString:@"empty"] & ![[jsonData valueForKey:@"twitter_name"] isEqualToString:@"(null)"] )
+        twitter_name.text = [NSString stringWithFormat:@"%@", [jsonData valueForKey:@"twitter_name"]];
     else
         twitter_name.text = nil;
     

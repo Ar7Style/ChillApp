@@ -15,6 +15,10 @@
 #import "UserCache.h"
 #import <AFNetworking/AFNetworking.h>
 #import "UIColor+ChillColors.h"
+
+#import "ASFirstCVC.h"
+#import "SCLAlertView.h"
+
 #define PAGE_AMOUNT 3
 
 @interface CHLTutorialViewController () {
@@ -81,8 +85,9 @@
     }
     else {
         [[NSNotificationCenter defaultCenter] postNotificationName:@"Response" object:@"bad"];
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Sorry!" message:@"You can't choose more than 6 phrases" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
-        [alert show];
+        
+        SCLAlertView* alert = [[SCLAlertView alloc] init];
+        [alert showError:self.parentViewController title:@"Sorry" subTitle:@"You can't choose more than 6 phrases" closeButtonTitle:@"OK" duration:0.0f];
     }
     NSLog(@"%@", [notification object]);
     NSLog(@"SELECTED BUTTON COUNT = %lu", (unsigned long)selectedButtons.count);
@@ -93,13 +98,14 @@
         [go setEnabled:NO];
         [go setTitleColor:[UIColor chillDarkGrayColor] forState:UIControlStateNormal];
     }
-   // [[notification object]
     NSLog(@"%@", [notification object]);
 }
 - (void) close {
     
     NSString* str = [selectedButtons componentsJoinedByString:@"-"];
-
+    NSMutableArray *slectedIconsArray = [[str componentsSeparatedByString:@"-"] mutableCopy];
+    ASFirstCVC* asfvc = [[ASFirstCVC alloc] init];
+    asfvc.arraySelectedIconID = slectedIconsArray;
     NSLog(@"STROKA: %@", str);
     NSDictionary *parametr = @{@"id_user":[NSUserDefaults userID], @"id_icons_user":str};
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
@@ -132,20 +138,8 @@
         NSLog(@"JSON123: %@", responseObject);
     } failure:^(NSURLSessionTask *operation, NSError *error) {
         NSLog(@"FAILLLLL");
-        UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Sorry"
-                                    
-                                                                       message:@"Can't upload Your phrases"
-                                    
-                                                                preferredStyle:UIAlertControllerStyleAlert];
-        
-        
-        UIAlertAction* okayAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
-                                     
-                                                           handler:^(UIAlertAction * action) {}];
-        
-        [alert addAction:okayAction];
-        
-        [self presentViewController:alert animated:YES completion:nil];
+        SCLAlertView* alert = [[SCLAlertView alloc] init];
+        [alert showError:self.parentViewController title:@"Oups" subTitle:@"Please, check your internet connection" closeButtonTitle:@"OK" duration:0.0f];
     }];
 
 }

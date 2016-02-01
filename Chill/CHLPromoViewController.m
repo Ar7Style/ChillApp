@@ -42,7 +42,7 @@
         self.constrBottom.constant = isShowing ?  CGRectGetHeight(keyboardRect) : 170;
         [self.view layoutIfNeeded];
     } completion:nil];
-    [self.view layoutIfNeeded];
+    //[self.view layoutIfNeeded];
 }
 
 -(void)viewWillDisappear:(BOOL)animated {
@@ -68,12 +68,12 @@
         }
         else if ([[responseObject valueForKey:@"status"] isEqualToString:@"failed"]) {
             SCLAlertView* alert = [[SCLAlertView alloc] init];
-            [alert showError:self.parentViewController title:@"Failed" subTitle:@"Sorry, promocode is incorrect" closeButtonTitle:@"OK" duration:0.0f];
+            [alert showError:self.parentViewController title:@"Oups" subTitle:@"Sorry, promocode is incorrect" closeButtonTitle:@"OK" duration:0.0f];
         }
     }
         failure:^(AFHTTPRequestOperation *operation, NSError *error) {
             SCLAlertView* alert = [[SCLAlertView alloc] init];
-            [alert showError:self.parentViewController title:@"Failed" subTitle:@"Please, check Your internet connection" closeButtonTitle:@"OK" duration:0.0f];
+            [alert showError:self.parentViewController title:@"Oups" subTitle:@"Please, check Your internet connection" closeButtonTitle:@"OK" duration:0.0f];
         
     }];
     
@@ -84,7 +84,7 @@
      
 - (void) errorShow: (NSString*)message {
     SCLAlertView* alert = [[SCLAlertView alloc] init];
-    [alert showError:self.parentViewController title:@"Failed" subTitle:message closeButtonTitle:@"OK" duration:0.0f];
+    [alert showError:self.parentViewController title:@"Oups" subTitle:message closeButtonTitle:@"OK" duration:0.0f];
 }
 
 @end
