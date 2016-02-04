@@ -81,7 +81,7 @@
     
     
     NSString *textToShare = [NSString stringWithFormat:@"Hey, add me on Chill! It's a fun way to communicate with no text or voice.\nGrab a promocode here: %@", [userCache valueForKey:@"promocode"]];
-    NSURL *myWebsite = nil;//[NSURL URLWithString:[NSString stringWithFormat:@"%@", [userCache valueForKey:@"link"]]];
+    NSURL *myWebsite = [NSURL URLWithString:[NSString stringWithFormat:@"http://iamchill.co/user/artstyle/promocode/%@", [userCache valueForKey:@"promocode"]]];
     
         NSArray *objectsToShare = @[textToShare, myWebsite];
         

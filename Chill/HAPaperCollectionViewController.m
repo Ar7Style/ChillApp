@@ -282,7 +282,10 @@
                                 GMSAddress *addressGMS = response.firstResult;
                                 if ( (addressGMS) || ([addressGMS valueForKey:@"thoroughfare"] != nil) ) {
                                     textLabel.text = [NSString stringWithFormat:@"%@",[addressGMS valueForKey:@"thoroughfare"]];
-                                } else {
+                                }else if ([[addressGMS valueForKey:@"thoroughfare" ] isKindOfClass:[NSNull class]]) {
+                                    textLabel.text = @"In the middle of nowhere";
+                                }
+                                else {
                                     textLabel.text = @"In the middle of nowhere";
                                 }
                             };
