@@ -35,6 +35,11 @@
     MBProgressHUD *HUD;
 }
 
+@property(nonatomic) BOOL searchModeUsers;
+@property(nonatomic, weak) UIButton *facebookButton;
+@property(nonatomic, weak) UIButton *twitterButton;
+@property(nonatomic, weak) UIButton *shareButton;
+
 @end
 NSMutableData *mutData;
 
@@ -47,15 +52,136 @@ NSMutableData *mutData;
 {
     return [[Reachability reachabilityForInternetConnection] currentReachabilityStatus] != NotReachable;
 }
+
+- (void)switchSearch
+{
+    self.searchModeUsers = !self.searchModeUsers;
+    self.searchBar.placeholder = self.searchModeUsers ? @"User login for search" : @"App for search";
+    UIBarButtonItem *swithButton = [[UIBarButtonItem alloc]
+                                    initWithTitle:self.searchModeUsers ? @"Apps" : @"Users"
+                                    style:UIBarButtonItemStylePlain
+                                    target:self
+                                    action:@selector(switchSearch)];
+    swithButton.tintColor = [UIColor chillMintColor];
+    self.navigationItem.leftBarButtonItem = swithButton;
+    [self performSearchWithQuery:self.searchBar.text];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.searchModeUsers = NO;
+    [self switchSearch];
+    
     //self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName: [UIColor whiteColor]};
     self.navigationController.view.clipsToBounds=YES;
     self.tableView.tableFooterView = [UIView new];
     //self.navigationController.navigationBar.barTintColor = [UIColor chillMintColor];
     //[[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     _searchBar.delegate = self;
+    
+    self.navigationController.navigationBar.barTintColor = [UIColor whiteColor];
+    
+    NSUserDefaults *userCache = [[NSUserDefaults standardUserDefaults] initWithSuiteName:@"group.co.getchill.chill"];
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.responseSerializer = [AFJSONResponseSerializer serializer];
+    manager.requestSerializer = [AFJSONRequestSerializer serializer];
+    [manager.requestSerializer setValue:[[NSUserDefaults standardUserDefaults] valueForKey:@"token"] forHTTPHeaderField:@"X-API-TOKEN"];
+    [manager.requestSerializer setValue:@"76eb29d3ca26fe805545812850e6d75af933214a" forHTTPHeaderField:@"X-API-KEY"];
+    NSDictionary *parameters = @{@"id_user": [userCache valueForKey:@"id_user"]};
+    
+    [manager POST:@"http://api.iamchill.co/v2/promocodes/index" parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        
+        if ([[responseObject valueForKey:@"status"] isEqualToString:@"failed"]){
+            [self errorShow:@"It seems that the entered email or password is incorrect"];
+            NSLog(@"Fail promo");
+        }
+        else if ([[responseObject valueForKey:@"status"] isEqualToString:@"success"]) {
+            [userCache setValue:[[responseObject valueForKey:@"response"] valueForKey:@"code"] forKey:@"promocode"];
+            [userCache setValue:[[responseObject valueForKey:@"response"] valueForKey:@"link"] forKey:@"link"];
+            [userCache synchronize];
+            NSLog(@"Promo success: %@", [userCache valueForKey:@"promocode"]);
+            
+        }
+    }
+          failure:^(AFHTTPRequestOperation *operation2, NSError *error2) {
+              [self errorShow:@"Please, check Your internet connection"];
+          }];
+}
+
+- (void) errorShow: (NSString*)message {
+    SCLAlertView* alert = [[SCLAlertView alloc] init];
+    [alert showError:self.parentViewController title:@"Oups" subTitle:message closeButtonTitle:@"OK" duration:0.0f];
+    
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    if (self.facebookButton == nil) {
+        UIButton *facebookButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        facebookButton.frame = CGRectMake(0, 0, 100, 20);
+        [facebookButton setTitle:@"Facebook" forState:UIControlStateNormal];
+        [facebookButton setTitleColor:[UIColor colorWithRed:0.18 green:0.27 blue:0.53 alpha:1.0] forState:UIControlStateNormal];
+        facebookButton.center = CGPointMake(self.view.center.x, self.view.center.y - 100);
+        [self.view addSubview:facebookButton];
+        [self.view bringSubviewToFront:facebookButton];
+        [facebookButton addTarget:self action:@selector(facebookButtonTapped) forControlEvents:UIControlEventTouchUpInside];
+        self.facebookButton = facebookButton;
+        
+        UIButton *twitterButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        twitterButton.frame = CGRectMake(0, 0, 100, 20);
+        [twitterButton setTitle:@"Twitter" forState:UIControlStateNormal];
+        [twitterButton setTitleColor:[UIColor colorWithRed:0.27 green:0.6 blue:0.91 alpha:1] forState:UIControlStateNormal];
+        twitterButton.center = CGPointMake(self.view.center.x, self.view.center.y - 170);
+        [self.view addSubview:twitterButton];
+        [self.view bringSubviewToFront:twitterButton];
+        [twitterButton addTarget:self action:@selector(twitterButtonTapped) forControlEvents:UIControlEventTouchUpInside];
+        self.twitterButton = twitterButton;
+        
+        UIButton *shareButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        shareButton.frame = CGRectMake(0, 0, 100, 20);
+        [shareButton setTitle:@"Share" forState:UIControlStateNormal];
+        [shareButton setTitleColor:[UIColor colorWithRed:0.9 green:0.65 blue:0.1 alpha:1] forState:UIControlStateNormal];
+        shareButton.center = CGPointMake(self.view.center.x, self.view.center.y - 30);
+        [self.view addSubview:shareButton];
+        [self.view bringSubviewToFront:shareButton];
+        [shareButton addTarget:self action:@selector(shareButtonTapped) forControlEvents:UIControlEventTouchUpInside];
+        self.shareButton = shareButton;
+    }
+}
+
+- (void)shareButtonTapped
+{
+    NSUserDefaults *userCache = [[NSUserDefaults standardUserDefaults] initWithSuiteName:@"group.co.getchill.chill"];
+    
+    
+    NSString *textToShare = [NSString stringWithFormat:@"Hey, add me on Chill! It's a fun way to communicate with no text or voice.\nGrab a promocode here: %@", [userCache valueForKey:@"promocode"]];
+    NSURL *myWebsite = [NSURL URLWithString:[NSString stringWithFormat:@"http://iamchill.co/user/artstyle/promocode/%@", [userCache valueForKey:@"promocode"]]];
+    
+    NSArray *objectsToShare = @[textToShare, myWebsite];
+    
+    UIActivityViewController *activityVC = [[UIActivityViewController alloc] initWithActivityItems:objectsToShare applicationActivities:nil];
+    
+    NSArray *excludedActivities = @[
+                                    UIActivityTypePostToWeibo,
+                                    UIActivityTypeAssignToContact,
+                                    UIActivityTypePostToFlickr,
+                                    UIActivityTypePostToVimeo,
+                                    UIActivityTypePostToTencentWeibo];
+    activityVC.excludedActivityTypes = excludedActivities;
+    
+    
+    [self presentViewController:activityVC animated:YES completion:nil];
+}
+
+- (void)twitterButtonTapped
+{
+    [self performSegueWithIdentifier:@"Twitter" sender:nil];
+}
+
+- (void)facebookButtonTapped
+{
+    [self performSegueWithIdentifier:@"Facebook" sender:nil];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -64,6 +190,22 @@ NSMutableData *mutData;
     id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
     [tracker set:kGAIScreenName value:@"Contact search screen"];
     [tracker send:[[GAIDictionaryBuilder createAppView] build]];
+}
+
+- (void)performSearchWithQuery:(NSString *)query
+{
+    NSUserDefaults *userCache = [[NSUserDefaults standardUserDefaults] initWithSuiteName:@"group.co.getchill.chill"];
+    int searchType = self.searchModeUsers ? 0 : 1;
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+        _locations = [[[JSONLoader alloc] init] locationsFromJSONFile:[[NSURL alloc] initWithString:[NSString stringWithFormat:@"http://api.iamchill.co/v2/search/index/id_user/%@/login/%@/type_search/%d", [userCache valueForKey:@"id_user"], query, searchType]] typeJSON:@"Search"];
+        NSLog(@"http://api.iamchill.co/v2/search/index/id_user/%@/login/%@", [userCache valueForKey:@"id_user"], query);
+        [self.tableView performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:YES];
+    });
+}
+
+- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
+{
+    [self performSearchWithQuery:searchText];
 }
 
 -(void) searchBarTextDidBeginEditing:(UISearchBar *)searchBar
@@ -104,13 +246,7 @@ NSMutableData *mutData;
     }
     else
     {
-        NSUserDefaults *userCache = [[NSUserDefaults standardUserDefaults] initWithSuiteName:@"group.co.getchill.chill"];
-
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
-            _locations = [[[JSONLoader alloc] init] locationsFromJSONFile:[[NSURL alloc] initWithString:[NSString stringWithFormat:@"http://api.iamchill.co/v2/search/index/id_user/%@/login/%@", [userCache valueForKey:@"id_user"], searchBar.text]] typeJSON:@"Search"];
-            NSLog(@"http://api.iamchill.co/v2/search/index/id_user/%@/login/%@", [userCache valueForKey:@"id_user"], searchBar.text);
-            [self.tableView performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:YES];
-        });
+        [self performSearchWithQuery:searchBar.text];
 
     }
 }
@@ -136,6 +272,10 @@ NSMutableData *mutData;
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+    BOOL shouldHideButtons = _locations.count > 0;
+    self.facebookButton.hidden = shouldHideButtons;
+    self.twitterButton.hidden = shouldHideButtons;
+    self.shareButton.hidden = shouldHideButtons;
     // Return the number of rows in the section.
     return _locations.count; //+ NUMBER_OF_STATIC_CELLS;
 }
