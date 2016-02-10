@@ -159,6 +159,7 @@
 		06B7663A1B7F7F2C00B25396 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 06B766391B7F7F2C00B25396 /* FBSDKCoreKit.framework */; };
 		06B7663C1B7F7F3300B25396 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 06B7663B1B7F7F3300B25396 /* FBSDKLoginKit.framework */; };
 		06B7663E1B7F7F3900B25396 /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 06B7663D1B7F7F3900B25396 /* FBSDKShareKit.framework */; };
+		06D266151C69022400D8709C /* CHLAdditionalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 06D266141C69022400D8709C /* CHLAdditionalViewController.m */; };
 		06D7BEE21BCFD4A9009AE04A /* reaction_ball.png in Resources */ = {isa = PBXBuildFile; fileRef = 06D7BEDA1BCFD4A9009AE04A /* reaction_ball.png */; };
 		06D7BEE31BCFD4A9009AE04A /* reaction_controller.png in Resources */ = {isa = PBXBuildFile; fileRef = 06D7BEDB1BCFD4A9009AE04A /* reaction_controller.png */; };
 		06D7BEE41BCFD4A9009AE04A /* reaction_dollar.png in Resources */ = {isa = PBXBuildFile; fileRef = 06D7BEDC1BCFD4A9009AE04A /* reaction_dollar.png */; };
@@ -514,6 +515,8 @@
 		06B7663B1B7F7F3300B25396 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
 		06B7663D1B7F7F3900B25396 /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKShareKit.framework; sourceTree = "<group>"; };
 		06BBD48E1AB88DB5003E2B1D /* TurnLeft.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = TurnLeft.caf; sourceTree = "<group>"; };
+		06D266131C69022400D8709C /* CHLAdditionalViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHLAdditionalViewController.h; sourceTree = "<group>"; };
+		06D266141C69022400D8709C /* CHLAdditionalViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHLAdditionalViewController.m; sourceTree = "<group>"; };
 		06D7BEDA1BCFD4A9009AE04A /* reaction_ball.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = reaction_ball.png; sourceTree = "<group>"; };
 		06D7BEDB1BCFD4A9009AE04A /* reaction_controller.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = reaction_controller.png; sourceTree = "<group>"; };
 		06D7BEDC1BCFD4A9009AE04A /* reaction_dollar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = reaction_dollar.png; sourceTree = "<group>"; };
@@ -1059,6 +1062,8 @@
 				065C62501C10EA89008A2921 /* star.png */,
 				0686BC3F1B49CDF500515EA0 /* CHLAdditionalShareViewController.h */,
 				0686BC401B49CDF500515EA0 /* CHLAdditionalShareViewController.m */,
+				06D266131C69022400D8709C /* CHLAdditionalViewController.h */,
+				06D266141C69022400D8709C /* CHLAdditionalViewController.m */,
 				065C62571C10F42F008A2921 /* Favorite */,
 			);
 			name = Sharing;
@@ -1784,6 +1789,7 @@
 				0629B2D91C41591C0038F2D0 /* ASServerManager.m in Sources */,
 				53EA0C231C01328300E161C6 /* UserCache.m in Sources */,
 				06A5BF3F1AAE0AFC00D34CFF /* CHLConnectionRefusedController.m in Sources */,
+				06D266151C69022400D8709C /* CHLAdditionalViewController.m in Sources */,
 				E6CF48B4193B78DC00CD48B6 /* CHLShareViewController.m in Sources */,
 				AD6325691ABB73EF00DD8F0D /* CHLPaperCollectionCell.m in Sources */,
 				029ED8F21A54E43B0084D04B /* HACollectionViewLargeLayout.m in Sources */,

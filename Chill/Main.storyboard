@@ -924,7 +924,13 @@ communication experience</string>
                             <constraint firstItem="7Em-hB-1ul" firstAttribute="top" secondItem="Qnv-0D-et9" secondAttribute="bottom" constant="-36" id="zfA-5z-c78"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="tGi-KZ-QKl"/>
+                    <navigationItem key="navigationItem" id="tGi-KZ-QKl">
+                        <barButtonItem key="rightBarButtonItem" title="More" id="A2e-qR-SRK">
+                            <connections>
+                                <segue destination="Obf-WO-5IH" kind="push" id="N88-b3-D5R"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="320" height="568"/>
                     <connections>
@@ -2184,7 +2190,7 @@ communication experience</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Pn5-gH-3QD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-830" y="2198"/>
+            <point key="canvasLocation" x="-488" y="1970"/>
         </scene>
         <!--Collection View Controller-->
         <scene sceneID="KKk-uX-f5A">
@@ -2353,7 +2359,7 @@ communication experience</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9RW-ly-w29" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1187" y="1940"/>
+            <point key="canvasLocation" x="-1233" y="1936"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="ssl-8Q-Cw7">
@@ -2584,6 +2590,84 @@ Enter to get perks from Chill</string>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UUI-kK-hES" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1177" y="519"/>
+        </scene>
+        <!--Additional View Controller-->
+        <scene sceneID="pYW-9g-w4a">
+            <objects>
+                <viewController wantsFullScreenLayout="YES" id="Obf-WO-5IH" customClass="CHLAdditionalViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="rGQ-yR-JsH"/>
+                        <viewControllerLayoutGuide type="bottom" id="2xx-Ve-VLR"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Fd2-ms-cSf">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="tv4-wF-vcA">
+                                <rect key="frame" x="50" y="0.0" width="220" height="586.5"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="wIM-at-Cdz">
+                                    <size key="itemSize" width="134" height="118"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ASImageCell" id="lnx-xA-jrk" customClass="ASImageCell">
+                                        <rect key="frame" x="48.5" y="0.0" width="123" height="123"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="123" height="123"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="oyE-Ed-Dso">
+                                                    <rect key="frame" x="0.0" y="0.0" width="123" height="123"/>
+                                                </imageView>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                        <constraints>
+                                            <constraint firstAttribute="bottom" secondItem="oyE-Ed-Dso" secondAttribute="bottom" id="bSJ-nY-u4m"/>
+                                            <constraint firstAttribute="trailing" secondItem="oyE-Ed-Dso" secondAttribute="trailing" id="c4M-ln-Iv1"/>
+                                            <constraint firstItem="oyE-Ed-Dso" firstAttribute="leading" secondItem="lnx-xA-jrk" secondAttribute="leading" id="cA9-hZ-T7u"/>
+                                            <constraint firstItem="oyE-Ed-Dso" firstAttribute="top" secondItem="lnx-xA-jrk" secondAttribute="top" id="wux-WX-K3t"/>
+                                        </constraints>
+                                        <size key="customSize" width="123" height="123"/>
+                                        <connections>
+                                            <outlet property="imgView" destination="oyE-Ed-Dso" id="4JM-36-td4"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="Obf-WO-5IH" id="z53-Mv-U8i"/>
+                                    <outlet property="delegate" destination="Obf-WO-5IH" id="Ku4-qC-PrX"/>
+                                </connections>
+                            </collectionView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="tv4-wF-vcA" secondAttribute="trailing" constant="50" id="D23-UN-rKe"/>
+                            <constraint firstItem="2xx-Ve-VLR" firstAttribute="top" secondItem="tv4-wF-vcA" secondAttribute="bottom" constant="-19" id="TA0-Fg-dFV"/>
+                            <constraint firstItem="tv4-wF-vcA" firstAttribute="height" secondItem="Fd2-ms-cSf" secondAttribute="height" multiplier="0.7383" constant="167" id="dYT-BL-Kyy"/>
+                            <constraint firstItem="tv4-wF-vcA" firstAttribute="leading" secondItem="Fd2-ms-cSf" secondAttribute="leading" constant="50" id="oVh-0t-F7o"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="zca-No-kwm">
+                        <barButtonItem key="rightBarButtonItem" style="plain" systemItem="done" id="WWh-mj-qDq">
+                            <color key="tintColor" red="0.60892603690000002" green="0.60892603690000002" blue="0.60892603690000002" alpha="1" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <action selector="doneAction:" destination="Obf-WO-5IH" id="VgA-d2-hEC"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <nil key="simulatedTopBarMetrics"/>
+                    <connections>
+                        <outlet property="collectionView" destination="tv4-wF-vcA" id="Rgi-eN-UTY"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hZq-9e-P54" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-457" y="1644"/>
         </scene>
     </scenes>
     <resources>
