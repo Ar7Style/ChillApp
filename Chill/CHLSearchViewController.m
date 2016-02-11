@@ -221,11 +221,12 @@ NSMutableData *mutData;
 
 - (void)performSearchWithQuery:(NSString *)query
 {
+    NSString *fixedQuery = [query stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
     NSUserDefaults *userCache = [[NSUserDefaults standardUserDefaults] initWithSuiteName:@"group.co.getchill.chill"];
     int searchType = self.searchModeUsers ? 0 : 1;
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
-        _locations = [[[JSONLoader alloc] init] locationsFromJSONFile:[[NSURL alloc] initWithString:[NSString stringWithFormat:@"http://api.iamchill.co/v2/search/index/id_user/%@/login/%@/type_search/%d", [userCache valueForKey:@"id_user"], query, searchType]] typeJSON:@"Search"];
-        NSLog(@"http://api.iamchill.co/v2/search/index/id_user/%@/login/%@", [userCache valueForKey:@"id_user"], query);
+        _locations = [[[JSONLoader alloc] init] locationsFromJSONFile:[[NSURL alloc] initWithString:[NSString stringWithFormat:@"http://api.iamchill.co/v2/search/index/id_user/%@/login/%@/type_search/%d", [userCache valueForKey:@"id_user"], fixedQuery, searchType]] typeJSON:@"Search"];
+        NSLog(@"http://api.iamchill.co/v2/search/index/id_user/%@/login/%@", [userCache valueForKey:@"id_user"], fixedQuery);
         [self.tableView performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:YES];
     });
 }
