@@ -137,7 +137,7 @@ NSMutableData *mutData;
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
     [manager.requestSerializer setValue:[NSUserDefaults userToken] forHTTPHeaderField:@"X-API-TOKEN"];
     [manager.requestSerializer setValue:@"76eb29d3ca26fe805545812850e6d75af933214a" forHTTPHeaderField:@"X-API-KEY"];
-    [manager GET:[NSString stringWithFormat:@"http://api.iamchill.co/v2/contacts/index/id_user/%@", [NSUserDefaults userID]] parameters:nil success:^(NSURLSessionTask *task, id responseObject) {
+    [manager GET:[NSString stringWithFormat:@"http://api.iamchill.co/v3/contacts/index/id_user/%@", [NSUserDefaults userID]] parameters:nil success:^(NSURLSessionTask *task, id responseObject) {
         if ([[responseObject objectForKey:@"status"] isEqualToString:@"success"]) {
             if (![[responseObject objectForKey:@"response"] isEqualToArray:json]) {
                 json = [responseObject objectForKey:@"response"];
@@ -192,12 +192,20 @@ NSMutableData *mutData;
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     CHLFriendCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
     NSArray *jsonData = json[indexPath.row];
-    cell.senderLabel.text = [jsonData valueForKey:@"login"];
+    
     UILabel* twitter_name = (UILabel*) [cell viewWithTag:10];
-    if (![[jsonData valueForKey:@"twitter_name"] isEqualToString:@"empty"] & ![[jsonData valueForKey:@"twitter_name"] isEqualToString:@"(null)"] )
-        twitter_name.text = [NSString stringWithFormat:@"%@", [jsonData valueForKey:@"twitter_name"]];
-    else
+    if ( jsonData.count == 11) { //apps (without "login")
+        cell.senderLabel.text = [jsonData valueForKey:@"name"];
         twitter_name.text = nil;
+    }
+    else { //users
+        cell.senderLabel.text = [jsonData valueForKey:@"login"];
+        if (![[jsonData valueForKey:@"name"] isEqualToString:[jsonData valueForKey:@"login"]])
+            twitter_name.text =[jsonData valueForKey:@"name"];
+        else {
+            twitter_name.text = nil;
+            }
+    }
     
     LLACircularProgressView *oldProgressView = (LLACircularProgressView *)[self.progressViewsDictionary objectForKey:[NSNumber numberWithInteger:[[jsonData valueForKey:@"id_contact"] integerValue]]];
     if (cell.type.subviews.firstObject && oldProgressView && cell.type.subviews.firstObject != oldProgressView) {

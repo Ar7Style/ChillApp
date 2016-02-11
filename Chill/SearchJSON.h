@@ -19,6 +19,7 @@
 @property (readonly) NSString *login;
 @property (readonly) NSString *name;
 @property (readonly) NSString *twitter_name;
+@property (readwrite) NSNumber *who;
 
 
 @end

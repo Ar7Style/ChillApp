@@ -33,6 +33,7 @@
 {
     NSInteger friendUserId;
     MBProgressHUD *HUD;
+    int searchType;
 }
 
 @property(nonatomic) BOOL searchModeUsers;
@@ -47,6 +48,7 @@ NSMutableData *mutData;
 @implementation CHLSearchViewController
 {
     NSArray *_locations;
+    NSArray *_locationsApps;
 }
 
 - (BOOL)connected
@@ -223,10 +225,10 @@ NSMutableData *mutData;
 {
     NSString *fixedQuery = [query stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
     NSUserDefaults *userCache = [[NSUserDefaults standardUserDefaults] initWithSuiteName:@"group.co.getchill.chill"];
-    int searchType = self.searchModeUsers ? 0 : 1;
+    searchType = self.searchModeUsers ? 0 : 1;
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
-        _locations = [[[JSONLoader alloc] init] locationsFromJSONFile:[[NSURL alloc] initWithString:[NSString stringWithFormat:@"http://api.iamchill.co/v3/search/index/id_user/%@/name/%@/type_search/%d", [userCache valueForKey:@"id_user"], query, searchType]] typeJSON:@"Search"];
-        NSLog(@"http://api.iamchill.co/v2/search/index/id_user/%@/name/%@", [userCache valueForKey:@"id_user"], query);
+        _locations = [[[JSONLoader alloc] init] locationsFromJSONFile:[[NSURL alloc] initWithString:[NSString stringWithFormat:@"http://api.iamchill.co/v3/search/index/id_user/%@/name/%@/type_search/%d", [userCache valueForKey:@"id_user"], fixedQuery, searchType]] typeJSON:@"Search"];
+        NSLog(@"http://api.iamchill.co/v3/search/index/id_user/%@/name/%@", [userCache valueForKey:@"id_user"], query);
         [self.tableView performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:YES];
     });
 }
@@ -319,6 +321,7 @@ NSMutableData *mutData;
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
 
     SearchJSON *location = [_locations objectAtIndex:indexPath.row];
+    location.who = (self.searchModeUsers) ? @0 : @1;
 
     if (cell == nil)
     {
@@ -327,147 +330,41 @@ NSMutableData *mutData;
     
     UILabel *nameLabel = (UILabel*) [cell viewWithTag:100];
     UILabel *twitterName = (UILabel*) [cell viewWithTag:1000];
-    //nameLabel.text = location.name;
+    if ([location.who isEqualToNumber:@0]) {  // if it is a user
+      
     if (![location.login isKindOfClass:[NSNull class]])
     {
-        nameLabel.text = location.login;
-        if (![location.twitter_name isEqualToString:@"empty"])
+        nameLabel.text = location.name;
+        if (![location.name isEqualToString:location.login] && ![location.login isKindOfClass:[NSNull class]])
         {
-            twitterName.text =[NSString stringWithFormat:@"%@", location.twitter_name];
+            twitterName.text =[NSString stringWithFormat:@"%@", location.name];
         }
         else
             twitterName.text = nil;
     }
         else nameLabel.text = location.login;
-        
+    }
+    else { // if it is an app
+        nameLabel.text = location.name;
+        twitterName.text = nil;
+    }
+    
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    SearchJSON *location = [_locations objectAtIndex:indexPath.row];
-    if ([location.approved integerValue] == 0) {
-        NSUserDefaults *userCache = [[NSUserDefaults standardUserDefaults] initWithSuiteName:@"group.co.getchill.chill"];
-        NSInteger currentInvitesNumber = [userCache integerForKey:@"Available invites number"];
-        
-        if (currentInvitesNumber != 0) {
-            NSString *alertMessage = [NSString stringWithFormat:@"Do you really want to spend one of your invites to approve %@ in Chill?", location.login];
-            UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Hey"
-                                                                           message:alertMessage
-                                                                    preferredStyle:UIAlertControllerStyleAlert];
-            
-            UIAlertAction* declineAction = [UIAlertAction actionWithTitle:@"No" style:UIAlertActionStyleCancel
-                                                                  handler:^(UIAlertAction * action) {}];
-            
-            UIAlertAction* approveUserAction = [UIAlertAction actionWithTitle:@"Yes" style:UIAlertActionStyleDefault
-                                                                      handler:^(UIAlertAction * action) {
-                                                                          [self addFriendFromIndex:indexPath.row];
-                                                                          [userCache setInteger:currentInvitesNumber - 1 forKey:@"Available invites number"];
-                                                                      }];
-            
-            [alert addAction:declineAction];
-            [alert addAction:approveUserAction];
-            [self presentViewController:alert animated:YES completion:nil];
-        }
-        else {
-            UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Sorry"
-                                                                           message:@"You've already spended all your invites."
-                                                                    preferredStyle:UIAlertControllerStyleAlert];
-            
-            UIAlertAction* okayAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
-                                                                      handler:^(UIAlertAction * action) {}];
-            [alert addAction:okayAction];
-            [self presentViewController:alert animated:YES completion:nil];
-        }
-    }
-    
-    else {
+    if (self.searchModeUsers)
         [self addFriendFromIndex:indexPath.row];
-       // [self sendWelcomeMessageToUser:location.id_user];
-       // [self sendWelcomeMessageToUserWhoInviteFriend:location.id_user];
-        //[self sendPushNotificationToUser:location.id_user];
+    else {
+        [self addAppFromIndex:indexPath.row];
+        NSLog(@"try to add the app");
     }
-}
-
--(void)sendWelcomeMessageToUser:(NSString *)userID {
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    manager.responseSerializer = [AFJSONResponseSerializer serializer];
-    manager.requestSerializer = [AFJSONRequestSerializer serializer];
-    [manager.requestSerializer setValue:[NSUserDefaults userToken] forHTTPHeaderField:@"X-API-TOKEN"];
-    [manager.requestSerializer setValue:@"76eb29d3ca26fe805545812850e6d75af933214a" forHTTPHeaderField:@"X-API-KEY"];
-    NSDictionary *parametrs = @{@"id_contact":userID, @"id_user": [NSUserDefaults userID], @"type":@"icon",@"content":@"logo",@"text":@"Hi!"};
-    [manager POST:[NSString stringWithFormat:@"http://api.iamchill.co/v2/messages/index"] parameters:parametrs success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        if ([[responseObject valueForKey:@"status"] isEqualToString:@"success"])
-        {
-            NSLog(@"Hi message was successfully dilivered");
-        }
-        else if ([[responseObject valueForKey:@"status"] isEqualToString:@"failed"]) {
-            SCLAlertView* alert = [[SCLAlertView alloc] init];
-            [alert showError:self.parentViewController title:@"Oups" subTitle:@"Sorry, can't add this friend" closeButtonTitle:@"OK" duration:0.0f];
-        }
-    }
-         failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-             SCLAlertView* alert = [[SCLAlertView alloc] init];
-             [alert showError:self.parentViewController title:@"Oups" subTitle:@"Please, check Your internet connection" closeButtonTitle:@"OK" duration:0.0f];
-             
-         }];
-}
-
--(void)sendWelcomeMessageToUserWhoInviteFriend:(NSString *)userID {
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    manager.responseSerializer = [AFJSONResponseSerializer serializer];
-    manager.requestSerializer = [AFJSONRequestSerializer serializer];
-    [manager.requestSerializer setValue:[NSUserDefaults userToken] forHTTPHeaderField:@"X-API-TOKEN"];
-    [manager.requestSerializer setValue:@"76eb29d3ca26fe805545812850e6d75af933214a" forHTTPHeaderField:@"X-API-KEY"];
-    NSDictionary *parametrs = @{@"id_contact":[NSUserDefaults userID], @"id_user":userID , @"type":@"icon",@"content":@"logo",@"text":@"Hi!"};
-    [manager POST:[NSString stringWithFormat:@"http://api.iamchill.co/v2/messages/index"] parameters:parametrs success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        if ([[responseObject valueForKey:@"status"] isEqualToString:@"success"])
-        {
-            NSLog(@"Hi message was successfully dilivered to userself");
-        }
-        else if ([[responseObject valueForKey:@"status"] isEqualToString:@"failed"]) {
-            SCLAlertView* alert = [[SCLAlertView alloc] init];
-            [alert showError:self.parentViewController title:@"Oups" subTitle:@"Sorry, can't add this friend" closeButtonTitle:@"OK" duration:0.0f];
-        }
-    }
-          failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-              SCLAlertView* alert = [[SCLAlertView alloc] init];
-              [alert showError:self.parentViewController title:@"Oups" subTitle:@"Please, check Your internet connection" closeButtonTitle:@"OK" duration:0.0f];
-              
-          }];
-}
-
--(void)sendPushNotificationToUser:(NSString *)userID {
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    manager.responseSerializer = [AFJSONResponseSerializer serializer];
-    manager.requestSerializer = [AFJSONRequestSerializer serializer];
-    [manager.requestSerializer setValue:[NSUserDefaults userToken] forHTTPHeaderField:@"X-API-TOKEN"];
-    [manager.requestSerializer setValue:@"76eb29d3ca26fe805545812850e6d75af933214a" forHTTPHeaderField:@"X-API-KEY"];
-    NSDictionary *parametrs = @{@"id_contact":userID, @"id_user": [NSUserDefaults userID], @"type":@"icon",@"content":@"logo",@"text":@"Hi!"};
-    [manager POST:[NSString stringWithFormat:@"http://api.iamchill.co/v2/notifications/message"] parameters:parametrs success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        if ([[responseObject valueForKey:@"status"] isEqualToString:@"success"])
-        {
-            NSLog(@"Push notification was successfully dilivered");
-        }
-        else if ([[responseObject valueForKey:@"status"] isEqualToString:@"failed"]) {
-            SCLAlertView* alert = [[SCLAlertView alloc] init];
-            [alert showError:self.parentViewController title:@"Oups" subTitle:@"Sorry, can't add this friend" closeButtonTitle:@"OK" duration:0.0f];
-        }
-    }
-          failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-              SCLAlertView* alert = [[SCLAlertView alloc] init];
-              [alert showError:self.parentViewController title:@"Oups" subTitle:@"Please, check Your internet connection" closeButtonTitle:@"OK" duration:0.0f];
-              
-          }];
-
 }
 
 - (void)addFriendFromIndex:(NSInteger)index {
     NSUserDefaults *userCache = [[NSUserDefaults standardUserDefaults] initWithSuiteName:@"group.co.getchill.chill"];
     
-    NSMutableURLRequest *requestToNotify =
-    [[NSMutableURLRequest alloc] initWithURL:
-     [NSURL URLWithString:@"http://api.iamchill.co/v2/notifications/contact"]]; //contacts/index
     NSMutableURLRequest *request =
     [[NSMutableURLRequest alloc] initWithURL:
      [NSURL URLWithString:@"http://api.iamchill.co/v2/contacts/index"]];
@@ -477,25 +374,50 @@ NSMutableData *mutData;
     [request setValue:@"76eb29d3ca26fe805545812850e6d75af933214a" forHTTPHeaderField:@"X-API-KEY"];
     
     SearchJSON *location = [_locations objectAtIndex:index];
+    //location.who =
     friendUserId = [location.id_user integerValue];
     NSString *postString = [NSString stringWithFormat:@"id_user=%@&id_contact=%ld",[userCache valueForKey:@"id_user"],(long)friendUserId];
     
     [request setHTTPBody:[postString
                                   dataUsingEncoding:NSUTF8StringEncoding]];
     
-    [requestToNotify setHTTPMethod:@"POST"];
-    [requestToNotify setValue:[[NSUserDefaults standardUserDefaults] valueForKey:@"token"] forHTTPHeaderField:@"X-API-TOKEN"];
-    [requestToNotify setValue:@"76eb29d3ca26fe805545812850e6d75af933214a" forHTTPHeaderField:@"X-API-KEY"];
+    
+    NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
+    if (connection)
+    {
+        mutData = [NSMutableData data];
+    }
+    
+    id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+    [tracker set:kGAIScreenName value:@"Contact search screen"];
+    [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"UX"
+                                                          action:@"New contact added"
+                                                           label:nil
+                                                           value:nil] build]];
+    [tracker set:kGAIScreenName value:nil];
+}
 
+
+- (void)addAppFromIndex:(NSInteger)index {
+    NSUserDefaults *userCache = [[NSUserDefaults standardUserDefaults] initWithSuiteName:@"group.co.getchill.chill"];
     
-    SearchJSON *locationTN = [_locations objectAtIndex:index];
-    friendUserId = [locationTN.id_user integerValue];
-    NSString *postStringTN = [NSString stringWithFormat:@"id_user=%@&id_contact=%ld",[userCache valueForKey:@"id_user"],(long)friendUserId];
+    NSMutableURLRequest *request =
+    [[NSMutableURLRequest alloc] initWithURL:
+     [NSURL URLWithString:@"http://api.iamchill.co/v3/contacts/index"]];
     
-    [requestToNotify setHTTPBody:[postStringTN
+    [request setHTTPMethod:@"POST"];
+    [request setValue:[[NSUserDefaults standardUserDefaults] valueForKey:@"token"] forHTTPHeaderField:@"X-API-TOKEN"];
+    [request setValue:@"76eb29d3ca26fe805545812850e6d75af933214a" forHTTPHeaderField:@"X-API-KEY"];
+    
+    SearchJSON *location = [_locations objectAtIndex:index];
+    //location.who =
+    friendUserId = [location.id_user integerValue];
+    NSString *postString = [NSString stringWithFormat:@"id_user=%@&id_contact=%ld&type_contact=1",[userCache valueForKey:@"id_user"],(long)friendUserId];
+    
+    [request setHTTPBody:[postString
                           dataUsingEncoding:NSUTF8StringEncoding]];
     
-//    NSURLConnection *connectionTN = [[NSURLConnection alloc] initWithRequest:requestToNotify delegate:self];
+    
     NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
     if (connection)
     {
