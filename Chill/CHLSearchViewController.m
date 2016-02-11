@@ -242,7 +242,6 @@ NSMutableData *mutData;
     {
         SCLAlertView* alert = [[SCLAlertView alloc] init];
         [alert showError:self.parentViewController title:@"Oups" subTitle:@"Please, check your internet connection" closeButtonTitle:@"OK" duration:0.0f];
-
     }
     else
     {
