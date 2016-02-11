@@ -36,6 +36,7 @@
 }
 
 @property(nonatomic) BOOL searchModeUsers;
+@property(nonatomic, weak) UISegmentedControl *searchSwitch;
 @property(nonatomic, weak) UIButton *facebookButton;
 @property(nonatomic, weak) UIButton *twitterButton;
 @property(nonatomic, weak) UIButton *shareButton;
@@ -57,13 +58,6 @@ NSMutableData *mutData;
 {
     self.searchModeUsers = !self.searchModeUsers;
     self.searchBar.placeholder = self.searchModeUsers ? @"User login for search" : @"App for search";
-    UIBarButtonItem *swithButton = [[UIBarButtonItem alloc]
-                                    initWithTitle:self.searchModeUsers ? @"Apps" : @"Users"
-                                    style:UIBarButtonItemStylePlain
-                                    target:self
-                                    action:@selector(switchSearch)];
-    swithButton.tintColor = [UIColor chillMintColor];
-    self.navigationItem.leftBarButtonItem = swithButton;
     [self performSearchWithQuery:self.searchBar.text];
 }
 
@@ -118,6 +112,34 @@ NSMutableData *mutData;
 - (void)viewWillAppear:(BOOL)animated
 {
     if (self.facebookButton == nil) {
+        UIView *canvasView = [[UIView alloc] initWithFrame:CGRectMake(0,
+                                                                      20 + self.navigationController.navigationBar.frame.size.height,
+                                                                      self.view.frame.size.width,
+                                                                      40)];
+        canvasView.backgroundColor = [UIColor whiteColor];
+        canvasView.tag = 666;
+        [self.navigationController.view addSubview:canvasView];
+        UIView *separatorView = [[UIView alloc] initWithFrame:CGRectMake(0,
+                                                                       canvasView.frame.size.height,
+                                                                       canvasView.frame.size.width,
+                                                                        1)];
+        UISegmentedControl *searchSwitch = [[UISegmentedControl alloc] initWithItems:@[@"Users", @"Apps"]];
+        [canvasView addSubview:searchSwitch];
+        searchSwitch.tintColor = [UIColor chillMintColor];
+        [searchSwitch setWidth:self.view.frame.size.width * 0.5 - 20 forSegmentAtIndex:0];
+        [searchSwitch setWidth:self.view.frame.size.width * 0.5 - 20 forSegmentAtIndex:1];
+        searchSwitch.center = CGPointMake(canvasView.frame.size.width * 0.5, canvasView.frame.size.height * 0.5 - 4);
+        separatorView.backgroundColor = [UIColor groupTableViewBackgroundColor];
+        [canvasView addSubview:separatorView];
+        [searchSwitch addTarget:self action:@selector(switchSearch) forControlEvents:UIControlEventValueChanged];
+        searchSwitch.selectedSegmentIndex = 0;
+        self.searchSwitch = searchSwitch;
+        self.tableView.contentInset = UIEdgeInsetsMake(self.tableView.contentInset.top + 40,
+                                                       self.tableView.contentInset.left,
+                                                       self.tableView.contentInset.bottom,
+                                                       self.tableView.contentInset.right);
+        [self.tableView scrollRectToVisible:self.searchBar.frame animated:NO];
+        
         UIButton *facebookButton = [UIButton buttonWithType:UIButtonTypeCustom];
         facebookButton.frame = CGRectMake(0, 0, 100, 20);
         [facebookButton setTitle:@"Facebook" forState:UIControlStateNormal];
@@ -147,7 +169,10 @@ NSMutableData *mutData;
         [self.view bringSubviewToFront:shareButton];
         [shareButton addTarget:self action:@selector(shareButtonTapped) forControlEvents:UIControlEventTouchUpInside];
         self.shareButton = shareButton;
+        
+        [self searchSwitch];
     }
+    [self.navigationController.view viewWithTag:666].hidden = NO;
 }
 
 - (void)shareButtonTapped
@@ -176,11 +201,13 @@ NSMutableData *mutData;
 
 - (void)twitterButtonTapped
 {
+    [self.navigationController.view viewWithTag:666].hidden = YES;
     [self performSegueWithIdentifier:@"Twitter" sender:nil];
 }
 
 - (void)facebookButtonTapped
 {
+    [self.navigationController.view viewWithTag:666].hidden = YES;
     [self performSegueWithIdentifier:@"Facebook" sender:nil];
 }
 
