@@ -11,6 +11,7 @@
 #import "CHLFriendCell.h"
 #import "MBProgressHUD.h"
 #import <Parse/Parse.h>
+#import "UIColor+ChillColors.h"
 
 @interface CHLTwitterVC () <MBProgressHUDDelegate> {
     NSMutableDictionary *jsonResponse;
@@ -37,6 +38,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.navigationController.navigationBar.tintColor = [UIColor chillMintColor];
     self.toInviteIDs = [[NSMutableArray alloc] init];
     self.toInviteNicknames = [[NSMutableArray alloc] init];
     self.toInviteDisplayNames = [[NSMutableArray alloc] init];
@@ -195,12 +197,12 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    if (section == 0) {
+    //if (section == 0) {
         return [self.chillUsernames count];
-    }
-    else {
-        return [self.returnedFromChillToInviteTwitterIDs count];
-    }
+    //}
+   // else {
+     //   return [self.returnedFromChillToInviteTwitterIDs count];
+    //}
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -347,7 +349,7 @@
             
             NSHTTPURLResponse *response = nil;
             NSError *error = nil;
-            NSString *postString = [NSString stringWithFormat:@"id_user=%@&twitter_name=%@",[[NSUserDefaults standardUserDefaults] valueForKey:@"id_user"], twitterAccount.userFullName];
+            NSString *postString = [NSString stringWithFormat:@"id_user=%@&name=%@",[[NSUserDefaults standardUserDefaults] valueForKey:@"id_user"], twitterAccount.userFullName];
             [request setHTTPBody:[postString dataUsingEncoding:NSUTF8StringEncoding]];
             NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
             if (data != nil) {

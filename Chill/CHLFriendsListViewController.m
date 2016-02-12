@@ -428,10 +428,10 @@ NSMutableData *mutData;
         
         CHLShareViewController *shareViewController = segue.destinationViewController;
         HAPaperCollectionViewController* hapcvc = [[HAPaperCollectionViewController alloc] init];
-        hapcvc.nickName = [jsonData valueForKey:@"name"];
+        hapcvc.nickName = [jsonData valueForKey:@"login"];
         
         shareViewController.userIdTo = [[jsonData valueForKey:@"id_contact"] integerValue];
-        shareViewController.nameUser = [jsonData valueForKey:@"name"];
+        shareViewController.nameUser = [jsonData valueForKey:@"login"];
         shareViewController.cellStatusView = [(CHLFriendCell *)sender type];
         shareViewController.progressViewsDictionary = self.progressViewsDictionary;
     }

@@ -10,6 +10,7 @@
 #import "CHLFriendCell.h"
 #import "MBProgressHUD.h"
 #import <Parse/Parse.h>
+#import "UIColor+ChillColors.h"
 #import "CHLFacebookVC.h"
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
 #import <FBSDKLoginKit/FBSDKLoginKit.h>
@@ -33,6 +34,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.navigationController.navigationBar.tintColor = [UIColor chillMintColor];
     self.facebookIDs = [[NSMutableArray alloc] init];
     self.facebookDisplayNames = [[NSMutableArray alloc] init];
     self.chillUsernames = [[NSMutableArray alloc] init];
