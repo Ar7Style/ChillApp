@@ -1,14 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="8191" systemVersion="15B42" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="AgC-eL-Hgc">
+<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="9531" systemVersion="15D21" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="AgC-eL-Hgc">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="8092"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="9515"/>
     </dependencies>
-    <customFonts key="customFonts">
-        <mutableArray key="Tharlon-Regular.ttf">
-            <string>TharLon</string>
-        </mutableArray>
-    </customFonts>
     <scenes>
         <!--Interface Controller-->
         <scene sceneID="aou-V4-d1y">
@@ -27,7 +22,7 @@
                     </connections>
                 </controller>
             </objects>
-            <point key="canvasLocation" x="220" y="345"/>
+            <point key="canvasLocation" x="192" y="324"/>
         </scene>
         <!--ContactsIC-->
         <scene sceneID="ITa-Fw-Ue3">
@@ -64,7 +59,7 @@
                     </connections>
                 </controller>
             </objects>
-            <point key="canvasLocation" x="397" y="361"/>
+            <point key="canvasLocation" x="393" y="339.5"/>
         </scene>
         <!--ShareIC-->
         <scene sceneID="eIO-Tt-eL9">
@@ -157,7 +152,7 @@
                     </connections>
                 </controller>
             </objects>
-            <point key="canvasLocation" x="582" y="353.5"/>
+            <point key="canvasLocation" x="570" y="343.5"/>
         </scene>
         <!--IconsIC-->
         <scene sceneID="76O-Hf-DGR">
@@ -213,28 +208,7 @@
                     </connections>
                 </controller>
             </objects>
-            <point key="canvasLocation" x="771" y="344.5"/>
-        </scene>
-        <!--HelpIC-->
-        <scene sceneID="vuk-R6-bYc">
-            <objects>
-                <controller identifier="HelpIC" id="vc7-Yz-Skx" customClass="HelpIC">
-                    <items>
-                        <label width="136" height="62" alignment="left" text="Swipe to change screens" textAlignment="center" numberOfLines="0" id="zDV-iU-CNO">
-                            <fontDescription key="font" type="system" pointSize="16"/>
-                        </label>
-                        <group width="1" alignment="left" id="9Dk-cI-Et3">
-                            <items>
-                                <label width="97" height="36" alignment="left" text="Fource touch" textAlignment="center" id="App-hy-Hmu">
-                                    <fontDescription key="font" name="TharLon" family="TharLon" pointSize="16"/>
-                                </label>
-                                <imageView width="36" alignment="left" id="kZc-eV-otJ"/>
-                            </items>
-                        </group>
-                    </items>
-                </controller>
-            </objects>
-            <point key="canvasLocation" x="939" y="345"/>
+            <point key="canvasLocation" x="761" y="326.25"/>
         </scene>
         <!--Static Notification Interface Controller-->
         <scene sceneID="AEw-b0-oYE">
@@ -266,7 +240,7 @@
                     </connections>
                 </controller>
             </objects>
-            <point key="canvasLocation" x="468" y="642.5"/>
+            <point key="canvasLocation" x="427" y="643"/>
         </scene>
     </scenes>
 </document>

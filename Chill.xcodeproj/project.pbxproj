@@ -22,7 +22,6 @@
 		023B42781C0230E900E124A8 /* libPods-Chill WatchOS 2 Extension.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 023B42771C0230E900E124A8 /* libPods-Chill WatchOS 2 Extension.a */; };
 		023B427A1C0230F300E124A8 /* libPods-Chill WatchOS 2 Extension-AFNetworking.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 023B42791C0230F300E124A8 /* libPods-Chill WatchOS 2 Extension-AFNetworking.a */; };
 		023B427D1C023E8500E124A8 /* ShareIC.m in Sources */ = {isa = PBXBuildFile; fileRef = 023B427C1C023E8500E124A8 /* ShareIC.m */; };
-		023B42801C024C1600E124A8 /* HelpIC.m in Sources */ = {isa = PBXBuildFile; fileRef = 023B427F1C024C1600E124A8 /* HelpIC.m */; };
 		0254909D1A61C4FB00D9222B /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0254909C1A61C4FB00D9222B /* StoreKit.framework */; };
 		0254909F1A61C51400D9222B /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0254909E1A61C51400D9222B /* GameKit.framework */; };
 		0256F4981A3E31A2001D9A23 /* GoogleMaps.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0256F4971A3E31A2001D9A23 /* GoogleMaps.framework */; };
@@ -344,8 +343,6 @@
 		023B42791C0230F300E124A8 /* libPods-Chill WatchOS 2 Extension-AFNetworking.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-Chill WatchOS 2 Extension-AFNetworking.a"; path = "Pods/../build/Debug-watchos/libPods-Chill WatchOS 2 Extension-AFNetworking.a"; sourceTree = "<group>"; };
 		023B427B1C023E8500E124A8 /* ShareIC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareIC.h; sourceTree = "<group>"; };
 		023B427C1C023E8500E124A8 /* ShareIC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareIC.m; sourceTree = "<group>"; };
-		023B427E1C024C1600E124A8 /* HelpIC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelpIC.h; sourceTree = "<group>"; };
-		023B427F1C024C1600E124A8 /* HelpIC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelpIC.m; sourceTree = "<group>"; };
 		024FCF991C021A300008513C /* libAFNetworking.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libAFNetworking.a; path = "Pods/../build/Release-iphoneos/libAFNetworking.a"; sourceTree = "<group>"; };
 		024FCF9A1C021A300008513C /* libPods.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libPods.a; path = "Pods/../build/Release-iphoneos/libPods.a"; sourceTree = "<group>"; };
 		024FCF9D1C021B970008513C /* libAFNetworking.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libAFNetworking.a; path = "Pods/../build/Release-iphoneos/libAFNetworking.a"; sourceTree = "<group>"; };
@@ -814,8 +811,6 @@
 				029F1BB21C01E56300368AD4 /* Assets.xcassets */,
 				029F1BB41C01E56300368AD4 /* Info.plist */,
 				029F1BA71C01E56300368AD4 /* Supporting Files */,
-				023B427E1C024C1600E124A8 /* HelpIC.h */,
-				023B427F1C024C1600E124A8 /* HelpIC.m */,
 			);
 			path = "Chill WatchOS 2 Extension";
 			sourceTree = SOURCE_ROOT;
@@ -1765,7 +1760,6 @@
 				029F1BAE1C01E56300368AD4 /* ExtensionDelegate.m in Sources */,
 				069A059F1C5EADB50023C504 /* NSString+MD5.m in Sources */,
 				532D46A71C0640C30070C105 /* ButtonIconID.m in Sources */,
-				023B42801C024C1600E124A8 /* HelpIC.m in Sources */,
 				029F1BAB1C01E56300368AD4 /* InterfaceController.m in Sources */,
 				029F1BC51C020EB300368AD4 /* ContactRow.m in Sources */,
 				029F1BB11C01E56300368AD4 /* NotificationController.m in Sources */,

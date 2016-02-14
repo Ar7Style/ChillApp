@@ -27,10 +27,6 @@
 
 - (void)awakeWithContext:(id)context {
     [super awakeWithContext:context];
-    if (![NSUserDefaults showGuide]) {
-        [NSUserDefaults changeGuide:true];
-        [self presentControllerWithName:@"HelpIC" context:nil];
-    }
     self.title = @"Back";
     contactID = context;
     valueSelected = @"";
