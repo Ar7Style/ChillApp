@@ -307,7 +307,7 @@ NSInteger defaultValue = 10;
         
         [_locationManager startUpdatingLocation];
         self.sendedContentType = @"location";
-        //[_locationManager stopUpdatingLocation];
+       // [_locationManager stopUpdatingLocation];
         
         id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
         [tracker set:kGAIScreenName value:@"Share screen"];
@@ -378,7 +378,7 @@ NSInteger defaultValue = 10;
     
     [request setHTTPBody:[postString
                           dataUsingEncoding:NSUTF8StringEncoding]];
-    [_locationManager stopUpdatingLocation];
+    //[_locationManager stopUpdatingLocation];
     NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
     if (connection) {
         mutData = [NSMutableData data];

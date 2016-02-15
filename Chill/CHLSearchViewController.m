@@ -330,21 +330,24 @@ NSMutableData *mutData;
     
     UILabel *nameLabel = (UILabel*) [cell viewWithTag:100];
     UILabel *twitterName = (UILabel*) [cell viewWithTag:1000];
-    if ([location.who isEqualToNumber:@0]) {  // if it is a user
-      
-    if (![location.login isKindOfClass:[NSNull class]])
+    if ([location.who isEqualToNumber:@0]) // if it is a user
     {
-        nameLabel.text = location.name;
-        if (![location.name isEqualToString:location.login] && ![location.login isKindOfClass:[NSNull class]])
+      
+        if (![location.login isKindOfClass:[NSNull class]])
         {
-            twitterName.text =[NSString stringWithFormat:@"%@", location.name];
+            nameLabel.text = location.login;
+            if (![location.name isEqualToString:location.login] && ![location.name isEqualToString:@"(null)"])
+            {
+                twitterName.text =[NSString stringWithFormat:@"%@", location.name];
+            }
+            else
+                twitterName.text = nil;
         }
-        else
-            twitterName.text = nil;
-    }
-        else nameLabel.text = location.login;
-    }
-    else { // if it is an app
+            else nameLabel.text = location.login;
+        }
+    
+    else // if it is an app
+    {
         nameLabel.text = location.name;
         twitterName.text = nil;
     }

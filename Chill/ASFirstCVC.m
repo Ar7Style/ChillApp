@@ -277,7 +277,7 @@
 -(void)showError:(NSString *)message {
     SCLAlertView* alert = [[SCLAlertView alloc] init];
     
-    [alert showError:self title:@"Error" subTitle:message closeButtonTitle:@"OK" duration:0.0f];
+    [alert showError:self title:@"Oups" subTitle:message closeButtonTitle:@"OK" duration:0.0f];
 }
 
 #pragma mark - Action
@@ -285,7 +285,7 @@
 
 - (IBAction)doneAction:(id)sender {
     if ([self.arraySelectedIconID count]<6) {
-        [self showError:@"Select 6 icons"];
+        [self showError:@"Please, select 6 icons"];
         
         NSLog(@"arraySelected icon's id < 6");
         

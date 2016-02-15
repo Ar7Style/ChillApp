@@ -194,13 +194,13 @@ NSMutableData *mutData;
     NSArray *jsonData = json[indexPath.row];
     
     UILabel* twitter_name = (UILabel*) [cell viewWithTag:10];
-    if ( jsonData.count == 11) { //apps (without "login")
+    if ( jsonData.count == 11) { // apps (without "login")
         cell.senderLabel.text = [jsonData valueForKey:@"name"];
         twitter_name.text = nil;
     }
-    else { //users
+    else { // users
         cell.senderLabel.text = [jsonData valueForKey:@"login"];
-        if (![[jsonData valueForKey:@"name"] isEqualToString:[jsonData valueForKey:@"login"]])
+        if (![[jsonData valueForKey:@"name"] isEqualToString:[jsonData valueForKey:@"login"]] && ![[jsonData valueForKey:@"name"] isEqualToString:@"(null)"])
             twitter_name.text =[jsonData valueForKey:@"name"];
         else {
             twitter_name.text = nil;

@@ -150,6 +150,13 @@ communication experience</string>
                                 <color key="textColor" red="0.63137254899999995" green="0.63137254899999995" blue="0.63137254899999995" alpha="1" colorSpace="deviceRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="tZH-1f-PvO">
+                                <rect key="frame" x="150" y="524" width="20" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="20" id="HpS-gH-9IZ"/>
+                                    <constraint firstAttribute="height" constant="20" id="aCp-A7-Tow"/>
+                                </constraints>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
@@ -163,6 +170,7 @@ communication experience</string>
                             <constraint firstItem="kIi-BG-qQE" firstAttribute="top" secondItem="EmS-Ps-3IU" secondAttribute="bottom" constant="15" id="KNA-tz-qPb"/>
                             <constraint firstAttribute="centerX" secondItem="EmS-Ps-3IU" secondAttribute="centerX" id="KUm-jC-UBQ"/>
                             <constraint firstItem="Jn4-q0-dhW" firstAttribute="top" secondItem="kIi-BG-qQE" secondAttribute="bottom" constant="106" id="MOp-tG-f8T"/>
+                            <constraint firstItem="tZH-1f-PvO" firstAttribute="centerX" secondItem="dtY-Ij-djv" secondAttribute="centerX" id="OTW-ZY-HOQ"/>
                             <constraint firstAttribute="trailingMargin" secondItem="vSb-Nf-Qcc" secondAttribute="trailing" id="S82-aO-cPR"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Jn4-q0-dhW" secondAttribute="trailing" constant="-16" id="S9A-NJ-L8z"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Wdg-Vf-ypg" secondAttribute="trailing" constant="-16" id="T4O-t5-ho7"/>
@@ -174,6 +182,7 @@ communication experience</string>
                             <constraint firstItem="Wdg-Vf-ypg" firstAttribute="leading" secondItem="dtY-Ij-djv" secondAttribute="leadingMargin" constant="-16" id="hgA-Kh-RLY"/>
                             <constraint firstItem="qkB-js-pFq" firstAttribute="top" secondItem="4Hn-iI-115" secondAttribute="bottom" constant="16" id="ijX-hn-CDS"/>
                             <constraint firstItem="vSb-Nf-Qcc" firstAttribute="leading" secondItem="4Hn-iI-115" secondAttribute="trailing" constant="22" id="mw0-yk-fiS"/>
+                            <constraint firstItem="tZH-1f-PvO" firstAttribute="top" secondItem="Ba5-mt-9nx" secondAttribute="bottom" constant="-44" id="pJo-Eq-K0J"/>
                             <constraint firstAttribute="trailingMargin" secondItem="qkB-js-pFq" secondAttribute="trailing" constant="-16" id="rwC-b2-A2l"/>
                             <constraint firstItem="Wdg-Vf-ypg" firstAttribute="top" secondItem="z1Q-i5-UcC" secondAttribute="bottom" constant="15" id="vZJ-HO-Chz"/>
                             <constraint firstItem="Ba5-mt-9nx" firstAttribute="top" secondItem="Wdg-Vf-ypg" secondAttribute="bottom" constant="50" id="wn2-DQ-Okg"/>
@@ -184,6 +193,7 @@ communication experience</string>
                     </view>
                     <navigationItem key="navigationItem" id="Q9I-Za-uB7"/>
                     <connections>
+                        <outlet property="activity" destination="tZH-1f-PvO" id="APu-lt-TSH"/>
                         <outlet property="authButton1" destination="Ba5-mt-9nx" id="Sei-Ag-KeY"/>
                         <outlet property="constraintBottom" destination="Gvk-qQ-feA" id="b8L-lb-aU0"/>
                         <outlet property="loginField1" destination="vSb-Nf-Qcc" id="pL9-6H-ymg"/>
@@ -2694,6 +2704,6 @@ Enter to get perks from Chill</string>
     <inferredMetricsTieBreakers>
         <segue reference="2N9-CI-wJ2"/>
         <segue reference="oIG-5Z-NB0"/>
-        <segue reference="7n3-ts-55s"/>
+        <segue reference="jnP-xo-jaE"/>
     </inferredMetricsTieBreakers>
 </document>

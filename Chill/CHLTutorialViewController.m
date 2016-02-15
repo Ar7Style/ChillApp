@@ -104,8 +104,10 @@
     
     NSString* str = [selectedButtons componentsJoinedByString:@"-"];
     NSMutableArray *slectedIconsArray = [[str componentsSeparatedByString:@"-"] mutableCopy];
-    ASFirstCVC* asfvc = [[ASFirstCVC alloc] init];
-    asfvc.arraySelectedIconID = slectedIconsArray;
+    [[NSUserDefaults standardUserDefaults] setObject:slectedIconsArray forKey:@"arraySelectedIconID"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+//    ASFirstCVC* asfvc = [[ASFirstCVC alloc] init];
+//    asfvc.arraySelectedIconID = slectedIconsArray;
     NSLog(@"STROKA: %@", str);
     NSDictionary *parametr = @{@"id_user":[NSUserDefaults userID], @"id_icons_user":str};
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];

@@ -25,6 +25,7 @@
 @interface AUTHViewController () <WCSessionDelegate>
 @property (strong, nonatomic) IBOutlet UIView *viewMain;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *constraintBottom;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activity;
 
 @end
 
@@ -32,6 +33,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self.activity setHidesWhenStopped:YES];
     // Do any additional setup after loading the view.
     
 }
@@ -93,7 +95,6 @@
     
     [_loginField1.text stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     [_passwordField1.text stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-    
     NSUserDefaults *userCache = [[NSUserDefaults standardUserDefaults] initWithSuiteName:@"group.co.getchill.chill"];
     
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
@@ -111,6 +112,9 @@
                 [self errorShow:@"It seems that the entered username or password is incorrect"];
             }
             else if ([[responseObject valueForKey:@"status"] isEqualToString:@"success"]) {
+                [self.authButton1.titleLabel setHidden:YES];
+                [self.activity startAnimating];
+
                 [NSUserDefaults changeAuth:true];
                 [NSUserDefaults setValue:[[responseObject valueForKey:@"response"] valueForKey:@"id_user"] forKey:@"id_user"];
                 [NSUserDefaults setValue:_loginField1.text forKey:@"login_user"];
