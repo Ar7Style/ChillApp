@@ -620,12 +620,12 @@ communication experience</string>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <segue destination="HRO-xJ-dbg" kind="push" identifier="CHLShareViewController" id="ENJ-uT-AVU"/>
+                        <segue destination="HRO-xJ-dbg" kind="push" identifier="CHLShareViewController" id="Evj-QJ-NkE"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="S5E-lZ-FLa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1752" y="603"/>
+            <point key="canvasLocation" x="-1466" y="977"/>
         </scene>
         <!--Search-->
         <scene sceneID="gyb-lJ-5Nt">
@@ -773,7 +773,7 @@ communication experience</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qAM-fk-rkd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="279" y="1326"/>
+            <point key="canvasLocation" x="811" y="1326"/>
         </scene>
         <!--Share View Controller-->
         <scene sceneID="C2I-cd-Naq">
@@ -960,7 +960,7 @@ communication experience</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aji-6Q-Ez6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-870" y="1357"/>
+            <point key="canvasLocation" x="-338" y="1357"/>
         </scene>
         <!--Additional Share View Controller-->
         <scene sceneID="JAH-cP-FRY">
@@ -1205,7 +1205,7 @@ communication experience</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9kN-pF-KwB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-168" y="1326"/>
+            <point key="canvasLocation" x="364" y="1326"/>
         </scene>
         <!--Profile-->
         <scene sceneID="aOz-ai-Ila">
@@ -2178,7 +2178,7 @@ communication experience</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Pn5-gH-3QD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-488" y="1970"/>
+            <point key="canvasLocation" x="44" y="1970"/>
         </scene>
         <!--Collection View Controller-->
         <scene sceneID="KKk-uX-f5A">
@@ -2424,7 +2424,7 @@ communication experience</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pZc-hk-JeN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="700" y="1326"/>
+            <point key="canvasLocation" x="1232" y="1326"/>
         </scene>
         <!--Promo View Controller-->
         <scene sceneID="Tfc-Al-KsZ">
@@ -2610,7 +2610,7 @@ Enter to get perks from Chill</string>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="tv4-wF-vcA">
-                                <rect key="frame" x="50" y="0.0" width="220" height="586.5"/>
+                                <rect key="frame" x="50" y="0.0" width="220" height="587"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="wIM-at-Cdz">
                                     <size key="itemSize" width="134" height="118"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -2673,7 +2673,27 @@ Enter to get perks from Chill</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hZq-9e-P54" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-457" y="1644"/>
+            <point key="canvasLocation" x="75" y="1644"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="8H0-FR-IR5">
+            <objects>
+                <navigationController storyboardIdentifier="shareViewController1" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="aGq-6K-4EG" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" id="NFK-Ve-wFX"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="6oe-fW-ewA">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="HRO-xJ-dbg" kind="relationship" relationship="rootViewController" id="jtz-2r-iwE"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="C6u-p6-zwV" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-992" y="1561"/>
         </scene>
     </scenes>
     <resources>
@@ -2702,8 +2722,9 @@ Enter to get perks from Chill</string>
         <image name="star66.png" width="66" height="66"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="2N9-CI-wJ2"/>
         <segue reference="oIG-5Z-NB0"/>
         <segue reference="jnP-xo-jaE"/>
+        <segue reference="2N9-CI-wJ2"/>
+        <segue reference="jtz-2r-iwE"/>
     </inferredMetricsTieBreakers>
 </document>

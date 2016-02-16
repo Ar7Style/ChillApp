@@ -54,7 +54,7 @@
     NSArray *firstArray;
     NSArray *_locations;
     GMSGeocoder *geocoder_;
-
+    
 }
 
 - (instancetype)init
@@ -101,7 +101,7 @@
             [closeButton setImage:[UIImage imageNamed:@"x-2"] forState:UIControlStateNormal];
             [closeButton addTarget:self action:@selector(dismissPaperCollection:) forControlEvents:UIControlEventTouchUpInside];
             [self.view addSubview:closeButton];
-           
+            
         }
         
         
@@ -121,7 +121,7 @@
             
         }
     }
-    
+    NSLog(@"login %@", _nickName);
 }
 
 - (void)dismissPaperCollection:(id)sender {
@@ -139,44 +139,44 @@
     CGPoint velocity = [recognizer velocityInView:self.view];
     
     if (velocity.y){   // panning down
-    if (recognizer.state==UIGestureRecognizerStateBegan){
-        [self dismissViewControllerAnimated:YES completion:NULL];
-        [recognizer setTranslation:CGPointZero inView:self.view.superview];
-        [transitionManager updateInteractiveTransition:0];
-        return;
-    }
-    
-    CGFloat percentage = [recognizer translationInView:self.view.superview].y/self.view.superview.bounds.size.height;
-    
-    [transitionManager updateInteractiveTransition:percentage];
-    
-    if (recognizer.state==UIGestureRecognizerStateEnded) {
-        
-        CGFloat velocityY = [recognizer velocityInView:recognizer.view.superview].y;
-        BOOL cancel=(velocityY<0) || (velocityY==0 && recognizer.view.frame.origin.y<self.view.superview.bounds.size.height/2);
-        CGFloat points = cancel ? recognizer.view.frame.origin.y : self.view.superview.bounds.size.height-recognizer.view.frame.origin.y;
-        NSTimeInterval duration = points / velocityY;
-        
-        if (duration<.2) {
-            duration=.2;
-        }else if(duration>.6){
-            duration=.6;
+        if (recognizer.state==UIGestureRecognizerStateBegan){
+            [self dismissViewControllerAnimated:YES completion:NULL];
+            [recognizer setTranslation:CGPointZero inView:self.view.superview];
+            [transitionManager updateInteractiveTransition:0];
+            return;
         }
         
-        cancel ? [transitionManager cancelInteractiveTransitionWithDuration:duration] : [transitionManager finishInteractiveTransitionWithDuration:duration];
+        CGFloat percentage = [recognizer translationInView:self.view.superview].y/self.view.superview.bounds.size.height;
         
-    } else if (recognizer.state==UIGestureRecognizerStateFailed){
+        [transitionManager updateInteractiveTransition:percentage];
         
-        [transitionManager cancelInteractiveTransitionWithDuration:.35];
-        
+        if (recognizer.state==UIGestureRecognizerStateEnded) {
+            
+            CGFloat velocityY = [recognizer velocityInView:recognizer.view.superview].y;
+            BOOL cancel=(velocityY<0) || (velocityY==0 && recognizer.view.frame.origin.y<self.view.superview.bounds.size.height/2);
+            CGFloat points = cancel ? recognizer.view.frame.origin.y : self.view.superview.bounds.size.height-recognizer.view.frame.origin.y;
+            NSTimeInterval duration = points / velocityY;
+            
+            if (duration<.2) {
+                duration=.2;
+            }else if(duration>.6){
+                duration=.6;
+            }
+            
+            cancel ? [transitionManager cancelInteractiveTransitionWithDuration:duration] : [transitionManager finishInteractiveTransitionWithDuration:duration];
+            
+        } else if (recognizer.state==UIGestureRecognizerStateFailed){
+            
+            [transitionManager cancelInteractiveTransitionWithDuration:.35];
+            
+        }
     }
-}
 }
 -(void)viewDidAppear:(BOOL)animated{
     if (![self connected]) {
         SCLAlertView* alert = [[SCLAlertView alloc] init];
         [alert showError:self.parentViewController title:@"Oups" subTitle:@"Please, check your internet connection" closeButtonTitle:@"OK" duration:0.0f];
-
+        
     }
     else {
         self.collectionView.backgroundColor = [UIColor clearColor];
@@ -190,9 +190,9 @@
 -(void)handleSwipeGesture:(UISwipeGestureRecognizer *) sender
 {
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
-
+    
     [self dismissViewControllerAnimated:YES completion:nil];
-
+    
     //Gesture detect - swipe up/down , can't be recognized direction
 }
 
@@ -243,134 +243,137 @@
     }
     
     else {
-            CHLPaperCollectionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:CELL_ID forIndexPath:indexPath];
-            cell.textLabel1.tag = 1;
-            cell.textLabel2.tag = 2;
-            cell.textLabel3.tag = 3;
-            cell.textLabel4.tag = 4;
-            cell.textLabel5.tag = 5;
+        CHLPaperCollectionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:CELL_ID forIndexPath:indexPath];
+        cell.textLabel1.tag = 1;
+        cell.textLabel2.tag = 2;
+        cell.textLabel3.tag = 3;
+        cell.textLabel4.tag = 4;
+        cell.textLabel5.tag = 5;
         for (ButtonToShow* button in cell.buttonsToShow)
             [button setHidden:YES];
         
-            AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-            manager.responseSerializer = [AFJSONResponseSerializer serializer];
-            manager.requestSerializer = [AFJSONRequestSerializer serializer];
-            [manager.requestSerializer setValue:[NSUserDefaults userToken] forHTTPHeaderField:@"X-API-TOKEN"];
-            [manager.requestSerializer setValue:@"76eb29d3ca26fe805545812850e6d75af933214a" forHTTPHeaderField:@"X-API-KEY"];
-            [manager GET:[NSString stringWithFormat:@"http://api.iamchill.co/v2/messages/index/id_user/%@/id_contact/%ld",[NSUserDefaults userID], (long)_friendUserID] parameters:nil success:^(NSURLSessionTask *task, id responseObject) {
-                if ([[responseObject objectForKey:@"status"] isEqualToString:@"success"]) {
-                    json = [responseObject objectForKey:@"response"];
-                    
-                    
-                    for (int i=0; i<json.count; ++i) {
-                        UILabel* textLabel = (UILabel *)[cell viewWithTag:i+1];
-                        [cell.buttonsToShow[i] setImageForState:UIControlStateNormal withURL:[NSURL URLWithString:[json[i] valueForKey:@"size66"]]];
-                        [cell.buttonsToShow[i] setHidden:NO];
-                        if ([[json[i] valueForKey:@"type"] isEqualToString:@"location"]) {
-                            ButtonToShow* myButton = cell.buttonsToShow[i];
-                            myButton.locationData = [json[i] valueForKey:@"content"];
-                            [cell.buttonsToShow[i] addTarget:self action:@selector(displayMap:) forControlEvents:UIControlEventTouchUpInside];
-                            
-                            NSString *aString = [json[i] valueForKey:@"content"];
-                            NSArray *arrayLOC = [aString componentsSeparatedByCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
-                            arrayLOC = [arrayLOC filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"SELF != ''"]];
-
-                            CLLocationCoordinate2D coord;
-                            coord.latitude =[arrayLOC[0] doubleValue];
-                            coord.longitude = [arrayLOC[1] doubleValue];
-                            GMSReverseGeocodeCallback handler = ^(GMSReverseGeocodeResponse *response, NSError *error) {
-                                GMSAddress *addressGMS = response.firstResult;
-                                if ( (addressGMS) || ([addressGMS valueForKey:@"thoroughfare"] != nil) ) {
-                                    textLabel.text = [NSString stringWithFormat:@"%@",[addressGMS valueForKey:@"thoroughfare"]];
-                                }else if ([[addressGMS valueForKey:@"thoroughfare" ] isKindOfClass:[NSNull class]]) {
-                                    textLabel.text = @"In the middle of nowhere";
-                                }
-                                else {
-                                    textLabel.text = @"In the middle of nowhere";
-                                }
-                            };
-                            [geocoder_ reverseGeocodeCoordinate:coord completionHandler:handler];
-                            [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
-                        }
-                        else if ([[json[i] valueForKey:@"type"] isEqualToString:@"parse"]) {
-                            ButtonToShow *myButton = cell.buttonsToShow[i];
-                            myButton.linkToIconImage = [json[i] valueForKey:@"content"];
-                            [cell.buttonsToShow[i] addTarget:self action:@selector(displayPhoto:) forControlEvents:UIControlEventTouchUpInside];
-                            textLabel.text = [NSString stringWithFormat:@"Press to open"];
-                        }
-                        else {
+        AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+        manager.responseSerializer = [AFJSONResponseSerializer serializer];
+        manager.requestSerializer = [AFJSONRequestSerializer serializer];
+        [manager.requestSerializer setValue:[NSUserDefaults userToken] forHTTPHeaderField:@"X-API-TOKEN"];
+        [manager.requestSerializer setValue:@"76eb29d3ca26fe805545812850e6d75af933214a" forHTTPHeaderField:@"X-API-KEY"];
+        [manager GET:[NSString stringWithFormat:@"http://api.iamchill.co/v2/messages/index/id_user/%@/id_contact/%ld",[NSUserDefaults userID], (long)_friendUserID] parameters:nil success:^(NSURLSessionTask *task, id responseObject) {
+            if ([[responseObject objectForKey:@"status"] isEqualToString:@"success"]) {
+                json = [responseObject objectForKey:@"response"];
+                
+                
+                for (int i=0; i<json.count; ++i) {
+                    UILabel* textLabel = (UILabel *)[cell viewWithTag:i+1];
+                    [cell.buttonsToShow[i] setImageForState:UIControlStateNormal withURL:[NSURL URLWithString:[json[i] valueForKey:@"size66"]]];
+                    [cell.buttonsToShow[i] setHidden:NO];
+                    if ([[json[i] valueForKey:@"type"] isEqualToString:@"location"]) {
+                        ButtonToShow* myButton = cell.buttonsToShow[i];
+                        myButton.locationData = [json[i] valueForKey:@"content"];
+                        [cell.buttonsToShow[i] addTarget:self action:@selector(displayMap:) forControlEvents:UIControlEventTouchUpInside];
+                        
+                        NSString *aString = [json[i] valueForKey:@"content"];
+                        NSArray *arrayLOC = [aString componentsSeparatedByCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+                        arrayLOC = [arrayLOC filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"SELF != ''"]];
+                        
+                        CLLocationCoordinate2D coord;
+                        coord.latitude =[arrayLOC[0] doubleValue];
+                        coord.longitude = [arrayLOC[1] doubleValue];
+                        GMSReverseGeocodeCallback handler = ^(GMSReverseGeocodeResponse *response, NSError *error) {
+                            GMSAddress *addressGMS = response.firstResult;
+                            if ( (addressGMS) || ([addressGMS valueForKey:@"thoroughfare"] != nil) ) {
+                                textLabel.text = [NSString stringWithFormat:@"%@",[addressGMS valueForKey:@"thoroughfare"]];
+                            }else if ([[addressGMS valueForKey:@"thoroughfare" ] isKindOfClass:[NSNull class]]) {
+                                textLabel.text = @"In the middle of nowhere";
+                            }
+                            else {
+                                textLabel.text = @"In the middle of nowhere";
+                            }
+                        };
+                        [geocoder_ reverseGeocodeCoordinate:coord completionHandler:handler];
+                        [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
+                    }
+                    else if ([[json[i] valueForKey:@"type"] isEqualToString:@"parse"]) {
+                        ButtonToShow *myButton = cell.buttonsToShow[i];
+                        myButton.linkToIconImage = [json[i] valueForKey:@"content"];
+                        [cell.buttonsToShow[i] addTarget:self action:@selector(displayPhoto:) forControlEvents:UIControlEventTouchUpInside];
+                        textLabel.text = [NSString stringWithFormat:@"Press to open"];
+                    }
+                    else {
                         textLabel.text = [NSString stringWithFormat:@"%@", [[json[i] valueForKey:@"text"] isEqualToString:@""] ? @"" :[NSString stringWithFormat:@"#%@",[json[i] valueForKey:@"text"]]];
-                        }
                     }
                 }
-                NSLog(@"JSON FROM LOAD DATA: %@", json);
-            } failure:^(NSURLSessionTask *operation, NSError *error) {
-                [self dismissViewControllerAnimated:NO completion:nil];
-                NSLog(@"Error from load data: %@", error);
-            }];
+            }
+            NSLog(@"JSON FROM LOAD DATA: %@", json);
+        } failure:^(NSURLSessionTask *operation, NSError *error) {
+            [self dismissViewControllerAnimated:NO completion:nil];
+            NSLog(@"Error from load data: %@", error);
+        }];
         
-            cell.friendUserID = self.friendUserID;
-            cell.backgroundColor = [UIColor whiteColor];
-            
-            cell.layer.cornerRadius = 8;
-            cell.clipsToBounds = YES;
-            cell.cellLabel.minimumScaleFactor = 0.3;
-            cell.cellLabel.hidden = true;
-            cell.cellLabel.adjustsFontSizeToFitWidth = YES;
-    
-            cell.backgroundColor = [UIColor whiteColor];
+        cell.friendUserID = self.friendUserID;
+        cell.backgroundColor = [UIColor whiteColor];
+        
+        cell.layer.cornerRadius = 8;
+        cell.clipsToBounds = YES;
+        cell.cellLabel.minimumScaleFactor = 0.3;
+        cell.cellLabel.hidden = true;
+        cell.cellLabel.adjustsFontSizeToFitWidth = YES;
+        
+        cell.backgroundColor = [UIColor whiteColor];
         
         
         [cell.replyButton addTarget:self action:@selector(goToShareVC:) forControlEvents:UIControlEventTouchUpInside];
-         
         
-            return cell;
-        }
+        
+        return cell;
+    }
 }
 
 -(void)goToShareVC:(id)sender {
-    NSLog(@"gotoshareVC");
+    NSLog(@"gotoshareVC %@", self.nickName);
     CHLShareViewController* svc = [[CHLShareViewController alloc] init];
     svc.userIdTo = (long)_friendUserID;
     svc.nameUser = self.nickName;
     NSLog(@"LOGIN: %@ IDUSER: %ld", svc.nameUser, (long)svc.userIdTo);
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-
-    UIViewController *shareViewController = (UIViewController *)[storyboard  instantiateViewControllerWithIdentifier:@"shareViewController"];
+    NSUserDefaults *cacheSpec = [NSUserDefaults standardUserDefaults];
+    [cacheSpec setBool:YES forKey:@"gotToShareFromHA"];
+    [cacheSpec setValue:self.nickName forKey:@"nickName"];
+    [cacheSpec setValue:[NSString stringWithFormat:@"%li",(long)_friendUserID] forKey:@"friendUserID"];
+    UIViewController *shareViewController = (UIViewController *)[storyboard  instantiateViewControllerWithIdentifier:@"shareViewController1"];
     [self presentViewController:shareViewController animated:YES completion:nil];
 }
 
 -(void) displayMap:(ButtonToShow *)sender {
     
-            NSString *aString = sender.locationData;
-            NSArray *arrayLOC = [aString componentsSeparatedByCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
-            arrayLOC = [arrayLOC filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"SELF != ''"]];
-            
-            NSURL *staticMapImageURL = [self urlOfStaticMapFromLatitude:[arrayLOC[0] doubleValue] longitude:[arrayLOC[1] doubleValue]];
-            UIImageView *map = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.width)];
-            [map setImageWithURL:staticMapImageURL key:nil placeholder:[UIImage imageNamed:@""] completionBlock:nil failureBlock:nil];
-            
-            longitude = [arrayLOC[1] doubleValue];
-            latitiude = [arrayLOC[0] doubleValue];
-            CLLocation *location = [[CLLocation alloc] initWithLatitude:latitiude
-                                                              longitude:longitude];
-            
-            UIStoryboard *storybord = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-            CHLLocationDisplayViewController *vc = [storybord instantiateViewControllerWithIdentifier:@"CHLLocationDisplayViewController"];
-            vc.location = location;
-            [self presentViewController:vc animated:NO completion:nil];
-
+    NSString *aString = sender.locationData;
+    NSArray *arrayLOC = [aString componentsSeparatedByCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+    arrayLOC = [arrayLOC filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"SELF != ''"]];
+    
+    NSURL *staticMapImageURL = [self urlOfStaticMapFromLatitude:[arrayLOC[0] doubleValue] longitude:[arrayLOC[1] doubleValue]];
+    UIImageView *map = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.width)];
+    [map setImageWithURL:staticMapImageURL key:nil placeholder:[UIImage imageNamed:@""] completionBlock:nil failureBlock:nil];
+    
+    longitude = [arrayLOC[1] doubleValue];
+    latitiude = [arrayLOC[0] doubleValue];
+    CLLocation *location = [[CLLocation alloc] initWithLatitude:latitiude
+                                                      longitude:longitude];
+    
+    UIStoryboard *storybord = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    CHLLocationDisplayViewController *vc = [storybord instantiateViewControllerWithIdentifier:@"CHLLocationDisplayViewController"];
+    vc.location = location;
+    [self presentViewController:vc animated:NO completion:nil];
+    
     
     
 }
 
 -(void) displayPhoto:(ButtonToShow *)sender {
     
-            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-            CHLDisplayPhotoViewController *dpvc = [storyboard instantiateViewControllerWithIdentifier:@"CHLDisplayPhotoViewController"];
-            dpvc.urlOfImage = sender.linkToIconImage;
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    CHLDisplayPhotoViewController *dpvc = [storyboard instantiateViewControllerWithIdentifier:@"CHLDisplayPhotoViewController"];
+    dpvc.urlOfImage = sender.linkToIconImage;
     
-            [self presentViewController:dpvc animated:NO completion:nil];
+    [self presentViewController:dpvc animated:NO completion:nil];
     
 }
 
@@ -388,7 +391,7 @@
     if(_friendUserID==1)
         return 2;
     else{
-            return 1;
+        return 1;
     }
 }
 

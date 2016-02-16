@@ -76,7 +76,7 @@
 NSMutableData *mutData;
 
 @implementation CHLShareViewController
-    //CLLocationManager *locationManager;
+//CLLocationManager *locationManager;
 NSInteger defaultValue = 10;
 
 
@@ -85,23 +85,33 @@ NSInteger defaultValue = 10;
 - (void)viewDidLoad
 
 {
+    NSUserDefaults *cacheSpec = [NSUserDefaults standardUserDefaults];
+    if ([cacheSpec boolForKey:@"gotToShareFromHA"]) {
+        //        [cacheSpec setBool:NO forKey:@"gotToShareFromHA"];
+        _userIdTo = [[cacheSpec valueForKey:@"friendUserID"] integerValue];
+        _nameUser = [cacheSpec valueForKey:@"nickName"];
+        UIBarButtonItem* backButton = [[UIBarButtonItem alloc] initWithTitle:@"Close" style:UIBarButtonItemStylePlain target:self
+                                                                      action:@selector(close:)];
+        [backButton setTintColor:[UIColor chillMintColor]];
+        self.navigationItem.rightBarButtonItem = backButton;
+    }
     _locationManager = [[CLLocationManager alloc] init];
     self.title = _nameUser;
     _counter.textColor = [UIColor chillMintColor];
     [super viewDidLoad];
     if([[UIDevice currentDevice]userInterfaceIdiom]==UIUserInterfaceIdiomPhone)
-            {
-                if ([[UIScreen mainScreen] bounds].size.height < 568) // < iphone 5
-                {
-                    self.constraintBottom.constant = 160;
-                }
-            }
+    {
+        if ([[UIScreen mainScreen] bounds].size.height < 568) // < iphone 5
+        {
+            self.constraintBottom.constant = 160;
+        }
+    }
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self
                                                                           action:@selector(dismissKeyboard)];
     
     [self.view addGestureRecognizer:tap];
-
-       
+    NSLog(@"name %@ id %li", _nameUser, (long)_userIdTo);
+    
 }
 
 -(BOOL) isInternetConnection {
@@ -141,11 +151,11 @@ NSInteger defaultValue = 10;
             
             NSLog(@"JSON FROM LOAD DATA: %@", json);
         }
-        } failure:^(NSURLSessionTask *operation, NSError *error) {
-            SCLAlertView* alert = [[SCLAlertView alloc] init];
-            [alert showError:self.parentViewController title:@"Oups" subTitle:@"Please, check your internet connection" closeButtonTitle:@"OK" duration:0.0f];
-            NSLog(@"Error from load data: %@", error);
-        }];
+    } failure:^(NSURLSessionTask *operation, NSError *error) {
+        SCLAlertView* alert = [[SCLAlertView alloc] init];
+        [alert showError:self.parentViewController title:@"Oups" subTitle:@"Please, check your internet connection" closeButtonTitle:@"OK" duration:0.0f];
+        NSLog(@"Error from load data: %@", error);
+    }];
 }
 
 -(void) sendIcon:(ButtonToShare1 *)sender {
@@ -159,22 +169,27 @@ NSInteger defaultValue = 10;
 }
 
 - (void)viewDidAppear:(BOOL)animated {
-    
+    //    NSUserDefaults *cacheSpec = [NSUserDefaults standardUserDefaults];
+    //    if ([cacheSpec boolForKey:@"gotToShareFromHA"]) {
+    //        [cacheSpec setBool:NO forKey:@"gotToShareFromHA"];
+    //        _userIdTo = (long)[cacheSpec valueForKey:@"friendUserID"];
+    //        _nameUser = [cacheSpec valueForKey:@"nickName"];
+    //    }
     
     if (CLLocationManager.authorizationStatus == kCLAuthorizationStatusNotDetermined) {
         [_locationManager requestWhenInUseAuthorization];
     }
-
-//    if([[UIDevice currentDevice]userInterfaceIdiom]==UIUserInterfaceIdiomPhone)
-//    {
-//        if ([[UIScreen mainScreen] bounds].size.height <= 568) // <= iphone 5
-//        {
-//            NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
-//            [center addObserver:self selector:@selector(willShowKeyboard) name:UIKeyboardDidShowNotification object:nil];
-//            [center addObserver:self selector:@selector(willHideKeyboard) name:UIKeyboardWillHideNotification object:nil];
-//        }
-//        
-//    }
+    
+    //    if([[UIDevice currentDevice]userInterfaceIdiom]==UIUserInterfaceIdiomPhone)
+    //    {
+    //        if ([[UIScreen mainScreen] bounds].size.height <= 568) // <= iphone 5
+    //        {
+    //            NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
+    //            [center addObserver:self selector:@selector(willShowKeyboard) name:UIKeyboardDidShowNotification object:nil];
+    //            [center addObserver:self selector:@selector(willHideKeyboard) name:UIKeyboardWillHideNotification object:nil];
+    //        }
+    //
+    //    }
     
     [super viewDidAppear:animated];
     
@@ -185,7 +200,12 @@ NSInteger defaultValue = 10;
 
 -(void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    
+    //    NSUserDefaults *cacheSpec = [NSUserDefaults standardUserDefaults];
+    //    if ([cacheSpec boolForKey:@"gotToShareFromHA"]) {
+    //        [cacheSpec setBool:NO forKey:@"gotToShareFromHA"];
+    //        _userIdTo = (long)[cacheSpec valueForKey:@"friendUserID"];
+    //        _nameUser = [cacheSpec valueForKey:@"nickName"];
+    //    }
     if ([self isInternetConnection]) {
         ANDispatchBlockToBackgroundQueue(^{
             [self getUserIconsFromServer];
@@ -204,7 +224,7 @@ NSInteger defaultValue = 10;
                 self.constraintBottom.constant = isShowing ?  CGRectGetHeight(keyboardRect) : 207;
             }
         }
-
+        
         
         [self.view layoutIfNeeded];
     } completion:nil];
@@ -229,7 +249,7 @@ NSInteger defaultValue = 10;
     [self.shareText resignFirstResponder];
 }
 
-#pragma textField methods 
+#pragma textField methods
 
 - (IBAction)textDidEditing:(id)sender {
     _counter.text = [NSString stringWithFormat:@"%ld", (long)(defaultValue - _shareText.text.length)];
@@ -269,7 +289,16 @@ NSInteger defaultValue = 10;
     imagePicker.progressViewsDictionary = self.progressViewsDictionary;
     [self presentViewController:imagePicker
                        animated:YES
-                     completion:^(){[(UINavigationController *)self.parentViewController popViewControllerAnimated: NO];}];
+                     completion:^(){
+                         NSUserDefaults *cacheSpec = [NSUserDefaults standardUserDefaults];
+                         if ([cacheSpec boolForKey:@"gotToShareFromHA"]) {
+                             [cacheSpec setBool:NO forKey:@"gotToShareFromHA"];
+                             [self dismissViewControllerAnimated:YES completion:nil];
+                         }else {
+                             [(UINavigationController *)self.parentViewController popViewControllerAnimated: NO];
+                         }
+                         
+                     }];
     id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
     [tracker set:kGAIScreenName value:@"Share screen"];
     [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"UX"
@@ -307,7 +336,7 @@ NSInteger defaultValue = 10;
         
         [_locationManager startUpdatingLocation];
         self.sendedContentType = @"location";
-       // [_locationManager stopUpdatingLocation];
+        // [_locationManager stopUpdatingLocation];
         
         id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
         [tracker set:kGAIScreenName value:@"Share screen"];
@@ -319,8 +348,13 @@ NSInteger defaultValue = 10;
         
         LLACircularProgressView *progressView = [[LLACircularProgressView alloc] initProgressViewWithDummyProgress:0.0 cellStatusView:self.cellStatusView];
         [self.progressViewsDictionary setObject:progressView forKey:[NSNumber numberWithInteger:self.userIdTo]];
-        
-        [(UINavigationController *)self.parentViewController popToRootViewControllerAnimated:YES];
+        NSUserDefaults *cacheSpec = [NSUserDefaults standardUserDefaults];
+        if ([cacheSpec boolForKey:@"gotToShareFromHA"]) {
+            [cacheSpec setBool:NO forKey:@"gotToShareFromHA"];
+            [self dismissViewControllerAnimated:YES completion:nil];
+        }else {
+            [(UINavigationController *)self.parentViewController popToRootViewControllerAnimated:YES];
+        }
         [_locationManager stopUpdatingLocation];
     }
 }
@@ -363,17 +397,17 @@ NSInteger defaultValue = 10;
 - (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation
 {
     CLLocation *currentLocation = newLocation;
-
+    
     NSMutableURLRequest *request =
     [[NSMutableURLRequest alloc] initWithURL:
      [NSURL URLWithString:@"http://api.iamchill.co/v2/messages/index/"]];
     [request setValue:[[NSUserDefaults standardUserDefaults] valueForKey:@"token"] forHTTPHeaderField:@"X-API-TOKEN"];
     [request setValue:@"76eb29d3ca26fe805545812850e6d75af933214a" forHTTPHeaderField:@"X-API-KEY"];
-
-
+    
+    
     [request setHTTPMethod:@"POST"];
     NSUserDefaults *userCache = [[NSUserDefaults standardUserDefaults] initWithSuiteName:@"group.co.getchill.chill"];
-
+    
     NSString *postString = [NSString stringWithFormat:@"id_contact=%ld&id_user=%@&content=%@ %@&type=location&date=%@",(long)_userIdTo,[userCache valueForKey:@"id_user"],[NSString stringWithFormat:@"%.8f", currentLocation.coordinate.latitude], [NSString stringWithFormat:@"%.8f", currentLocation.coordinate.longitude], [self getDateTime]];
     
     [request setHTTPBody:[postString
@@ -387,22 +421,22 @@ NSInteger defaultValue = 10;
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
-//    NSUserDefaults *userCache = [[NSUserDefaults standardUserDefaults] initWithSuiteName:@"group.co.getchill.chill"];
-//    NSString *message;
-//    message = [self.sendedContentType isEqualToString:@"location"] ? [NSString stringWithFormat:@"📍 from %@",[userCache valueForKey:@"name"]] : [NSString stringWithFormat:@"%@: %@%@",[userCache valueForKey:@"name"], self.sendedContentType, [self.text isEqualToString:@""] ? @"" : [NSString stringWithFormat:@"#%@", self.text]];
-//    
-//    NSDictionary *data = @{
-//                           @"alert": message,
-//                           @"type": @"Location",
-//                           @"sound": @"default",
-//                           @"badge" : @1,
-//                           @"fromUserId": [userCache valueForKey:@"id_user"]
-//                           };
-//    PFPush *push = [[PFPush alloc] init];
-//    [push setChannel:[NSString stringWithFormat:@"us%li",(long)_userIdTo]];
-//   
-//    [push setData:data];
-//    [push sendPushInBackground];
+    //    NSUserDefaults *userCache = [[NSUserDefaults standardUserDefaults] initWithSuiteName:@"group.co.getchill.chill"];
+    //    NSString *message;
+    //    message = [self.sendedContentType isEqualToString:@"location"] ? [NSString stringWithFormat:@"📍 from %@",[userCache valueForKey:@"name"]] : [NSString stringWithFormat:@"%@: %@%@",[userCache valueForKey:@"name"], self.sendedContentType, [self.text isEqualToString:@""] ? @"" : [NSString stringWithFormat:@"#%@", self.text]];
+    //
+    //    NSDictionary *data = @{
+    //                           @"alert": message,
+    //                           @"type": @"Location",
+    //                           @"sound": @"default",
+    //                           @"badge" : @1,
+    //                           @"fromUserId": [userCache valueForKey:@"id_user"]
+    //                           };
+    //    PFPush *push = [[PFPush alloc] init];
+    //    [push setChannel:[NSString stringWithFormat:@"us%li",(long)_userIdTo]];
+    //
+    //    [push setData:data];
+    //    [push sendPushInBackground];
 }
 
 - (void)shareIconOfType:(NSString *)iconType {
@@ -428,14 +462,14 @@ NSInteger defaultValue = 10;
         
     }
     else {
-    NSMutableURLRequest *requestForNotifications = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:@"http://api.iamchill.co/v2/notifications/message"]];
+        NSMutableURLRequest *requestForNotifications = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:@"http://api.iamchill.co/v2/notifications/message"]];
         
         [requestForNotifications setValue:[[NSUserDefaults standardUserDefaults] valueForKey:@"token"] forHTTPHeaderField:@"X-API-TOKEN"];
         [requestForNotifications setValue:@"76eb29d3ca26fe805545812850e6d75af933214a" forHTTPHeaderField:@"X-API-KEY"];
         [requestForNotifications setHTTPMethod:@"POST"];
         
         NSUserDefaults *userCache = [[NSUserDefaults standardUserDefaults] initWithSuiteName:@"group.co.getchill.chill"];
-
+        
         [_shareText.text stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
         self.text = _shareText.text;
         NSString *postStringForNotifications = [NSString stringWithFormat:@"id_contact=%ld&id_user=%@&content=%@&type=icon&text=%@", (long)_userIdTo, [userCache valueForKey:@"id_user"], iconType, _shareText.text];
@@ -443,29 +477,36 @@ NSInteger defaultValue = 10;
         [requestForNotifications setHTTPBody:[postStringForNotifications dataUsingEncoding:NSUTF8StringEncoding]];
         NSURLConnection *connectionForNotifications = [[NSURLConnection alloc] initWithRequest:requestForNotifications delegate:self];
         
-
-    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:@"http://api.iamchill.co/v2/messages/index"]];
-    [request setValue:[[NSUserDefaults standardUserDefaults] valueForKey:@"token"] forHTTPHeaderField:@"X-API-TOKEN"];
-    [request setValue:@"76eb29d3ca26fe805545812850e6d75af933214a" forHTTPHeaderField:@"X-API-KEY"];
-
-    [request setHTTPMethod:@"POST"];
-    
         
-    [_shareText.text stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-    self.text = _shareText.text;
-    NSString *postString = [NSString stringWithFormat:@"id_contact=%ld&id_user=%@&content=%@&type=icon&text=%@", (long)_userIdTo, [userCache valueForKey:@"id_user"], iconType, _shareText.text];
-    NSLog(@"POST STRING: %@", postString);
+        NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:@"http://api.iamchill.co/v2/messages/index"]];
+        [request setValue:[[NSUserDefaults standardUserDefaults] valueForKey:@"token"] forHTTPHeaderField:@"X-API-TOKEN"];
+        [request setValue:@"76eb29d3ca26fe805545812850e6d75af933214a" forHTTPHeaderField:@"X-API-KEY"];
         
-    [request setHTTPBody:[postString dataUsingEncoding:NSUTF8StringEncoding]];
-    NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
-    if (connection) {
-        mutData = [NSMutableData data];
-    }
-    
-    LLACircularProgressView *progressView = [[LLACircularProgressView alloc] initProgressViewWithDummyProgress:0.0 cellStatusView:self.cellStatusView];
-    [self.progressViewsDictionary setObject:progressView forKey:[NSNumber numberWithInteger:self.userIdTo]];
-    
-    [(UINavigationController *)self.parentViewController popToRootViewControllerAnimated:YES];
+        [request setHTTPMethod:@"POST"];
+        
+        
+        [_shareText.text stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+        self.text = _shareText.text;
+        NSString *postString = [NSString stringWithFormat:@"id_contact=%ld&id_user=%@&content=%@&type=icon&text=%@", (long)_userIdTo, [userCache valueForKey:@"id_user"], iconType, _shareText.text];
+        NSLog(@"POST STRING: %@", postString);
+        
+        [request setHTTPBody:[postString dataUsingEncoding:NSUTF8StringEncoding]];
+        NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
+        if (connection) {
+            mutData = [NSMutableData data];
+        }
+        
+        LLACircularProgressView *progressView = [[LLACircularProgressView alloc] initProgressViewWithDummyProgress:0.0 cellStatusView:self.cellStatusView];
+        [self.progressViewsDictionary setObject:progressView forKey:[NSNumber numberWithInteger:self.userIdTo]];
+        NSUserDefaults *cacheSpec = [NSUserDefaults standardUserDefaults];
+        if ([cacheSpec boolForKey:@"gotToShareFromHA"]) {
+            [cacheSpec setBool:NO forKey:@"gotToShareFromHA"];
+            NSLog(@"11");
+            [self dismissViewControllerAnimated:YES completion:nil];
+        }else {
+            NSLog(@"22");
+            [(UINavigationController *)self.parentViewController popToRootViewControllerAnimated:YES];
+        }
     }
     
     id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
@@ -556,4 +597,10 @@ totalBytesExpectedToWrite:(NSInteger)totalBytesExpectedToWrite {
 
 
 
+- (IBAction)close:(id)sender {
+    NSUserDefaults *cacheSpec = [NSUserDefaults standardUserDefaults];
+    [cacheSpec setBool:NO forKey:@"gotToShareFromHA"];
+    [self dismissViewControllerAnimated:YES completion:nil];
+    
+}
 @end
