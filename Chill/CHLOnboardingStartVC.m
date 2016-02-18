@@ -1,64 +1,67 @@
 //
-//  CHLAdditionalViewController.m
+//  CHLOnboardingStartVC.m
 //  Chill
 //
-//  Created by Tareyev Gregory on 08.02.16.
+//  Created by Ivan Grachev on 2/16/16.
 //  Copyright © 2016 Chlil. All rights reserved.
 //
 
-#import "CHLAdditionalViewController.h"
+#import "CHLOnboardingStartVC.h"
 
 #import "ASImageCell.h"
 #import "ASImageModel.h"
-
 #import "ANHelperFunctions.h"
 #import "ASServerManager.h"
 #import "SCLAlertView.h"
 #import "UIImage+imageWithColor.h"
-
 #import <SystemConfiguration/SystemConfiguration.h>
 #import <SystemConfiguration/SCNetworkReachability.h>
 #import "Reachability.h"
-
 #import "AFNetworking.h"
 #import "UIImageView+AFNetworking.h"
-
 #import "UserCache.h"
+#import "UIColor+ChillColors.h"
 
-@interface CHLAdditionalViewController () <UIScrollViewDelegate,UICollectionViewDataSource,UICollectionViewDelegate>
+@interface CHLOnboardingStartVC () <UIScrollViewDelegate,UICollectionViewDataSource,UICollectionViewDelegate> {
+    NSInteger selectedIconsNumber;
+    NSArray* arrayOfSelectedIcons;
+}
 
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
+@property (strong, nonatomic) NSMutableArray*  arraySelectedIconID;
+@property (strong, nonatomic) NSMutableArray*  arrayAllIcon;
+@property (strong, nonatomic) NSMutableArray*  arraySelectedIcon;
 @property (assign, nonatomic) BOOL loadingData;
-
-@property (strong, nonatomic) NSMutableArray*  arrayFavoriteIcon;
-
 
 @end
 
-@implementation CHLAdditionalViewController
+@implementation CHLOnboardingStartVC
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
     [self setupCollectionView];
-
-    self.arrayFavoriteIcon = [NSMutableArray array];
-    // Do any additional setup after loading the view.
+    
+    self.arraySelectedIcon   = [NSMutableArray array];
+    self.arrayAllIcon   = [NSMutableArray array];
+    
+    if (!self.arraySelectedIconID) {
+        self.arraySelectedIconID  = [NSMutableArray array];
+        
+    }
+    if ([self isInternetConnection]) {
+        ANDispatchBlockToBackgroundQueue(^{
+            [self getIconsFromServer];
+        });
+    }
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
 
 #pragma mark - UIScrollViewDelegate
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-    // Типо если прокручиваем вниз постепенно подгружаем, но в нашем случае загружаем все сразу
     if ((scrollView.contentOffset.y + scrollView.frame.size.height) >= scrollView.contentSize.height) {
         if (!self.loadingData){
             self.loadingData = YES;
-            //[self getFavIconsFromServer];
         }
     }
 }
@@ -67,14 +70,14 @@
 
 #pragma mark - Server
 
--(void) getFavIconsFromServer{
+-(void) getIconsFromServer{
     
-    [[ASServerManager sharedManager] getJsonImageWithOffset:[self.arrayFavoriteIcon count]
-                                                   packName:@"main"
+    [[ASServerManager sharedManager] getJsonImageWithOffset:[self.arrayAllIcon count]
+                                                   packName:@"onboarding"
                                                       count:20
                                                   onSuccess:^(NSArray *modelArrayImage) {
                                                       if ([modelArrayImage count] > 0) {
-                                                          [self.arrayFavoriteIcon addObjectsFromArray:modelArrayImage];
+                                                          [self.arrayAllIcon addObjectsFromArray:modelArrayImage];
                                                           
                                                           ANDispatchBlockToMainQueue(^{
                                                               [self.collectionView reloadData];
@@ -98,13 +101,13 @@
 
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return [self.arrayFavoriteIcon count];
+    return [self.arrayAllIcon count];
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
     if([[UIDevice currentDevice]userInterfaceIdiom]==UIUserInterfaceIdiomPhone)
     {
-        if ([UIScreen mainScreen].scale >= 2.9) // >= iphone 6 plus
+        if ([UIScreen mainScreen].scale >= 2.9)
         {
             return CGSizeMake(100, 100);
         }
@@ -120,13 +123,13 @@
     static NSString *identifier = @"ASImageCell";
     
     ASImageCell*  cell = (ASImageCell*) [collectionView dequeueReusableCellWithReuseIdentifier:identifier forIndexPath:indexPath];
-    ASImageModel* model = self.arrayFavoriteIcon[indexPath.row];
+    ASImageModel* model = self.arrayAllIcon[indexPath.row];
     
     cell.backgroundColor = [UIColor whiteColor];
     
     __weak UIImageView *weakImageView = cell.imgView;
     __weak NSIndexPath *weakIndexPath = indexPath;
-    __weak ASImageModel *iconModel     = model;
+    __weak ASImageModel *iconModel = model;
     
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:model.imageSize66]];
     [weakImageView setImageWithURLRequest:request
@@ -134,7 +137,18 @@
                                   success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
                                       
                                       weakImageView.image = image;
+                                      weakImageView.image = [image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
                                       
+                                      if (self.arraySelectedIconID.count > 0){
+                                          
+                                          if ([self.arraySelectedIconID containsObject:iconModel.imageID]){
+                                              [weakImageView setTintColor:[UIColor chillMintColor]];
+                                          } else {
+                                              [weakImageView setTintColor:[UIColor colorWithRed:(216/255.0) green:(216/255.0) blue:(216/255.0) alpha:1]];
+                                          }
+                                      } else {
+                                          [weakImageView setTintColor:[UIColor colorWithRed:(216/255.0) green:(216/255.0) blue:(216/255.0) alpha:1]];
+                                      }
                                       
                                   } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
                                       NSLog(@"Request failed with error: %@", error);
@@ -147,16 +161,33 @@
 #pragma mark - UICollectionViewDelegate
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    
     ASImageCell *cell = (ASImageCell *)[collectionView cellForItemAtIndexPath:indexPath];
-    ASImageModel* model = self.arrayFavoriteIcon[indexPath.row];
+    ASImageModel* model = self.arrayAllIcon[indexPath.row];
+    if ([self.arraySelectedIconID containsObject:model.imageID]) {
+        [self.arraySelectedIconID removeObject:model.imageID];
+        cell.imgView.image = [cell.imgView.image imageWithColor:[UIColor colorWithRed:(216/255.0) green:(216/255.0) blue:(216/255.0) alpha:1]];
+    } else {
+        [self.arraySelectedIconID addObject:model.imageID];
+        cell.imgView.image = [cell.imgView.image imageWithColor:[UIColor chillMintColor]];
+        
+        int neighbourIndex = (indexPath.row % 2 == 0) ? ((int)indexPath.row + 1) : ((int)indexPath.row - 1);
+        ASImageModel *neighbourModel = self.arrayAllIcon[neighbourIndex];
+        ASImageCell *neighbourCell = (ASImageCell *)[collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForRow:neighbourIndex inSection:0]];
+        if ([self.arraySelectedIconID containsObject:neighbourModel.imageID]) {
+            [self.arraySelectedIconID removeObject:neighbourModel.imageID];
+            neighbourCell.imgView.image = [neighbourCell.imgView.image imageWithColor:[UIColor colorWithRed:(216/255.0) green:(216/255.0) blue:(216/255.0) alpha:1]];
+        }
+    }
+    if ([self.arraySelectedIconID count] == 3) {
+        [self showNextOnboardingPage];
+    }
 }
 
 
 #pragma mark - Other
 
--(BOOL) isInternetConnection {
-    
+-(BOOL) isInternetConnection
+{
     Reachability *networkReachability = [Reachability reachabilityForInternetConnection];
     NetworkStatus networkStatus = [networkReachability currentReachabilityStatus];
     if (networkStatus == NotReachable) {
@@ -173,7 +204,7 @@
 
 -(void) setupCollectionView {
     
-    UICollectionViewFlowLayout *layout=[[UICollectionViewFlowLayout alloc] init];
+    UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
     [layout setScrollDirection:UICollectionViewScrollDirectionVertical];
     layout.minimumInteritemSpacing = 1.0;
     layout.minimumLineSpacing = 1.0;
@@ -182,11 +213,9 @@
     self.collectionView.collectionViewLayout = layout;
     [self.collectionView setDataSource:self];
     [self.collectionView setDelegate:self];
-    
     [self.collectionView setShowsVerticalScrollIndicator:NO];
     [self.collectionView setBackgroundColor:[UIColor clearColor]];
     self.collectionView.scrollEnabled = YES;
-    //[self.collectionView registerClass:[ASImageCell class] forCellWithReuseIdentifier:@"ASImageCell"];
     [self.collectionView setBackgroundColor:[UIColor whiteColor]];
     
 }
@@ -194,17 +223,14 @@
 -(void)showError:(NSString *)message {
     SCLAlertView* alert = [[SCLAlertView alloc] init];
     
-    [alert showError:self title:@"Error" subTitle:message closeButtonTitle:@"OK" duration:0.0f];
+    [alert showError:self title:@"Oups" subTitle:message closeButtonTitle:@"OK" duration:0.0f];
 }
 
-#pragma mark - Action
-
-
-- (IBAction)doneAction:(id)sender {
-
-   [self dismissViewControllerAnimated:YES completion:nil];
-    
+- (void)showNextOnboardingPage
+{
+    [self performSegueWithIdentifier:@"NextTutorialStep" sender:nil];
+    NSString* str = [self.arraySelectedIconID componentsJoinedByString:@"-"];
+    //TODO: collect statistics
 }
-
 
 @end

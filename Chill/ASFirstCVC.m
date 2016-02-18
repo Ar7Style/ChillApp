@@ -89,6 +89,7 @@
 -(void) getFavIconsFromServer{
     
     [[ASServerManager sharedManager] getJsonImageWithOffset:[self.arrayFavoriteIcon count]
+                                                   packName:@"main"
                                                       count:20
                                                   onSuccess:^(NSArray *modelArrayImage) {
                          if ([modelArrayImage count] > 0) {
@@ -177,10 +178,6 @@
 #pragma mark - UICollectionViewDelegate
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-  
-    
-    
-    
     ASImageCell *cell = (ASImageCell *)[collectionView cellForItemAtIndexPath:indexPath];
     ASImageModel* model = self.arrayFavoriteIcon[indexPath.row];
     

@@ -48,6 +48,7 @@
 }
 
 -(void) getJsonImageWithOffset:(NSInteger) offset
+                      packName:(NSString *)packName
                          count:(NSInteger) count
                      onSuccess:(void(^)(NSArray* modelArrayImage)) success
                      onFailure:(void(^)(NSError* error, NSInteger statusCode)) failure {
@@ -65,7 +66,7 @@
     [self.requestOperationManager.requestSerializer setValue:[[NSUserDefaults standardUserDefaults] valueForKey:@"token"] forHTTPHeaderField:@"X-API-TOKEN"];
     [self.requestOperationManager.requestSerializer setValue:@"76eb29d3ca26fe805545812850e6d75af933214a" forHTTPHeaderField:@"X-API-KEY"];
 
-    NSString* url = [ NSString stringWithFormat:@"http://api.iamchill.co/v2/icons/index/id_user/%@/name_pack/main", [userCache valueForKey:@"id_user"]];
+    NSString* url = [ NSString stringWithFormat:@"http://api.iamchill.co/v3/icons/index/id_user/%@/name_pack/%@", [userCache valueForKey:@"id_user"], packName];
     [self.requestOperationManager GET:url //@"http://api.iamchill.co/v2/icons/index/id_user/4/name_pack/main"
                            parameters:nil //parametr
                               success:^(AFHTTPRequestOperation *operation, NSDictionary* responseObject) {
@@ -103,10 +104,8 @@
 
 -(void) postSendSelectedIconId:(NSString*) selectedIconsID
                      onSuccess:(void(^)(NSString* status)) success
-                     onFailure:(void(^)(NSError* error, NSInteger statusCode)) failure {
+                     onFailure:(void(^)(NSError* error, NSInteger statusCode))failure {
     NSUserDefaults *userCache = [[NSUserDefaults standardUserDefaults] initWithSuiteName:@"group.co.getchill.chill"];
-
-    
     NSDictionary *parametr = @{@"id_user":[userCache valueForKey:@"id_user"], @"id_icons_user": selectedIconsID};
     
     [self.requestOperationManager.requestSerializer setValue:[[NSUserDefaults standardUserDefaults] valueForKey:@"token"] forHTTPHeaderField:@"X-API-TOKEN"];

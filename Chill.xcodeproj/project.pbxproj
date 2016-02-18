@@ -211,6 +211,8 @@
 		53E096941C41208300B4A008 /* libFastEasyMapping.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 53E096921C41208300B4A008 /* libFastEasyMapping.a */; };
 		53E096961C41208700B4A008 /* libSCLAlertView-Objective-C.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 53E096951C41208700B4A008 /* libSCLAlertView-Objective-C.a */; };
 		53EA0C231C01328300E161C6 /* UserCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 53EA0C221C01328300E161C6 /* UserCache.m */; };
+		AD1CFA1B1C75FB2500F5A030 /* CHLOnboardingStartVC.m in Sources */ = {isa = PBXBuildFile; fileRef = AD1CFA1A1C75FB2500F5A030 /* CHLOnboardingStartVC.m */; };
+		AD1CFA1E1C75FB3F00F5A030 /* CHLOnboardingEndVC.m in Sources */ = {isa = PBXBuildFile; fileRef = AD1CFA1D1C75FB3F00F5A030 /* CHLOnboardingEndVC.m */; };
 		AD39F35B1B6052AF003936C4 /* CHLFriendsSourcesVC.m in Sources */ = {isa = PBXBuildFile; fileRef = AD39F35A1B6052AF003936C4 /* CHLFriendsSourcesVC.m */; };
 		AD39F35E1B605C74003936C4 /* CHLTwitterVC.m in Sources */ = {isa = PBXBuildFile; fileRef = AD39F35D1B605C74003936C4 /* CHLTwitterVC.m */; };
 		AD6325691ABB73EF00DD8F0D /* CHLPaperCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AD6325671ABB73EF00DD8F0D /* CHLPaperCollectionCell.m */; };
@@ -570,6 +572,10 @@
 		53EA0C221C01328300E161C6 /* UserCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserCache.m; sourceTree = "<group>"; };
 		8ECBB04CB52865DAA92D4949 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		A48D409AB9BFBB4BB06F0BF6 /* libPods-Chill WatchOS 2 Extension.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Chill WatchOS 2 Extension.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		AD1CFA191C75FB2500F5A030 /* CHLOnboardingStartVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHLOnboardingStartVC.h; sourceTree = "<group>"; };
+		AD1CFA1A1C75FB2500F5A030 /* CHLOnboardingStartVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHLOnboardingStartVC.m; sourceTree = "<group>"; };
+		AD1CFA1C1C75FB3F00F5A030 /* CHLOnboardingEndVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHLOnboardingEndVC.h; sourceTree = "<group>"; };
+		AD1CFA1D1C75FB3F00F5A030 /* CHLOnboardingEndVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHLOnboardingEndVC.m; sourceTree = "<group>"; };
 		AD39F3591B6052AF003936C4 /* CHLFriendsSourcesVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHLFriendsSourcesVC.h; sourceTree = "<group>"; };
 		AD39F35A1B6052AF003936C4 /* CHLFriendsSourcesVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHLFriendsSourcesVC.m; sourceTree = "<group>"; };
 		AD39F35C1B605C74003936C4 /* CHLTwitterVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHLTwitterVC.h; sourceTree = "<group>"; };
@@ -992,6 +998,10 @@
 		AD8417811A911D8A0078F57A /* Tutorial */ = {
 			isa = PBXGroup;
 			children = (
+				AD1CFA191C75FB2500F5A030 /* CHLOnboardingStartVC.h */,
+				AD1CFA1A1C75FB2500F5A030 /* CHLOnboardingStartVC.m */,
+				AD1CFA1C1C75FB3F00F5A030 /* CHLOnboardingEndVC.h */,
+				AD1CFA1D1C75FB3F00F5A030 /* CHLOnboardingEndVC.m */,
 				AD84177E1A911D820078F57A /* CHLTutorialViewController.h */,
 				AD84177F1A911D820078F57A /* CHLTutorialViewController.m */,
 				53C33DB11C1A288B0071E189 /* CellTutorial.xib */,
@@ -1770,6 +1780,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AD1CFA1E1C75FB3F00F5A030 /* CHLOnboardingEndVC.m in Sources */,
 				020B35751A1E402C00DC2F23 /* JMImageCache.m in Sources */,
 				0222F36C1A52FF6400830448 /* MessagesJSON.m in Sources */,
 				E6C7C207191A1B740071D83F /* CHLFriendsListViewController.m in Sources */,
@@ -1796,6 +1807,7 @@
 				020B35761A1E402C00DC2F23 /* MBProgressHUD.m in Sources */,
 				53C33DB51C1A28A90071E189 /* CellTutorial.m in Sources */,
 				0686BC411B49CDF500515EA0 /* CHLAdditionalShareViewController.m in Sources */,
+				AD1CFA1B1C75FB2500F5A030 /* CHLOnboardingStartVC.m in Sources */,
 				021F00CC1A3CD7D7000A83D2 /* CHLSearchViewController.m in Sources */,
 				069A05A11C5EADC60023C504 /* FTWCache.m in Sources */,
 				020B35741A1E402C00DC2F23 /* JSONLoader.m in Sources */,

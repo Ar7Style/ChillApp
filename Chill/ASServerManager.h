@@ -14,6 +14,7 @@
 + (ASServerManager*) sharedManager;
 
 -(void) getJsonImageWithOffset:(NSInteger) offset
+                      packName:(NSString *)packName
                          count:(NSInteger) count
                      onSuccess:(void(^)(NSArray* modelArrayImage)) success
                      onFailure:(void(^)(NSError* error, NSInteger statusCode)) failure;
