@@ -332,7 +332,7 @@
     NSLog(@"gotoshareVC %@", self.nickName);
     CHLShareViewController* svc = [[CHLShareViewController alloc] init];
     svc.userIdTo = (long)_friendUserID;
-    svc.nameUser = self.nickName;
+    svc.nameUser = self.nickName; 
     NSLog(@"LOGIN: %@ IDUSER: %ld", svc.nameUser, (long)svc.userIdTo);
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     NSUserDefaults *cacheSpec = [NSUserDefaults standardUserDefaults];

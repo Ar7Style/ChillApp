@@ -94,7 +94,7 @@ NSInteger defaultValue = 10;
         UIBarButtonItem* backButton = [[UIBarButtonItem alloc] initWithTitle:@"Close" style:UIBarButtonItemStylePlain target:self
                                                                       action:@selector(close:)];
         [backButton setTintColor:[UIColor chillMintColor]];
-        self.navigationItem.rightBarButtonItem = backButton;
+        self.navigationItem.leftBarButtonItem = backButton;
     }
     _locationManager = [[CLLocationManager alloc] init];
     self.title = _nameUser;
@@ -113,6 +113,7 @@ NSInteger defaultValue = 10;
     [self.view addGestureRecognizer:tap];
     NSLog(@"name %@ id %li", _nameUser, (long)_userIdTo);
     UIBarButtonItem *moreButton = [[UIBarButtonItem alloc] initWithTitle:@"More" style:UIBarButtonItemStylePlain target:self action:@selector(presentShareMoreViewController)];
+    [moreButton setTintColor:[UIColor chillMintColor]];
     self.navigationItem.rightBarButtonItem = moreButton;
     
 }

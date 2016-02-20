@@ -50,6 +50,7 @@ NSMutableData *mutData;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self.navigationController.navigationBar setTintColor:[UIColor chillMintColor]];
     self.characktersCounterLabel.textColor = [UIColor chillMintColor];
     [self setupCollectionView];
     self.arrayAllIcon = [NSMutableArray array];
@@ -200,20 +201,7 @@ NSMutableData *mutData;
     [self.navigationController popToRootViewControllerAnimated:YES];
     
     if ([self.characktersCounterLabel.text integerValue] < 0) {
-        UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Too long"
-                                    
-                                                                       message:@"You can only send 10 symbols"
-                                    
-                                                                preferredStyle:UIAlertControllerStyleAlert];
-        
-        UIAlertAction* okayAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
-                                     
-                                                           handler:^(UIAlertAction * action) {}];
-        
-        [alert addAction:okayAction];
-        
-        [self presentViewController:alert animated:YES completion:nil];
-        
+        [self showError:@"You can only send 10 symbols"];
         self.hashtagTextField.text = @"";
         self.characktersCounterLabel.textColor = [UIColor chillMintColor];
         self.characktersCounterLabel.text = [NSString stringWithFormat:@"%d", 10];

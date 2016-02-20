@@ -192,7 +192,7 @@ NSMutableData *mutData;
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     CHLFriendCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
     NSArray *jsonData = json[indexPath.row];
-    
+    [[NSUserDefaults standardUserDefaults] setValue:[jsonData valueForKey:@"login"] forKey:@"userNameForReply"];
     UILabel* twitter_name = (UILabel*) [cell viewWithTag:10];
     if ( jsonData.count == 11) { // apps (without "login")
         cell.senderLabel.text = [jsonData valueForKey:@"name"];
