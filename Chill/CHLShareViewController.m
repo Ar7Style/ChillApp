@@ -43,6 +43,7 @@
 #import "LLACircularProgressView.h"
 #import "CHLPaperCollectionCell.h"
 #import "UIViewController+KeyboardAnimation.h"
+#import "CHLShareMoreViewController.h"
 
 
 @interface ButtonToShare1 : UIButton
@@ -111,7 +112,14 @@ NSInteger defaultValue = 10;
     
     [self.view addGestureRecognizer:tap];
     NSLog(@"name %@ id %li", _nameUser, (long)_userIdTo);
+    UIBarButtonItem *moreButton = [[UIBarButtonItem alloc] initWithTitle:@"More" style:UIBarButtonItemStylePlain target:self action:@selector(presentShareMoreViewController)];
+    self.navigationItem.rightBarButtonItem = moreButton;
     
+}
+
+- (void)presentShareMoreViewController
+{
+    [self performSegueWithIdentifier:@"additionalShare" sender:nil];
 }
 
 -(BOOL) isInternetConnection {
@@ -584,10 +592,10 @@ totalBytesExpectedToWrite:(NSInteger)totalBytesExpectedToWrite {
 {
     if ([[segue identifier] isEqualToString:@"additionalShare"])
     {
-        CHLAdditionalShareViewController *asvc = [segue destinationViewController];
-        asvc.userIdTo = _userIdTo;
-        asvc.cellStatusView = self.cellStatusView;
-        asvc.progressViewsDictionary = self.progressViewsDictionary;
+        CHLShareMoreViewController *shareMoreVC = [segue destinationViewController];
+        shareMoreVC.userIdTo = _userIdTo;
+        shareMoreVC.cellStatusView = self.cellStatusView;
+        shareMoreVC.progressViewsDictionary = self.progressViewsDictionary;
     }
 }
 
