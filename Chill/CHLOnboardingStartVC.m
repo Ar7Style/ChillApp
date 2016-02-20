@@ -112,10 +112,10 @@
             return CGSizeMake(100, 100);
         }
         else {
-            return CGSizeMake(70, 70);
+            return CGSizeMake(90, 90);
         }
     }
-    return CGSizeMake(70, 70);
+    return CGSizeMake(90, 90);
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
@@ -179,6 +179,10 @@
         }
     }
     if ([self.arraySelectedIconID count] == 3) {
+        NSString* str = [self.arraySelectedIconID componentsJoinedByString:@"-"];
+        NSMutableArray *slectedIconsArray = [[str componentsSeparatedByString:@"-"] mutableCopy];
+        [[NSUserDefaults standardUserDefaults] setObject:slectedIconsArray forKey:@"arraySelectedIconID"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
         [self showNextOnboardingPage];
     }
 }
@@ -230,6 +234,7 @@
 {
     [self performSegueWithIdentifier:@"NextTutorialStep" sender:nil];
     NSString* str = [self.arraySelectedIconID componentsJoinedByString:@"-"];
+    [[NSUserDefaults standardUserDefaults] setValue:str forKey:@"selectedIconsStr"];
     //TODO: collect statistics
 }
 
