@@ -470,7 +470,8 @@ NSInteger defaultValue = 10;
         
         NSUserDefaults *userCache = [[NSUserDefaults standardUserDefaults] initWithSuiteName:@"group.co.getchill.chill"];
         
-        [_shareText.text stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+        //NSString *fixedQuery = [query stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
+        [_shareText.text stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
         self.text = _shareText.text;
         NSString *postStringForNotifications = [NSString stringWithFormat:@"id_contact=%ld&id_user=%@&content=%@&type=icon&text=%@", (long)_userIdTo, [userCache valueForKey:@"id_user"], iconType, _shareText.text];
         
@@ -485,9 +486,9 @@ NSInteger defaultValue = 10;
         [request setHTTPMethod:@"POST"];
         
         
-        [_shareText.text stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+        [_shareText.text stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
         self.text = _shareText.text;
-        NSString *postString = [NSString stringWithFormat:@"id_contact=%ld&id_user=%@&content=%@&type=icon&text=%@", (long)_userIdTo, [userCache valueForKey:@"id_user"], iconType, _shareText.text];
+        NSString *postString = [NSString stringWithFormat:@"id_contact=%ld&id_user=%@&content=%@&type=icon&text=%@", (long)_userIdTo, [userCache valueForKey:@"id_user"], iconType, [_shareText.text stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]]];
         NSLog(@"POST STRING: %@", postString);
         
         [request setHTTPBody:[postString dataUsingEncoding:NSUTF8StringEncoding]];
