@@ -8,6 +8,8 @@
 
 #import "CHLOnboardingEndVC.h"
 
+#import "CHLOnboardingStartVC.h"
+
 #import "ASImageCell.h"
 #import "ASImageModel.h"
 #import "ANHelperFunctions.h"
@@ -70,7 +72,7 @@
 -(void) getIconsFromServer{
     
     [[ASServerManager sharedManager] getJsonImageWithOffset:[self.arrayAllIcon count]
-                                                   packName:@"all"
+                                                   packName:@"main"
                                                       count:20
                                                   onSuccess:^(NSArray *modelArrayImage) {
                                                       if ([modelArrayImage count] > 0) {
@@ -107,6 +109,10 @@
         if ([UIScreen mainScreen].scale >= 2.9)
         {
             return CGSizeMake(100, 100);
+        }
+        else if ([[UIScreen mainScreen] bounds].size.height <= 568) // <= iphone 5
+        {
+            CGSizeMake(70, 70);
         }
         else {
             return CGSizeMake(70, 70);
@@ -167,7 +173,7 @@
         [self.arraySelectedIconID addObject:model.imageID];
         cell.imgView.image = [cell.imgView.image imageWithColor:[UIColor chillMintColor]];
     }
-    if ([self.arraySelectedIconID count] == 6) {
+    if ([self.arraySelectedIconID count] == 3) {
         [self finishOnboarding];
     }
 }
@@ -218,8 +224,16 @@
 {
     [self dismissViewControllerAnimated:YES completion:nil];
     [self.navigationController popViewControllerAnimated:YES];
-    NSString* str = [self.arraySelectedIconID componentsJoinedByString:@"-"];
-    [[ASServerManager sharedManager] postSendSelectedIconId:str onSuccess:^(NSString *status) {}
+
+    NSString* str =[NSString stringWithFormat:@"%@-%@",[[NSUserDefaults standardUserDefaults] valueForKey:@"selectedIconsStr"], [self.arraySelectedIconID componentsJoinedByString:@"-"]];
+    NSMutableArray *arrayOfSelectedIcons = [[str componentsSeparatedByString:@"-"] mutableCopy];
+    
+    
+    [[ASServerManager sharedManager] postSendSelectedIconId:str onSuccess:^(NSString *status) {
+        [[NSUserDefaults standardUserDefaults] setObject:arrayOfSelectedIcons forKey:@"arraySelectedIconID"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+    
+    }
                                                   onFailure:^(NSError *error, NSInteger statusCode) {}];
 }
 
