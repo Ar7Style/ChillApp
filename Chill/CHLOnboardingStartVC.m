@@ -72,8 +72,9 @@
 
 -(void) getIconsFromServer{
     
-    [[ASServerManager sharedManager] getJsonImageWithOffset:[self.arrayAllIcon count]
-                                                   packName:@"onboarding"
+    [[ASServerManager sharedManager] getJsonImageWithOffsetForOnboarding:[self.arrayAllIcon count]
+                                                            numberOfPage:1
+                                                   packName:@"onboarding2"
                                                       count:20
                                                   onSuccess:^(NSArray *modelArrayImage) {
                                                       if ([modelArrayImage count] > 0) {
