@@ -19,6 +19,13 @@
                      onSuccess:(void(^)(NSArray* modelArrayImage)) success
                      onFailure:(void(^)(NSError* error, NSInteger statusCode)) failure;
 
+-(void) getJsonImageWithOffsetForOnboarding:(NSInteger) offset
+                               numberOfPage: (NSInteger)number
+                      packName:(NSString *)packName
+                         count:(NSInteger) count
+                     onSuccess:(void(^)(NSArray* modelArrayImage)) success
+                     onFailure:(void(^)(NSError* error, NSInteger statusCode)) failure;
+
 -(void) postSendSelectedIconId:(NSString*) selectedIconsID
                      onSuccess:(void(^)(NSString* status)) success
                      onFailure:(void(^)(NSError* error, NSInteger statusCode)) failure;

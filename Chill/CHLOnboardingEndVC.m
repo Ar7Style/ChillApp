@@ -71,21 +71,22 @@
 
 -(void) getIconsFromServer{
     
-    [[ASServerManager sharedManager] getJsonImageWithOffset:[self.arrayAllIcon count]
-                                                   packName:@"main"
-                                                      count:20
-                                                  onSuccess:^(NSArray *modelArrayImage) {
-                                                      if ([modelArrayImage count] > 0) {
-                                                          [self.arrayAllIcon addObjectsFromArray:modelArrayImage];
-                                                          
-                                                          ANDispatchBlockToMainQueue(^{
-                                                              [self.collectionView reloadData];
-                                                              self.loadingData = NO;
-                                                          });
-                                                      }
-                                                  } onFailure:^(NSError *error, NSInteger statusCode) {
-                                                      
-                                                  }];
+    [[ASServerManager sharedManager] getJsonImageWithOffsetForOnboarding:[self.arrayAllIcon count]
+                                                            numberOfPage:2
+                                                                packName:@"onboarding2"
+                                                                   count:20
+                                                               onSuccess:^(NSArray *modelArrayImage) {
+                                                                   if ([modelArrayImage count] > 0) {
+                                                                       [self.arrayAllIcon addObjectsFromArray:modelArrayImage];
+                                                                       
+                                                                       ANDispatchBlockToMainQueue(^{
+                                                                           [self.collectionView reloadData];
+                                                                           self.loadingData = NO;
+                                                                       });
+                                                                   }
+                                                               } onFailure:^(NSError *error, NSInteger statusCode) {
+                                                                   
+                                                               }];
 }
 
 #pragma mark - UICollectionViewDataSource
