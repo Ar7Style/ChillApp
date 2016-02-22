@@ -184,12 +184,26 @@ NSMutableData *mutData;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    
-    return json.count;
+    NSInteger rowsCount = json.count;
+    if (![[NSUserDefaults standardUserDefaults] boolForKey:@"CallToActionChiller"]) {
+        rowsCount++;
+    }
+    if (![[NSUserDefaults standardUserDefaults] boolForKey:@"CallToActionApp"]) {
+        rowsCount++;
+    }
+    return rowsCount;
     
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.row == json.count && ![[NSUserDefaults standardUserDefaults] boolForKey:@"CallToActionChiller"]) {
+        return [tableView dequeueReusableCellWithIdentifier:@"CallToActionUserCell"];
+        
+    }
+    else if (indexPath.row - 1 == json.count || indexPath.row == json.count) {
+        return [tableView dequeueReusableCellWithIdentifier:@"CallToActionAppCell"];
+    }
+    
     CHLFriendCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
     NSArray *jsonData = json[indexPath.row];
     [[NSUserDefaults standardUserDefaults] setValue:[jsonData valueForKey:@"login"] forKey:@"userNameForReply"];
@@ -278,6 +292,9 @@ NSMutableData *mutData;
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if (indexPath.row >= json.count) {
+        return NO;
+    }
     NSArray *jsonData = json[indexPath.row];
     
     if ([[jsonData valueForKey:@"email"] isEqualToString:@"chillteam@iamchill.co"]) {
@@ -442,7 +459,21 @@ NSMutableData *mutData;
     }
     
 }
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.row >= json.count) {
+        if (![[NSUserDefaults standardUserDefaults] boolForKey:@"CallToActionChiller"] && indexPath.row == json.count) {
+            [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"CallToActionChiller"];
+            [self performSegueWithIdentifier:@"SearchSegue" sender:nil];
+            [self.tableView reloadData];
+            return;
+        }
+        else {
+            [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"CallToActionApp"];
+            [self performSegueWithIdentifier:@"SearchSegue" sender:nil];
+            [self.tableView reloadData];
+            return;
+        }
+    }
     [timer invalidate];
     timer = nil;
     HAPaperCollectionViewController *myNewVC = [[HAPaperCollectionViewController alloc] init];
