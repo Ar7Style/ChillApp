@@ -11,5 +11,7 @@
 @interface CHLSearchViewController : UITableViewController <UISearchBarDelegate>
 - (IBAction)close:(id)sender;
 @property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
+@property(nonatomic) BOOL searchModeUsers;
+
 
 @end

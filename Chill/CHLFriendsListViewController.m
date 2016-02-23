@@ -12,6 +12,7 @@
 #import "AUTHViewController.h"
 #import "HAPaperCollectionViewController.h"
 #import "HACollectionViewLargeLayout.h"
+#import "CHLSearchViewController.h"
 #import "GAI.h"
 #import "GAIFields.h"
 #import "GAIDictionaryBuilder.h"
@@ -457,18 +458,25 @@ NSMutableData *mutData;
         [timer invalidate];
         timer = nil;
     }
+    else if ([segue.identifier isEqualToString:@"SearchSegue"]) {
+//        CHLSearchViewController *svc;
+//        svc.searchModeUsers = NO;
+    }
     
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.row >= json.count) {
         if (![[NSUserDefaults standardUserDefaults] boolForKey:@"CallToActionChiller"] && indexPath.row == json.count) {
-            [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"CallToActionChiller"];
+          //  [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"CallToActionChiller"];
             [self performSegueWithIdentifier:@"SearchSegue" sender:nil];
             [self.tableView reloadData];
             return;
         }
         else {
-            [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"CallToActionApp"];
+         //   [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"CallToActionApp"];
+//            CHLSearchViewController *svc;
+//            svc.searchModeUsers = YES;
+            //[[NSUserDefaults standardUserDefaults] s
             [self performSegueWithIdentifier:@"SearchSegue" sender:nil];
             [self.tableView reloadData];
             return;

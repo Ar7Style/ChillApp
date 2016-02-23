@@ -36,7 +36,6 @@
     int searchType;
 }
 
-@property(nonatomic) BOOL searchModeUsers;
 @property(nonatomic, weak) UISegmentedControl *searchSwitch;
 @property(nonatomic, weak) UIButton *facebookButton;
 @property(nonatomic, weak) UIButton *twitterButton;
@@ -358,9 +357,14 @@ NSMutableData *mutData;
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (self.searchModeUsers)
+    {
         [self addFriendFromIndex:indexPath.row];
-    else {
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"CallToActionChiller"];
+    }
+    else
+    {
         [self addAppFromIndex:indexPath.row];
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"CallToActionApp"];
         NSLog(@"try to add the app");
     }
 }
