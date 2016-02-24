@@ -22,7 +22,7 @@
                                     <constraint firstAttribute="height" constant="30" id="KCO-ak-PNt"/>
                                     <constraint firstAttribute="width" constant="66" id="i7h-se-nlC"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="23"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="23"/>
                                 <state key="normal" title="Reply">
                                     <color key="titleColor" red="0.10196078431372549" green="0.7803921568627451" blue="0.5607843137254902" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
@@ -73,7 +73,6 @@
                                             <constraint firstAttribute="width" constant="36" id="OCD-i9-ekm"/>
                                             <constraint firstAttribute="height" constant="35" id="rvW-r3-zWH"/>
                                         </constraints>
-                                        <state key="normal" image="reaction_book"/>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hDg-7N-Cu6" customClass="ButtonToShow">
                                         <rect key="frame" x="8" y="187" width="36" height="35"/>
@@ -81,7 +80,6 @@
                                             <constraint firstAttribute="width" constant="36" id="HZl-0B-z3c"/>
                                             <constraint firstAttribute="height" constant="35" id="Xv9-Gb-Afg"/>
                                         </constraints>
-                                        <state key="normal" image="picios_right"/>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pu6-g2-KHR" customClass="ButtonToShow">
                                         <rect key="frame" x="8" y="258" width="36" height="35"/>
@@ -89,7 +87,6 @@
                                             <constraint firstAttribute="width" constant="36" id="Men-o6-K79"/>
                                             <constraint firstAttribute="height" constant="35" id="WcW-Ue-muS"/>
                                         </constraints>
-                                        <state key="normal" image="reaction_ball"/>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3iz-lX-A4I">
                                         <rect key="frame" x="66" y="40" width="174" height="40"/>
@@ -107,7 +104,6 @@
                                             <constraint firstAttribute="width" constant="36" id="Grk-jd-W92"/>
                                             <constraint firstAttribute="height" constant="35" id="Oju-wP-PLR"/>
                                         </constraints>
-                                        <state key="normal" image="picios_right"/>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" red="1" green="0.65002893518518523" blue="1" alpha="0.0" colorSpace="calibratedRGB"/>
@@ -187,9 +183,4 @@
             <point key="canvasLocation" x="300" y="364"/>
         </collectionViewCell>
     </objects>
-    <resources>
-        <image name="picios_right" width="107" height="107"/>
-        <image name="reaction_ball" width="33" height="33"/>
-        <image name="reaction_book" width="33" height="31"/>
-    </resources>
 </document>

@@ -113,10 +113,10 @@
             return CGSizeMake(100, 100);
         }
         else {
-            return CGSizeMake(90, 90);
+            return CGSizeMake(90, 70);
         }
     }
-    return CGSizeMake(90, 90);
+    return CGSizeMake(90, 70);
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {

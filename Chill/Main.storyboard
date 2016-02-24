@@ -1016,7 +1016,7 @@ communication experience</string>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tlx-1n-KA8">
-                                <rect key="frame" x="69" y="74" width="183" height="32"/>
+                                <rect key="frame" x="69" y="94" width="183" height="32"/>
                                 <subviews>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="taptotype" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="P6r-S1-1Z7">
                                         <rect key="frame" x="40" y="0.0" width="102" height="30"/>
@@ -1048,7 +1048,7 @@ communication experience</string>
                                 </constraints>
                             </view>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="k48-wZ-Nif">
-                                <rect key="frame" x="46" y="148" width="228" height="420"/>
+                                <rect key="frame" x="66" y="156" width="188" height="412"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="ZAs-o4-8q7">
                                     <size key="itemSize" width="134" height="118"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -1057,7 +1057,7 @@ communication experience</string>
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ASImageCell" id="h4G-xm-ooe" customClass="ASImageCell">
-                                        <rect key="frame" x="52.5" y="0.0" width="123" height="123"/>
+                                        <rect key="frame" x="32.5" y="0.0" width="123" height="123"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="123" height="123"/>
@@ -1090,12 +1090,12 @@ communication experience</string>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="m5i-oH-dMS" firstAttribute="top" secondItem="k48-wZ-Nif" secondAttribute="bottom" id="1FR-Fb-4bw"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="k48-wZ-Nif" secondAttribute="trailing" constant="30" id="bEt-0N-FDZ"/>
-                            <constraint firstItem="k48-wZ-Nif" firstAttribute="top" secondItem="Tlx-1n-KA8" secondAttribute="bottom" constant="42" id="dC0-AC-64a"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="k48-wZ-Nif" secondAttribute="trailing" constant="50" id="bEt-0N-FDZ"/>
+                            <constraint firstItem="k48-wZ-Nif" firstAttribute="top" secondItem="Tlx-1n-KA8" secondAttribute="bottom" constant="30" id="dC0-AC-64a"/>
                             <constraint firstItem="Tlx-1n-KA8" firstAttribute="centerX" secondItem="8sc-bl-P7x" secondAttribute="centerX" id="frm-cO-ahD"/>
-                            <constraint firstItem="k48-wZ-Nif" firstAttribute="leading" secondItem="8sc-bl-P7x" secondAttribute="leadingMargin" constant="30" id="hmO-BL-R5W"/>
+                            <constraint firstItem="k48-wZ-Nif" firstAttribute="leading" secondItem="8sc-bl-P7x" secondAttribute="leadingMargin" constant="50" id="hmO-BL-R5W"/>
                             <constraint firstItem="k48-wZ-Nif" firstAttribute="centerX" secondItem="8sc-bl-P7x" secondAttribute="centerX" id="onZ-y8-ZW1"/>
-                            <constraint firstItem="Tlx-1n-KA8" firstAttribute="top" secondItem="TC8-EN-lCk" secondAttribute="bottom" constant="10" id="qB5-Fi-Gap"/>
+                            <constraint firstItem="Tlx-1n-KA8" firstAttribute="top" secondItem="TC8-EN-lCk" secondAttribute="bottom" constant="30" id="qB5-Fi-Gap"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="iYO-2z-Z0V"/>
@@ -2427,7 +2427,7 @@ communication experience</string>
                                 </constraints>
                             </view>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="DLK-Xr-pvQ">
-                                <rect key="frame" x="50" y="148" width="220" height="420"/>
+                                <rect key="frame" x="65" y="148" width="190" height="420"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="dyU-iP-7v5">
                                     <size key="itemSize" width="134" height="118"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -2436,7 +2436,7 @@ communication experience</string>
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ASImageCell" id="ppp-jH-EDC" customClass="ASImageCell">
-                                        <rect key="frame" x="48.5" y="0.0" width="123" height="123"/>
+                                        <rect key="frame" x="33.5" y="0.0" width="123" height="123"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="123" height="123"/>
@@ -2468,12 +2468,12 @@ communication experience</string>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="DLK-Xr-pvQ" firstAttribute="leading" secondItem="ujF-Hq-PDU" secondAttribute="leading" constant="50" id="0gk-08-g4a"/>
+                            <constraint firstItem="DLK-Xr-pvQ" firstAttribute="leading" secondItem="ujF-Hq-PDU" secondAttribute="leading" constant="65" id="0gk-08-g4a"/>
                             <constraint firstAttribute="trailing" secondItem="enJ-B0-r2x" secondAttribute="trailing" id="0ob-7L-28o"/>
                             <constraint firstItem="sSu-JQ-dA5" firstAttribute="top" secondItem="DLK-Xr-pvQ" secondAttribute="bottom" id="41w-lT-Uy1"/>
                             <constraint firstItem="enJ-B0-r2x" firstAttribute="leading" secondItem="ujF-Hq-PDU" secondAttribute="leading" id="Bp5-bh-g6B"/>
                             <constraint firstItem="enJ-B0-r2x" firstAttribute="top" secondItem="TeU-qn-xyv" secondAttribute="bottom" constant="-30" id="Bqt-4R-naw"/>
-                            <constraint firstAttribute="trailing" secondItem="DLK-Xr-pvQ" secondAttribute="trailing" constant="50" id="d8T-uB-1sj"/>
+                            <constraint firstAttribute="trailing" secondItem="DLK-Xr-pvQ" secondAttribute="trailing" constant="65" id="d8T-uB-1sj"/>
                             <constraint firstItem="DLK-Xr-pvQ" firstAttribute="height" secondItem="ujF-Hq-PDU" secondAttribute="height" multiplier="0.7383" id="mmo-J9-pXl"/>
                             <constraint firstItem="DLK-Xr-pvQ" firstAttribute="top" secondItem="enJ-B0-r2x" secondAttribute="bottom" id="z2h-fA-LDR"/>
                         </constraints>
@@ -2613,7 +2613,7 @@ communication experience</string>
                                 <nil key="highlightedColor"/>
                             </label>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="KDx-gM-oB6">
-                                <rect key="frame" x="66" y="148" width="188" height="420"/>
+                                <rect key="frame" x="62" y="248" width="196" height="320"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="cLx-Na-SGS">
                                     <size key="itemSize" width="134" height="118"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -2622,7 +2622,7 @@ communication experience</string>
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ASImageCell" id="t3D-up-5zo" customClass="ASImageCell">
-                                        <rect key="frame" x="32.5" y="0.0" width="123" height="123"/>
+                                        <rect key="frame" x="36.5" y="0.0" width="123" height="123"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="123" height="123"/>
@@ -2655,11 +2655,11 @@ communication experience</string>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="iPh-bL-fAA" firstAttribute="top" secondItem="gsV-Gc-ye7" secondAttribute="bottom" constant="40" id="1dT-1y-6oe"/>
-                            <constraint firstItem="KDx-gM-oB6" firstAttribute="leading" secondItem="MAb-W7-9ES" secondAttribute="leadingMargin" constant="50" id="7FW-y7-dB7"/>
+                            <constraint firstItem="KDx-gM-oB6" firstAttribute="leading" secondItem="MAb-W7-9ES" secondAttribute="leadingMargin" constant="46" id="7FW-y7-dB7"/>
                             <constraint firstItem="Y0Q-bM-A9e" firstAttribute="top" secondItem="iPh-bL-fAA" secondAttribute="bottom" id="9VQ-lZ-3e6"/>
-                            <constraint firstItem="KDx-gM-oB6" firstAttribute="top" secondItem="Y0Q-bM-A9e" secondAttribute="bottom" id="C5b-1Z-gJ3"/>
+                            <constraint firstItem="KDx-gM-oB6" firstAttribute="top" secondItem="Y0Q-bM-A9e" secondAttribute="bottom" constant="100" id="C5b-1Z-gJ3"/>
                             <constraint firstItem="qwG-Uu-7nu" firstAttribute="top" secondItem="KDx-gM-oB6" secondAttribute="bottom" id="MTp-fp-IMl"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="KDx-gM-oB6" secondAttribute="trailing" constant="50" id="Tdn-ss-B90"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="KDx-gM-oB6" secondAttribute="trailing" constant="46" id="Tdn-ss-B90"/>
                             <constraint firstItem="Y0Q-bM-A9e" firstAttribute="centerX" secondItem="MAb-W7-9ES" secondAttribute="centerX" id="XUy-5l-jtF"/>
                             <constraint firstItem="iPh-bL-fAA" firstAttribute="centerX" secondItem="MAb-W7-9ES" secondAttribute="centerX" id="YdE-uc-m2F"/>
                             <constraint firstItem="KDx-gM-oB6" firstAttribute="centerX" secondItem="MAb-W7-9ES" secondAttribute="centerX" id="vuv-Gk-yQN"/>
@@ -2688,7 +2688,7 @@ communication experience</string>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="a9x-zj-tz0">
-                                <rect key="frame" x="46" y="148" width="224" height="420"/>
+                                <rect key="frame" x="42" y="195" width="232" height="373"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="UEz-P9-b43">
                                     <size key="itemSize" width="134" height="118"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -2697,7 +2697,7 @@ communication experience</string>
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ASImageCell" id="E3F-N4-7w5" customClass="ASImageCell">
-                                        <rect key="frame" x="50.5" y="0.0" width="123" height="123"/>
+                                        <rect key="frame" x="54.5" y="0.0" width="123" height="123"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="123" height="123"/>
@@ -2736,8 +2736,8 @@ communication experience</string>
                                 <color key="textColor" red="0.65098039220000004" green="0.65098039220000004" blue="0.65098039220000004" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Now get any 3 you like most" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XtQ-VJ-3hY">
-                                <rect key="frame" x="38" y="93" width="245" height="56"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Now choose 3 more" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XtQ-VJ-3hY">
+                                <rect key="frame" x="38" y="75" width="245" height="56"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="245" id="Dz6-2S-VNA"/>
                                     <constraint firstAttribute="height" constant="55.5" id="qHW-8U-v3A"/>
@@ -2751,13 +2751,12 @@ communication experience</string>
                         <constraints>
                             <constraint firstItem="9j4-kB-wLi" firstAttribute="centerX" secondItem="RAS-mS-WWf" secondAttribute="centerX" id="2Ol-l2-tFt"/>
                             <constraint firstItem="9j4-kB-wLi" firstAttribute="top" secondItem="E88-7p-fwQ" secondAttribute="bottom" constant="38" id="D7L-vi-hTH"/>
-                            <constraint firstItem="a9x-zj-tz0" firstAttribute="leading" secondItem="RAS-mS-WWf" secondAttribute="leadingMargin" constant="30" id="HCH-gc-jSg"/>
+                            <constraint firstItem="a9x-zj-tz0" firstAttribute="leading" secondItem="RAS-mS-WWf" secondAttribute="leadingMargin" constant="26" id="HCH-gc-jSg"/>
                             <constraint firstItem="naC-zD-Eay" firstAttribute="top" secondItem="a9x-zj-tz0" secondAttribute="bottom" id="XBf-L4-ObP"/>
                             <constraint firstItem="XtQ-VJ-3hY" firstAttribute="centerX" secondItem="RAS-mS-WWf" secondAttribute="centerX" id="XVB-l1-KeM"/>
-                            <constraint firstItem="XtQ-VJ-3hY" firstAttribute="top" secondItem="9j4-kB-wLi" secondAttribute="bottom" constant="8" id="gHy-sr-VUj"/>
-                            <constraint firstItem="a9x-zj-tz0" firstAttribute="top" secondItem="XtQ-VJ-3hY" secondAttribute="bottom" constant="-0.5" id="gpQ-16-P7a"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="a9x-zj-tz0" secondAttribute="trailing" constant="34" id="jrY-Zm-u6Q"/>
-                            <constraint firstItem="a9x-zj-tz0" firstAttribute="top" secondItem="XtQ-VJ-3hY" secondAttribute="bottom" constant="-1" id="y0K-Dd-bID"/>
+                            <constraint firstItem="XtQ-VJ-3hY" firstAttribute="top" secondItem="9j4-kB-wLi" secondAttribute="bottom" constant="-10" id="gHy-sr-VUj"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="a9x-zj-tz0" secondAttribute="trailing" constant="30" id="jrY-Zm-u6Q"/>
+                            <constraint firstItem="a9x-zj-tz0" firstAttribute="top" secondItem="XtQ-VJ-3hY" secondAttribute="bottom" constant="64" id="y0K-Dd-bID"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="tAK-df-DhX"/>
