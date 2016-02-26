@@ -49,10 +49,7 @@ NSMutableData *mutData;
 }
 
 - (void)viewDidLoad {
-    [super viewDidLoad];
-    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self
-                                                                          action:@selector(dismissKeyboard)];
-    [self.view addGestureRecognizer:tap];
+    
     [self.navigationController.navigationBar setTintColor:[UIColor chillMintColor]];
     self.characktersCounterLabel.textColor = [UIColor chillMintColor];
     [self setupCollectionView];
@@ -62,10 +59,30 @@ NSMutableData *mutData;
             [self getIconsFromServer];
         });
     }
+    [super viewDidLoad];
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self
+                                                                          action:@selector(dismissKeyboard)];
+    tap.cancelsTouchesInView = NO;
+    [self.view addGestureRecognizer:tap];
+
+}
+
+
+-(void)viewDidAppear:(BOOL)animated {
+   // [super viewDidAppear:animated];
+}
+-(void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+}
+
+-(void)didTapAnywhere: (UITapGestureRecognizer*) recognizer {
+    //[self.emailField resignFirstResponder];
+    [self.hashtagTextField resignFirstResponder];
 }
 
 -(void)dismissKeyboard {
     [_hashtagTextField resignFirstResponder];
+   // [self.view removeGestureRecognizer:tap];
 }
 
 #pragma mark - UIScrollViewDelegate

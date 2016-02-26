@@ -60,7 +60,7 @@ NSMutableData *mutData;
         session.delegate = self;
         [session activateSession];
     }
-    
+    [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"gotToShareFromHA"];
     UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
     [refreshControl setBackgroundColor:[UIColor groupTableViewBackgroundColor]];
     [refreshControl addTarget:self action:@selector(refresh:) forControlEvents:UIControlEventValueChanged];
