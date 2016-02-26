@@ -60,6 +60,7 @@
         [_pickerItems insertObject:item atIndex:i+1];
     }
     [_countValue setItems:self.pickerItems];
+    [self.countValue focus];
 
 }
 
