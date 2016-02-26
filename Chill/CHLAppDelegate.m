@@ -82,7 +82,7 @@ static NSString *const CHLIsOpenedBeforeKey = @"CHLIsOpenedBeforeKey";
     if ([[UIApplication sharedApplication] respondsToSelector:@selector(isRegisteredForRemoteNotifications)])
     {
         UIMutableUserNotificationAction *replyAction = [[UIMutableUserNotificationAction alloc] init];
-        [replyAction setActivationMode:UIUserNotificationActivationModeForeground];
+        [replyAction setActivationMode:UIUserNotificationActivationModeBackground];
         [replyAction setTitle:@"Reply"];
         [replyAction setIdentifier:@"Reply"];
         [replyAction setDestructive:NO];
@@ -127,7 +127,7 @@ static NSString *const CHLIsOpenedBeforeKey = @"CHLIsOpenedBeforeKey";
 - (void)application:(UIApplication *)application handleActionWithIdentifier:(NSString *)identifier forRemoteNotification:(NSDictionary *)userInfo completionHandler:(void(^)())completionHandler
 {
     if ([identifier isEqualToString:@"Reply"]) {
-        
+        NSLog(@"Let it go");
     }
     else if ([identifier isEqualToString:@"ReplyLocation"]) {
         [[CHLLocationShareManager sharedManager] shareLocationWithUser:[[userInfo objectForKey:@"fromUserId"] integerValue]];
