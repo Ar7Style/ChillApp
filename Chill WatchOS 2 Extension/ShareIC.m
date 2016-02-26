@@ -9,8 +9,6 @@
 #import "ShareIC.h"
 #import "UserCache.h"
 #import <AFNetworking/AFNetworking.h>
-//#import "JMImageCache.h"
-#import "FTWCache.h"
 #import "NSString+MD5.h"
 
 @interface ShareIC () {
@@ -20,6 +18,9 @@
     NSString *valueSelected;
 }
 
+@property(nonatomic, strong) NSMutableArray *icons;
+@property(nonatomic, strong) NSMutableArray *iconNames;
+
 @end
 
 @implementation ShareIC
@@ -27,6 +28,10 @@
 
 - (void)awakeWithContext:(id)context {
     [super awakeWithContext:context];
+    if (![NSUserDefaults showGuide]) {
+        [NSUserDefaults changeGuide:true];
+        [self presentControllerWithName:@"Tutorial" context:nil];
+    }
     self.title = @"Back";
     contactID = context;
     valueSelected = @"";
@@ -59,136 +64,106 @@
 }
 
 - (void) loadData {
-    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-    manager.responseSerializer = [AFJSONResponseSerializer serializer];
-    manager.requestSerializer = [AFJSONRequestSerializer serializer];
-    [manager.requestSerializer setValue:[NSUserDefaults userToken] forHTTPHeaderField:@"X-API-TOKEN"];
-    [manager.requestSerializer setValue:@"76eb29d3ca26fe805545812850e6d75af933214a" forHTTPHeaderField:@"X-API-KEY"];
-    [manager GET:[NSString stringWithFormat:@"http://api.iamchill.co/v2/icons/user/id_user/%@", [NSUserDefaults userID]] parameters:nil success:^(NSURLSessionTask *task, id responseObject) {
-        if ([[responseObject objectForKey:@"status"] isEqualToString:@"success"]) {
-            json = [responseObject objectForKey:@"response"];
-            [self setIcons];
-            [_group1 setHidden:NO];
-            [_group2 setHidden:NO];
-            [_group3 setHidden:NO];
-            [_statusText setHidden:YES];
-        }
-        NSLog(@"JSON: %@", responseObject);
-    } failure:^(NSURLSessionTask *operation, NSError *error) {
-        [self popToRootController];
-        NSLog(@"Error: %@", error);
-    }];
+    if ([self fetchAllIconsFromStorage]) {
+        [self setIcons];
+        [_group1 setHidden:NO];
+        [_group2 setHidden:NO];
+        [_group3 setHidden:NO];
+        [_statusText setHidden:YES];
+    }
+    else {
+        AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+        manager.responseSerializer = [AFJSONResponseSerializer serializer];
+        manager.requestSerializer = [AFJSONRequestSerializer serializer];
+        [manager.requestSerializer setValue:[NSUserDefaults userToken] forHTTPHeaderField:@"X-API-TOKEN"];
+        [manager.requestSerializer setValue:@"76eb29d3ca26fe805545812850e6d75af933214a" forHTTPHeaderField:@"X-API-KEY"];
+        [manager GET:[NSString stringWithFormat:@"http://api.iamchill.co/v2/icons/user/id_user/%@", [NSUserDefaults userID]] parameters:nil success:^(NSURLSessionTask *task, id responseObject) {
+            if ([[responseObject objectForKey:@"status"] isEqualToString:@"success"]) {
+                json = [responseObject objectForKey:@"response"];
+                [self setIcons];
+                [_group1 setHidden:NO];
+                [_group2 setHidden:NO];
+                [_group3 setHidden:NO];
+                [_statusText setHidden:YES];
+            }
+            NSLog(@"JSON: %@", responseObject);
+        } failure:^(NSURLSessionTask *operation, NSError *error) {
+            [self popToRootController];
+            NSLog(@"Error: %@", error);
+        }];
+    }
 }
 
-- (void) setIcons {
-    NSURL *imageURL = [NSURL URLWithString:[json[0] valueForKey:@"size80"]];
-    NSString *key = [[json[0] valueForKey:@"size80"] MD5Hash];
-    NSData *data = [FTWCache objectForKey:key];
-    if (data) {
-        [_icon1 setBackgroundImageData:data];
-    }
-    else {
-        dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0ul);
-        dispatch_async(queue, ^{
-            NSData *data = [NSData dataWithContentsOfURL:imageURL];
-            [FTWCache setObject:data forKey:key];
-            dispatch_sync(dispatch_get_main_queue(), ^{
-                [_icon1 setBackgroundImageData:data];
-            });
-        });
+- (void)saveImageData:(NSData *)imageData withName:(NSString *)name {
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    NSString *savedImagePath = [documentsDirectory stringByAppendingPathComponent:name];
+    [imageData writeToFile:savedImagePath atomically:NO];
+}
 
+- (UIImage *)fetchImageWithName:(NSString *)name {
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    NSString *savedImagePath = [documentsDirectory stringByAppendingPathComponent:name];
+    NSData *pngData = [NSData dataWithContentsOfFile:savedImagePath];
+    return [UIImage imageWithData:pngData];
+}
+
+- (BOOL)fetchAllIconsFromStorage {
+    NSUserDefaults *userCache = [[NSUserDefaults standardUserDefaults] initWithSuiteName:@"group.co.getchill.chill"];
+    NSArray *favorites = [userCache objectForKey:@"FavoritesArray"];
+    if (favorites != nil) {
+        NSMutableArray *images = [[NSMutableArray alloc] init];
+        for (NSString *name in favorites) {
+            UIImage *image = [self fetchImageWithName:name];
+            if (image != nil) {
+                [images addObject:image];
+            }
+        }
+        if (images.count == favorites.count) {
+            self.icons = images;
+            self.iconNames = [favorites mutableCopy];
+            return YES;
+        }
     }
-    imageURL = [NSURL URLWithString:[json[1] valueForKey:@"size80"]];
-    key = [[json[1] valueForKey:@"size80"] MD5Hash];
-    data = [FTWCache objectForKey:key];
-    if (data) {
-        [_icon2 setBackgroundImageData:data];
+    return NO;
+}
+
+- (void)setIcons {
+    NSArray *buttonsArray = @[self.icon1, self.icon2, self.icon3, self.icon4, self.icon5, self.icon6];
+    if (self.icons != nil && self.icons.count != 0) {
+        for (int j = 0; j < self.icons.count && j < buttonsArray.count; j++) {
+            [buttonsArray[j] setBackgroundImage:self.icons[j]];
+        }
+        return;
     }
-    else {
-        dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0ul);
-        dispatch_async(queue, ^{
-            NSData *data = [NSData dataWithContentsOfURL:imageURL];
-            [FTWCache setObject:data forKey:key];
-            dispatch_sync(dispatch_get_main_queue(), ^{
-                [_icon2 setBackgroundImageData:data];
+    int i = 0;
+    [self.icons removeAllObjects];
+    [self.iconNames removeAllObjects];
+    for (WKInterfaceButton *button in buttonsArray) {
+        if (i >= json.count) {
+            return;
+        }
+        NSURL *imageURL = [NSURL URLWithString:[json[i] valueForKey:@"size80"]];
+        NSString *imageName = [NSString stringWithFormat:@"%@",[json[i] valueForKey:@"name"]];
+        [self.iconNames addObject:imageName];
+        UIImage *fetchedImage = [self fetchImageWithName:imageName];
+        if (fetchedImage != nil) {
+            [button setBackgroundImage:fetchedImage];
+        }
+        else {
+            dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0ul);
+            dispatch_async(queue, ^{
+                NSData *data = [NSData dataWithContentsOfURL:imageURL];
+                [self saveImageData:data withName:imageName];
+                dispatch_sync(dispatch_get_main_queue(), ^{
+                    [button setBackgroundImageData:data];
+                });
             });
-        });
-        
+            
+        }
+        i++;
     }
-    imageURL = [NSURL URLWithString:[json[2] valueForKey:@"size80"]];
-    key = [[json[2] valueForKey:@"size80"] MD5Hash];
-    data = [FTWCache objectForKey:key];
-    if (data) {
-        [_icon3 setBackgroundImageData:data];
-    }
-    else {
-        dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0ul);
-        dispatch_async(queue, ^{
-            NSData *data = [NSData dataWithContentsOfURL:imageURL];
-            [FTWCache setObject:data forKey:key];
-            dispatch_sync(dispatch_get_main_queue(), ^{
-                [_icon3 setBackgroundImageData:data];
-            });
-        });
-        
-    }
-    imageURL = [NSURL URLWithString:[json[3] valueForKey:@"size80"]];
-    key = [[json[3] valueForKey:@"size80"] MD5Hash];
-    data = [FTWCache objectForKey:key];
-    if (data) {
-        [_icon4 setBackgroundImageData:data];
-    }
-    else {
-        dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0ul);
-        dispatch_async(queue, ^{
-            NSData *data = [NSData dataWithContentsOfURL:imageURL];
-            [FTWCache setObject:data forKey:key];
-            dispatch_sync(dispatch_get_main_queue(), ^{
-                [_icon4 setBackgroundImageData:data];
-            });
-        });
-        
-    }
-    imageURL = [NSURL URLWithString:[json[4] valueForKey:@"size80"]];
-    key = [[json[4] valueForKey:@"size80"] MD5Hash];
-    data = [FTWCache objectForKey:key];
-    if (data) {
-        [_icon5 setBackgroundImageData:data];
-    }
-    else {
-        dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0ul);
-        dispatch_async(queue, ^{
-            NSData *data = [NSData dataWithContentsOfURL:imageURL];
-            [FTWCache setObject:data forKey:key];
-            dispatch_sync(dispatch_get_main_queue(), ^{
-                [_icon5 setBackgroundImageData:data];
-            });
-        });
-        
-    }
-    imageURL = [NSURL URLWithString:[json[0] valueForKey:@"size80"]];
-    key = [[json[0] valueForKey:@"size80"] MD5Hash];
-    data = [FTWCache objectForKey:key];
-    if (data) {
-        [_icon6 setBackgroundImageData:data];
-    }
-    else {
-        dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0ul);
-        dispatch_async(queue, ^{
-            NSData *data = [NSData dataWithContentsOfURL:imageURL];
-            [FTWCache setObject:data forKey:key];
-            dispatch_sync(dispatch_get_main_queue(), ^{
-                [_icon6 setBackgroundImageData:data];
-            });
-        });
-        
-    }
-//    [_icon1 setBackgroundImageData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[json[0] valueForKey:@"size80"]]]];
-//    [_icon2 setBackgroundImageData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[json[1] valueForKey:@"size80"]]]];
-//    [_icon3 setBackgroundImageData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[json[2] valueForKey:@"size80"]]]];
-//    [_icon4 setBackgroundImageData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[json[3] valueForKey:@"size80"]]]];
-//    [_icon5 setBackgroundImageData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[json[4] valueForKey:@"size80"]]]];
-//    [_icon6 setBackgroundImageData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[json[0] valueForKey:@"size80"]]]];
 }
 
 - (void) sendMessage:(NSString*)idButton {
@@ -248,27 +223,27 @@
 }
 
 - (IBAction)b1 {
-    [self sendMessage:[json[0] valueForKey:@"name"]];
+    [self sendMessage:self.iconNames[0]];
 }
 
 - (IBAction)b2 {
-    [self sendMessage:[json[1] valueForKey:@"name"]];
+    [self sendMessage:self.iconNames[1]];
 }
 
 - (IBAction)b3 {
-    [self sendMessage:[json[2] valueForKey:@"name"]];
+    [self sendMessage:self.iconNames[2]];
 }
 
 - (IBAction)b4 {
-    [self sendMessage:[json[3] valueForKey:@"name"]];
+    [self sendMessage:self.iconNames[3]];
 }
 
 - (IBAction)b5 {
-    [self sendMessage:[json[4] valueForKey:@"name"]];
+    [self sendMessage:self.iconNames[4]];
 }
 
 - (IBAction)b6 {
-    [self sendMessage:[json[5] valueForKey:@"name"]];
+    [self sendMessage:self.iconNames[5]];
 }
 
 - (IBAction)didChangeValue:(NSInteger)value {

@@ -54,11 +54,6 @@ NSMutableData *mutData;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    if ([WCSession isSupported]) {
-        WCSession* session = [WCSession defaultSession];
-        session.delegate = self;
-        [session activateSession];
-    }
     
     UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
     [refreshControl setBackgroundColor:[UIColor groupTableViewBackgroundColor]];
@@ -76,14 +71,6 @@ NSMutableData *mutData;
     id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
     [tracker set:kGAIScreenName value:@"Friends list screen"];
     [tracker send:[[GAIDictionaryBuilder createAppView] build]];
-}
-
-- (void) session:(nonnull WCSession *)session didReceiveApplicationContext:(nonnull NSDictionary<NSString *,id> *)applicationContext {
-    if ([[applicationContext objectForKey:@"type"] isEqualToString:@"getAuth"]) {
-        WCSession *session = [WCSession defaultSession];
-        NSError *error;
-        [session updateApplicationContext:@{@"userID": [NSUserDefaults userID], @"token":[NSUserDefaults userToken], @"isAuth":@"true", @"isApproved": @"true"} error:&error];
-    }
 }
 
 - (void)viewDidAppear:(BOOL)animated{

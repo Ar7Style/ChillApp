@@ -18,11 +18,6 @@
 
 - (void)awakeWithContext:(id)context {
     [super awakeWithContext:context];
-    if ([WCSession isSupported]) {
-        WCSession* session = [WCSession defaultSession];
-        session.delegate = self;
-        [session activateSession];
-    }
     if ([NSUserDefaults isAprooved] && [NSUserDefaults isAuth]) {
         NSArray *array1=[[NSArray alloc] initWithObjects:@"ContactsIC", nil];
         [WKInterfaceController reloadRootControllersWithNames:array1 contexts:nil];

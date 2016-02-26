@@ -44,6 +44,7 @@
 #import "CHLPaperCollectionCell.h"
 #import "UIViewController+KeyboardAnimation.h"
 #import "CHLShareMoreViewController.h"
+#import "CHLIphoneWCManager.h"
 
 
 @interface ButtonToShare1 : UIButton
@@ -149,15 +150,16 @@ NSInteger defaultValue = 10;
     [manager GET:[NSString stringWithFormat:@"http://api.iamchill.co/v2/icons/user/id_user/%@",[NSUserDefaults userID]] parameters:nil success:^(NSURLSessionTask *task, id responseObject) {
         if ([[responseObject objectForKey:@"status"] isEqualToString:@"success"]) {
             json = [responseObject objectForKey:@"response"];
-            
+            NSMutableArray *favoriteNames = [[NSMutableArray alloc] init];
             
             for (int i=0; i<json.count; ++i) {
                 [_buttonsToShare[i] setImageForState:UIControlStateNormal withURL:[NSURL URLWithString:[json[i] valueForKey:@"size66"]]];
                 ButtonToShare1 *buttonToShare = _buttonsToShare[i];
+                [favoriteNames addObject:[NSString stringWithFormat:@"%@",[json[i] valueForKey:@"name"]]];
                 buttonToShare.typeOfIcon = [NSString stringWithFormat:@"%@",[json[i] valueForKey:@"name"]];
                 [_buttonsToShare[i] addTarget:self action:@selector(sendIcon:) forControlEvents:UIControlEventTouchUpInside];
             }
-            
+            [[CHLIphoneWCManager sharedManager] sendFavoriteIconsNames:favoriteNames];
             NSLog(@"JSON FROM LOAD DATA: %@", json);
         }
     } failure:^(NSURLSessionTask *operation, NSError *error) {

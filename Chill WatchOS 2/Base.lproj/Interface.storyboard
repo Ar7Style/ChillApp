@@ -22,7 +22,7 @@
                     </connections>
                 </controller>
             </objects>
-            <point key="canvasLocation" x="192" y="324"/>
+            <point key="canvasLocation" x="237" y="324"/>
         </scene>
         <!--ContactsIC-->
         <scene sceneID="ITa-Fw-Ue3">
@@ -59,7 +59,7 @@
                     </connections>
                 </controller>
             </objects>
-            <point key="canvasLocation" x="393" y="339.5"/>
+            <point key="canvasLocation" x="391" y="339.5"/>
         </scene>
         <!--ShareIC-->
         <scene sceneID="eIO-Tt-eL9">
@@ -152,7 +152,7 @@
                     </connections>
                 </controller>
             </objects>
-            <point key="canvasLocation" x="570" y="343.5"/>
+            <point key="canvasLocation" x="544" y="343.5"/>
         </scene>
         <!--IconsIC-->
         <scene sceneID="76O-Hf-DGR">
@@ -208,39 +208,29 @@
                     </connections>
                 </controller>
             </objects>
-            <point key="canvasLocation" x="761" y="326.25"/>
+            <point key="canvasLocation" x="696" y="326.25"/>
         </scene>
-        <!--Static Notification Interface Controller-->
-        <scene sceneID="AEw-b0-oYE">
+        <!--Tutorial-->
+        <scene sceneID="3cI-7M-FhE">
             <objects>
-                <notificationController id="YCC-NB-fut">
+                <controller identifier="Tutorial" id="MKF-JM-B0i">
                     <items>
-                        <label alignment="left" text="Alert Label" id="IdU-wH-bcW"/>
+                        <group width="1" alignment="left" layout="vertical" id="zl0-T0-vyv">
+                            <items>
+                                <imageView width="45" height="38" alignment="center" image="arrow" id="Inq-y0-s9I"/>
+                                <label alignment="center" text="Swipe to change screens" textAlignment="center" numberOfLines="2" id="h8E-fr-K6n"/>
+                                <group width="1" alignment="left" id="6En-eG-X4m">
+                                    <items>
+                                        <label alignment="center" verticalAlignment="center" text="Force touch" id="Put-XM-hSD"/>
+                                        <imageView alignment="center" verticalAlignment="center" image="location" id="tGU-js-bDN"/>
+                                    </items>
+                                </group>
+                            </items>
+                        </group>
                     </items>
-                    <notificationCategory key="notificationCategory" identifier="myCategory" id="JfB-70-Muf"/>
-                    <connections>
-                        <outlet property="notificationAlertLabel" destination="IdU-wH-bcW" id="JKC-fr-R95"/>
-                        <segue destination="4sK-HA-Art" kind="relationship" relationship="dynamicNotificationInterface" id="kXh-Jw-8B1"/>
-                    </connections>
-                </notificationController>
-            </objects>
-            <point key="canvasLocation" x="220" y="643"/>
-        </scene>
-        <!--Notification Controller-->
-        <scene sceneID="ZPc-GJ-vnh">
-            <objects>
-                <controller id="4sK-HA-Art" customClass="NotificationController">
-                    <items>
-                        <imageView width="136" height="136" alignment="center" contentMode="scaleAspectFit" id="SCZ-aU-4tJ"/>
-                        <label width="136" alignment="left" text="#Hash" textAlignment="center" id="kQT-6l-OX2"/>
-                    </items>
-                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                    <connections>
-                        <outlet property="image" destination="SCZ-aU-4tJ" id="pDI-B9-nfn"/>
-                    </connections>
                 </controller>
             </objects>
-            <point key="canvasLocation" x="427" y="643"/>
+            <point key="canvasLocation" x="848" y="324"/>
         </scene>
     </scenes>
 </document>

@@ -23,6 +23,8 @@
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
 #import <FBSDKLoginKit/FBSDKLoginKit.h>
 #import "UserCache.h"
+#import "CHLLocationShareManager.h"
+#import "CHLIphoneWCManager.h"
 
 static NSString *const CHLIsOpenedBeforeKey = @"CHLIsOpenedBeforeKey";
 
@@ -42,26 +44,9 @@ static NSString *const CHLIsOpenedBeforeKey = @"CHLIsOpenedBeforeKey";
     [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
     [GMSServices provideAPIKey:@"AIzaSyB0lfyrXe3bodtQ6cAUtCeXR5twEJlolZQ"];
     [Parse setApplicationId:@"vlSSbINvhblgGlipWpUWR6iJum3Q2xd7GthrDVUI" clientKey:@"ZR93BdaHDWTzjIvfDur3X02D3tNs0gATKwY1srh8"];
-    if ([WCSession isSupported]) {
-        WCSession* session = [WCSession defaultSession];
-        session.delegate = self;
-        [session activateSession];
-    }
+    [[CHLIphoneWCManager sharedManager] setupSession];
     
-    if ([application respondsToSelector:@selector(isRegisteredForRemoteNotifications)])
-    {
-        // iOS 8 Notifications
-        [application registerUserNotificationSettings:[UIUserNotificationSettings settingsForTypes:(UIUserNotificationTypeSound | UIUserNotificationTypeAlert | UIUserNotificationTypeBadge) categories:nil]];
-        
-        [application registerForRemoteNotifications];
-    }
-//    else
-//    {
-//        [[UIApplication sharedApplication] registerForRemoteNotificationTypes:(UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeSound|UIRemoteNotificationTypeBadge)];
-////        // iOS < 8 Notifications
-////        [application registerForRemoteNotificationTypes:
-////         (UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeSound)];
-//    }
+    [self registerForAPNS];
     
     [self.window setBackgroundColor:[UIColor whiteColor]];
     UIPageControl *pageControl = [UIPageControl appearance];
@@ -88,19 +73,40 @@ static NSString *const CHLIsOpenedBeforeKey = @"CHLIsOpenedBeforeKey";
     [[GAI sharedInstance] trackerWithTrackingId:@"UA-59826573-1"];
     
     
-
+    
     return [[FBSDKApplicationDelegate sharedInstance] application:application
                                     didFinishLaunchingWithOptions:launchOptions];
 }
 
-- (void) session:(nonnull WCSession *)session didReceiveApplicationContext:(nonnull NSDictionary<NSString *,id> *)applicationContext {
-    if ([[applicationContext objectForKey:@"type"] isEqualToString:@"getAuth"]) {
-        WCSession *session = [WCSession defaultSession];
-        NSError *error;
-        [session updateApplicationContext:@{@"userID": [NSUserDefaults userID], @"token":[NSUserDefaults userToken], @"isAuth":@"true", @"isApproved": @"true"} error:&error];
+- (void)registerForAPNS {
+    if ([[UIApplication sharedApplication] respondsToSelector:@selector(isRegisteredForRemoteNotifications)])
+    {
+        UIMutableUserNotificationAction *replyAction = [[UIMutableUserNotificationAction alloc] init];
+        [replyAction setActivationMode:UIUserNotificationActivationModeForeground];
+        [replyAction setTitle:@"Reply"];
+        [replyAction setIdentifier:@"Reply"];
+        [replyAction setDestructive:NO];
+        [replyAction setAuthenticationRequired:NO];
+        
+        UIMutableUserNotificationAction *locationAction = [[UIMutableUserNotificationAction alloc] init];
+        [locationAction setActivationMode:UIUserNotificationActivationModeBackground];
+        [locationAction setTitle:@"Reply 📍"];
+        [locationAction setIdentifier:@"ReplyLocation"];
+        [locationAction setAuthenticationRequired:NO];
+        
+        UIMutableUserNotificationCategory *actionCategory = [[UIMutableUserNotificationCategory alloc] init];
+        [actionCategory setIdentifier:@"actionable"];
+        [actionCategory setActions:@[replyAction, locationAction] forContext:UIUserNotificationActionContextMinimal];
+        [actionCategory setActions:@[replyAction, locationAction] forContext:UIUserNotificationActionContextDefault];
+        
+        NSSet *categories = [NSSet setWithObject:actionCategory];
+        
+        UIUserNotificationType types = UIUserNotificationTypeAlert | UIUserNotificationTypeSound | UIUserNotificationTypeBadge;
+        UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:types categories:categories];
+        [[UIApplication sharedApplication] registerUserNotificationSettings:settings];
+        [[UIApplication sharedApplication] registerForRemoteNotifications];
     }
 }
-
 
 //just example
 - (void) logUser {
@@ -120,10 +126,11 @@ static NSString *const CHLIsOpenedBeforeKey = @"CHLIsOpenedBeforeKey";
 //For interactive notification only
 - (void)application:(UIApplication *)application handleActionWithIdentifier:(NSString *)identifier forRemoteNotification:(NSDictionary *)userInfo completionHandler:(void(^)())completionHandler
 {
-    //handle the actions
-    if ([identifier isEqualToString:@"declineAction"]){
+    if ([identifier isEqualToString:@"Reply"]) {
+        
     }
-    else if ([identifier isEqualToString:@"answerAction"]){
+    else if ([identifier isEqualToString:@"ReplyLocation"]) {
+        [[CHLLocationShareManager sharedManager] shareLocationWithUser:[[userInfo objectForKey:@"fromUserId"] integerValue]];
     }
 }
 
@@ -134,8 +141,8 @@ static NSString *const CHLIsOpenedBeforeKey = @"CHLIsOpenedBeforeKey";
         currentInstallation.badge = 0;
         [currentInstallation saveEventually];
     }
-//    NSUserDefaults *userCache = [[NSUserDefaults standardUserDefaults] initWithSuiteName:@"group.co.getchill.chill"];
-//    [userCache synchronize];
+    //    NSUserDefaults *userCache = [[NSUserDefaults standardUserDefaults] initWithSuiteName:@"group.co.getchill.chill"];
+    //    [userCache synchronize];
     
     // ...
 }
@@ -198,9 +205,5 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
     [[UIApplication sharedApplication] cancelAllLocalNotifications];
     [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
 }
-
-
-
-
 
 @end
