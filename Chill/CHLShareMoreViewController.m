@@ -49,7 +49,7 @@ NSMutableData *mutData;
 }
 
 - (void)viewDidLoad {
-    [super viewDidLoad];
+    
     [self.navigationController.navigationBar setTintColor:[UIColor chillMintColor]];
     self.characktersCounterLabel.textColor = [UIColor chillMintColor];
     [self setupCollectionView];
@@ -59,6 +59,30 @@ NSMutableData *mutData;
             [self getIconsFromServer];
         });
     }
+    [super viewDidLoad];
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self
+                                                                          action:@selector(dismissKeyboard)];
+    tap.cancelsTouchesInView = NO;
+    [self.view addGestureRecognizer:tap];
+
+}
+
+
+-(void)viewDidAppear:(BOOL)animated {
+   // [super viewDidAppear:animated];
+}
+-(void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+}
+
+-(void)didTapAnywhere: (UITapGestureRecognizer*) recognizer {
+    //[self.emailField resignFirstResponder];
+    [self.hashtagTextField resignFirstResponder];
+}
+
+-(void)dismissKeyboard {
+    [_hashtagTextField resignFirstResponder];
+   // [self.view removeGestureRecognizer:tap];
 }
 
 #pragma mark - UIScrollViewDelegate
@@ -111,13 +135,13 @@ NSMutableData *mutData;
     {
         if ([UIScreen mainScreen].scale >= 2.9)
         {
-            return CGSizeMake(100, 100);
+            return CGSizeMake(90, 90);
         }
         else {
-            return CGSizeMake(70, 70);
+            return CGSizeMake(60, 75);
         }
     }
-    return CGSizeMake(70, 70);
+    return CGSizeMake(60, 75);
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {

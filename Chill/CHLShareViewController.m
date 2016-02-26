@@ -96,6 +96,7 @@ NSInteger defaultValue = 10;
                                                                       action:@selector(close:)];
         [backButton setTintColor:[UIColor chillMintColor]];
         self.navigationItem.leftBarButtonItem = backButton;
+        
     }
     _locationManager = [[CLLocationManager alloc] init];
     self.title = _nameUser;

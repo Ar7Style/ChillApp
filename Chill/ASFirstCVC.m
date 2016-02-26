@@ -125,13 +125,18 @@
     {
         if ([UIScreen mainScreen].scale >= 2.9) // >= iphone 6 plus
         {
-            return CGSizeMake(100, 100);
+            return CGSizeMake(90, 90);
+        }
+        else if ([[UIScreen mainScreen] bounds].size.height == 568) // == iphone 5
+        {
+            return CGSizeMake(60, 75);
+            NSLog(@"was here");
         }
         else {
-            return CGSizeMake(70, 70);
+            return CGSizeMake(70, 75);
         }
     }
-    return CGSizeMake(70, 70);
+    return CGSizeMake(70, 75);
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
