@@ -219,6 +219,7 @@
 		AD6D3C841A88A7FA00B5BE18 /* Chill_logo_grey.png in Resources */ = {isa = PBXBuildFile; fileRef = AD6D3C831A88A7FA00B5BE18 /* Chill_logo_grey.png */; };
 		AD8417801A911D820078F57A /* CHLTutorialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD84177F1A911D820078F57A /* CHLTutorialViewController.m */; };
 		AD8417841A91203D0078F57A /* CHLTutorialPageContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD8417831A91203D0078F57A /* CHLTutorialPageContentViewController.m */; };
+		AD9DF4991C823FAD004424D0 /* CHLWatchWCManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AD9DF4971C823A96004424D0 /* CHLWatchWCManager.m */; };
 		ADA195251C8022DA008DFD3B /* CHLLocationShareManager.m in Sources */ = {isa = PBXBuildFile; fileRef = ADA195241C8022DA008DFD3B /* CHLLocationShareManager.m */; };
 		ADA195281C802CDD008DFD3B /* CHLIphoneWCManager.m in Sources */ = {isa = PBXBuildFile; fileRef = ADA195271C802CDC008DFD3B /* CHLIphoneWCManager.m */; };
 		ADAE943A1AA27D7100DBF97E /* location@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ADAE94391AA27D7100DBF97E /* location@2x.png */; };
@@ -587,6 +588,8 @@
 		AD84177F1A911D820078F57A /* CHLTutorialViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHLTutorialViewController.m; sourceTree = "<group>"; };
 		AD8417821A91203D0078F57A /* CHLTutorialPageContentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHLTutorialPageContentViewController.h; sourceTree = "<group>"; };
 		AD8417831A91203D0078F57A /* CHLTutorialPageContentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHLTutorialPageContentViewController.m; sourceTree = "<group>"; };
+		AD9DF4961C823A96004424D0 /* CHLWatchWCManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHLWatchWCManager.h; sourceTree = "<group>"; };
+		AD9DF4971C823A96004424D0 /* CHLWatchWCManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHLWatchWCManager.m; sourceTree = "<group>"; };
 		ADA195231C8022DA008DFD3B /* CHLLocationShareManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHLLocationShareManager.h; sourceTree = "<group>"; };
 		ADA195241C8022DA008DFD3B /* CHLLocationShareManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHLLocationShareManager.m; sourceTree = "<group>"; };
 		ADA195261C802CDC008DFD3B /* CHLIphoneWCManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHLIphoneWCManager.h; sourceTree = "<group>"; };
@@ -815,6 +818,8 @@
 				53C867091C03796F00FD9014 /* IconsIC.m */,
 				029F1BAC1C01E56300368AD4 /* ExtensionDelegate.h */,
 				029F1BAD1C01E56300368AD4 /* ExtensionDelegate.m */,
+				AD9DF4961C823A96004424D0 /* CHLWatchWCManager.h */,
+				AD9DF4971C823A96004424D0 /* CHLWatchWCManager.m */,
 				029F1BB21C01E56300368AD4 /* Assets.xcassets */,
 				029F1BB41C01E56300368AD4 /* Info.plist */,
 				029F1BA71C01E56300368AD4 /* Supporting Files */,
@@ -1776,6 +1781,7 @@
 				069A059F1C5EADB50023C504 /* NSString+MD5.m in Sources */,
 				532D46A71C0640C30070C105 /* ButtonIconID.m in Sources */,
 				029F1BAB1C01E56300368AD4 /* InterfaceController.m in Sources */,
+				AD9DF4991C823FAD004424D0 /* CHLWatchWCManager.m in Sources */,
 				029F1BC51C020EB300368AD4 /* ContactRow.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
