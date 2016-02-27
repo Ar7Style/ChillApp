@@ -18,11 +18,11 @@
 #import "UIViewController+KeyboardAnimation.h"
 #import <AFNetworking/AFNetworking.h>
 #import "UserCache.h"
-#import <WatchConnectivity/WatchConnectivity.h>
+#import "CHLIphoneWCManager.h"
 
 #import "SCLAlertView.h"
 
-@interface AUTHViewController () <WCSessionDelegate>
+@interface AUTHViewController ()
 @property (strong, nonatomic) IBOutlet UIView *viewMain;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *constraintBottom;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activity;
@@ -148,11 +148,8 @@
                         [NSUserDefaults setValue:[[[responseObject2 valueForKey:@"response"] valueForKey:@"token"] componentsJoinedByString:@""] forKey:@"token1"];
                         
                         [NSUserDefaults changeAprooved:true];
+                        [[CHLIphoneWCManager sharedManager] sendTokenToWatch];
                         
-                        WCSession *session = [WCSession defaultSession];
-                        NSError *error;
-                        
-                        [session updateApplicationContext:@{@"userID": [NSUserDefaults userID], @"token":[NSUserDefaults userToken], @"isAuth":@"true", @"isApproved": @"true"} error:&error];
                         NSLog(@"auth: %@", [[responseObject valueForKey:@"response"] valueForKey:@"auth"]);
                         if ([[[responseObject valueForKey:@"response"] valueForKey:@"auth"] isEqualToString:@"0"])
                             [self performSegueWithIdentifier:@"toPromocodeViewController" sender:self];

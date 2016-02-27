@@ -7,6 +7,7 @@
 //
 
 #import "ExtensionDelegate.h"
+#import "CHLWatchWCManager.h"
 @implementation ExtensionDelegate
 
 - (instancetype)init
@@ -15,21 +16,11 @@
     if (self) {
         dispatch_async(dispatch_get_main_queue(), ^{
             if ([WCSession isSupported]) {
-                if ([WCSession isSupported]) {
-                    WCSession *defaultSession = [WCSession defaultSession];
-                    defaultSession.delegate = self;
-                    [defaultSession activateSession];
-                }
+                [[CHLWatchWCManager sharedManager] setupSession];
             }
         });
     }
     return self;
-}
-
-- (void)session:(WCSession *)session didReceiveUserInfo:(NSDictionary<NSString *, id> *)userInfo {
-    NSArray *favorites = userInfo[@"Favorites"];
-    NSUserDefaults *userCache = [[NSUserDefaults standardUserDefaults] initWithSuiteName:@"group.co.getchill.chill"];
-    [userCache setObject:favorites forKey:@"FavoritesArray"];
 }
 
 @end

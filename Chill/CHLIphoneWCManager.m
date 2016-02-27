@@ -30,6 +30,12 @@
     }
 }
 
+- (void)sendTokenToWatch {
+    WCSession *session = [WCSession defaultSession];
+    NSError *error;
+    [session updateApplicationContext:@{@"userID": [NSUserDefaults userID], @"token":[NSUserDefaults userToken], @"isAuth":@"true", @"isApproved": @"true"} error:&error];
+}
+
 - (void)sendFavoriteIconsNames:(NSArray *)names {
     NSUserDefaults *userCache = [[NSUserDefaults standardUserDefaults] initWithSuiteName:@"group.co.getchill.chill"];
     [userCache setObject:names forKey:@"FavoritesArray"];
