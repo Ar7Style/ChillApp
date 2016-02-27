@@ -82,14 +82,14 @@ static NSString *const CHLIsOpenedBeforeKey = @"CHLIsOpenedBeforeKey";
     if ([[UIApplication sharedApplication] respondsToSelector:@selector(isRegisteredForRemoteNotifications)])
     {
         UIMutableUserNotificationAction *replyAction = [[UIMutableUserNotificationAction alloc] init];
-        [replyAction setActivationMode:UIUserNotificationActivationModeBackground];
+        [replyAction setActivationMode:UIUserNotificationActivationModeForeground];
         [replyAction setTitle:@"Reply"];
         [replyAction setIdentifier:@"Reply"];
         [replyAction setDestructive:NO];
         [replyAction setAuthenticationRequired:NO];
         
         UIMutableUserNotificationAction *locationAction = [[UIMutableUserNotificationAction alloc] init];
-        [locationAction setActivationMode:UIUserNotificationActivationModeBackground];
+        [locationAction setActivationMode:UIUserNotificationActivationModeForeground];
         [locationAction setTitle:@"Reply 📍"];
         [locationAction setIdentifier:@"ReplyLocation"];
         [locationAction setAuthenticationRequired:NO];
