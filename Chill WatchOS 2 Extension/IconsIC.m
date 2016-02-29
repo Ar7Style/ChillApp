@@ -104,6 +104,9 @@
     }
 }
 - (void) loadData {
+    [_statusIMG setHidden:NO];
+    [_statusIMG setImageNamed:@"Activity"];
+    [_statusIMG startAnimating];
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.responseSerializer = [AFJSONResponseSerializer serializer];
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
@@ -148,12 +151,16 @@
             UIImage *image = [self fetchImageWithName:imageName];
             if (image != nil) {
                 [theRow.button1 setBackgroundImage:image];
+                [_statusIMG setHidden:YES];
+                [_statusIMG stopAnimating];
             }
             else {
                 [[[NSURLSession sharedSession] dataTaskWithURL:imageURL completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
                     [self saveImageData:data withName:imageName];
                     dispatch_sync(dispatch_get_main_queue(), ^{
                         [theRow.button1 setBackgroundImageData:data];
+                        [_statusIMG setHidden:YES];
+                        [_statusIMG stopAnimating];
                     });
                 }] resume];
             }
@@ -167,12 +174,16 @@
             UIImage *image = [self fetchImageWithName:imageName];
             if (image != nil) {
                 [theRow.button2 setBackgroundImage:image];
+                [_statusIMG setHidden:YES];
+                [_statusIMG stopAnimating];
             }
             else {
                 [[[NSURLSession sharedSession] dataTaskWithURL:imageURL completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
                     [self saveImageData:data withName:imageName];
                     dispatch_sync(dispatch_get_main_queue(), ^{
                         [theRow.button2 setBackgroundImageData:data];
+                        [_statusIMG setHidden:YES];
+                        [_statusIMG stopAnimating];
                     });
                 }] resume];
                 
@@ -186,12 +197,16 @@
             UIImage *image = [self fetchImageWithName:imageName];
             if (image != nil) {
                 [theRow.button3 setBackgroundImage:image];
+                [_statusIMG setHidden:YES];
+                [_statusIMG stopAnimating];
             }
             else {
                 [[[NSURLSession sharedSession] dataTaskWithURL:imageURL completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
                     [self saveImageData:data withName:imageName];
                     dispatch_sync(dispatch_get_main_queue(), ^{
                         [theRow.button3 setBackgroundImageData:data];
+                        [_statusIMG setHidden:YES];
+                        [_statusIMG stopAnimating];
                     });
                 }] resume];
                 
