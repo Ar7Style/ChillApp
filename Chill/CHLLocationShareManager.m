@@ -13,6 +13,7 @@
 
 @property (nonatomic, strong) CLLocationManager * locationManager;
 @property (nonatomic) NSInteger userIDTo;
+@property (nonatomic) BOOL didSendLocation;
 
 @end
 
@@ -31,12 +32,12 @@ NSMutableData *mutData;
 
 - (void)shareLocationWithUser:(NSInteger)userID {
     self.userIDTo = userID;
+    self.didSendLocation = NO;
     _locationManager = [[CLLocationManager alloc] init];
     _locationManager.delegate = self;
     _locationManager.distanceFilter = kCLDistanceFilterNone;
     _locationManager.desiredAccuracy = kCLLocationAccuracyBest;
     [_locationManager startUpdatingLocation];
-    [_locationManager stopUpdatingLocation];
 }
 
 - (NSString*) getDateTime {
@@ -52,21 +53,24 @@ NSMutableData *mutData;
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation
 {
-    CLLocation *currentLocation = newLocation;
-    NSMutableURLRequest *request =
-    [[NSMutableURLRequest alloc] initWithURL:
-     [NSURL URLWithString:@"http://api.iamchill.co/v2/messages/index/"]];
-    [request setValue:[[NSUserDefaults standardUserDefaults] valueForKey:@"token"] forHTTPHeaderField:@"X-API-TOKEN"];
-    [request setValue:@"76eb29d3ca26fe805545812850e6d75af933214a" forHTTPHeaderField:@"X-API-KEY"];
-    [request setHTTPMethod:@"POST"];
-    NSUserDefaults *userCache = [[NSUserDefaults standardUserDefaults] initWithSuiteName:@"group.co.getchill.chill"];
-    NSString *postString = [NSString stringWithFormat:@"id_contact=%ld&id_user=%@&content=%@ %@&type=location&date=%@",(long)self.userIDTo,[userCache valueForKey:@"id_user"],[NSString stringWithFormat:@"%.8f", currentLocation.coordinate.latitude], [NSString stringWithFormat:@"%.8f", currentLocation.coordinate.longitude], [self getDateTime]];
-    [request setHTTPBody:[postString
-                          dataUsingEncoding:NSUTF8StringEncoding]];
-    [_locationManager stopUpdatingLocation];
-    NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
-    if (connection) {
-        mutData = [NSMutableData data];
+    if (!self.didSendLocation) {
+        self.didSendLocation = YES;
+        CLLocation *currentLocation = newLocation;
+        NSMutableURLRequest *request =
+        [[NSMutableURLRequest alloc] initWithURL:
+         [NSURL URLWithString:@"http://api.iamchill.co/v2/messages/index/"]];
+        [request setValue:[[NSUserDefaults standardUserDefaults] valueForKey:@"token"] forHTTPHeaderField:@"X-API-TOKEN"];
+        [request setValue:@"76eb29d3ca26fe805545812850e6d75af933214a" forHTTPHeaderField:@"X-API-KEY"];
+        [request setHTTPMethod:@"POST"];
+        NSUserDefaults *userCache = [[NSUserDefaults standardUserDefaults] initWithSuiteName:@"group.co.getchill.chill"];
+        NSString *postString = [NSString stringWithFormat:@"id_contact=%ld&id_user=%@&content=%@ %@&type=location&date=%@",(long)self.userIDTo,[userCache valueForKey:@"id_user"],[NSString stringWithFormat:@"%.8f", currentLocation.coordinate.latitude], [NSString stringWithFormat:@"%.8f", currentLocation.coordinate.longitude], [self getDateTime]];
+        [request setHTTPBody:[postString
+                              dataUsingEncoding:NSUTF8StringEncoding]];
+        [_locationManager stopUpdatingLocation];
+        NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
+        if (connection) {
+            mutData = [NSMutableData data];
+        }
     }
 }
 

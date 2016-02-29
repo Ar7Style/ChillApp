@@ -479,14 +479,10 @@ NSInteger defaultValue = 10;
         [requestForNotifications setValue:[[NSUserDefaults standardUserDefaults] valueForKey:@"token"] forHTTPHeaderField:@"X-API-TOKEN"];
         [requestForNotifications setValue:@"76eb29d3ca26fe805545812850e6d75af933214a" forHTTPHeaderField:@"X-API-KEY"];
         [requestForNotifications setHTTPMethod:@"POST"];
-        
         NSUserDefaults *userCache = [[NSUserDefaults standardUserDefaults] initWithSuiteName:@"group.co.getchill.chill"];
-        
-        //NSString *fixedQuery = [query stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
         [_shareText.text stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
         self.text = _shareText.text;
         NSString *postStringForNotifications = [NSString stringWithFormat:@"id_contact=%ld&id_user=%@&content=%@&type=icon&text=%@", (long)_userIdTo, [userCache valueForKey:@"id_user"], iconType, _shareText.text];
-        
         [requestForNotifications setHTTPBody:[postStringForNotifications dataUsingEncoding:NSUTF8StringEncoding]];
         NSURLConnection *connectionForNotifications = [[NSURLConnection alloc] initWithRequest:requestForNotifications delegate:self];
         

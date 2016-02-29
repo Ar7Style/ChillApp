@@ -28,6 +28,8 @@
 
 - (void)awakeWithContext:(id)context {
     [super awakeWithContext:context];
+    self.icons = [[NSMutableArray alloc] init];
+    self.iconNames = [[NSMutableArray alloc] init];
     if (![NSUserDefaults showGuide]) {
         [NSUserDefaults changeGuide:true];
         [self presentControllerWithName:@"Tutorial" context:nil];
@@ -43,7 +45,6 @@
     [_statusText setText:@"Loading..."];
     [self loadData];
     NSLog(@"CON %@", context);
-    // Configure interface objects here.
 }
 
 - (void)willActivate {
@@ -153,38 +154,46 @@
             [button setBackgroundImage:fetchedImage];
         }
         else {
-            dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0ul);
-            dispatch_async(queue, ^{
-                NSData *data = [NSData dataWithContentsOfURL:imageURL];
+            [[[NSURLSession sharedSession] dataTaskWithURL:imageURL completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
                 [self saveImageData:data withName:imageName];
                 dispatch_sync(dispatch_get_main_queue(), ^{
                     [button setBackgroundImageData:data];
                 });
-            });
-            
+            }] resume];
         }
         i++;
     }
 }
 
 - (void) sendMessage:(NSString*)idButton {
+    [_group1 setHidden:YES];
+    [_group2 setHidden:YES];
+    [_group3 setHidden:YES];
+    [_statusIMG setHidden:NO];
+    [_statusText setHidden:NO];
+    [_statusIMG setImageNamed:@"Activity"];
+    [_statusIMG startAnimating];
+    [_statusText setText:@"Sending..."];
+    
+    
     NSDictionary *parametrs = @{@"id_user":[NSUserDefaults userID], @"id_contact":contactID, @"content":[idButton lowercaseString], @"type":@"icon", @"text":valueSelected};
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.responseSerializer = [AFJSONResponseSerializer serializer];
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
     [manager.requestSerializer setValue:[NSUserDefaults userToken] forHTTPHeaderField:@"X-API-TOKEN"];
     [manager.requestSerializer setValue:@"76eb29d3ca26fe805545812850e6d75af933214a" forHTTPHeaderField:@"X-API-KEY"];
+    [manager POST:@"http://api.iamchill.co/v2/notifications/message" parameters:parametrs success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
+        NSLog(@"Success");
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        NSLog(@"Fail");
+    }];
     [manager POST:[NSString stringWithFormat:@"http://api.iamchill.co/v2/messages/index/"] parameters:parametrs success:^(NSURLSessionTask *task, id responseObject) {
         if ([[responseObject objectForKey:@"status"] isEqualToString:@"success"]) {
-            [_group1 setHidden:YES];
-            [_group2 setHidden:YES];
-            [_group3 setHidden:YES];
-            [_statusIMG setHidden:NO];
-            [_statusText setHidden:NO];
             [_statusText setText:@"Done"];
             [_statusIMG setImageNamed:@"confirm"];
+            [_statusIMG stopAnimating];
             self.title = @"";
-            self.myTimer = [NSTimer scheduledTimerWithTimeInterval:2.0f
+            self.myTimer = [NSTimer scheduledTimerWithTimeInterval:1.0f
                                                             target:self
                                                           selector:@selector(tick)
                                                           userInfo:nil
@@ -194,15 +203,11 @@
         }
         NSLog(@"JSON: %@", responseObject);
     } failure:^(NSURLSessionTask *operation, NSError *error) {
-        [_group1 setHidden:YES];
-        [_group2 setHidden:YES];
-        [_group3 setHidden:YES];
-        [_statusIMG setHidden:NO];
-        [_statusText setHidden:NO];
         [_statusText setText:@"Failed"];
         [_statusIMG setImageNamed:@"decline"];
+        [_statusIMG stopAnimating];
         self.title = @"";
-        self.myTimer = [NSTimer scheduledTimerWithTimeInterval:2.0f
+        self.myTimer = [NSTimer scheduledTimerWithTimeInterval:1.0f
                                                         target:self
                                                       selector:@selector(tick)
                                                       userInfo:nil
@@ -255,6 +260,14 @@
 }
 
 - (IBAction)sendLocation {
+    [_group1 setHidden:YES];
+    [_group2 setHidden:YES];
+    [_group3 setHidden:YES];
+    [_statusIMG setHidden:NO];
+    [_statusText setHidden:NO];
+    [_statusIMG setImageNamed:@"Activity"];
+    [_statusIMG startAnimating];
+    [_statusText setText:@"Sending..."];
     [self startLocationReporting];
 }
 - (void)startLocationReporting {
@@ -277,15 +290,11 @@
     [sManager.requestSerializer setValue:@"76eb29d3ca26fe805545812850e6d75af933214a" forHTTPHeaderField:@"X-API-KEY"];
     [sManager POST:[NSString stringWithFormat:@"http://api.iamchill.co/v2/messages/index/"] parameters:parametrs success:^(NSURLSessionTask *task, id responseObject) {
         if ([[responseObject objectForKey:@"status"] isEqualToString:@"success"]) {
-            [_group1 setHidden:YES];
-            [_group2 setHidden:YES];
-            [_group3 setHidden:YES];
-            [_statusIMG setHidden:NO];
-            [_statusText setHidden:NO];
             [_statusText setText:@"Done"];
             [_statusIMG setImageNamed:@"confirm"];
+            [_statusIMG stopAnimating];
             self.title = @"";
-            self.myTimer = [NSTimer scheduledTimerWithTimeInterval:2.0f
+            self.myTimer = [NSTimer scheduledTimerWithTimeInterval:1.0f
                                                             target:self
                                                           selector:@selector(tick)
                                                           userInfo:nil
@@ -295,15 +304,11 @@
         }
         NSLog(@"JSON: %@", responseObject);
     } failure:^(NSURLSessionTask *operation, NSError *error) {
-        [_group1 setHidden:YES];
-        [_group2 setHidden:YES];
-        [_group3 setHidden:YES];
-        [_statusIMG setHidden:NO];
-        [_statusText setHidden:NO];
         [_statusText setText:@"Failed"];
         [_statusIMG setImageNamed:@"decline"];
+        [_statusIMG stopAnimating];
         self.title = @"";
-        self.myTimer = [NSTimer scheduledTimerWithTimeInterval:2.0f
+        self.myTimer = [NSTimer scheduledTimerWithTimeInterval:1.0f
                                                         target:self
                                                       selector:@selector(tick)
                                                       userInfo:nil

@@ -11,7 +11,6 @@
 #import "UserCache.h"
 #import "ButtonIconID.h"
 #import <AFNetworking/AFNetworking.h>
-#import "FTWCache.h"
 #import "NSString+MD5.h"
 
 @interface IconsIC () {
@@ -32,11 +31,9 @@
 
     [_iconButton setValue:@"" forKey:@""];
     NSLog(@"cID %@", context);
-    // Configure interface objects here.
 }
 
 - (void)willActivate {
-    // This method is called when watch view controller is about to be visible to user
     [super willActivate];
     [_statusIMG setHidden:YES];
     [_statusText setHidden:YES];
@@ -50,6 +47,13 @@
 
 - (void)didGetMyNotification:(NSNotification*)notification {
     NSLog(@"hello %@", [buttonIDs objectForKey:[NSString stringWithFormat:@"%@",[notification object]]]);
+    [_table setHidden:YES];
+    [_textMore setHidden:YES];
+    [_statusIMG setHidden:NO];
+    [_statusText setHidden:NO];
+    [_statusIMG setImageNamed:@"Activity"];
+    [_statusIMG startAnimating];
+    [_statusText setText:@"Sending..."];
 
     NSDictionary *parametrs = @{@"id_user":[NSUserDefaults userID], @"id_contact":contactID, @"content":[buttonIDs objectForKey:[NSString stringWithFormat:@"%@",[notification object]]], @"type":@"icon"};
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
@@ -57,16 +61,18 @@
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
     [manager.requestSerializer setValue:[NSUserDefaults userToken] forHTTPHeaderField:@"X-API-TOKEN"];
     [manager.requestSerializer setValue:@"76eb29d3ca26fe805545812850e6d75af933214a" forHTTPHeaderField:@"X-API-KEY"];
+    [manager POST:@"http://api.iamchill.co/v2/notifications/message" parameters:parametrs success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
+        NSLog(@"Success");
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        NSLog(@"Fail");
+    }];
     [manager POST:[NSString stringWithFormat:@"http://api.iamchill.co/v2/messages/index/"] parameters:parametrs success:^(NSURLSessionTask *task, id responseObject) {
         if ([[responseObject objectForKey:@"status"] isEqualToString:@"success"]) {
-            [_table setHidden:YES];
-            [_textMore setHidden:YES];
-            [_statusIMG setHidden:NO];
-            [_statusText setHidden:NO];
             [_statusText setText:@"Done"];
             [_statusIMG setImageNamed:@"confirm"];
+            [_statusIMG stopAnimating];
             self.title = @"";
-            self.myTimer = [NSTimer scheduledTimerWithTimeInterval:2.0f
+            self.myTimer = [NSTimer scheduledTimerWithTimeInterval:1.0f
                                                             target:self
                                                           selector:@selector(tick)
                                                           userInfo:nil
@@ -76,14 +82,11 @@
         }
         NSLog(@"JSON: %@", responseObject);
     } failure:^(NSURLSessionTask *operation, NSError *error) {
-        [_table setHidden:YES];
-        [_textMore setHidden:YES];
-        [_statusIMG setHidden:NO];
-        [_statusText setHidden:NO];
         [_statusText setText:@"Failed"];
         [_statusIMG setImageNamed:@"decline"];
+        [_statusIMG stopAnimating];
         self.title = @"";
-        self.myTimer = [NSTimer scheduledTimerWithTimeInterval:2.0f
+        self.myTimer = [NSTimer scheduledTimerWithTimeInterval:1.0f
                                                         target:self
                                                       selector:@selector(tick)
                                                       userInfo:nil
@@ -101,6 +104,9 @@
     }
 }
 - (void) loadData {
+    [_statusIMG setHidden:NO];
+    [_statusIMG setImageNamed:@"Activity"];
+    [_statusIMG startAnimating];
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.responseSerializer = [AFJSONResponseSerializer serializer];
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
@@ -116,49 +122,21 @@
         NSLog(@"Error: %@", error);
     }];
 }
-//- (void) sendMessage:(NSString*)idButton {
-//    NSDictionary *parametrs = @{@"id_user":[NSUserDefaults userID], @"id_contact":contactID, @"content":[idButton lowercaseString], @"type":@"icon"};
-//    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-//    manager.responseSerializer = [AFJSONResponseSerializer serializer];
-//    manager.requestSerializer = [AFJSONRequestSerializer serializer];
-//    [manager.requestSerializer setValue:[NSUserDefaults userToken] forHTTPHeaderField:@"X-API-TOKEN"];
-//    [manager.requestSerializer setValue:@"76eb29d3ca26fe805545812850e6d75af933214a" forHTTPHeaderField:@"X-API-KEY"];
-//    [manager POST:[NSString stringWithFormat:@"http://api.iamchill.co/v2/messages/index/"] parameters:parametrs success:^(NSURLSessionTask *task, id responseObject) {
-//        if ([[responseObject objectForKey:@"status"] isEqualToString:@"success"]) {
-//            [_group1 setHidden:YES];
-//            [_group2 setHidden:YES];
-//            [_group3 setHidden:YES];
-//            [_statusIMG setHidden:NO];
-//            [_statusText setHidden:NO];
-//            [_statusText setText:@"Done"];
-//            [_statusIMG setImageNamed:@"confirm"];
-//            self.title = @"";
-//            self.myTimer = [NSTimer scheduledTimerWithTimeInterval:2.0f
-//                                                            target:self
-//                                                          selector:@selector(tick)
-//                                                          userInfo:nil
-//                                                           repeats:YES];
-//            
-//            //            [self popController];
-//        }
-//        NSLog(@"JSON: %@", responseObject);
-//    } failure:^(NSURLSessionTask *operation, NSError *error) {
-//        [_group1 setHidden:YES];
-//        [_group2 setHidden:YES];
-//        [_group3 setHidden:YES];
-//        [_statusIMG setHidden:NO];
-//        [_statusText setHidden:NO];
-//        [_statusText setText:@"Failed"];
-//        [_statusIMG setImageNamed:@"decline"];
-//        self.title = @"";
-//        self.myTimer = [NSTimer scheduledTimerWithTimeInterval:2.0f
-//                                                        target:self
-//                                                      selector:@selector(tick)
-//                                                      userInfo:nil
-//                                                       repeats:YES];
-//        NSLog(@"Error: %@", error);
-//    }];
-//}
+
+- (void)saveImageData:(NSData *)imageData withName:(NSString *)name {
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    NSString *savedImagePath = [documentsDirectory stringByAppendingPathComponent:name];
+    [imageData writeToFile:savedImagePath atomically:NO];
+}
+
+- (UIImage *)fetchImageWithName:(NSString *)name {
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    NSString *savedImagePath = [documentsDirectory stringByAppendingPathComponent:name];
+    NSData *pngData = [NSData dataWithContentsOfFile:savedImagePath];
+    return [UIImage imageWithData:pngData];
+}
 
 - (void) configureTable {
     int num = json.count/3;
@@ -169,43 +147,45 @@
         IconRow* theRow = [self.table rowControllerAtIndex:j];
         if (n == 0 ) {
             NSURL *imageURL = [NSURL URLWithString:[json[i] valueForKey:@"size80"]];
-            NSString *key = [[json[i] valueForKey:@"size80"] MD5Hash];
-            NSData *data = [FTWCache objectForKey:key];
-            if (data) {
-                [theRow.button1 setBackgroundImageData:data];
+            NSString *imageName = [json[i] valueForKey:@"name"];
+            UIImage *image = [self fetchImageWithName:imageName];
+            if (image != nil) {
+                [theRow.button1 setBackgroundImage:image];
+                [_statusIMG setHidden:YES];
+                [_statusIMG stopAnimating];
             }
             else {
-                dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0ul);
-                dispatch_async(queue, ^{
-                    NSData *data = [NSData dataWithContentsOfURL:imageURL];
-                    [FTWCache setObject:data forKey:key];
+                [[[NSURLSession sharedSession] dataTaskWithURL:imageURL completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+                    [self saveImageData:data withName:imageName];
                     dispatch_sync(dispatch_get_main_queue(), ^{
                         [theRow.button1 setBackgroundImageData:data];
+                        [_statusIMG setHidden:YES];
+                        [_statusIMG stopAnimating];
                     });
-                });
-                
+                }] resume];
             }
             
-//            [theRow.button1 setBackgroundImageData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[json[i] valueForKey:@"size80"]]]];
             [buttonIDs setObject:[json[i] valueForKey:@"name"] forKey:[NSString stringWithFormat:@"%@", theRow.button1]];
             
         }
         else if (n == 1) {
             NSURL *imageURL = [NSURL URLWithString:[json[i] valueForKey:@"size80"]];
-            NSString *key = [[json[i] valueForKey:@"size80"] MD5Hash];
-            NSData *data = [FTWCache objectForKey:key];
-            if (data) {
-                [theRow.button2 setBackgroundImageData:data];
+            NSString *imageName = [json[i] valueForKey:@"name"];
+            UIImage *image = [self fetchImageWithName:imageName];
+            if (image != nil) {
+                [theRow.button2 setBackgroundImage:image];
+                [_statusIMG setHidden:YES];
+                [_statusIMG stopAnimating];
             }
             else {
-                dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0ul);
-                dispatch_async(queue, ^{
-                    NSData *data = [NSData dataWithContentsOfURL:imageURL];
-                    [FTWCache setObject:data forKey:key];
+                [[[NSURLSession sharedSession] dataTaskWithURL:imageURL completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+                    [self saveImageData:data withName:imageName];
                     dispatch_sync(dispatch_get_main_queue(), ^{
                         [theRow.button2 setBackgroundImageData:data];
+                        [_statusIMG setHidden:YES];
+                        [_statusIMG stopAnimating];
                     });
-                });
+                }] resume];
                 
             }
             
@@ -213,20 +193,22 @@
         }
         else if (n == 2) {
             NSURL *imageURL = [NSURL URLWithString:[json[i] valueForKey:@"size80"]];
-            NSString *key = [[json[i] valueForKey:@"size80"] MD5Hash];
-            NSData *data = [FTWCache objectForKey:key];
-            if (data) {
-                [theRow.button3 setBackgroundImageData:data];
+            NSString *imageName = [json[i] valueForKey:@"name"];
+            UIImage *image = [self fetchImageWithName:imageName];
+            if (image != nil) {
+                [theRow.button3 setBackgroundImage:image];
+                [_statusIMG setHidden:YES];
+                [_statusIMG stopAnimating];
             }
             else {
-                dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0ul);
-                dispatch_async(queue, ^{
-                    NSData *data = [NSData dataWithContentsOfURL:imageURL];
-                    [FTWCache setObject:data forKey:key];
+                [[[NSURLSession sharedSession] dataTaskWithURL:imageURL completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+                    [self saveImageData:data withName:imageName];
                     dispatch_sync(dispatch_get_main_queue(), ^{
                         [theRow.button3 setBackgroundImageData:data];
+                        [_statusIMG setHidden:YES];
+                        [_statusIMG stopAnimating];
                     });
-                });
+                }] resume];
                 
             }
             
@@ -237,11 +219,6 @@
             j++; n =0;
         }
     }
-}
-
-- (void)didDeactivate {
-    // This method is called when watch view controller is no longer visible
-    [super didDeactivate];
 }
 
 @end
