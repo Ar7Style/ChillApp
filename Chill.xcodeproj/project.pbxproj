@@ -144,8 +144,6 @@
 		068C0B021AA36ED6005A0577 /* Portrait 1.png in Resources */ = {isa = PBXBuildFile; fileRef = 068C0AFE1AA36ED6005A0577 /* Portrait 1.png */; };
 		069A059E1C5EADB50023C504 /* NSString+MD5.m in Sources */ = {isa = PBXBuildFile; fileRef = 069A059D1C5EADB50023C504 /* NSString+MD5.m */; };
 		069A059F1C5EADB50023C504 /* NSString+MD5.m in Sources */ = {isa = PBXBuildFile; fileRef = 069A059D1C5EADB50023C504 /* NSString+MD5.m */; };
-		069A05A11C5EADC60023C504 /* FTWCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 069A05A01C5EADC60023C504 /* FTWCache.m */; };
-		069A05A21C5EADC60023C504 /* FTWCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 069A05A01C5EADC60023C504 /* FTWCache.m */; };
 		06A5BF3F1AAE0AFC00D34CFF /* CHLConnectionRefusedController.m in Sources */ = {isa = PBXBuildFile; fileRef = 06A5BF3E1AAE0AFC00D34CFF /* CHLConnectionRefusedController.m */; };
 		06A5BF411AAE179000D34CFF /* No_internet.png in Resources */ = {isa = PBXBuildFile; fileRef = 06A5BF401AAE179000D34CFF /* No_internet.png */; };
 		06B0E1C41C5FF72F007FCA89 /* headernew.png in Resources */ = {isa = PBXBuildFile; fileRef = 06B0E1C31C5FF72F007FCA89 /* headernew.png */; };
@@ -499,8 +497,6 @@
 		068C0AFE1AA36ED6005A0577 /* Portrait 1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Portrait 1.png"; path = "../Portrait 1.png"; sourceTree = "<group>"; };
 		069A059C1C5EADAA0023C504 /* NSString+MD5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+MD5.h"; sourceTree = "<group>"; };
 		069A059D1C5EADB50023C504 /* NSString+MD5.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+MD5.m"; sourceTree = "<group>"; };
-		069A05A01C5EADC60023C504 /* FTWCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FTWCache.m; sourceTree = "<group>"; };
-		069A05A31C5EADDA0023C504 /* FTWCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FTWCache.h; sourceTree = "<group>"; };
 		06A5BF3D1AAE0AFC00D34CFF /* CHLConnectionRefusedController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHLConnectionRefusedController.h; sourceTree = "<group>"; };
 		06A5BF3E1AAE0AFC00D34CFF /* CHLConnectionRefusedController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHLConnectionRefusedController.m; sourceTree = "<group>"; };
 		06A5BF401AAE179000D34CFF /* No_internet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = No_internet.png; sourceTree = "<group>"; };
@@ -800,8 +796,6 @@
 				53402F821C0A647C009E4FD9 /* location@2x.png */,
 				069A059C1C5EADAA0023C504 /* NSString+MD5.h */,
 				069A059D1C5EADB50023C504 /* NSString+MD5.m */,
-				069A05A31C5EADDA0023C504 /* FTWCache.h */,
-				069A05A01C5EADC60023C504 /* FTWCache.m */,
 				532D46A51C0640C30070C105 /* ButtonIconID.h */,
 				532D46A61C0640C30070C105 /* ButtonIconID.m */,
 				029F1BA91C01E56300368AD4 /* InterfaceController.h */,
@@ -1257,9 +1251,9 @@
 				E6C7C1DF191A1B230071D83F /* CHLAppDelegate.h */,
 				E6C7C1E0191A1B230071D83F /* CHLAppDelegate.m */,
 				ADA195231C8022DA008DFD3B /* CHLLocationShareManager.h */,
+				ADA195241C8022DA008DFD3B /* CHLLocationShareManager.m */,
 				ADA195261C802CDC008DFD3B /* CHLIphoneWCManager.h */,
 				ADA195271C802CDC008DFD3B /* CHLIphoneWCManager.m */,
-				ADA195241C8022DA008DFD3B /* CHLLocationShareManager.m */,
 				06A5BF3D1AAE0AFC00D34CFF /* CHLConnectionRefusedController.h */,
 				06A5BF3E1AAE0AFC00D34CFF /* CHLConnectionRefusedController.m */,
 				065138D91C73C4F100EAE59E /* Main.storyboard */,
@@ -1776,7 +1770,6 @@
 				029F1BC21C02073500368AD4 /* ContactsIC.m in Sources */,
 				532D46A41C062E440070C105 /* IconRow.m in Sources */,
 				023B427D1C023E8500E124A8 /* ShareIC.m in Sources */,
-				069A05A21C5EADC60023C504 /* FTWCache.m in Sources */,
 				029F1BAE1C01E56300368AD4 /* ExtensionDelegate.m in Sources */,
 				069A059F1C5EADB50023C504 /* NSString+MD5.m in Sources */,
 				532D46A71C0640C30070C105 /* ButtonIconID.m in Sources */,
@@ -1819,7 +1812,6 @@
 				0686BC411B49CDF500515EA0 /* CHLAdditionalShareViewController.m in Sources */,
 				AD1CFA1B1C75FB2500F5A030 /* CHLOnboardingStartVC.m in Sources */,
 				021F00CC1A3CD7D7000A83D2 /* CHLSearchViewController.m in Sources */,
-				069A05A11C5EADC60023C504 /* FTWCache.m in Sources */,
 				020B35741A1E402C00DC2F23 /* JSONLoader.m in Sources */,
 				020B35791A1E402C00DC2F23 /* UIScrollView+SVInfiniteScrolling.m in Sources */,
 				AD8417801A911D820078F57A /* CHLTutorialViewController.m in Sources */,

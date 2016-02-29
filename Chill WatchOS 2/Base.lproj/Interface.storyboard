@@ -10,8 +10,8 @@
             <objects>
                 <controller id="AgC-eL-Hgc" customClass="InterfaceController">
                     <items>
-                        <label width="136" height="72" alignment="left" text="Please open Chill on your iPhone and sign in" textAlignment="center" numberOfLines="0" id="CnT-3z-h6T"/>
-                        <button width="1" alignment="left" title="Recheck" id="4NY-8O-lG8">
+                        <label alignment="center" text="Please open Chill on your iPhone and sign in" textAlignment="center" numberOfLines="0" id="CnT-3z-h6T"/>
+                        <button width="1" alignment="center" verticalAlignment="bottom" title="Recheck" id="4NY-8O-lG8">
                             <connections>
                                 <action selector="recheckAction" destination="AgC-eL-Hgc" id="fEK-gh-tfV"/>
                             </connections>
@@ -29,8 +29,9 @@
             <objects>
                 <controller identifier="ContactsIC" id="g2m-gF-IBW" customClass="ContactsIC">
                     <items>
-                        <label width="136" height="99" alignment="left" text="Loading..." textAlignment="center" numberOfLines="0" id="VXk-yQ-ym6"/>
-                        <button width="1" alignment="left" title="Reload" id="sKP-GP-nwx">
+                        <imageView width="40" height="40" alignment="center" verticalAlignment="center" image="Activity" contentMode="scaleAspectFit" id="o9p-gP-5EX"/>
+                        <label alignment="center" verticalAlignment="center" text="Loading..." textAlignment="center" numberOfLines="0" id="VXk-yQ-ym6"/>
+                        <button width="1" alignment="center" title="Reload" id="sKP-GP-nwx">
                             <connections>
                                 <action selector="reload" destination="g2m-gF-IBW" id="HCB-kD-pcU"/>
                             </connections>
@@ -40,7 +41,7 @@
                                 <tableRow identifier="cell" id="qEj-Md-Gk2" customClass="ContactRow">
                                     <group key="rootItem" width="1" alignment="left" id="W38-B0-S14">
                                         <items>
-                                            <label width="131" height="49" alignment="left" text="name" textAlignment="center" id="C7p-Pc-zXH"/>
+                                            <label width="131" height="49" alignment="center" text="name" textAlignment="center" id="C7p-Pc-zXH"/>
                                         </items>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     </group>
@@ -54,6 +55,7 @@
                     </items>
                     <connections>
                         <outlet property="reloadButton" destination="sKP-GP-nwx" id="lin-4y-JbV"/>
+                        <outlet property="statusIMG" destination="o9p-gP-5EX" id="4Dx-2I-Wb7"/>
                         <outlet property="statusLabel" destination="VXk-yQ-ym6" id="DoF-8C-WT5"/>
                         <outlet property="table" destination="TPk-4G-jnG" id="SKZ-QT-7fl"/>
                     </connections>
@@ -66,9 +68,9 @@
             <objects>
                 <controller identifier="ShareIC" id="ljR-vO-91f" customClass="ShareIC">
                     <items>
-                        <imageView width="50" height="50" alignment="center" verticalAlignment="center" image="confirm.png" contentMode="scaleAspectFit" id="BK3-SF-j9V"/>
-                        <label width="124" height="34" alignment="left" verticalAlignment="bottom" text="Loading..." textAlignment="center" numberOfLines="0" id="J1K-dl-N9w"/>
-                        <group width="1" height="47" alignment="left" id="oVw-y2-ldq">
+                        <imageView width="57" height="57" alignment="center" verticalAlignment="center" image="confirm.png" contentMode="scaleAspectFit" id="BK3-SF-j9V"/>
+                        <label width="124" height="34" alignment="center" verticalAlignment="center" text="Loading..." textAlignment="center" numberOfLines="0" id="J1K-dl-N9w"/>
+                        <group width="1" height="47" alignment="center" id="oVw-y2-ldq">
                             <items>
                                 <button width="40" height="40" alignment="left" verticalAlignment="bottom" id="QWA-2i-V5b">
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -76,13 +78,13 @@
                                         <action selector="b1" destination="ljR-vO-91f" id="fS6-7n-UOz"/>
                                     </connections>
                                 </button>
-                                <button width="40" height="40" alignment="left" verticalAlignment="bottom" id="jCY-8d-9me">
+                                <button width="40" height="40" alignment="center" verticalAlignment="bottom" id="jCY-8d-9me">
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     <connections>
                                         <action selector="b2" destination="ljR-vO-91f" id="s9X-bc-ajx"/>
                                     </connections>
                                 </button>
-                                <button width="40" height="40" alignment="left" verticalAlignment="bottom" id="RMD-MZ-XZw">
+                                <button width="40" height="40" alignment="right" verticalAlignment="bottom" id="RMD-MZ-XZw">
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     <connections>
                                         <action selector="b3" destination="ljR-vO-91f" id="LiF-Il-0XC"/>
@@ -90,7 +92,7 @@
                                 </button>
                             </items>
                         </group>
-                        <group width="1" alignment="left" id="Y7Q-2V-xSi">
+                        <group width="1" alignment="center" id="Y7Q-2V-xSi">
                             <items>
                                 <button width="40" height="40" alignment="left" id="GoU-Jy-i4w">
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -98,13 +100,13 @@
                                         <action selector="b4" destination="ljR-vO-91f" id="Teb-WA-2Ic"/>
                                     </connections>
                                 </button>
-                                <button width="40" height="40" alignment="left" id="0lk-KV-YSY">
+                                <button width="40" height="40" alignment="center" id="0lk-KV-YSY">
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     <connections>
                                         <action selector="b5" destination="ljR-vO-91f" id="MJA-sR-1Di"/>
                                     </connections>
                                 </button>
-                                <button width="40" height="40" alignment="left" id="kkX-ie-rhO">
+                                <button width="40" height="40" alignment="right" id="kkX-ie-rhO">
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     <connections>
                                         <action selector="b6" destination="ljR-vO-91f" id="5jX-gD-hdP"/>
@@ -112,12 +114,12 @@
                                 </button>
                             </items>
                         </group>
-                        <group width="123" alignment="left" id="2XO-ib-KpR">
+                        <group width="123" alignment="center" verticalAlignment="center" id="2XO-ib-KpR">
                             <items>
-                                <label width="43" height="39" alignment="left" text="#" textAlignment="right" id="g1e-gU-ffn">
+                                <label alignment="center" verticalAlignment="center" text="#" textAlignment="right" id="g1e-gU-ffn">
                                     <color key="textColor" red="0.36470588240000001" green="1" blue="0.86274509799999999" alpha="1" colorSpace="calibratedRGB"/>
                                 </label>
-                                <picker width="35" height="39" alignment="left" id="0Pi-Nm-wSU">
+                                <picker width="35" height="39" alignment="center" id="0Pi-Nm-wSU">
                                     <connections>
                                         <action selector="didChangeValue:" destination="ljR-vO-91f" id="2gN-xh-IWx"/>
                                     </connections>
@@ -159,13 +161,13 @@
             <objects>
                 <controller identifier="IconsIC" id="HvD-lE-RxT" customClass="IconsIC">
                     <items>
-                        <label width="136" alignment="left" text="More" textAlignment="center" id="D6b-eE-SMQ"/>
-                        <table alignment="left" id="A5N-NF-Q6t">
+                        <label width="136" alignment="center" text="More" textAlignment="center" id="D6b-eE-SMQ"/>
+                        <table alignment="center" id="A5N-NF-Q6t">
                             <items>
                                 <tableRow identifier="cell" id="M49-BG-wWQ" customClass="IconRow">
                                     <group key="rootItem" width="1" height="40" alignment="left" id="eXd-9g-xsD">
                                         <items>
-                                            <button width="38" height="38" alignment="center" verticalAlignment="bottom" title="Button" id="7EH-2d-ICk">
+                                            <button width="38" height="38" alignment="left" verticalAlignment="bottom" title="Button" id="7EH-2d-ICk">
                                                 <color key="titleColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                 <connections>
@@ -179,7 +181,7 @@
                                                     <action selector="b2" destination="M49-BG-wWQ" id="N86-c8-G3g"/>
                                                 </connections>
                                             </button>
-                                            <button width="38" height="38" alignment="center" verticalAlignment="bottom" title="Button" id="0bn-pu-Fav">
+                                            <button width="38" height="38" alignment="right" verticalAlignment="bottom" title="Button" id="0bn-pu-Fav">
                                                 <color key="titleColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                 <connections>
@@ -197,8 +199,8 @@
                                 </tableRow>
                             </items>
                         </table>
-                        <imageView width="50" height="50" alignment="center" verticalAlignment="center" image="confirm.png" contentMode="scaleAspectFit" id="IOC-cn-qR4"/>
-                        <label width="136" height="34" alignment="left" verticalAlignment="bottom" text="Loading..." textAlignment="center" numberOfLines="0" id="F0j-Rf-Hgo"/>
+                        <imageView width="57" height="57" alignment="center" verticalAlignment="center" image="confirm.png" contentMode="scaleAspectFit" id="IOC-cn-qR4"/>
+                        <label width="136" height="34" alignment="center" verticalAlignment="center" text="Loading..." textAlignment="center" numberOfLines="0" id="F0j-Rf-Hgo"/>
                     </items>
                     <connections>
                         <outlet property="statusIMG" destination="IOC-cn-qR4" id="5LA-XU-xVu"/>
