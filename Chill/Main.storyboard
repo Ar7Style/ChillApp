@@ -194,8 +194,8 @@ communication experience</string>
                     <navigationItem key="navigationItem" id="Q9I-Za-uB7"/>
                     <connections>
                         <outlet property="activity" destination="tZH-1f-PvO" id="APu-lt-TSH"/>
-                        <outlet property="authButton1" destination="Ba5-mt-9nx" id="Sei-Ag-KeY"/>
                         <outlet property="constraintBottom" destination="Gvk-qQ-feA" id="b8L-lb-aU0"/>
+                        <outlet property="goButton" destination="Ba5-mt-9nx" id="swi-51-Vnj"/>
                         <outlet property="loginField1" destination="vSb-Nf-Qcc" id="pL9-6H-ymg"/>
                         <outlet property="passwordField1" destination="sfB-5p-KfX" id="y6g-F4-eQe"/>
                         <outlet property="viewMain" destination="dtY-Ij-djv" id="srd-qn-wBO"/>
@@ -1720,7 +1720,7 @@ communication experience</string>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pDM-Qz-yn0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1032" y="-8"/>
+            <point key="canvasLocation" x="-992" y="40"/>
         </scene>
         <!--Page View Controller-->
         <scene sceneID="ZyH-gk-ieL">
@@ -2889,7 +2889,7 @@ Enter to get perks from Chill</string>
                     <navigationItem key="navigationItem" id="gys-KU-RUO"/>
                     <connections>
                         <outlet property="constrBottom" destination="Sgq-aU-rha" id="hDb-r4-A77"/>
-                        <outlet property="goButton" destination="Yly-79-Phh" id="tWi-gr-DrM"/>
+                        <outlet property="goButton" destination="Yly-79-Phh" id="ojs-Rg-pah"/>
                         <outlet property="promocodeTextField" destination="w2Q-KX-xxp" id="RbX-9X-oIC"/>
                         <outlet property="skipButton" destination="PMF-Fl-bm3" id="4fm-bN-m4s"/>
                         <segue destination="xrZ-uN-Vpu" kind="push" identifier="toTutorialFromPromoVC" id="mWD-DE-q4Q"/>

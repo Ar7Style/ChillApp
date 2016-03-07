@@ -25,6 +25,7 @@
 @interface AUTHViewController ()
 @property (strong, nonatomic) IBOutlet UIView *viewMain;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *constraintBottom;
+@property (weak, nonatomic) IBOutlet UIButton *goButton;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activity;
 
 @end
@@ -95,7 +96,13 @@
     
     [_loginField1.text stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     [_passwordField1.text stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-    NSUserDefaults *userCache = [[NSUserDefaults standardUserDefaults] initWithSuiteName:@"group.co.getchill.chill"];
+    
+    
+    [_goButton.titleLabel removeFromSuperview];
+    _goButton.userInteractionEnabled = NO;
+
+    [self.activity startAnimating];
+
     
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
 
@@ -110,10 +117,13 @@
             
             if ([[responseObject valueForKey:@"status"] isEqualToString:@"failed"]){
                 [self errorShow:@"It seems that the entered username or password is incorrect"];
+                _goButton.userInteractionEnabled = YES;
+               // [self.authButton1.titleLabel setHidden:NO];
+                [self.activity stopAnimating];
+
             }
             else if ([[responseObject valueForKey:@"status"] isEqualToString:@"success"]) {
-                [self.authButton1.titleLabel setHidden:YES];
-                [self.activity startAnimating];
+
 
                 [NSUserDefaults changeAuth:true];
                 [NSUserDefaults setValue:[[responseObject valueForKey:@"response"] valueForKey:@"id_user"] forKey:@"id_user"];
@@ -175,6 +185,10 @@
         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
             SCLAlertView* alert = [[SCLAlertView alloc] init];
             [alert showError:self.parentViewController title:@"Oups" subTitle:@"Please, check your internet connection" closeButtonTitle:@"OK" duration:0.0f];
+            _goButton.userInteractionEnabled = YES;
+            
+            [_goButton addSubview:_goButton.titleLabel];
+            [self.activity stopAnimating];
 
             NSLog(@"Error: %@", error);
         }];
@@ -182,6 +196,10 @@
     else
     {
         [self errorShow:@"Fill in all fields"];
+        _goButton.userInteractionEnabled = YES;
+        [_goButton addSubview:_goButton.titleLabel];
+        [self.activity stopAnimating];
+
     }
 }
 
