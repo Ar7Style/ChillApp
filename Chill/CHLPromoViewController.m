@@ -56,6 +56,7 @@
 }
 
 - (IBAction)goButtonPressed:(id)sender {
+    _goButton.userInteractionEnabled = NO;
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.responseSerializer = [AFJSONResponseSerializer serializer];
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
@@ -69,11 +70,13 @@
         else if ([[responseObject valueForKey:@"status"] isEqualToString:@"failed"]) {
             SCLAlertView* alert = [[SCLAlertView alloc] init];
             [alert showError:self.parentViewController title:@"Oups" subTitle:@"Sorry, promocode is incorrect" closeButtonTitle:@"OK" duration:0.0f];
+            _goButton.userInteractionEnabled = YES;
         }
     }
         failure:^(AFHTTPRequestOperation *operation, NSError *error) {
             SCLAlertView* alert = [[SCLAlertView alloc] init];
             [alert showError:self.parentViewController title:@"Oups" subTitle:@"Please, check Your internet connection" closeButtonTitle:@"OK" duration:0.0f];
+            _goButton.userInteractionEnabled = YES;
         
     }];
     
