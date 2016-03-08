@@ -212,6 +212,7 @@
 		AD1CFA211C766A2D00F5A030 /* CHLShareMoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD1CFA201C766A2D00F5A030 /* CHLShareMoreViewController.m */; };
 		AD39F35B1B6052AF003936C4 /* CHLFriendsSourcesVC.m in Sources */ = {isa = PBXBuildFile; fileRef = AD39F35A1B6052AF003936C4 /* CHLFriendsSourcesVC.m */; };
 		AD39F35E1B605C74003936C4 /* CHLTwitterVC.m in Sources */ = {isa = PBXBuildFile; fileRef = AD39F35D1B605C74003936C4 /* CHLTwitterVC.m */; };
+		AD3D493A1C8F686D00F42268 /* NSArray+SameStrings.m in Sources */ = {isa = PBXBuildFile; fileRef = AD3D49391C8F686D00F42268 /* NSArray+SameStrings.m */; };
 		AD6325691ABB73EF00DD8F0D /* CHLPaperCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AD6325671ABB73EF00DD8F0D /* CHLPaperCollectionCell.m */; };
 		AD63256A1ABB73EF00DD8F0D /* CHLPaperCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD6325681ABB73EF00DD8F0D /* CHLPaperCollectionCell.xib */; };
 		AD6D3C841A88A7FA00B5BE18 /* Chill_logo_grey.png in Resources */ = {isa = PBXBuildFile; fileRef = AD6D3C831A88A7FA00B5BE18 /* Chill_logo_grey.png */; };
@@ -576,6 +577,8 @@
 		AD39F35A1B6052AF003936C4 /* CHLFriendsSourcesVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHLFriendsSourcesVC.m; sourceTree = "<group>"; };
 		AD39F35C1B605C74003936C4 /* CHLTwitterVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHLTwitterVC.h; sourceTree = "<group>"; };
 		AD39F35D1B605C74003936C4 /* CHLTwitterVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHLTwitterVC.m; sourceTree = "<group>"; };
+		AD3D49381C8F686D00F42268 /* NSArray+SameStrings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+SameStrings.h"; sourceTree = "<group>"; };
+		AD3D49391C8F686D00F42268 /* NSArray+SameStrings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+SameStrings.m"; sourceTree = "<group>"; };
 		AD6325661ABB73EF00DD8F0D /* CHLPaperCollectionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CHLPaperCollectionCell.h; path = ../CHLPaperCollectionCell.h; sourceTree = "<group>"; };
 		AD6325671ABB73EF00DD8F0D /* CHLPaperCollectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CHLPaperCollectionCell.m; path = ../CHLPaperCollectionCell.m; sourceTree = "<group>"; };
 		AD6325681ABB73EF00DD8F0D /* CHLPaperCollectionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CHLPaperCollectionCell.xib; path = ../CHLPaperCollectionCell.xib; sourceTree = "<group>"; };
@@ -1078,6 +1081,8 @@
 			isa = PBXGroup;
 			children = (
 				021111DE1A4369C5001690DA /* Chill.entitlements */,
+				AD3D49381C8F686D00F42268 /* NSArray+SameStrings.h */,
+				AD3D49391C8F686D00F42268 /* NSArray+SameStrings.m */,
 				E6726EA919570CBF00DEADF9 /* UIColor+ChillColors.h */,
 				E6726EAA19570CBF00DEADF9 /* UIColor+ChillColors.m */,
 			);
@@ -1793,6 +1798,7 @@
 				060F06951BFB9E750030B11B /* UIViewController+KeyboardAnimation.m in Sources */,
 				02B8F8621A62BEDC0068F3D5 /* MPTransition.m in Sources */,
 				E6C7C1DD191A1B230071D83F /* main.m in Sources */,
+				AD3D493A1C8F686D00F42268 /* NSArray+SameStrings.m in Sources */,
 				025B2B571A1A677600857E83 /* APPROVEDViewController.m in Sources */,
 				067689C11C43E45B00A89735 /* CHLDisplayPhotoViewController.m in Sources */,
 				0629B2D91C41591C0038F2D0 /* ASServerManager.m in Sources */,

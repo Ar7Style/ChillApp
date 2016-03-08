@@ -45,11 +45,14 @@
 #import "UIViewController+KeyboardAnimation.h"
 #import "CHLShareMoreViewController.h"
 #import "CHLIphoneWCManager.h"
+#import "NSArray+SameStrings.h"
 
 
 @interface ButtonToShare1 : UIButton
+
 @property (weak, nonatomic) NSArray *jsonArray;
 @property (nonatomic, strong) NSString *typeOfIcon;
+
 @end
 
 @implementation ButtonToShare1
@@ -64,7 +67,9 @@
 }
 
 
-
+@property (nonatomic) BOOL iconsAreSet;
+@property(nonatomic, strong) NSMutableArray *icons;
+@property(nonatomic, strong) NSMutableArray *iconNames;
 @property (strong, nonatomic) IBOutletCollection(ButtonToShare1) NSArray *buttonsToShare;
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *constraintBottom;
@@ -142,7 +147,6 @@ NSInteger defaultValue = 10;
 }
 
 -(void) getUserIconsFromServer {
-    
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.responseSerializer = [AFJSONResponseSerializer serializer];
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
@@ -151,16 +155,29 @@ NSInteger defaultValue = 10;
     [manager GET:[NSString stringWithFormat:@"http://api.iamchill.co/v2/icons/user/id_user/%@",[NSUserDefaults userID]] parameters:nil success:^(NSURLSessionTask *task, id responseObject) {
         if ([[responseObject objectForKey:@"status"] isEqualToString:@"success"]) {
             json = [responseObject objectForKey:@"response"];
-            NSMutableArray *favoriteNames = [[NSMutableArray alloc] init];
-            
+            NSUserDefaults *userCache = [[NSUserDefaults standardUserDefaults] initWithSuiteName:@"group.co.getchill.chill"];
+            NSArray *oldFavoritesNames = [userCache arrayForKey:@"FavoritesArray"];
+            NSMutableArray *newFavoriteNames = [[NSMutableArray alloc] init];
             for (int i=0; i<json.count; ++i) {
-                [_buttonsToShare[i] setImageForState:UIControlStateNormal withURL:[NSURL URLWithString:[json[i] valueForKey:@"size66"]]];
-                ButtonToShare1 *buttonToShare = _buttonsToShare[i];
-                [favoriteNames addObject:[NSString stringWithFormat:@"%@",[json[i] valueForKey:@"name"]]];
-                buttonToShare.typeOfIcon = [NSString stringWithFormat:@"%@",[json[i] valueForKey:@"name"]];
-                [_buttonsToShare[i] addTarget:self action:@selector(sendIcon:) forControlEvents:UIControlEventTouchUpInside];
+                [newFavoriteNames addObject:[NSString stringWithFormat:@"%@",[json[i] valueForKey:@"name"]]];
             }
-            [[CHLIphoneWCManager sharedManager] sendFavoriteIconsNames:favoriteNames];
+            if ([newFavoriteNames sameStrings:oldFavoritesNames] && self.iconsAreSet) {
+                return;
+            }
+            [[CHLIphoneWCManager sharedManager] sendFavoriteIconsNames:newFavoriteNames];
+            for (int i=0; i<json.count; ++i) {
+                NSString *imageName = [NSString stringWithFormat:@"%@",[json[i] valueForKey:@"name"]];
+                NSURL *imageURL = [NSURL URLWithString:[json[i] valueForKey:@"size66"]];
+                [[[NSURLSession sharedSession] dataTaskWithURL:imageURL completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+                    [self saveImageData:data withName:imageName];
+                    dispatch_sync(dispatch_get_main_queue(), ^{
+                        [_buttonsToShare[i] setImage:[UIImage imageWithData:data] forState:UIControlStateNormal];
+                        ButtonToShare1 *buttonToShare = _buttonsToShare[i];
+                        buttonToShare.typeOfIcon = imageName;
+                        [_buttonsToShare[i] addTarget:self action:@selector(sendIcon:) forControlEvents:UIControlEventTouchUpInside];
+                    });
+                }] resume];
+            }
             NSLog(@"JSON FROM LOAD DATA: %@", json);
         }
     } failure:^(NSURLSessionTask *operation, NSError *error) {
@@ -175,33 +192,21 @@ NSInteger defaultValue = 10;
     NSLog(@"%@ was send!", sender.typeOfIcon);
 }
 
+- (void)saveImageData:(NSData *)imageData withName:(NSString *)name {
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    NSString *savedImagePath = [documentsDirectory stringByAppendingPathComponent:name];
+    [imageData writeToFile:savedImagePath atomically:NO];
+}
 
 -(void)dismissKeyboard {
     [_shareText resignFirstResponder];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
-    //    NSUserDefaults *cacheSpec = [NSUserDefaults standardUserDefaults];
-    //    if ([cacheSpec boolForKey:@"gotToShareFromHA"]) {
-    //        [cacheSpec setBool:NO forKey:@"gotToShareFromHA"];
-    //        _userIdTo = (long)[cacheSpec valueForKey:@"friendUserID"];
-    //        _nameUser = [cacheSpec valueForKey:@"nickName"];
-    //    }
-    
     if (CLLocationManager.authorizationStatus == kCLAuthorizationStatusNotDetermined) {
         [_locationManager requestWhenInUseAuthorization];
     }
-    
-    //    if([[UIDevice currentDevice]userInterfaceIdiom]==UIUserInterfaceIdiomPhone)
-    //    {
-    //        if ([[UIScreen mainScreen] bounds].size.height <= 568) // <= iphone 5
-    //        {
-    //            NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
-    //            [center addObserver:self selector:@selector(willShowKeyboard) name:UIKeyboardDidShowNotification object:nil];
-    //            [center addObserver:self selector:@selector(willHideKeyboard) name:UIKeyboardWillHideNotification object:nil];
-    //        }
-    //
-    //    }
     
     [super viewDidAppear:animated];
     
@@ -210,14 +215,50 @@ NSInteger defaultValue = 10;
     [tracker send:[[GAIDictionaryBuilder createAppView] build]];
 }
 
+- (void)setupWithStoredIcons {
+    if ([self fetchAllIconsFromStorage]) {
+        self.iconsAreSet = YES;
+        for (int i = 0; i < self.icons.count; i++) {
+            ButtonToShare1 *button = _buttonsToShare[i];
+            [button setImage:self.icons[i] forState:UIControlStateNormal];
+            button.typeOfIcon = self.iconNames[i];
+            [button addTarget:self action:@selector(sendIcon:) forControlEvents:UIControlEventTouchUpInside];
+        }
+    }
+}
+
+- (UIImage *)fetchImageWithName:(NSString *)name {
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    NSString *savedImagePath = [documentsDirectory stringByAppendingPathComponent:name];
+    NSData *pngData = [NSData dataWithContentsOfFile:savedImagePath];
+    return [UIImage imageWithData:pngData];
+}
+
+- (BOOL)fetchAllIconsFromStorage {
+    NSUserDefaults *userCache = [[NSUserDefaults standardUserDefaults] initWithSuiteName:@"group.co.getchill.chill"];
+    NSArray *favorites = [userCache objectForKey:@"FavoritesArray"];
+    if (favorites != nil) {
+        NSMutableArray *images = [[NSMutableArray alloc] init];
+        for (NSString *name in favorites) {
+            UIImage *image = [self fetchImageWithName:name];
+            if (image != nil) {
+                [images addObject:image];
+            }
+        }
+        if (images.count == favorites.count) {
+            self.icons = images;
+            self.iconNames = [favorites mutableCopy];
+            return YES;
+        }
+    }
+    return NO;
+}
+            
+            
 -(void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    //    NSUserDefaults *cacheSpec = [NSUserDefaults standardUserDefaults];
-    //    if ([cacheSpec boolForKey:@"gotToShareFromHA"]) {
-    //        [cacheSpec setBool:NO forKey:@"gotToShareFromHA"];
-    //        _userIdTo = (long)[cacheSpec valueForKey:@"friendUserID"];
-    //        _nameUser = [cacheSpec valueForKey:@"nickName"];
-    //    }
+    [self setupWithStoredIcons];
     if ([self isInternetConnection]) {
         ANDispatchBlockToBackgroundQueue(^{
             [self getUserIconsFromServer];
@@ -257,7 +298,6 @@ NSInteger defaultValue = 10;
 }
 
 -(void)didTapAnywhere: (UITapGestureRecognizer*) recognizer {
-    //[self.emailField resignFirstResponder];
     [self.shareText resignFirstResponder];
 }
 
