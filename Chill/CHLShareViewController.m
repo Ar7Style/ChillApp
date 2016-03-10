@@ -173,7 +173,7 @@ NSInteger defaultValue = 10;
                 [[[NSURLSession sharedSession] dataTaskWithURL:imageURL completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
                     [self saveImageData:data withName:imageName];
                     dispatch_sync(dispatch_get_main_queue(), ^{
-                        [_buttonsToShare[i] setImage:[UIImage imageWithData:data scale:[UIScreen mainScreen].scale] forState:UIControlStateNormal];
+                        [_buttonsToShare[i] setImage:[UIImage imageWithData:data scale:2.0] forState:UIControlStateNormal];
                         ButtonToShare1 *buttonToShare = _buttonsToShare[i];
                         buttonToShare.typeOfIcon = imageName;
                         [_buttonsToShare[i] addTarget:self action:@selector(sendIcon:) forControlEvents:UIControlEventTouchUpInside];
@@ -236,7 +236,7 @@ NSInteger defaultValue = 10;
     NSString *documentsDirectory = [paths objectAtIndex:0];
     NSString *savedImagePath = [documentsDirectory stringByAppendingPathComponent:name];
     NSData *pngData = [NSData dataWithContentsOfFile:savedImagePath];
-    return [UIImage imageWithData:pngData scale:[UIScreen mainScreen].scale];
+    return [UIImage imageWithData:pngData scale:2.0];
 }
 
 - (BOOL)fetchAllIconsFromStorage {

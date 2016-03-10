@@ -131,10 +131,13 @@ NSMutableData *mutData;
             return CGSizeMake(90, 90);
         }
         else {
-            return CGSizeMake(60, 75);
+            if ([[UIScreen mainScreen] bounds].size.height <= 568) {
+                return CGSizeMake(65, 75);
+            }
+            return CGSizeMake(68, 75);
         }
     }
-    return CGSizeMake(60, 75);
+    return CGSizeMake(65, 75);
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
@@ -310,7 +313,7 @@ totalBytesExpectedToWrite:(NSInteger)totalBytesExpectedToWrite {
     NSString *documentsDirectory = [paths objectAtIndex:0];
     NSString *savedImagePath = [documentsDirectory stringByAppendingPathComponent:name];
     NSData *pngData = [NSData dataWithContentsOfFile:savedImagePath];
-    return [UIImage imageWithData:pngData scale:[UIScreen mainScreen].scale];
+    return [UIImage imageWithData:pngData scale:2.0];
 }
 
 @end
