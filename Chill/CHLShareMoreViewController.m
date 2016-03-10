@@ -159,7 +159,7 @@ NSMutableData *mutData;
         __weak CHLShareMoreViewController *weakSelf = self;
         NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:model.imageSize66]];
         [weakImageView setImageWithURLRequest:request
-                             placeholderImage:[UIImage imageNamed:@"W2HfHxEVad8"]
+                             placeholderImage:[UIImage imageNamed:@"iconPlaceholder"]
                                       success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
                                           [weakSelf saveImage:image withName:iconName];
                                           weakSelf.activityIndicatorView.hidden = YES;

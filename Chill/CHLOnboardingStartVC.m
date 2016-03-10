@@ -134,7 +134,7 @@
     
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:model.imageSize66]];
     [weakImageView setImageWithURLRequest:request
-                         placeholderImage:[UIImage imageNamed:@"W2HfHxEVad8"]
+                         placeholderImage:[UIImage imageNamed:@"iconPlaceholder"]
                                   success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
                                       
                                       weakImageView.image = image;

@@ -137,6 +137,7 @@
     return CGSizeMake(65, 75);
 }
 
+
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     
     static NSString *identifier = @"ASImageCell";
@@ -152,7 +153,7 @@
     
      NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:model.imageSize66]];
     [weakImageView setImageWithURLRequest:request
-                         placeholderImage:[UIImage imageNamed:@"W2HfHxEVad8"]
+                         placeholderImage:[UIImage imageNamed:@"iconPlaceholder"]
                                   success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
                                       
                                       weakImageView.image = image;
