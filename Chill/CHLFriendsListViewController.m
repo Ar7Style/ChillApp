@@ -233,9 +233,11 @@ NSMutableData *mutData;
         cell.shieldik2.hidden = NO;
         if (![[jsonData valueForKey:@"read"] isKindOfClass:[NSNull class]]) {
             if ([[jsonData valueForKey:@"read"] isEqualToString:@"0"] && !cell.type.subviews.firstObject) {
-                
-                [cell.type setImageWithURL:[NSURL URLWithString:[json[indexPath.row] valueForKey:@"size42"]]]; 
-
+                [[[NSURLSession sharedSession] dataTaskWithURL:[NSURL URLWithString:[json[indexPath.row] valueForKey:@"size42"]] completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+                    dispatch_sync(dispatch_get_main_queue(), ^{
+                        [cell.type setImage:[UIImage imageWithData:data scale:2.0]];
+                    });
+                }] resume];
             }
             
             else {
