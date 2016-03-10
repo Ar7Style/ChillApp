@@ -25,6 +25,7 @@
 
 @interface CHLShareMoreViewController () <UIScrollViewDelegate,UICollectionViewDataSource,UICollectionViewDelegate>
 
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicatorView;
 @property (weak, nonatomic) IBOutlet UITextField *hashtagTextField;
 @property (weak, nonatomic) IBOutlet UILabel *characktersCounterLabel;
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
@@ -49,7 +50,6 @@ NSMutableData *mutData;
 }
 
 - (void)viewDidLoad {
-    
     [self.navigationController.navigationBar setTintColor:[UIColor chillMintColor]];
     self.characktersCounterLabel.textColor = [UIColor chillMintColor];
     [self setupCollectionView];
@@ -60,19 +60,12 @@ NSMutableData *mutData;
         });
     }
     [super viewDidLoad];
+    [self.activityIndicatorView startAnimating];
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self
                                                                           action:@selector(dismissKeyboard)];
     tap.cancelsTouchesInView = NO;
     [self.view addGestureRecognizer:tap];
 
-}
-
-
--(void)viewDidAppear:(BOOL)animated {
-   // [super viewDidAppear:animated];
-}
--(void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
 }
 
 -(void)didTapAnywhere: (UITapGestureRecognizer*) recognizer {
@@ -150,22 +143,30 @@ NSMutableData *mutData;
     
     ASImageCell*  cell = (ASImageCell*) [collectionView dequeueReusableCellWithReuseIdentifier:identifier forIndexPath:indexPath];
     ASImageModel* model = self.arrayAllIcon[indexPath.row];
-    
+    NSString *iconName = model.imageName;
     cell.backgroundColor = [UIColor whiteColor];
-    
-    __weak UIImageView *weakImageView = cell.imgView;
-    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:model.imageSize66]];
-    [weakImageView setImageWithURLRequest:request
-                         placeholderImage:[UIImage imageNamed:@"W2HfHxEVad8"]
-                                  success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
-                                      
-                                      weakImageView.image = image;
-                                      weakImageView.image = [image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-                                      [weakImageView setTintColor:[UIColor chillMintColor]];
-                                      
-                                  } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
-                                      NSLog(@"Request failed with error: %@", error);
-                                  }];
+    UIImage *cachedImage = [self fetchImageWithName:iconName];
+    if (cachedImage != nil) {
+        cell.imgView.image = [cachedImage imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+        [cell.imgView setTintColor:[UIColor chillMintColor]];
+        self.activityIndicatorView.hidden = YES;
+    }
+    else {
+        __weak UIImageView *weakImageView = cell.imgView;
+        __weak CHLShareMoreViewController *weakSelf = self;
+        NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:model.imageSize66]];
+        [weakImageView setImageWithURLRequest:request
+                             placeholderImage:[UIImage imageNamed:@"W2HfHxEVad8"]
+                                      success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
+                                          [weakSelf saveImage:image withName:iconName];
+                                          weakSelf.activityIndicatorView.hidden = YES;
+                                          weakImageView.image = [image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+                                          [weakImageView setTintColor:[UIColor chillMintColor]];
+                                          
+                                      } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
+                                          NSLog(@"Request failed with error: %@", error);
+                                      }];
+    }
     
     return cell;
 }
@@ -293,6 +294,23 @@ totalBytesExpectedToWrite:(NSInteger)totalBytesExpectedToWrite {
 -(void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
 {
     [mutData appendData:data];
+}
+
+#pragma mark - Icons caching
+
+- (void)saveImage:(UIImage *)image withName:(NSString *)name {
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    NSString *savedImagePath = [documentsDirectory stringByAppendingPathComponent:name];
+    [UIImagePNGRepresentation(image) writeToFile:savedImagePath atomically:NO];
+}
+
+- (UIImage *)fetchImageWithName:(NSString *)name {
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    NSString *savedImagePath = [documentsDirectory stringByAppendingPathComponent:name];
+    NSData *pngData = [NSData dataWithContentsOfFile:savedImagePath];
+    return [UIImage imageWithData:pngData scale:[UIScreen mainScreen].scale];
 }
 
 @end

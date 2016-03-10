@@ -67,6 +67,7 @@
 }
 
 
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
 @property (nonatomic) BOOL iconsAreSet;
 @property(nonatomic, strong) NSMutableArray *icons;
 @property(nonatomic, strong) NSMutableArray *iconNames;
@@ -103,6 +104,7 @@ NSInteger defaultValue = 10;
         self.navigationItem.leftBarButtonItem = backButton;
         
     }
+    [self.activityIndicator startAnimating];
     _locationManager = [[CLLocationManager alloc] init];
     self.title = _nameUser;
     _counter.textColor = [UIColor chillMintColor];
@@ -171,10 +173,11 @@ NSInteger defaultValue = 10;
                 [[[NSURLSession sharedSession] dataTaskWithURL:imageURL completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
                     [self saveImageData:data withName:imageName];
                     dispatch_sync(dispatch_get_main_queue(), ^{
-                        [_buttonsToShare[i] setImage:[UIImage imageWithData:data] forState:UIControlStateNormal];
+                        [_buttonsToShare[i] setImage:[UIImage imageWithData:data scale:[UIScreen mainScreen].scale] forState:UIControlStateNormal];
                         ButtonToShare1 *buttonToShare = _buttonsToShare[i];
                         buttonToShare.typeOfIcon = imageName;
                         [_buttonsToShare[i] addTarget:self action:@selector(sendIcon:) forControlEvents:UIControlEventTouchUpInside];
+                        [_activityIndicator setHidden:YES];
                     });
                 }] resume];
             }
@@ -223,6 +226,7 @@ NSInteger defaultValue = 10;
             [button setImage:self.icons[i] forState:UIControlStateNormal];
             button.typeOfIcon = self.iconNames[i];
             [button addTarget:self action:@selector(sendIcon:) forControlEvents:UIControlEventTouchUpInside];
+            [_activityIndicator setHidden:YES];
         }
     }
 }
@@ -232,7 +236,7 @@ NSInteger defaultValue = 10;
     NSString *documentsDirectory = [paths objectAtIndex:0];
     NSString *savedImagePath = [documentsDirectory stringByAppendingPathComponent:name];
     NSData *pngData = [NSData dataWithContentsOfFile:savedImagePath];
-    return [UIImage imageWithData:pngData];
+    return [UIImage imageWithData:pngData scale:[UIScreen mainScreen].scale];
 }
 
 - (BOOL)fetchAllIconsFromStorage {
@@ -565,31 +569,6 @@ NSInteger defaultValue = 10;
                                                            label:nil
                                                            value:nil] build]];
     [tracker set:kGAIScreenName value:nil];
-}
-
-- (IBAction)clockButtonTapped:(id)sender {
-    [self shareIconOfType:@"clock"];
-    self.sendedContentType = @"🕒";
-}
-- (IBAction)drinkButtonTapped:(id)sender {
-    [self shareIconOfType:@"beer"];
-    self.sendedContentType = @"🍺";
-}
-- (IBAction)sodaButtonTapped:(id)sender {
-    [self shareIconOfType:@"coffee"];
-    self.sendedContentType = @"☕️";
-}
-- (IBAction)questionButtonTapped:(id)sender {
-    [self shareIconOfType:@"question"];
-    self.sendedContentType = @"❔";
-}
-- (IBAction)chillButtonTapped:(id)sender {
-    [self shareIconOfType:@"logo"];
-    self.sendedContentType = @"✌️";
-}
-- (IBAction)rocketButtonTapped:(id)sender {
-    [self shareIconOfType:@"rocket"];
-    self.sendedContentType = @"🚀";
 }
 
 - (void)connection:(NSURLConnection *)connection
