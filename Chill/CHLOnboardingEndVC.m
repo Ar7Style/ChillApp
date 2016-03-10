@@ -111,17 +111,14 @@
         {
             return CGSizeMake(90, 90);
         }
-        else if ([[UIScreen mainScreen] bounds].size.height == 568) // == iphone 5
-        {
-            return CGSizeMake(60, 70);
-            NSLog(@"was here");
-        }
-        
         else {
-            return CGSizeMake(90, 70);
+            if ([[UIScreen mainScreen] bounds].size.height <= 568) {
+                return CGSizeMake(65, 75);
+            }
+            return CGSizeMake(68, 75);
         }
     }
-    return CGSizeMake(90, 70);
+    return CGSizeMake(65, 75);
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
