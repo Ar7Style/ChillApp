@@ -1032,7 +1032,7 @@ communication experience</string>
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ASImageCell" id="h4G-xm-ooe" customClass="ASImageCell">
-                                        <rect key="frame" x="32.5" y="0.0" width="123" height="123"/>
+                                        <rect key="frame" x="47.5" y="0.0" width="123" height="123"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="123" height="123"/>
@@ -2716,7 +2716,7 @@ communication experience</string>
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ASImageCell" id="E3F-N4-7w5" customClass="ASImageCell">
-                                        <rect key="frame" x="54.5" y="0.0" width="123" height="123"/>
+                                        <rect key="frame" x="47.5" y="0.0" width="123" height="123"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="123" height="123"/>
