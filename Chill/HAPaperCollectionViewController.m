@@ -265,6 +265,7 @@
                 for (int i=0; i<json.count; ++i) {
                     UILabel* textLabel = (UILabel *)[cell viewWithTag:i+1];
                     [cell.buttonsToShow[i] setImageForState:UIControlStateNormal withURL:[NSURL URLWithString:[json[i] valueForKey:@"size66"]]];
+                    
                     [cell.buttonsToShow[i] setHidden:NO];
                     if ([[json[i] valueForKey:@"type"] isEqualToString:@"location"]) {
                         ButtonToShow* myButton = cell.buttonsToShow[i];

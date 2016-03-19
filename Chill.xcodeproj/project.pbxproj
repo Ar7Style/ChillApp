@@ -117,6 +117,7 @@
 		06B7663A1B7F7F2C00B25396 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 06B766391B7F7F2C00B25396 /* FBSDKCoreKit.framework */; };
 		06B7663C1B7F7F3300B25396 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 06B7663B1B7F7F3300B25396 /* FBSDKLoginKit.framework */; };
 		06B7663E1B7F7F3900B25396 /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 06B7663D1B7F7F3900B25396 /* FBSDKShareKit.framework */; };
+		06C972B31C9610FB009A73F3 /* RKDropdownAlert.m in Sources */ = {isa = PBXBuildFile; fileRef = 06C972B21C9610FB009A73F3 /* RKDropdownAlert.m */; };
 		06E5E7DC1B5BD09A00BBA563 /* settings.png in Resources */ = {isa = PBXBuildFile; fileRef = 06E5E7DB1B5BD09A00BBA563 /* settings.png */; };
 		06EAB9591AA7AE6300149DF2 /* Chill_logo_hand.png in Resources */ = {isa = PBXBuildFile; fileRef = 06EAB9551AA7AE6300149DF2 /* Chill_logo_hand.png */; };
 		06F3318D1B721A710064BD1C /* CHLInviteFromAddressBookViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 06F3318C1B721A710064BD1C /* CHLInviteFromAddressBookViewController.m */; };
@@ -401,6 +402,8 @@
 		06B7663B1B7F7F3300B25396 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
 		06B7663D1B7F7F3900B25396 /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKShareKit.framework; sourceTree = "<group>"; };
 		06BBD48E1AB88DB5003E2B1D /* TurnLeft.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = TurnLeft.caf; sourceTree = "<group>"; };
+		06C972B11C9610FB009A73F3 /* RKDropdownAlert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RKDropdownAlert.h; sourceTree = "<group>"; };
+		06C972B21C9610FB009A73F3 /* RKDropdownAlert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RKDropdownAlert.m; sourceTree = "<group>"; };
 		06E5E7DB1B5BD09A00BBA563 /* settings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = settings.png; sourceTree = "<group>"; };
 		06EAB9551AA7AE6300149DF2 /* Chill_logo_hand.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Chill_logo_hand.png; sourceTree = SOURCE_ROOT; };
 		06F3318B1B721A710064BD1C /* CHLInviteFromAddressBookViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHLInviteFromAddressBookViewController.h; sourceTree = "<group>"; };
@@ -851,6 +854,8 @@
 			isa = PBXGroup;
 			children = (
 				06EAB9551AA7AE6300149DF2 /* Chill_logo_hand.png */,
+				06C972B11C9610FB009A73F3 /* RKDropdownAlert.h */,
+				06C972B21C9610FB009A73F3 /* RKDropdownAlert.m */,
 				E6DB66C11956FC2300D30E85 /* View */,
 				E6C7C205191A1B740071D83F /* CHLFriendsListViewController.h */,
 				E6C7C206191A1B740071D83F /* CHLFriendsListViewController.m */,
@@ -1469,6 +1474,7 @@
 				021F00CC1A3CD7D7000A83D2 /* CHLSearchViewController.m in Sources */,
 				020B35741A1E402C00DC2F23 /* JSONLoader.m in Sources */,
 				020B35791A1E402C00DC2F23 /* UIScrollView+SVInfiniteScrolling.m in Sources */,
+				06C972B31C9610FB009A73F3 /* RKDropdownAlert.m in Sources */,
 				AD8417801A911D820078F57A /* CHLTutorialViewController.m in Sources */,
 				E6DB66B71956F49A00D30E85 /* MCSwipeTableViewCell.m in Sources */,
 				ADA195251C8022DA008DFD3B /* CHLLocationShareManager.m in Sources */,

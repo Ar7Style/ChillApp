@@ -25,6 +25,8 @@
 
 #import "SCLAlertView.h"
 
+#import "RKDropdownAlert.h"
+
 #define UIColorFromRGBA(rgbValue,a) [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:a]
 #define UIColorFromRGB(rgbValue) \
 [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 \
@@ -114,8 +116,9 @@ NSMutableData *mutData;
 }
 
 - (void) errorShow: (NSString*)message {
-    SCLAlertView* alert = [[SCLAlertView alloc] init];
-    [alert showError:self.parentViewController title:@"Oups" subTitle:message closeButtonTitle:@"OK" duration:0.0f];
+    //SCLAlertView* alert = [[SCLAlertView alloc] init];
+    //[alert showError:self.parentViewController title:@"Oups" subTitle:message closeButtonTitle:@"OK" duration:0.0f];
+    [RKDropdownAlert title:@"Oups" message:message backgroundColor:[UIColor colorWithRed:0.66 green:0.66 blue:0.66 alpha:0.96] textColor:[UIColor whiteColor] time:4];
 }
 
 - (void) loadJSON {
