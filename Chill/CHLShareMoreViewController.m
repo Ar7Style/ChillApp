@@ -22,6 +22,7 @@
 #import "UserCache.h"
 #import "UIColor+ChillColors.h"
 #import "LLACircularProgressView.h"
+#import "HAPaperCollectionViewController.h"
 
 @interface CHLShareMoreViewController () <UIScrollViewDelegate,UICollectionViewDataSource,UICollectionViewDelegate>
 
@@ -226,7 +227,17 @@ NSMutableData *mutData;
 
 - (void)shareIconWithType:(NSString *)iconType
 {
-    [self.navigationController popToRootViewControllerAnimated:YES];
+    NSUserDefaults *cacheSpec = [NSUserDefaults standardUserDefaults];
+    if ([cacheSpec boolForKey:@"gotToShareFromHA"]) {
+        [cacheSpec setBool:NO forKey:@"gotToShareFromHA"];
+        HAPaperCollectionViewController *presentingVC = (HAPaperCollectionViewController *)self.presentingViewController;
+        [self dismissViewControllerAnimated:YES completion:^{
+            [presentingVC dismissPaperCollection:nil];
+        }];
+    }
+    else {
+        [self.navigationController popToRootViewControllerAnimated:YES];
+    }
     
     if ([self.characktersCounterLabel.text integerValue] < 0) {
         [self showError:@"You can only send 10 symbols"];

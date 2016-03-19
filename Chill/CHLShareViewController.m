@@ -45,6 +45,7 @@
 #import "UIViewController+KeyboardAnimation.h"
 #import "CHLShareMoreViewController.h"
 #import "CHLIphoneWCManager.h"
+#import "HAPaperCollectionViewController.h"
 #import "NSArray+SameStrings.h"
 
 
@@ -555,7 +556,10 @@ NSInteger defaultValue = 10;
         if ([cacheSpec boolForKey:@"gotToShareFromHA"]) {
             [cacheSpec setBool:NO forKey:@"gotToShareFromHA"];
             NSLog(@"11");
-            [self dismissViewControllerAnimated:YES completion:nil];
+            HAPaperCollectionViewController *presentingVC = (HAPaperCollectionViewController *)self.presentingViewController;
+            [self dismissViewControllerAnimated:YES completion:^{
+                [presentingVC dismissPaperCollection:nil];
+            }];
         }else {
             NSLog(@"22");
             [(UINavigationController *)self.parentViewController popToRootViewControllerAnimated:YES];

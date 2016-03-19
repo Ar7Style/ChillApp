@@ -135,11 +135,11 @@
     [transitionManager finishInteractiveTransitionWithDuration:0.4];
 }
 
-- (void)pan:(UIPanGestureRecognizer *)recognizer{
+- (void)pan:(UIPanGestureRecognizer *)recognizer {
     CGPoint velocity = [recognizer velocityInView:self.view];
     
-    if (velocity.y){   // panning down
-        if (recognizer.state==UIGestureRecognizerStateBegan){
+    if (velocity.y) {   // panning down
+        if (recognizer.state==UIGestureRecognizerStateBegan) {
             [self dismissViewControllerAnimated:YES completion:NULL];
             [recognizer setTranslation:CGPointZero inView:self.view.superview];
             [transitionManager updateInteractiveTransition:0];
@@ -264,7 +264,11 @@
                 
                 for (int i=0; i<json.count; ++i) {
                     UILabel* textLabel = (UILabel *)[cell viewWithTag:i+1];
-                    [cell.buttonsToShow[i] setImageForState:UIControlStateNormal withURL:[NSURL URLWithString:[json[i] valueForKey:@"size66"]]];
+                    [[[NSURLSession sharedSession] dataTaskWithURL:[NSURL URLWithString:[json[i] valueForKey:@"size66"]] completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+                        dispatch_sync(dispatch_get_main_queue(), ^{
+                            [cell.buttonsToShow[i] setImage:[UIImage imageWithData:data scale:2.0] forState:UIControlStateNormal];
+                        });
+                    }] resume];
                     [cell.buttonsToShow[i] setHidden:NO];
                     if ([[json[i] valueForKey:@"type"] isEqualToString:@"location"]) {
                         ButtonToShow* myButton = cell.buttonsToShow[i];
@@ -330,17 +334,16 @@
 
 -(void)goToShareVC:(id)sender {
     NSLog(@"gotoshareVC %@", self.nickName);
-    CHLShareViewController* svc = [[CHLShareViewController alloc] init];
-    svc.userIdTo = (long)_friendUserID;
-    svc.nameUser = self.nickName; 
-    NSLog(@"LOGIN: %@ IDUSER: %ld", svc.nameUser, (long)svc.userIdTo);
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     NSUserDefaults *cacheSpec = [NSUserDefaults standardUserDefaults];
     [cacheSpec setBool:YES forKey:@"gotToShareFromHA"];
     [cacheSpec setValue:self.nickName forKey:@"nickName"];
     [cacheSpec setValue:[NSString stringWithFormat:@"%li",(long)_friendUserID] forKey:@"friendUserID"];
-    UIViewController *shareViewController = (UIViewController *)[storyboard  instantiateViewControllerWithIdentifier:@"shareViewController1"];
-    [self presentViewController:shareViewController animated:YES completion:nil];
+    UINavigationController *navigationViewController = (UINavigationController *)[storyboard  instantiateViewControllerWithIdentifier:@"shareViewController1"];
+    CHLShareViewController *shareViewController = (CHLShareViewController *)navigationViewController.topViewController;
+    shareViewController.userIdTo = (long)_friendUserID;
+    shareViewController.nameUser = self.nickName;
+    [self presentViewController:navigationViewController animated:YES completion:nil];
 }
 
 -(void) displayMap:(ButtonToShow *)sender {
