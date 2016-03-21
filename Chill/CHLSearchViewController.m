@@ -68,6 +68,8 @@ NSMutableData *mutData;
     self.searchModeUsers = NO;
     [self switchSearch];
     
+
+    
     //self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName: [UIColor whiteColor]};
     self.navigationController.view.clipsToBounds=YES;
     self.tableView.tableFooterView = [UIView new];

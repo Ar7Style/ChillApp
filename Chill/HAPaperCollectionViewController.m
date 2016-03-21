@@ -264,7 +264,12 @@
                 
                 for (int i=0; i<json.count; ++i) {
                     UILabel* textLabel = (UILabel *)[cell viewWithTag:i+1];
-                    [cell.buttonsToShow[i] setImageForState:UIControlStateNormal withURL:[NSURL URLWithString:[json[i] valueForKey:@"size66"]]];
+                    
+                    [[[NSURLSession sharedSession] dataTaskWithURL:[NSURL URLWithString:[json[i] valueForKey:@"size66"]] completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+                                                dispatch_sync(dispatch_get_main_queue(), ^{
+                                                        [cell.buttonsToShow[i] setImage:[UIImage imageWithData:data scale:2.0] forState:UIControlStateNormal];
+                                                    });
+                                            }] resume];
                     
                     [cell.buttonsToShow[i] setHidden:NO];
                     if ([[json[i] valueForKey:@"type"] isEqualToString:@"location"]) {

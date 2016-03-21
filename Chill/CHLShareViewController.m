@@ -25,6 +25,7 @@
 #import "ANHelperFunctions.h"
 #import "ASServerManager.h"
 #import "SCLAlertView.h"
+#import "RKDropdownAlert.h"
 #import "UIImage+imageWithColor.h"
 
 #import <SystemConfiguration/SystemConfiguration.h>
@@ -83,6 +84,8 @@
 @end
 
 NSMutableData *mutData;
+NSMutableData *mutDataFN;
+
 
 @implementation CHLShareViewController
 //CLLocationManager *locationManager;
@@ -141,8 +144,9 @@ NSInteger defaultValue = 10;
         NSLog(@"There IS NO internet connection");
         
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            SCLAlertView* alert = [[SCLAlertView alloc] init];
-            [alert showError:self.parentViewController title:@"Oups" subTitle:@"Please, check your internet connection" closeButtonTitle:@"OK" duration:0.0f];
+//            SCLAlertView* alert = [[SCLAlertView alloc] init];
+//            [alert showError:self.parentViewController title:@"Oups" subTitle:@"Please, check your internet connection" closeButtonTitle:@"OK" duration:0.0f];
+            [RKDropdownAlert title:@"No internet" message:@"" backgroundColor:[UIColor colorWithRed:0.66 green:0.66 blue:0.66 alpha:0.96] textColor:[UIColor whiteColor] time:4];
         });
         return NO;
     }
@@ -185,8 +189,9 @@ NSInteger defaultValue = 10;
             NSLog(@"JSON FROM LOAD DATA: %@", json);
         }
     } failure:^(NSURLSessionTask *operation, NSError *error) {
-        SCLAlertView* alert = [[SCLAlertView alloc] init];
-        [alert showError:self.parentViewController title:@"Oups" subTitle:@"Please, check your internet connection" closeButtonTitle:@"OK" duration:0.0f];
+//        SCLAlertView* alert = [[SCLAlertView alloc] init];
+//        [alert showError:self.parentViewController title:@"Oups" subTitle:@"Please, check your internet connection" closeButtonTitle:@"OK" duration:0.0f];
+        [RKDropdownAlert title:@"No internet" message:@"" backgroundColor:[UIColor colorWithRed:0.66 green:0.66 blue:0.66 alpha:0.96] textColor:[UIColor whiteColor] time:4];
         NSLog(@"Error from load data: %@", error);
     }];
 }
@@ -412,7 +417,7 @@ NSInteger defaultValue = 10;
         }else {
             [(UINavigationController *)self.parentViewController popToRootViewControllerAnimated:YES];
         }
-        [_locationManager stopUpdatingLocation];
+       // [_locationManager stopUpdatingLocation];
     }
 }
 
@@ -469,15 +474,34 @@ NSInteger defaultValue = 10;
     
     [request setHTTPBody:[postString
                           dataUsingEncoding:NSUTF8StringEncoding]];
-    //[_locationManager stopUpdatingLocation];
+    [_locationManager stopUpdatingLocation];
     NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
     if (connection) {
         mutData = [NSMutableData data];
     }
+    
+    NSMutableURLRequest *requestFN =
+    [[NSMutableURLRequest alloc] initWithURL:
+     [NSURL URLWithString:@"http://api.iamchill.co/v3/notifications/index/"]];
+    [requestFN setValue:[[NSUserDefaults standardUserDefaults] valueForKey:@"token"] forHTTPHeaderField:@"X-API-TOKEN"];
+    [requestFN setValue:@"76eb29d3ca26fe805545812850e6d75af933214a" forHTTPHeaderField:@"X-API-KEY"];
+    
+    
+    [requestFN setHTTPMethod:@"POST"];
+    NSString *postStringFN = [NSString stringWithFormat:@"id_contact=%ld&id_user=%@&type=location",(long)_userIdTo,[userCache valueForKey:@"id_user"]];
+    [requestFN setHTTPBody:[postStringFN
+                            dataUsingEncoding:NSUTF8StringEncoding]];
+    //[_locationManager stopUpdatingLocation];
+    NSURLConnection *connectionFN = [[NSURLConnection alloc] initWithRequest:requestFN delegate:self];
+    if (connectionFN) {
+        mutDataFN = [NSMutableData data];
+    }
+
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
+    
     //    NSUserDefaults *userCache = [[NSUserDefaults standardUserDefaults] initWithSuiteName:@"group.co.getchill.chill"];
     //    NSString *message;
     //    message = [self.sendedContentType isEqualToString:@"location"] ? [NSString stringWithFormat:@"📍 from %@",[userCache valueForKey:@"name"]] : [NSString stringWithFormat:@"%@: %@%@",[userCache valueForKey:@"name"], self.sendedContentType, [self.text isEqualToString:@""] ? @"" : [NSString stringWithFormat:@"#%@", self.text]];

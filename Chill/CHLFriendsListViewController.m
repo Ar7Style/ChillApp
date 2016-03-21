@@ -23,6 +23,8 @@
 #import <Crashlytics/Crashlytics.h>
 #import "UserCache.h"
 
+#import "Flurry.h"
+
 #import "SCLAlertView.h"
 
 #import "RKDropdownAlert.h"
@@ -73,6 +75,8 @@ NSMutableData *mutData;
     id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
     [tracker set:kGAIScreenName value:@"Friends list screen"];
     [tracker send:[[GAIDictionaryBuilder createAppView] build]];
+    
+    //[Flurry logEvent:@"test event from HS to Flurry"];
 }
 
 - (void)viewDidAppear:(BOOL)animated{
@@ -118,7 +122,7 @@ NSMutableData *mutData;
 - (void) errorShow: (NSString*)message {
     //SCLAlertView* alert = [[SCLAlertView alloc] init];
     //[alert showError:self.parentViewController title:@"Oups" subTitle:message closeButtonTitle:@"OK" duration:0.0f];
-    [RKDropdownAlert title:@"Oups" message:message backgroundColor:[UIColor colorWithRed:0.66 green:0.66 blue:0.66 alpha:0.96] textColor:[UIColor whiteColor] time:4];
+    [RKDropdownAlert title:@"No internet" message:@"" backgroundColor:[UIColor colorWithRed:0.66 green:0.66 blue:0.66 alpha:0.96] textColor:[UIColor whiteColor] time:4];
 }
 
 - (void) loadJSON {
@@ -450,15 +454,19 @@ NSMutableData *mutData;
         timer = nil;
     }
     else if ([segue.identifier isEqualToString:@"SearchSegue"]) {
-//        CHLSearchViewController *svc;
-//        svc.searchModeUsers = NO;
+//        if ([[[NSUserDefaults standardUserDefaults] valueForKey:@"isChiller"] isEqualToString:@"0"]) {       CHLSearchViewController *svc;
+//            svc.searchModeUsers = NO;
+       // }
     }
     
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.row >= json.count) {
         if (![[NSUserDefaults standardUserDefaults] boolForKey:@"CallToActionChiller"] && indexPath.row == json.count) {
-          //  [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"CallToActionChiller"];
+//            [[NSUserDefaults standardUserDefaults] setValue:@"1" forKey:@"isChiller"];
+//            CHLSearchViewController *svc;
+//            svc.searchModeUsers = NO;
+
             [self performSegueWithIdentifier:@"SearchSegue" sender:nil];
             [self.tableView reloadData];
             return;
@@ -467,7 +475,10 @@ NSMutableData *mutData;
          //   [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"CallToActionApp"];
 //            CHLSearchViewController *svc;
 //            svc.searchModeUsers = YES;
-            //[[NSUserDefaults standardUserDefaults] s
+//            //[[NSUserDefaults standardUserDefaults] s
+//            [[NSUserDefaults standardUserDefaults] setValue:@"0" forKey:@"isChiller"];
+//            CHLSearchViewController *svc;
+//            svc.searchModeUsers = YES;
             [self performSegueWithIdentifier:@"SearchSegue" sender:nil];
             [self.tableView reloadData];
             return;

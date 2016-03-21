@@ -13,6 +13,8 @@
 #import <AFNetworking/AFNetworking.h>
 #import "NSString+MD5.h"
 
+#import "FlurryWatch.h"
+
 @interface IconsIC () {
     NSArray *json;
     NSMutableDictionary *buttonIDs;
@@ -31,6 +33,9 @@
 
     [_iconButton setValue:@"" forKey:@""];
     NSLog(@"cID %@", context);
+    
+    [FlurryWatch logWatchEvent:@"The IconsIC has been presented"];
+
 }
 
 - (void)willActivate {

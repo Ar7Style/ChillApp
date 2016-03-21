@@ -26,6 +26,9 @@
 #import "CHLLocationShareManager.h"
 #import "CHLIphoneWCManager.h"
 
+#import "Flurry.h"
+
+
 static NSString *const CHLIsOpenedBeforeKey = @"CHLIsOpenedBeforeKey";
 
 @interface CHLAppDelegate ()
@@ -71,6 +74,9 @@ static NSString *const CHLIsOpenedBeforeKey = @"CHLIsOpenedBeforeKey";
     [GAI sharedInstance].dispatchInterval = 60;
     [[[GAI sharedInstance] logger] setLogLevel:kGAILogLevelNone];
     [[GAI sharedInstance] trackerWithTrackingId:@"UA-59826573-1"];
+    
+    //Flurry Analytics
+    [Flurry startSession:@"CFZ7JR8GGNWFDV3J6DPP"];
     
     
     

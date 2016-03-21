@@ -17,11 +17,15 @@
 	<key>CFBundlePackageType</key>
 	<string>XPC!</string>
 	<key>CFBundleShortVersionString</key>
-	<string>2.2</string>
+	<string>2.3</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>1.114</string>
+	<string>1.116</string>
+	<key>Flurry Watch API Key</key>
+	<string>7C5FNP2QHKVQ47F85R4D</string>
+	<key>Flurry Watch App Version</key>
+	<string>v.1.0.a</string>
 	<key>NSAppTransportSecurity</key>
 	<dict>
 		<key>NSAllowsArbitraryLoads</key>

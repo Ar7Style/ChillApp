@@ -59,6 +59,7 @@
 		02CC30CC1A572104006C1294 /* add.png in Resources */ = {isa = PBXBuildFile; fileRef = 02CC30CB1A572103006C1294 /* add.png */; };
 		02CC30CF1A572461006C1294 /* close@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 02CC30CE1A572461006C1294 /* close@2x.png */; };
 		02CC30D21A572600006C1294 /* add_people@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 02CC30D11A572600006C1294 /* add_people@2x.png */; };
+		060DF9021C9FE9DF00721C49 /* libFlurryWatch_7.5.2.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 06AB25831C9EDACB005A761C /* libFlurryWatch_7.5.2.a */; };
 		060F06951BFB9E750030B11B /* UIViewController+KeyboardAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 060F06941BFB9E750030B11B /* UIViewController+KeyboardAnimation.m */; };
 		0614D4931B598A8600CFA8D5 /* oups.png in Resources */ = {isa = PBXBuildFile; fileRef = 0614D4921B598A8600CFA8D5 /* oups.png */; };
 		061B5D551B57DD9200A3B9FB /* update_for_new_icons.png in Resources */ = {isa = PBXBuildFile; fileRef = 061B5D541B57DD9200A3B9FB /* update_for_new_icons.png */; };
@@ -108,6 +109,7 @@
 		069A059F1C5EADB50023C504 /* NSString+MD5.m in Sources */ = {isa = PBXBuildFile; fileRef = 069A059D1C5EADB50023C504 /* NSString+MD5.m */; };
 		06A5BF3F1AAE0AFC00D34CFF /* CHLConnectionRefusedController.m in Sources */ = {isa = PBXBuildFile; fileRef = 06A5BF3E1AAE0AFC00D34CFF /* CHLConnectionRefusedController.m */; };
 		06A5BF411AAE179000D34CFF /* No_internet.png in Resources */ = {isa = PBXBuildFile; fileRef = 06A5BF401AAE179000D34CFF /* No_internet.png */; };
+		06AB258B1C9EE1C5005A761C /* libFlurry_7.5.2.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 06AB25821C9EDACB005A761C /* libFlurry_7.5.2.a */; };
 		06B0E1C41C5FF72F007FCA89 /* headernew.png in Resources */ = {isa = PBXBuildFile; fileRef = 06B0E1C31C5FF72F007FCA89 /* headernew.png */; };
 		06B22A561B67C8200056455D /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 06B22A521B67C8200056455D /* Fabric.framework */; };
 		06B22A581B67C8200056455D /* TwitterKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 06B22A531B67C8200056455D /* TwitterKit.framework */; };
@@ -392,6 +394,10 @@
 		06A5BF3D1AAE0AFC00D34CFF /* CHLConnectionRefusedController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHLConnectionRefusedController.h; sourceTree = "<group>"; };
 		06A5BF3E1AAE0AFC00D34CFF /* CHLConnectionRefusedController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHLConnectionRefusedController.m; sourceTree = "<group>"; };
 		06A5BF401AAE179000D34CFF /* No_internet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = No_internet.png; sourceTree = "<group>"; };
+		06AB25801C9EDACB005A761C /* Flurry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Flurry.h; sourceTree = "<group>"; };
+		06AB25811C9EDACB005A761C /* FlurryWatch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlurryWatch.h; sourceTree = "<group>"; };
+		06AB25821C9EDACB005A761C /* libFlurry_7.5.2.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libFlurry_7.5.2.a; sourceTree = "<group>"; };
+		06AB25831C9EDACB005A761C /* libFlurryWatch_7.5.2.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libFlurryWatch_7.5.2.a; sourceTree = "<group>"; };
 		06B0E1C31C5FF72F007FCA89 /* headernew.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = headernew.png; sourceTree = "<group>"; };
 		06B22A521B67C8200056455D /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
 		06B22A531B67C8200056455D /* TwitterKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TwitterKit.framework; sourceTree = "<group>"; };
@@ -530,6 +536,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				023B427A1C0230F300E124A8 /* libPods-Chill WatchOS 2 Extension-AFNetworking.a in Frameworks */,
+				060DF9021C9FE9DF00721C49 /* libFlurryWatch_7.5.2.a in Frameworks */,
 				023B42781C0230E900E124A8 /* libPods-Chill WatchOS 2 Extension.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -564,6 +571,7 @@
 				06B22A581B67C8200056455D /* TwitterKit.framework in Frameworks */,
 				E6A67AFA198EEB2A0067E34E /* GLKit.framework in Frameworks */,
 				E6A67AF8198EEB220067E34E /* CoreText.framework in Frameworks */,
+				06AB258B1C9EE1C5005A761C /* libFlurry_7.5.2.a in Frameworks */,
 				0272A1BA1B17C2D300E04D83 /* Bolts.framework in Frameworks */,
 				E6A67AF6198EEB1A0067E34E /* CoreLocation.framework in Frameworks */,
 				E6A67AF4198EEB0B0067E34E /* AVFoundation.framework in Frameworks */,
@@ -656,6 +664,10 @@
 		029F1BA61C01E56300368AD4 /* Chill WatchOS 2 Extension */ = {
 			isa = PBXGroup;
 			children = (
+				06AB25801C9EDACB005A761C /* Flurry.h */,
+				06AB25811C9EDACB005A761C /* FlurryWatch.h */,
+				06AB25821C9EDACB005A761C /* libFlurry_7.5.2.a */,
+				06AB25831C9EDACB005A761C /* libFlurryWatch_7.5.2.a */,
 				53402F821C0A647C009E4FD9 /* location@2x.png */,
 				069A059C1C5EADAA0023C504 /* NSString+MD5.h */,
 				069A059D1C5EADB50023C504 /* NSString+MD5.m */,
@@ -1566,6 +1578,10 @@
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				GCC_NO_COMMON_BLOCKS = YES;
 				INFOPLIST_FILE = "Chill WatchOS 2 Extension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
@@ -1574,6 +1590,14 @@
 					"$(PROJECT_DIR)/build/Release-iphoneos",
 					"$(PROJECT_DIR)/build/Debug-iphoneos",
 					"$(PROJECT_DIR)/build/Debug-watchos",
+					"$(PROJECT_DIR)/Chill",
+					WatchOS,
+					2,
+					Extension,
+					"$(PROJECT_DIR)/Chill",
+					WatchOS,
+					2,
+					Extension,
 				);
 				MTL_ENABLE_DEBUG_INFO = NO;
 				OTHER_LDFLAGS = "";
@@ -1654,6 +1678,14 @@
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/build/Release-iphoneos",
 					"$(PROJECT_DIR)/build/Debug-iphoneos",
+					"$(PROJECT_DIR)/Chill",
+					WatchOS,
+					2,
+					Extension,
+					"$(PROJECT_DIR)/Chill",
+					WatchOS,
+					2,
+					Extension,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";

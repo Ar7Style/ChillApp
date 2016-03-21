@@ -2416,7 +2416,7 @@ communication experience</string>
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ASImageCell" id="ppp-jH-EDC" customClass="ASImageCell">
-                                        <rect key="frame" x="33.5" y="0.0" width="123" height="123"/>
+                                        <rect key="frame" x="47.5" y="0.0" width="123" height="123"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="123" height="123"/>
@@ -2707,7 +2707,7 @@ communication experience</string>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="a9x-zj-tz0">
-                                <rect key="frame" x="51" y="195" width="218" height="373"/>
+                                <rect key="frame" x="51" y="151" width="218" height="417"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="UEz-P9-b43">
                                     <size key="itemSize" width="134" height="118"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -2777,7 +2777,7 @@ communication experience</string>
                             <constraint firstItem="XtQ-VJ-3hY" firstAttribute="centerX" secondItem="RAS-mS-WWf" secondAttribute="centerX" id="XVB-l1-KeM"/>
                             <constraint firstItem="XtQ-VJ-3hY" firstAttribute="top" secondItem="9j4-kB-wLi" secondAttribute="bottom" constant="-10" id="gHy-sr-VUj"/>
                             <constraint firstAttribute="trailingMargin" secondItem="a9x-zj-tz0" secondAttribute="trailing" constant="35" id="jrY-Zm-u6Q"/>
-                            <constraint firstItem="a9x-zj-tz0" firstAttribute="top" secondItem="XtQ-VJ-3hY" secondAttribute="bottom" constant="64" id="y0K-Dd-bID"/>
+                            <constraint firstItem="a9x-zj-tz0" firstAttribute="top" secondItem="XtQ-VJ-3hY" secondAttribute="bottom" constant="20" id="y0K-Dd-bID"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="tAK-df-DhX"/>

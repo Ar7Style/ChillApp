@@ -11,6 +11,8 @@
 #import <AFNetworking/AFNetworking.h>
 #import "NSString+MD5.h"
 
+#import "FlurryWatch.h"
+
 @interface ShareIC () {
     NSArray *json;
     NSInteger *itemsPicker[60];
@@ -45,6 +47,9 @@
     [_statusText setText:@"Loading..."];
     [self loadData];
     NSLog(@"CON %@", context);
+    
+    [FlurryWatch logWatchEvent:@"The ShareIC has been presented"];
+
 }
 
 - (void)willActivate {

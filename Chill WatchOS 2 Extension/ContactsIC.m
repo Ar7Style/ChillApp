@@ -10,6 +10,8 @@
 #import "ContactRow.h"
 #import "UserCache.h"
 #import <AFNetworking/AFNetworking.h>
+
+#import "FlurryWatch.h"
 @interface ContactsIC () {
     NSArray *json;
 }
@@ -23,6 +25,8 @@
     [_reloadButton setHidden:YES];
     NSLog(@"Open ContactsIC");
     // Configure interface objects here.
+    [FlurryWatch logWatchEvent:@"The ContactsIC has been presented"];
+
 }
 
 - (void) loadData {

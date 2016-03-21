@@ -10,6 +10,9 @@
 #import "CHLWatchWCManager.h"
 #import "UserCache.h"
 
+#import "FlurryWatch.h"
+
+
 @interface InterfaceController ()
 
 @end
@@ -26,6 +29,9 @@
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadWithContactsController) name:@"AuthOK" object:nil];
         [[CHLWatchWCManager sharedManager] requestAuth];
     }
+    [FlurryWatch logWatchEvent:@"The InterfaceController has been presented"];
+    
+
 }
 
 - (void)reloadWithContactsController {

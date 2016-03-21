@@ -13,6 +13,9 @@
 #import "ANHelperFunctions.h"
 #import "ASServerManager.h"
 #import "SCLAlertView.h"
+
+#import "RKDropdownAlert.h"
+
 #import "UIImage+imageWithColor.h"
 #import <SystemConfiguration/SystemConfiguration.h>
 #import <SystemConfiguration/SCNetworkReachability.h>
@@ -194,8 +197,9 @@ NSMutableData *mutData;
         NSLog(@"There IS NO internet connection");
         
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            SCLAlertView* alert = [[SCLAlertView alloc] init];
-            [alert showError:self.parentViewController title:@"Oups" subTitle:@"Please, check your internet connection" closeButtonTitle:@"OK" duration:0.0f];
+//            SCLAlertView* alert = [[SCLAlertView alloc] init];
+//            [alert showError:self.parentViewController title:@"Oups" subTitle:@"Please, check your internet connection" closeButtonTitle:@"OK" duration:0.0f];
+            [RKDropdownAlert title:@"No internet" message:@"" backgroundColor:[UIColor colorWithRed:0.66 green:0.66 blue:0.66 alpha:0.96] textColor:[UIColor whiteColor] time:4];
         });
         return NO;
     }
@@ -221,8 +225,9 @@ NSMutableData *mutData;
 }
 
 -(void)showError:(NSString *)message {
-    SCLAlertView* alert = [[SCLAlertView alloc] init];
-    [alert showError:self title:@"Oups" subTitle:message closeButtonTitle:@"OK" duration:0.0f];
+//    SCLAlertView* alert = [[SCLAlertView alloc] init];
+//    [alert showError:self title:@"Oups" subTitle:message closeButtonTitle:@"OK" duration:0.0f];
+    [RKDropdownAlert title:@"No internet" message:@"" backgroundColor:[UIColor colorWithRed:0.66 green:0.66 blue:0.66 alpha:0.96] textColor:[UIColor whiteColor] time:4];
 }
 
 - (void)shareIconWithType:(NSString *)iconType
