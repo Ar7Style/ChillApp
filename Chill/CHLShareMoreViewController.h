@@ -13,5 +13,9 @@
 @property (weak, nonatomic) UIImageView *cellStatusView;
 @property (readwrite) NSInteger userIdTo;
 @property(nonatomic, strong) NSMutableDictionary *progressViewsDictionary;
+@property(nonatomic, strong) NSString *tempText;
+@property (weak, nonatomic) IBOutlet UITextField *hashtagTextField;
+
+
 
 @end

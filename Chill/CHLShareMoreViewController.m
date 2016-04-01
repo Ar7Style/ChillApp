@@ -30,7 +30,6 @@
 @interface CHLShareMoreViewController () <UIScrollViewDelegate,UICollectionViewDataSource,UICollectionViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicatorView;
-@property (weak, nonatomic) IBOutlet UITextField *hashtagTextField;
 @property (weak, nonatomic) IBOutlet UILabel *characktersCounterLabel;
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (strong, nonatomic) NSMutableArray *arrayAllIcon;
@@ -63,6 +62,8 @@ NSMutableData *mutData;
             [self getIconsFromServer];
         });
     }
+    self.hashtagTextField.text = self.tempText;
+
     [super viewDidLoad];
     [self.activityIndicatorView startAnimating];
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self
