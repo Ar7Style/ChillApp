@@ -36,8 +36,19 @@
     [super viewDidLoad];
     [self.activity setHidesWhenStopped:YES];
     // Do any additional setup after loading the view.
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self
+                                                                          action:@selector(dismissKeyboard)];
+    tap.cancelsTouchesInView = NO;
+    [self.view addGestureRecognizer:tap];
     
 }
+
+-(void)dismissKeyboard {
+    [_loginField1 resignFirstResponder];
+    [_passwordField1 resignFirstResponder];
+    // [self.view removeGestureRecognizer:tap];
+}
+
 -  (void)viewDidAppear:(BOOL)animated {
     self.navigationController.view.clipsToBounds=YES;
 }
@@ -120,10 +131,11 @@
                 _goButton.userInteractionEnabled = YES;
                // [self.authButton1.titleLabel setHidden:NO];
                 [self.activity stopAnimating];
+                [_goButton addSubview:_goButton.titleLabel];
 
+                [self dismissKeyboard];
             }
             else if ([[responseObject valueForKey:@"status"] isEqualToString:@"success"]) {
-
 
                 [NSUserDefaults changeAuth:true];
                 [NSUserDefaults setValue:[[responseObject valueForKey:@"response"] valueForKey:@"id_user"] forKey:@"id_user"];
@@ -145,7 +157,6 @@
                 [manager2 GET:[NSString stringWithFormat:@"http://api.iamchill.co/v2/users/index/id_user/%@",[NSUserDefaults userID]] parameters:nil success:^(AFHTTPRequestOperation *operation2, id responseObject2) {
                     if ([[responseObject2 valueForKey:@"status"] isEqualToString:@"success"])
                     {
-                        
                         [NSUserDefaults setValue:[[[responseObject2 valueForKey:@"response"] valueForKey:@"name"]componentsJoinedByString:@""] forKey:@"name"];
                         [NSUserDefaults setValue:[[[responseObject2 valueForKey:@"response"] valueForKey:@"email"]componentsJoinedByString:@""] forKey:@"email"];
                         CHLSettingsViewController *settingsVC = [[CHLSettingsViewController alloc]init];
@@ -179,6 +190,7 @@
                 } failure:^(AFHTTPRequestOperation *operation2, NSError *error2) {
                     NSLog(@"Error: %@", error2);
                     [self errorShow:@"Please, check Your internet connection"];
+                    [self dismissKeyboard];
                 }];
             }
             NSLog(@"JSON: %@", responseObject);
@@ -191,6 +203,7 @@
             [self.activity stopAnimating];
 
             NSLog(@"Error: %@", error);
+            [self dismissKeyboard];
         }];
     }
     else
@@ -199,6 +212,7 @@
         _goButton.userInteractionEnabled = YES;
         [_goButton addSubview:_goButton.titleLabel];
         [self.activity stopAnimating];
+        [self dismissKeyboard];
 
     }
 }

@@ -63,7 +63,7 @@ NSMutableData *mutData;
         });
     }
     self.hashtagTextField.text = self.tempText;
-
+    
     [super viewDidLoad];
     [self.activityIndicatorView startAnimating];
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self

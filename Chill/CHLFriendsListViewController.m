@@ -103,9 +103,10 @@ NSMutableData *mutData;
     if( self.refreshControl.isRefreshing )
         [self refresh:self.refreshControl];
 }
+
 - (void)refresh:(id)sender {
     __weak UIRefreshControl *refreshControl = (UIRefreshControl *)sender;
-    if(refreshControl.refreshing) {
+   // if(refreshControl.refreshing) {
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
             [self loadJSON];
             dispatch_sync(dispatch_get_main_queue(), ^{
@@ -113,7 +114,7 @@ NSMutableData *mutData;
                 [self.tableView performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:YES];
             });
         });
-    }
+   // }
 }
 - (void) targetMethod: (id)sender {
     [self loadJSON];

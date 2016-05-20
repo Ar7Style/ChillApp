@@ -61,8 +61,6 @@
 		02CC30D21A572600006C1294 /* add_people@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 02CC30D11A572600006C1294 /* add_people@2x.png */; };
 		060F06951BFB9E750030B11B /* UIViewController+KeyboardAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 060F06941BFB9E750030B11B /* UIViewController+KeyboardAnimation.m */; };
 		0614D4931B598A8600CFA8D5 /* oups.png in Resources */ = {isa = PBXBuildFile; fileRef = 0614D4921B598A8600CFA8D5 /* oups.png */; };
-		061640811CAD97BD00709F05 /* libFlurry_7.5.2.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 06AB25821C9EDACB005A761C /* libFlurry_7.5.2.a */; };
-		061640821CAD97C000709F05 /* libFlurryWatch_7.5.2.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 06AB25831C9EDACB005A761C /* libFlurryWatch_7.5.2.a */; };
 		061B5D551B57DD9200A3B9FB /* update_for_new_icons.png in Resources */ = {isa = PBXBuildFile; fileRef = 061B5D541B57DD9200A3B9FB /* update_for_new_icons.png */; };
 		062614F81BF780DC001D704A /* chill_edu1.png in Resources */ = {isa = PBXBuildFile; fileRef = 062614F71BF780DC001D704A /* chill_edu1.png */; };
 		0629B2D81C41591C0038F2D0 /* ASImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0629B2CF1C41591C0038F2D0 /* ASImageCell.m */; };
@@ -122,6 +120,8 @@
 		06C972B31C9610FB009A73F3 /* RKDropdownAlert.m in Sources */ = {isa = PBXBuildFile; fileRef = 06C972B21C9610FB009A73F3 /* RKDropdownAlert.m */; };
 		06E5E7DC1B5BD09A00BBA563 /* settings.png in Resources */ = {isa = PBXBuildFile; fileRef = 06E5E7DB1B5BD09A00BBA563 /* settings.png */; };
 		06EAB9591AA7AE6300149DF2 /* Chill_logo_hand.png in Resources */ = {isa = PBXBuildFile; fileRef = 06EAB9551AA7AE6300149DF2 /* Chill_logo_hand.png */; };
+		06F0BE711CEF420B00A69005 /* libFlurry_7.5.2.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 06AB25821C9EDACB005A761C /* libFlurry_7.5.2.a */; };
+		06F0BE721CEF420D00A69005 /* libFlurryWatch_7.5.2.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 06AB25831C9EDACB005A761C /* libFlurryWatch_7.5.2.a */; };
 		06F3318D1B721A710064BD1C /* CHLInviteFromAddressBookViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 06F3318C1B721A710064BD1C /* CHLInviteFromAddressBookViewController.m */; };
 		531836E61C077D47001AE40D /* Checkmark-100@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 531836E51C077D47001AE40D /* Checkmark-100@2x.png */; };
 		531836E71C077D47001AE40D /* Checkmark-100@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 531836E51C077D47001AE40D /* Checkmark-100@2x.png */; };
@@ -536,7 +536,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				023B427A1C0230F300E124A8 /* libPods-Chill WatchOS 2 Extension-AFNetworking.a in Frameworks */,
-				061640821CAD97C000709F05 /* libFlurryWatch_7.5.2.a in Frameworks */,
+				06F0BE721CEF420D00A69005 /* libFlurryWatch_7.5.2.a in Frameworks */,
 				023B42781C0230E900E124A8 /* libPods-Chill WatchOS 2 Extension.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -571,7 +571,7 @@
 				06B22A581B67C8200056455D /* TwitterKit.framework in Frameworks */,
 				E6A67AFA198EEB2A0067E34E /* GLKit.framework in Frameworks */,
 				E6A67AF8198EEB220067E34E /* CoreText.framework in Frameworks */,
-				061640811CAD97BD00709F05 /* libFlurry_7.5.2.a in Frameworks */,
+				06F0BE711CEF420B00A69005 /* libFlurry_7.5.2.a in Frameworks */,
 				0272A1BA1B17C2D300E04D83 /* Bolts.framework in Frameworks */,
 				E6A67AF6198EEB1A0067E34E /* CoreLocation.framework in Frameworks */,
 				E6A67AF4198EEB0B0067E34E /* AVFoundation.framework in Frameworks */,
@@ -1610,6 +1610,22 @@
 					WatchOS,
 					2,
 					Extension,
+					"$(PROJECT_DIR)/Chill",
+					WatchOS,
+					2,
+					Extension,
+					"$(PROJECT_DIR)/Chill",
+					WatchOS,
+					2,
+					Extension,
+					"$(PROJECT_DIR)/Chill",
+					WatchOS,
+					2,
+					Extension,
+					"$(PROJECT_DIR)/Chill",
+					WatchOS,
+					2,
+					Extension,
 				);
 				MTL_ENABLE_DEBUG_INFO = NO;
 				OTHER_LDFLAGS = "";
@@ -1690,6 +1706,22 @@
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/build/Release-iphoneos",
 					"$(PROJECT_DIR)/build/Debug-iphoneos",
+					"$(PROJECT_DIR)/Chill",
+					WatchOS,
+					2,
+					Extension,
+					"$(PROJECT_DIR)/Chill",
+					WatchOS,
+					2,
+					Extension,
+					"$(PROJECT_DIR)/Chill",
+					WatchOS,
+					2,
+					Extension,
+					"$(PROJECT_DIR)/Chill",
+					WatchOS,
+					2,
+					Extension,
 					"$(PROJECT_DIR)/Chill",
 					WatchOS,
 					2,
